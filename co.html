@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>计算机组成原理</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="co">
+  <div class="subhead"><h2>计算机组成原理</h2><span class="score">45 分</span><span class="meta" data-all="7 章">7 章</span></div>
+<details class="chap" open>
+  <summary><span class="num">1</span>计算机系统概述<span class="lv">★★</span><span class="cnt">13 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>1.1 冯·诺依曼结构与存储程序</h3>
+    <ul>
+      <li><b>五大部件</b>：运算器、控制器、存储器、输入设备、输出设备，运算器+控制器=CPU；指令与数据共用存储器（存储墙），哈佛结构分离二者。</li>
+      <li class="hot"><b>存储程序</b>：把编好的程序和原始数据事先送入主存，启动后自动逐条取指执行，这是冯·诺依曼思想的核心（1945 年 EDVAC 方案）。其要点为：① 机器以二进制表示指令和数据；② 指令由操作码和地址码组成；③ 指令与数据<em>同等地位</em>存于同一存储器、按地址访问；④ 指令按地址顺序执行，顺序可由转移指令改变；⑤ 硬件由五大部件组成。常见考法：判断"程序与数据分开存放"（错，那是哈佛结构）、"指令和数据形式相同、都可被修改"（对）、"存储程序由冯·诺依曼提出"（对）。结论：存储程序 + 二进制 + 顺序执行 = 冯氏机三根支柱。<div class="ex"><p><b>例题</b>冯·诺依曼结构的核心特征是什么？它与哈佛结构的区别？</p><p><b>解析</b>① 存储程序：程序与数据同等地位存放在同一存储器中，自动逐条取指执行；② 哈佛结构把指令与数据分开存储。</p><p><b>易错点</b>把「存储程序」理解成「程序存在硬盘上」，它指的是存进主存并自动执行。</p><p><b>拓展</b>现代 CPU 采用改进型哈佛结构：L1 指令 Cache 与数据 Cache 分离。</p></div></li>
+    </ul>
+    <table>
+      <thead>
+        <tr><th>对比项</th><th>冯·诺依曼结构</th><th>哈佛结构</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>存储器</td><td>指令、数据合一的同一存储空间</td><td>指令存储器与数据存储器分离</td></tr>
+        <tr><td>取指取数</td><td>不能同时进行，争用总线</td><td>可同时进行，无争用</td></tr>
+        <tr><td>典型应用</td><td>通用计算机</td><td>单片机、DSP、CPU 内分离 Cache</td></tr>
+      </tbody>
+    </table>
+    <div class="fig"><svg class="dg" viewBox="0 0 400 142" role="img" aria-label="冯诺依曼取指执行通路"><text class="x" x="200" y="17" text-anchor="middle">存储程序机：指令与数据同存，CPU 循环取指并执行</text><rect class="boxa" x="18" y="42" width="68" height="30" rx="5"/><text class="w" x="52" y="62" text-anchor="middle">PC</text><line class="lna" x1="86" y1="57" x2="126" y2="57" marker-end="url(#arwa)"/><rect class="box" x="132" y="42" width="72" height="30" rx="5"/><text class="t" x="168" y="62" text-anchor="middle">MAR</text><line class="lna" x1="204" y1="57" x2="244" y2="57" marker-end="url(#arwa)"/><rect class="boxw" x="250" y="42" width="72" height="30" rx="5"/><text class="t" x="286" y="62" text-anchor="middle">主存</text><line class="lna" x1="322" y1="57" x2="362" y2="57" marker-end="url(#arwa)"/><text class="s" x="200" y="91" text-anchor="middle">MDR → IR → 控制器/ALU → 更新 PC</text><path class="lna" d="M360 100 H40 V78" marker-end="url(#arwa)"/><text class="s" x="200" y="119" text-anchor="middle">顺序执行，遇转移指令改变 PC；指令和数据共享主存与总线</text></svg><div class="cap">取指基本链路：<code>PC→MAR→主存→MDR→IR</code>；随后译码、执行，循环直到遇到转移或终止。</div></div>
+    <h3>1.2 硬件组成与主存容量</h3>
+    <ul>
+      <li><b>寄存器与组成</b>：<code>PC</code>下条指令地址、<code>IR</code>当前指令、<code>MAR</code>访存地址、<code>MDR</code>读写数据、<code>PSW</code>状态标志，取指<code>PC→MAR→主存→MDR→IR</code>。</li>
+      <li class="hot"><b>存储容量与字长</b>：<code>MAR</code> 的位数 n 决定可寻址的存储单元个数 <code>2^n</code>，<code>MDR</code> 的位数 m 等于存储字长，故<em>总容量 = 2^n × m 位</em>；按字节编址时容量 = <code>2^n B</code>。字长是 CPU 一次能并行处理的二进制位数，通常等于通用寄存器或 MDR 的宽度，字长越长则精度越高、可寻址空间越大。常见考法：给 MAR/MDR 求容量、给容量反求地址线根数、按字/按字节编址互换。结论：地址线管"多少个单元"，数据线管"每个单元多少位"，二者相乘才是总容量。<div class="ex"><p><b>例题</b>MAR 20 位、MDR 8 位，存储容量是多少？</p><p><b>解析</b>① 存储单元数 = 2²⁰ = 1 M；② 每单元 8 位 = 1 B；③ 容量 = 1 MB。</p><p><b>易错点</b>把 MDR 位数当成寻址范围；容量 = 单元数 × 每单元位数。</p><p><b>拓展</b>MDR 位数就是存储字长，即一次读写的位数。</p></div></li>
+      <li><b>主存与辅存</b>：主存 CPU 直接访问、易失；辅存大、非易失、须调入主存；SSD（Flash）按页读写、块擦除，需磨损均衡与垃圾回收（FTL）。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>某机 <code>MAR</code> 为 24 位、<code>MDR</code> 为 16 位，按字（存储字长 16 位）编址。求：① 存储单元个数；② 主存总容量（用 MB 表示）；③ 若改为按字节编址，至少需要多少根地址线。</p><p><b>解析</b>① 单元数 = <code>2^24</code> = 16 M 个单元。② 每单元 16 位 = 2 B，总容量 = <code>2^24 × 2 B = 2^25 B = 32 MB</code>（换算：<code>2^20 B = 1 MB</code>）。③ 按字节编址时字节单元数 = <code>2^25</code>，故需 <code>log₂(2^25) = 25</code> 根地址线。</p><p><b>易错点</b>把 <code>2^24 × 16</code> 位直接当作 16 MB（漏乘 2 B/单元），或忘记按字节编址时单元数翻倍导致地址线由 24 根变 25 根。</p>
+    </div>
+    <h3>1.3 软件与层次结构</h3>
+    <ul>
+      <li><b>层次结构与软硬件等价</b>：微程序机器→传统机器→操作系统机器→汇编语言机器→高级语言机器→应用层，<em>下层是上层基础</em>；固件即 ROM 中微程序。</li>
+      <li><b>编译、汇编、解释</b>：编译把高级语言源程序<em>整体</em>翻译成目标程序再执行，快；汇编与机器指令一一对应；解释<em>逐条</em>翻译即执行、不生成目标程序，可移植但慢。</li>
+    </ul>
+    <h3>1.4 性能指标</h3>
+    <ul>
+      <li><b>主频、周期与 CPI</b>：<code>f = 1/T</code>；<code>CPI = 总时钟周期数 / 指令条数</code>；<code>CPI = Σ(CPI_i × 占比_i)</code>；<em>主频高≠速度快</em>。</li>
+      <li class="hot"><b>执行时间、MIPS 与 MFLOPS</b>：<code>T_cpu = IC × CPI × T = IC × CPI / f</code>，其中 IC 为指令条数，这是最可靠的性能度量；<code>MIPS = IC / (T_cpu × 10^6) = f / (CPI × 10^6)</code>，<code>MFLOPS = 浮点运算次数 / (T_cpu × 10^6)</code>。常见考法：给主频与各类指令占比求 CPI、执行时间、MIPS；或问"主频提高 20% 是否性能提高 20%"（不一定，CPI 可能同时变大）。结论：MIPS 只适合同一指令集内比较，且完全反映不了浮点能力与 I/O 性能。<div class="ex"><p><b>例题</b>指令 10⁶ 条、CPI=2.5、主频 1 GHz，求执行时间与 MIPS。</p><p><b>解析</b>① T = 10⁶×2.5 / 10⁹ = 2.5 ms；② MIPS = 主频/(CPI×10⁶) = 1000/2.5 = 400。</p><p><b>易错点</b>MIPS 公式忘记除以 10⁶，结果放大一百万倍。</p><p><b>拓展</b>多类指令时 CPI = Σ(CPIᵢ × 该类指令占比)。</p></div></li>
+      <li><b>字长、带宽与基准</b>：字长=一次并行处理位数；<code>带宽 = 数据线宽度(字节) × 工作频率</code>（B/s），吞吐量=单位时间任务数，SPEC 更可靠。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>某机主频 2 GHz，运行一个含 <code>IC = 10^7</code> 条指令的程序。指令分为三类：A 类占 40%、CPI = 2；B 类占 30%、CPI = 3；C 类占 30%、CPI = 5。求该程序的平均 CPI、CPU 执行时间与 MIPS。</p><p><b>解析</b>① 加权平均 CPI = 0.4×2 + 0.3×3 + 0.3×5 = 0.8 + 0.9 + 1.5 = <code>3.2</code>。② 总时钟周期数 = <code>IC × CPI = 10^7 × 3.2 = 3.2×10^7</code> 个周期；<code>T = 1/f = 0.5 ns</code>。③ 执行时间 <code>T_cpu = 3.2×10^7 × 0.5 ns = 1.6×10^7 ns = 16 ms</code>（即 <code>IC×CPI/f = 3.2×10^7 / 2×10^9 = 0.016 s</code>）。④ <code>MIPS = f/(CPI×10^6) = 2×10^9/(3.2×10^6) = 625</code>，校验：<code>10^7/(0.016×10^6) = 625</code>。</p><p><b>易错点</b>把三类 CPI 直接取算术平均 (2+3+5)/3 ≈ 3.33（必须按占比加权）；主频 2 GHz 误代成 <code>T = 2 ns</code>（应为 0.5 ns）；MIPS 分母漏掉 <code>10^6</code> 得 625000。</p>
+    </div>
+    <ul>
+      <li class="hot"><b>Amdahl 定律</b>：设可改进部分占总执行时间的比例为 f，该部分加速 k 倍，则整体加速比 <code>S = 1 / [(1 − f) + f/k]</code>。当 <code>k → ∞</code> 时 <code>S_max = 1/(1 − f)</code>，即<em>加速比被不可改进的串行部分锁死</em>。常见考法：给 f、k 求 S；给目标 S 反求所需 k；判断"某部分无限加速可获无穷加速比"（错）。结论：先算不可改进部分 1−f，它是性能上限的倒数量级。<div class="ex"><p><b>例题</b>程序有 60% 的部分可并行且加速 4 倍，整体加速比是多少？</p><p><b>解析</b>① S = 1/[(1−f) + f/k]；② = 1/(0.4 + 0.6/4) = 1/0.55 ≈ 1.82。</p><p><b>易错点</b>把 f/k 写成 f·k，或把不可改进部分也除以 k。</p><p><b>拓展</b>f→1、k→∞ 时加速比上限为 1/(1−f)。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>某程序总执行时间为 100 s，其中可用于并行改进的部分占 60 s。若把这部分加速 5 倍，求整体加速比；若该部分加速到无限快，加速比上限是多少？</p><p><b>解析</b>① 可改进比例 <code>f = 60/100 = 0.6</code>，不可改进部分 <code>1 − f = 0.4</code>（即 40 s，不变）。② 改进后该部分耗时 <code>60/5 = 12 s</code>，新总时间 = 40 + 12 = 52 s。③ <code>S = 100/52 ≈ 1.92</code>，与公式 <code>1/(0.4 + 0.6/5) = 1/0.52 ≈ 1.92</code> 一致。④ 上限 <code>S_max = 1/0.4 = 2.5</code>（该部分耗时趋于 0，总时间趋于 40 s，100/40 = 2.5）。</p><p><b>易错点</b>把 f 当成"可改进部分占总指令数/占总代码量的比例"而非占总<em>执行时间</em>的比例；误以为加速 5 倍就整体快 5 倍，或误以为无限加速可得无穷加速比。</p>
+    </div>
+    <ul>
+      <li><b>RISC/RISC-V</b>：指令少规整、定长、寻址方式少、只有 Load/Store 访存、寄存器多、易流水线；RISC-V 开源、可扩展。</li>
+      <li><b>多核与 Cache 一致性</b>：多核提高吞吐量；超线程复制寄存器状态、共享执行单元，单线程不提；MESI：改 M、独 E、共 S、无效 I。</li>
+    </ul>
+    <div class="key"><b>重点</b>：本章计算题只出自三处——<code>MAR/MDR</code> 与存储容量换算、<code>IC × CPI × T</code>（含 MIPS）、Amdahl 定律；概念题集中在存储程序思想、冯氏机与哈佛结构、编译/汇编/解释的区别。</div>
+    <div class="warn"><b>易错</b>：<code>MAR</code> 位数决定单元数 <code>2^n</code>、<code>MDR</code> 位数决定存储字长，两者相乘才是总容量，切勿混用；按字编址与按字节编址的单元数相差 <code>字长/8</code> 倍，地址线根数随之改变。</div>
+    <div class="warn"><b>易错</b>：主频高不等于速度快（CPI 与 IC 可能同时变差）；MIPS 只能在同一指令集内比较，且反映不了浮点运算与 I/O 能力，评价整机性能应用执行时间或 SPEC 基准。</div>
+    <div class="tip"><b>记忆</b>：性能三要素 <code>IC × CPI × T</code>，改任一项都能提速但常相互抵消（CISC 减 IC 增 CPI，RISC 反之）；Amdahl 记"串行部分是天花板"，<code>S_max = 1/(1−f)</code>。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">2</span>数据的表示和运算<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>2.1 进位计数制与编码</h3>
+    <ul>
+      <li><b>进制转换</b>：按权展开 <code>N = Σ d_i×r^i</code>；二→八每 3 位一组、二→十六每 4 位一组；十进制小数可能无限循环、须截断。</li>
+      <li><b>BCD 码</b>：4 位表示 1 位十进制数，8421 码为<em>有权码</em>，余 3 码、格雷码为无权码，格雷码相邻码字差 1 位。</li>
+      <li><b>字符与汉字编码</b>：ASCII 7 位 128（<code>'0'=30H</code>、<code>'A'=41H</code>、<code>'a'=61H</code>）；<code>国标码=区位码+2020H</code>、<code>机内码=国标码+8080H</code>。</li>
+    </ul>
+    <div class="fig"><svg class="dg" viewBox="0 0 400 132" role="img" aria-label="二进制与八进制十六进制分组转换"><text class="x" x="200" y="18" text-anchor="middle">二进制分组：每 3 位对应 1 位八进制，每 4 位对应 1 位十六进制</text><text class="s" x="18" y="48">二进制</text><rect class="box" x="78" y="31" width="88" height="28"/><text class="t" x="122" y="50" text-anchor="middle">110 101 011</text><line class="lna" x1="166" y1="45" x2="224" y2="45" marker-end="url(#arwa)"/><rect class="boxa" x="232" y="31" width="72" height="28"/><text class="w" x="268" y="50" text-anchor="middle">6 5 3</text><text class="s" x="318" y="49">八进制</text><rect class="box" x="78" y="82" width="88" height="28"/><text class="t" x="122" y="101" text-anchor="middle">1101 0101</text><line class="lna" x1="166" y1="96" x2="224" y2="96" marker-end="url(#arwa)"/><rect class="boxa" x="232" y="82" width="72" height="28"/><text class="w" x="268" y="101" text-anchor="middle">D5</text><text class="s" x="318" y="100">十六进制</text></svg><div class="cap">从右向左分组，不足一组时在最高位补 0；分组转换不需要逐位展开权值。</div></div>
+    <h3>2.2 校验码</h3>
+    <ul>
+      <li><b>奇偶校验</b>：附加 1 位使 1 的个数为奇数（奇校验）或偶数（偶校验），只能发现<em>奇数个</em>位错，既不能纠错也不能定位。</li>
+      <li class="hot"><b>海明码</b>：k 位数据配 r 位校验位，必须满足 <code>2^r ≥ k+r+1</code>，如 k=4 取 r=3、k=8 取 r=4。校验位固定放在第 1、2、4、8…（2^i）位，每个校验位负责"位置编号二进制第 i 位为 1"的那些位，统一用偶校验。接收端重新算各组校验结果，拼成指错字，<em>指错字的值就是出错位号</em>，为 0 表示无错。海明码码距为 3，可检 2 位错、纠 1 位错。<div class="ex"><p><b>例题</b>数据位 8 位，需要几位校验位？码字共几位？</p><p><b>解析</b>① 2^r ≥ k+r+1 = 8+r+1；② r=4 时 16 ≥ 13 成立；③ 码字共 8+4 = 12 位。</p><p><b>易错点</b>公式写成 2^r ≥ k+r，漏掉「+1」这一项。</p><p><b>拓展</b>海明码可纠 1 位错、检 2 位错；加全校验位可构成 SEC-DED。</p></div></li>
+      <li><b>CRC</b>：补 r 个 0，模 2 除 G(x)，余数取 r 位为校验位，发送 <code>k+r</code> 位；余数 0 无错、非 0 只检错。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>(1) 数据 <code>D = 1011</code>，用偶校验构造海明码，并指出接收码 <code>0110111</code> 的出错位；(2) 数据 <code>1101</code>，生成多项式 <code>G(x) = x^3+x+1</code>（即 1011），求 CRC 校验位，并判断接收码 <code>1100001</code> 是否出错。</p><p><b>解析</b>① k=4，需 <code>2^r ≥ 4+r+1</code>，取 r=3，码长 7：校验位占 1、2、4 位，D1~D4 依次占 3、5、6、7 位。② P1 管 1,3,5,7 位 = P1,1,0,1，已有 2 个 1 → P1=0；P2 管 2,3,6,7 位 = P2,1,1,1 → P2=1；P3 管 4,5,6,7 位 = P3,0,1,1 → P3=0。海明码为 <code>0110011</code>。③ 接收 0110111 第 5 位与发送码不同，校验：S1(1,3,5,7)=0,1,1,1 为奇→1；S2(2,3,6,7)=1,1,1,1 为偶→0；S3(4,5,6,7)=0,1,1,1 为奇→1，指错字 <code>S3S2S1 = 101 = 5</code>，故第 5 位错，取反即纠正。④ CRC：1101 补 3 个 0 得 1101000，模 2 除以 1011：1101⊕1011=0110，下拉 0 得 1100⊕1011=0111，再下拉 0 得 1110⊕1011=0101，再下拉 0 得 1010⊕1011=0001，余数 <code>001</code>，发送码 <code>1101001</code>。⑤ 接收 1100001 再除：1100⊕1011=0111 → 1110⊕1011=0101 → 1010⊕1011=0001 → 下拉 1 得 0011，余数 <code>011 ≠ 0</code>，判定出错。</p><p><b>易错点</b>校验位必须落在 2^i 位置，数据位顺序不能乱填；模 2 除法是异或、没有借位；CRC 余数位数固定为 r 位，不足要补前导 0。</p>
+    </div>
+    <h3>2.3 定点数的表示</h3>
+    <ul>
+      <li class="hot"><b>四种机器数</b>：原码最高位为符号位、其余为绝对值，0 有 <code>+0/-0</code> 两种；反码是负数符号位不变、数值位取反；补码 = 反码 + 1，0 唯一，n 位整数范围 <code>-2^(n-1) ~ 2^(n-1)-1</code>，比原码多表示一个最小负数；移码 = 补码符号位取反，与无符号数同序，专用于浮点阶码。转换技巧：原码→补码"符号位不动，数值位自右向左第一个 1 及其右侧不变、其余取反"；已知 <code>[x]补</code> 求 <code>[-x]补</code> 是各位取反、末位加 1（最小负数除外）。<div class="ex"><p><b>例题</b>8 位补码能表示的范围是多少？−128 能用原码表示吗？</p><p><b>解析</b>① 补码 −128 ~ +127；② 原码只有 −127 ~ +127，−128 无法用原码表示。</p><p><b>易错点</b>认为原码与补码表示范围相同；补码比原码多一个负数。</p><p><b>拓展</b>移码与补码符号位相反，常用来表示浮点数的阶码。</p></div></li>
+    </ul>
+    <table>
+      <thead>
+        <tr><th>表示法</th><th>0 的表示</th><th>8 位整数范围</th><th>主要用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>原码</td><td>两种</td><td>-127~+127</td><td>直观、乘除定符号</td></tr>
+        <tr><td>反码</td><td>两种</td><td>-127~+127</td><td>求补码的过渡</td></tr>
+        <tr><td>补码</td><td>唯一</td><td>-128~+127</td><td>加减运算与存储</td></tr>
+        <tr><td>移码</td><td>唯一</td><td>-128~+127</td><td>浮点阶码比较</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li class="hot"><b>补码加减与溢出判断</b>：<code>[x±y]补 = [x]补 + [±y]补</code>，符号位与数值位一起参加运算，减法化为加 <code>[-y]补</code>。溢出判断三法：①双符号位（变形补码）<code>00/11</code> 正常、<code>01</code> 正溢、<code>10</code> 负溢；②<code>V = C_s ⊕ C_1</code>，即符号位进位与最高数值位进位异或；③单符号位看结果：两正数相加得负、两负数相加得正即溢出。符号位产生的进位要丢弃，它本身并不表示溢出。<div class="ex"><p><b>例题</b>[−42]补 + [101]补 的结果是什么？OF 与 CF 各是多少？</p><p><b>解析</b>① 11010110 + 01100101 = 1 00111011，取低 8 位 00111011 = +59；② 一负一正不会溢出，OF=0；③ 无符号 214+101=315>255，CF=1。</p><p><b>易错点</b>把 OF 与 CF 混为一谈：OF 看符号位进位，CF 看最高位进位。</p><p><b>拓展</b>双符号位法：00 正常正、11 正常负、01 正溢出、10 负溢出。</p></div></li>
+      <li><b>符号扩展与移位</b>：补码正数补 0、负数补 1，原码补 0；算术右移高位补符号位，逻辑右移补 0，左移补 0，<em>算术左移可能溢出</em>。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>8 位补码运算：(1) 求 <code>[105]补 + [50]补</code> 并判断溢出；(2) 求 <code>[-105]补 + [-50]补</code> 并判断溢出；(3) 把 8 位 <code>-8</code> 扩展到 16 位，再分别算术右移、逻辑右移 1 位。</p><p><b>解析</b>① 105=0110 1001，50=0011 0010，相加得 1001 1011，两个正数却得到负数；用双符号位 00 0110 1001 + 00 0011 0010 = <code>01</code> 1001 1011，<code>01</code> 为<em>正溢</em>，且 V = C_s⊕C_1 = 0⊕1 = 1。② <code>[-105]补 = 1001 0111</code>、<code>[-50]补 = 1100 1110</code>，相加得 <code>0110 0101</code> = +101，两个负数相加却得正数（错）；看进位：最高位进位 C_s = 1、次高位进位 C_1 = 0，故 V = C_s⊕C_1 = 1，为<em>负溢</em>；用双符号位验证：11 1001 0111 + 11 1100 1110 = <code>10</code> 0110 0101，<code>10</code> 即负溢。③ <code>-8 = 1111 1000</code>，扩展为 <code>1111 1111 1111 1000</code> = 0xFFF8；算术右移 1 位得 1111 1100 = -4（相当于 ÷2）；逻辑右移 1 位得 0111 1100 = +124，真值已改变。</p><p><b>易错点</b>第 ② 问最高位有进位、次高位无进位，仍属溢出，说明"有进位"不等于"无溢出"，只能靠 C_s⊕C_1 或双符号位判断；算术右移补符号位、逻辑右移补 0，对负数结果完全不同。</p>
+    </div>
+    <h3>2.4 定点运算与运算部件</h3>
+    <ul>
+      <li><b>乘除法</b>：Booth 法 <code>y_i y_(i-1)</code> 00/11 加 0、01 加 <code>[x]补</code>、10 减 <code>[x]补</code>；原码一位乘 2n 位积，加减交替 n+1 步。</li>
+      <li><b>ALU 与并行进位</b>：先行进位 <code>G_i=A_iB_i</code>、<code>P_i=A_i⊕B_i</code>、<code>C_(i+1)=G_i+P_iC_i</code>；输出 ZF/SF/CF/OF。</li>
+    </ul>
+    <div class="key"><b>重点</b>：三种溢出判断法与算术/逻辑移位的区别，几乎年年出现在选择与计算题中，务必手算熟练；进位标志 CF 由最高位进位决定，OF 只对带符号数有意义。</div>
+    <h3>2.5 浮点数表示与运算</h3>
+    <ul>
+      <li class="hot"><b>IEEE 754 格式</b>：单精度 32 位 = 1 符号 + 8 阶码 + 23 尾数，偏置 127；双精度 64 位 = 1 + 11 + 52，偏置 1023。阶码用移码（无符号偏移）存放，尾数隐含最高位 1，真值 <code>x = (-1)^S × 1.M × 2^(E-127)</code>。特殊值：E 全 0 且 M=0 为 ±0；E 全 0 且 M≠0 为非规格化数 <code>0.M × 2^(-126)</code>；E 全 1 且 M=0 为 ±∞，M≠0 为 NaN。<div class="ex"><p><b>例题</b>−12.75 的单精度浮点数十六进制表示是什么？</p><p><b>解析</b>① 12.75 = 1100.11B = 1.10011×2³；② 阶码 3+127 = 130 = 10000010；③ 符号 1 → 0xC14C0000。</p><p><b>易错点</b>阶码偏置用 128 而不是 127；规格化后尾数最高位的 1 要隐藏。</p><p><b>拓展</b>单精度偏置 127、双精度 1023；阶码全 0 与全 1 有特殊含义。</p></div></li>
+      <li class="hot"><b>浮点加减五步</b>：对阶（<em>小阶向大阶对齐</em>，尾数右移，丢低位）→ 尾数加减 → 规格化（左规：尾数左移、阶码减 1；右规：尾数右移、阶码加 1）→ 舍入（0 舍 1 入、恒置 1、就近舍入）→ 溢出判断。溢出只看阶码：阶码上溢才算真溢出并需中断处理，阶码下溢按机器零处理；尾数溢出可由右规修正，不算真溢出。<div class="ex"><p><b>例题</b>对阶时为什么要小阶向大阶对齐？</p><p><b>解析</b>① 小阶向大阶对齐、尾数右移；② 若反过来左移尾数，会丢失高位有效数字甚至溢出。</p><p><b>易错点</b>对阶时把尾数左移，方向弄反。</p><p><b>拓展</b>对阶后尾数可能非规格化，需要左规（形如 00.0 或 11.1 开头）。</p></div></li>
+      <li><b>类型转换/大小端</b>：<code>short -1</code>→<code>unsigned short</code> 65535；<code>float→int</code> 截断，<code>int→float</code> 24 位 16777217→16777216；<code>sizeof</code> 大于成员和，小端 x86。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>(1) 把十进制 -12.5 写成 IEEE 754 单精度 32 位机器数（十六进制）；(2) 已知 32 位机器数 <code>0x41A00000</code>，求真值。</p><p><b>解析</b>① 12.5 = 1100.1B = <code>1.1001 × 2^3</code>，故 S=1，E = 3+127 = 130 = <code>1000 0010</code>，尾数取小数点后 1001，后补 0 至 23 位。② 拼接：<code>1 | 1000 0010 | 1001 000…0</code>，即 <code>1100 0001 0100 1000 0000 0000 0000 0000</code> = <code>0xC1480000</code>。③ 反解 0x41A00000 = <code>0100 0001 1010 0000 …</code>：S=0，E = 1000 0011 = 131，e = 131-127 = 4，M = 010…0，故 <code>x = +1.01 × 2^4 = 10100B = 20.0</code>。</p><p><b>易错点</b>阶码存的是 <code>e+127</code> 而不是 e；尾数字段不含隐含的 1，反解时必须补回；求指数用 <code>E-127</code>，写成 <code>127-E</code> 或漏掉符号位都会全错。</p>
+    </div>
+    <div class="key"><b>重点</b>：IEEE 754 正反互转、对阶与规格化方向（左规/右规谁减谁加）是本章大题主力，务必按"符号-阶码-尾数"三段写清楚中间量。</div>
+    <div class="warn"><b>易错</b>：对阶是<em>小阶向大阶看齐</em>，尾数右移会丢低位精度；若大阶向小阶看齐则尾数左移会溢出，方向写反必错。</div>
+    <div class="warn"><b>易错</b>：溢出只看阶码，阶码下溢按机器零处理不算"溢出"；补码加法中符号位进位被丢弃也不等于溢出。</div>
+    <div class="tip"><b>记忆</b>：海明码 <code>2^r ≥ k+r+1</code>（k=4→r=3，k=8→r=4）；IEEE 754 单精度偏置 127、双精度 1023，尾数前永远补一个隐含 1。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">3</span>存储系统<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>3.1 存储层次与半导体存储器</h3>
+    <ul>
+      <li><b>存储层次</b>：寄存器—Cache—主存—辅存，越上越快越贵越小；<em>Cache-主存</em>解速度矛盾（全硬件、透明），<em>主存-辅存</em>解容量矛盾（虚拟存储器）。</li>
+      <li><b>SRAM与DRAM</b>：SRAM双稳态触发器、不刷新、快、贵，作Cache；DRAM电容、需刷新、便宜，作主存；<em>行列地址复用</em>，破坏性读出须再生。</li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 200" role="img" aria-label="存储层次金字塔">
+        <text x="348" y="14" text-anchor="middle" class="s">由谁管理</text>
+        <polygon points="155,18 245,18 260,56 140,56" class="box"/>
+        <text x="200" y="41" text-anchor="middle" class="x">寄存器</text>
+        <polygon points="140,58 260,58 275,96 125,96" class="boxa"/>
+        <text x="200" y="81" text-anchor="middle" class="w">Cache</text>
+        <polygon points="125,98 275,98 295,136 105,136" class="box"/>
+        <text x="200" y="121" text-anchor="middle" class="x">主存</text>
+        <polygon points="105,138 295,138 320,176 80,176" class="box"/>
+        <text x="200" y="161" text-anchor="middle" class="x">辅存</text>
+        <line x1="50" y1="20" x2="50" y2="174" class="lna" marker-end="url(#arwa)"/>
+        <text x="30" y="100" text-anchor="middle" class="s" transform="rotate(90 30 100)">容量↑ 速度↓ 价格↓</text>
+        <text x="258" y="45" class="s">编译器</text>
+        <text x="270" y="85" class="s">硬件</text>
+        <text x="290" y="125" class="s">硬件+OS</text>
+        <text x="310" y="165" class="s">OS+硬件</text>
+      </svg>
+      <div class="cap">越往上越快越贵越小；<b>Cache-主存</b>由硬件解决速度，<b>主存-辅存</b>由软硬件共同解决容量</div>
+    </div>
+      
+    <table>
+      <thead>
+        <tr><th>项目</th><th>SRAM</th><th>DRAM</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>存储原理</td><td>双稳态触发器</td><td>电容电荷</td></tr>
+        <tr><td>刷新</td><td>不需要</td><td>需定期刷新</td></tr>
+        <tr><td>速度 / 集成度</td><td>快 / 低</td><td>较慢 / 高</td></tr>
+        <tr><td>成本 / 用途</td><td>高 / Cache</td><td>低 / 主存</td></tr>
+        <tr><td>破坏性读出</td><td>非破坏性</td><td>破坏性，需再生</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li><b>DRAM 刷新</b>：按<em>行</em>刷新、只需行地址；集中刷新死时间=行数×存取周期，异步刷新最常用（0.5μs、2ms→2ms/128≈15.6μs）。</li>
+      <li><b>ROM 与 Flash</b>：掩膜ROM、PROM一次编程、EPROM紫外线擦除、EEPROM电擦除、Flash按块擦除；非易失存固件/BIOS。</li>
+    </ul>
+    <div class="fig"><svg class="dg" viewBox="0 0 400 160" role="img" aria-label="主存位扩展与字扩展"><text class="x" x="200" y="17" text-anchor="middle">存储芯片扩展：位扩展并行加宽，字扩展用高位地址片选</text><text class="t" x="22" y="51">位扩展</text><rect class="box" x="92" y="30" width="82" height="30" rx="5"/><text class="t" x="133" y="50" text-anchor="middle">A 地址</text><line class="lna" x1="174" y1="45" x2="222" y2="45" marker-end="url(#arwa)"/><rect class="boxa" x="230" y="24" width="68" height="22"/><text class="w" x="264" y="39" text-anchor="middle">芯片1</text><rect class="boxa" x="230" y="50" width="68" height="22"/><text class="w" x="264" y="65" text-anchor="middle">芯片2</text><text class="s" x="312" y="51">同地址、拼数据位</text><text class="t" x="22" y="112">字扩展</text><rect class="box" x="92" y="91" width="82" height="30" rx="5"/><text class="t" x="133" y="111" text-anchor="middle">高位地址</text><line class="lna" x1="174" y1="106" x2="222" y2="106" marker-end="url(#arwa)"/><rect class="boxa" x="230" y="85" width="68" height="22"/><text class="w" x="264" y="100" text-anchor="middle">译码器</text><line class="lna" x1="298" y1="96" x2="342" y2="82" marker-end="url(#arwa)"/><line class="lna" x1="298" y1="104" x2="342" y2="126" marker-end="url(#arwa)"/><text class="s" x="350" y="84">片1</text><text class="s" x="350" y="133">片2</text></svg><div class="cap">位扩展解决“每字位数不够”，字扩展解决“可存字数不够”；芯片数量按两个方向的扩展倍数相乘。</div></div>
+    <h3>3.2 主存扩展与多模块存储器</h3>
+    <ul>
+      <li class="hot"><b>主存容量扩展</b>：位扩展解决"字数够而位数不够"——各片地址线并联、数据线分接不同位、<em>同时片选</em>；字扩展解决"位数够而字数不够"——高位地址经译码器产生片选 <code>CS</code>、数据线并联。芯片数 = 总容量 / 单片容量 = (总字数/单片字数) × (总位数/单片位数)。地址分配三步：① 由总字数求地址线根数 n；② 片内地址位数 = log₂(单片字数)；③ 余下 n − 片内位数 位高位作片选。常见考法：给芯片规格与目标容量求芯片数与片选逻辑，或给地址范围反推选中哪一片。结论：位扩展的各片"同生共死"，字扩展的各片"轮流上岗"。<div class="ex"><p><b>例题</b>用 1M×4 位 DRAM 芯片组成 2M×32 位主存，需要多少片？</p><p><b>解析</b>① 字方向扩展 2M/1M=2；② 位方向扩展 32/4=8；③ 共 2×8=16 片。</p><p><b>易错点</b>把两个方向的倍数相加（2+8）而不是相乘。</p><p><b>拓展</b>片选由高位地址译码产生，2 组只需 1 根片选线。</p></div></li>
+    </ul>
+    >
+    <ul>
+      <li class="hot"><b>低位交叉编址</b>：多体并行中把<em>地址低位</em>作模块号（低位交叉），连续地址分布在相邻模块，可流水并行存取；高位交叉（高位作模块号）只扩容、不提速。连续读 m 个字的时间 <code>T = T_m + (m−1)τ</code>（T_m 为模块存取周期，τ 为总线传送周期），带宽 = m 字 / T。无冲突条件是模块数 <code>m ≥ T_m/τ</code>。常见考法：求连续读 m 字的时间与带宽、判断给定模块数能否流水、求加速比。结论：交叉存储靠"时间上重叠"提速，模块数不足则流水断流。<div class="ex"><p><b>例题</b>4 体低位交叉，存取周期 200ns、总线传送周期 50ns，连续读 4 个字要多久？</p><p><b>解析</b>① 流水方式：首字仍需 200ns；② 之后每 50ns 出一个字；③ 总时间 = T+(4−1)r = 200+150 = 350ns。</p><p><b>易错点</b>直接算 4×200=800ns——那是顺序存储的耗时。</p><p><b>拓展</b>低位交叉提高带宽（近 m 倍），高位交叉用于扩容。</p></div></li>
+    </ul>
+    >
+    <h3>3.3 Cache 存储器</h3>
+    <ul>
+      <li class="hot"><b>三种映射与地址划分</b>：Cache 依据<em>时间局部性</em>与<em>空间局部性</em>，把主存活跃块按<em>块</em>复制到高速小容量存储器，映射与替换全由硬件完成。直接映射 <code>行号 = 主存块号 mod 行数</code>，地址 = 标记 + 行号 + 块内地址，只比较 1 次、冲突最多；全相联映射主存块可放任意行，地址 = 标记 + 块内地址，须比较全部标记、命中率最高但成本高；组相联映射 <code>组号 = 主存块号 mod 组数</code>，地址 = 标记 + 组号 + 块内地址，组间直接、组内全相联，是二者折中。划分步骤：块内地址位数 = log₂(块大小)，组（行）号位数 = log₂(组数)，标记位数 = 地址总位数 − 组号位数 − 块内地址位数。常见考法：给地址位数、Cache 容量、块大小、相联度求三段位数，或给一地址判断落在哪组、与哪些块冲突。结论：相联度越高冲突越少、比较器越多；地址三段永远由低到高为"块内—组号—标记"。<div class="ex"><p><b>例题</b>主存 1MB、块 32B、Cache 8KB 直接映射，求地址划分。</p><p><b>解析</b>① 块内偏移 log₂32=5 位；② 行数 8KB/32B=256 → 行号 8 位；③ 地址 20 位 → 标记 20−8−5=7 位。</p><p><b>易错点</b>把「行数」当「组数」；标记位忘减块内偏移，位数加起来不等于地址总位数。</p><p><b>拓展</b>组相联时组数=行数/路数，标记位增加 log₂(路数)。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 270" role="img" aria-label="Cache三种映射方式">
+        <text x="10" y="40" class="t">直接映射</text>
+        <text x="10" y="56" class="s">mod 行数</text>
+        <rect x="95" y="14" width="50" height="68" rx="5" class="box"/>
+        <path d="M97 31H143M97 48H143M97 65H143" class="ln"/>
+        <text x="120" y="27" text-anchor="middle" class="s"><tspan x="120" y="27">块0</tspan><tspan x="120" y="44">块1</tspan><tspan x="120" y="61">块2</tspan><tspan x="120" y="78">块3</tspan></text>
+        <path d="M147 27L248 35M147 44L248 69M147 61L248 35M147 78L248 69" class="lna" marker-end="url(#arwa)"/>
+        <rect x="252" y="14" width="60" height="68" rx="5" class="boxw"/>
+        <path d="M252 48H312" class="ln"/>
+        <text x="282" y="35" text-anchor="middle" class="x">行0</text>
+        <text x="282" y="69" text-anchor="middle" class="x">行1</text>
+        <text x="10" y="126" class="t">全相联</text>
+        <text x="10" y="142" class="s">任意块→任意行</text>
+        <rect x="95" y="100" width="50" height="68" rx="5" class="box"/>
+        <path d="M97 117H143M97 134H143M97 151H143" class="ln"/>
+        <text x="120" y="113" text-anchor="middle" class="s"><tspan x="120" y="113">块0</tspan><tspan x="120" y="130">块1</tspan><tspan x="120" y="147">块2</tspan><tspan x="120" y="164">块3</tspan></text>
+        <path d="M147 113H248M147 130H248M147 147H248M147 164H248" class="lna" marker-end="url(#arwa)"/>
+        <rect x="252" y="100" width="60" height="68" rx="5" class="boxw"/>
+        <text x="282" y="138" text-anchor="middle" class="x">任意行</text>
+        <text x="10" y="212" class="t">组相联</text>
+        <text x="10" y="228" class="s">组内全相联</text>
+        <rect x="95" y="186" width="50" height="68" rx="5" class="box"/>
+        <path d="M97 203H143M97 220H143M97 237H143" class="ln"/>
+        <text x="120" y="199" text-anchor="middle" class="s"><tspan x="120" y="199">块0</tspan><tspan x="120" y="216">块1</tspan><tspan x="120" y="233">块2</tspan><tspan x="120" y="250">块3</tspan></text>
+        <path d="M147 199L248 203M147 216L248 203M147 233L248 237M147 250L248 237" class="lna" marker-end="url(#arwa)"/>
+        <rect x="252" y="186" width="60" height="68" rx="5" class="boxw"/>
+        <path d="M252 220H312" class="ln"/>
+        <text x="282" y="207" text-anchor="middle" class="x">组0</text>
+        <text x="282" y="241" text-anchor="middle" class="x">组1</text>
+      </svg>
+      <div class="cap">冲突＝块号 mod 行数（组数）相同；直接映射比较器只要 1 个但命中率低，全相联命中率最高但要比较全部行，组相联是折中</div>
+    </div>
+      
+    <table>
+      <thead>
+        <tr><th>项目</th><th>直接映射</th><th>全相联</th><th>组相联</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>地址划分</td><td>标记 + 行号 + 块内</td><td>标记 + 块内</td><td>标记 + 组号 + 块内</td></tr>
+        <tr><td>比较次数</td><td>1 次</td><td>全部行</td><td>组内行数（路数）</td></tr>
+        <tr><td>冲突 / 成本</td><td>多 / 低</td><td>少 / 高</td><td>居中 / 居中</td></tr>
+      </tbody>
+    </table>
+    >
+    <ul>
+      <li><b>替换算法与写策略</b>：随机法简单命中低、FIFO 可能抖动、LRU 命中率最高；写回法置脏位、配<em>写分配</em>，写直达法同时写主存、配<em>非写分配</em>。</li>
+      <li class="hot"><b>平均访问时间与命中率</b>：命中率 <code>h = 命中次数 / 总访问次数</code>。Cache 与主存<em>同时</em>访问时 <code>t_a = h·t_c + (1−h)·t_m</code>；仅在缺失时才启动主存（串行）时 <code>t_a = h·t_c + (1−h)(t_c + t_m)</code>；效率 <code>e = t_c/t_a</code>。统一写法：<code>t_a = 命中时间 + 缺失率 × 缺失代价</code>。常见考法：给 h、t_c、t_m 求 t_a 与 e，或问"命中率提高 1% 使 t_a 降低多少"。结论：降缺失率靠增大容量与提高相联度，降缺失代价靠多级 Cache。<div class="ex"><p><b>例题</b>Cache 存取 2ns、主存 40ns、命中率 95%（同时访问），求 AMAT。</p><p><b>解析</b>① AMAT = 命中时间 + 缺失率 × 缺失代价；② = 2 + 0.05×40 = 4ns。</p><p><b>易错点</b>缺失代价写成「主存时间−Cache 时间」；两种访问口径混用。</p><p><b>拓展</b>先 Cache 后主存的口径为 h·t₁+(1−h)(t₁+t₂)。</p></div></li>
+      <li><b>多核一致性与 MESI</b>：监听式/目录式协议保证写可见；<em>M 已修改</em>、<em>E 独占</em>、<em>S 共享</em>、<em>I 无效</em>，写共享块广播无效化后升 M。</li>
+    </ul>
+    <h3>3.4 虚拟存储器</h3>
+    <ul>
+      <li><b>页式虚存</b>：虚地址 = 虚页号 + 页内偏移，页表项含页框号、有效位、脏位、访问位、保护位；缺页由 <em>OS</em> 调页，Cache 缺失由<em>硬件</em>处理。</li>
+      <li class="hot"><b>TLB 与多级页表</b>：TLB（快表）是页表项的高速缓存，按内容<em>相联</em>查找，命中则一次访存即可取数；TLB 缺失须访存查页表。页表过大时分页存放成多级页表（虚地址 = 页目录号 + 页表索引 + 页内偏移），省主存但访存次数增加：<em>k 级页表且 TLB 缺失时，取一个数最坏访存 k+1 次</em>（k 次查页表 + 1 次取数）。地址转换流程：虚地址 →（TLB 命中得页框号，否则逐级查页表）→ 拼成物理地址 → 查 Cache → 命中取数。常见考法：给虚地址位数、页大小、页表项大小求页表级数与各级位数；或问"TLB 命中/缺失 × Cache 命中/缺失"的访存次数。结论：TLB 命中 + Cache 命中 = 1 次访存；两者都缺失且缺页，则最慢（须调页后重新执行）。<div class="ex"><p><b>例题</b>32 位虚地址、4KB 页、页表项 4B，一级页表多大？为什么要分级？</p><p><b>解析</b>① 页内偏移 12 位 → 页号 20 位；② 页表项数 2²⁰，大小 2²⁰×4B=4MB；③ 每进程 4MB 太大，故改二级 10+10+12。</p><p><b>易错点</b>用页大小当页表大小；页表大小 = 项数 × 项长。</p><p><b>拓展</b>TLB 命中省一次访存；TLB 与页表都未命中 → 缺页中断。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 300" role="img" aria-label="虚拟地址到物理地址转换流程">
+        <text x="165" y="18" text-anchor="middle" class="s">虚拟地址</text>
+        <rect x="70" y="24" width="110" height="22" rx="5" class="box"/>
+        <text x="125" y="39" text-anchor="middle" class="x">虚页号</text>
+        <rect x="180" y="24" width="80" height="22" rx="5" class="box"/>
+        <text x="220" y="39" text-anchor="middle" class="x">页内偏移</text>
+        <line x1="125" y1="46" x2="125" y2="72" class="ln" marker-end="url(#arw)"/>
+        <rect x="40" y="74" width="120" height="26" rx="5" class="boxa"/>
+        <text x="100" y="91" text-anchor="middle" class="w">TLB 快表</text>
+        <line x1="162" y1="87" x2="214" y2="87" class="lna" marker-end="url(#arwa)"/>
+        <text x="188" y="82" text-anchor="middle" class="s">命中</text>
+        <line x1="100" y1="102" x2="100" y2="126" class="ln" marker-end="url(#arw)"/>
+        <text x="106" y="118" class="s">未命中</text>
+        <rect x="40" y="128" width="120" height="26" rx="5" class="box"/>
+        <text x="100" y="145" text-anchor="middle" class="x">查页表（主存）</text>
+        <path d="M160 141H190V106" class="ln" marker-end="url(#arw)"/>
+        <rect x="220" y="74" width="120" height="26" rx="5" class="boxa"/>
+        <text x="280" y="91" text-anchor="middle" class="w">得页框号</text>
+        <line x1="200" y1="46" x2="200" y2="238" class="dash"/>
+        <text x="204" y="176" class="s">偏移不变</text>
+        <path d="M280 102V214H155V236" class="ln" marker-end="url(#arw)"/>
+        <text x="52" y="254" text-anchor="middle" class="s">物理地址</text>
+        <rect x="110" y="240" width="90" height="22" rx="5" class="boxa"/>
+        <text x="155" y="255" text-anchor="middle" class="w">页框号</text>
+        <rect x="200" y="240" width="80" height="22" rx="5" class="box"/>
+        <text x="240" y="255" text-anchor="middle" class="x">页内偏移</text>
+        <text x="30" y="284" class="s">TLB 命中：共 1 次访存（取数据）</text>
+        <text x="30" y="296" class="s">TLB 未命中：查页表 1 次 + 取数 1 次 = 2 次</text>
+      </svg>
+      <div class="cap">页内偏移全程不变，只换页号→页框号；TLB 命中 1 次访存，未命中 2 次，<b>多级页表每多一级就多 1 次访存</b></div>
+    </div>
+      
+    <h3>3.5 磁盘与 SSD</h3>
+    <ul>
+      <li><b>磁盘存取时间</b>：<code>容量=面数×柱面数×扇区数×扇区字节数</code>；<code>T=寻道+1/(2r)+b/(rN)</code>；7200r/min=120r/s→4.17ms。</li>
+      <li><b>SSD 与 Flash</b>：无机械部件、低功耗、无寻道旋转延迟；按<em>页</em>读写、按<em>块</em>擦除、写前必擦，有写放大与擦写寿命，需磨损均衡与垃圾回收。</li>
+    </ul>
+    <div class="key"><b>重点</b>：Cache 三要素——映射方式决定地址划分与冲突，替换算法决定换出谁，写策略决定一致性。拿到 Cache 题先算"块数 → 组数 → 三段位数"，再看命中率与访问时间。</div>
+    <div class="warn"><b>易错</b>：Cache 的映射、替换、写策略全由硬件完成、对程序员透明；虚存的页面替换、缺页处理由操作系统完成。直接映射的行号由<em>主存块号</em>取模得到，不能用字节地址取模；块内地址位数 = log₂(块大小)。</div>
+    <div class="warn"><b>易错</b>：低位交叉时间 <code>T = T_m + (m−1)τ</code> 仅在 <code>m ≥ T_m/τ</code> 时成立；平均访问时间"同时访问"与"缺失才访存"两个公式不可混用（后者多算一次 t_c）。</div>
+    <div class="tip"><b>记忆</b>：写回配写分配、写直达配非写分配；MESI = 修改、独占、共享、无效；虚拟地址三段由低到高"页内偏移—页表索引—页目录号"。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">4</span>指令系统<span class="lv">★★</span><span class="cnt">13 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>4.1 指令格式与扩展操作码</h3>
+    <ul>
+      <li><b>指令格式</b>：指令字长 = 操作码 + 寻址特征位 + 地址码，分定长与变长，通常为存储字长整数倍；按地址码个数分零至四地址。</li>
+      <li class="hot"><b>扩展操作码</b>：定长操作码译码简单但编码浪费；扩展操作码让操作码长度随地址码个数反变——地址码少则操作码长。硬性条件：<em>短操作码不能是长操作码的前缀</em>，因此每种短码必须留出至少一个编码作扩展标志，扩展是在该标志后"借"出地址码位。计算方法：n 地址指令操作码位数 = 字长 − n × 地址码位数，可用编码数 = 2^位数，减去实际使用的条数即为扩展入口数，再乘以 2^地址码位数得到下一级的最大条数。常见考法：给定各级指令条数求某一级最多条数，或给定总条数反求地址码位数。<div class="ex"><p><b>例题</b>16 位指令、4 位地址码，要求 15 条三地址、14 条二地址、31 条一地址指令，可行吗？</p><p><b>解析</b>① 三地址用 4 位操作码，占 15 个、留 1111 作扩展；② 二地址用 8 位，14 条；③ 一地址用 12 位，可容纳 32 ≥ 31，可行。</p><p><b>易错点</b>忘记留出一个码字作为扩展标志，导致无法继续扩展。</p><p><b>拓展</b>操作码长度随地址码个数反变，这是扩展操作码的本质。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>指令字长 16 位，每个地址码 4 位，采用扩展操作码。要求有 15 条三地址指令、14 条双地址指令，求单地址指令最多多少条；若单地址只设计 30 条，零地址指令最多多少条？</p><p><b>解析</b>① 三地址操作码位数 = 16 − 3×4 = 4 位，共 2^4 = 16 个编码，用 15 条后只剩 1 个（1111）作扩展标志。② 双地址操作码 = 4+4 = 8 位，即以 1111 开头的 16 个编码，用 14 条后剩 2 个（11111110、11111111）。③ 单地址操作码 = 8+4 = 12 位，故最多 2 × 2^4 = <b>32 条</b>。④ 单地址只用 30 条，剩 2 个 12 位编码；零地址操作码需占满 16 位，故最多 2 × 2^4 = <b>32 条</b>。</p><p><b>易错点</b>三地址写成 16 条而不是 15 条（没留扩展标志，1111 会与双地址的 1111xxxx 前缀冲突）；零地址条数误算成 2 条或 32 条的过程漏掉"每级都要再乘 2^地址码位数"这一步。</p>
+    </div>
+    <div class="key"><b>重点</b>：扩展操作码的"前缀唯一"是本质约束，任何一级实际条数 = 上一级剩余编码数 × 2^本级地址码位数 − 预留扩展数。</div>
+    <ul>
+      <li><b>指令类型</b>：数据传送（MOV、LOAD/STORE、PUSH/POP）、算术逻辑与移位、转移（jmp、jcc、call/ret）、系统指令。</li>
+    </ul>
+    <h3>4.2 寻址方式</h3>
+    <ul>
+      <li class="hot"><b>寻址方式与有效地址</b>：立即寻址的操作数就在指令中，取数不访存；直接寻址 EA = A，访存 1 次；间接寻址 EA = (A)，先读地址再读数，访存 2 次；寄存器寻址操作数在寄存器中不访存；寄存器间接 EA = (R)，访存 1 次；相对寻址 EA = (PC) + A；基址/变址 EA = (BR)/(IX) + A。判断某方式快慢的唯一标准是"取操作数要访存几次"，而非地址位数多少。考试常给一张内存内容表，让你逐一写出各方式的 EA 与访存次数。<div class="ex"><p><b>例题</b>立即、直接、间接、寄存器寻址各访存几次取操作数？</p><p><b>解析</b>① 立即寻址 0 次（操作数在指令中）；② 直接寻址 1 次；③ 间接寻址 2 次；④ 寄存器寻址 0 次（在寄存器里）。</p><p><b>易错点</b>把寄存器寻址也当成访存一次。</p><p><b>拓展</b>变址与基址的区别：变址寄存器内容可变，基址寄存器内容不变。</p></div></li>
+    </ul>
+    <table>
+      <tr><th>方式</th><th>有效地址 EA</th><th>取数访存次数</th><th>特点与用途</th></tr>
+      <tr><td>立即</td><td>无（在指令中）</td><td>0</td><td>常数赋值，范围受地址码位数限制</td></tr>
+      <tr><td>直接</td><td>A</td><td>1</td><td>访问固定变量，寻址范围小</td></tr>
+      <tr><td>间接</td><td>(A)</td><td>2</td><td>指针、扩大寻址范围，最慢</td></tr>
+      <tr><td>寄存器间接</td><td>(R)</td><td>1</td><td>指针访问，比存储器间接快</td></tr>
+      <tr><td>基址/变址/相对</td><td>(BR)/(IX)/(PC) + A</td><td>1</td><td>重定位、数组循环、程序浮动</td></tr>
+    </table>
+    <div class="fig"><svg class="dg" viewBox="0 0 400 142" role="img" aria-label="直接寻址与间接寻址流程对比"><text class="x" x="200" y="17" text-anchor="middle">地址码 A 到操作数：间接寻址多一次取地址</text><rect class="boxa" x="20" y="34" width="68" height="28" rx="5"/><text class="w" x="54" y="53" text-anchor="middle">指令 A</text><line class="lna" x1="88" y1="48" x2="142" y2="48" marker-end="url(#arwa)"/><rect class="box" x="150" y="34" width="82" height="28" rx="5"/><text class="t" x="191" y="53" text-anchor="middle">EA=A</text><line class="lna" x1="232" y1="48" x2="286" y2="48" marker-end="url(#arwa)"/><rect class="boxw" x="294" y="34" width="82" height="28" rx="5"/><text class="t" x="335" y="53" text-anchor="middle">取操作数</text><text class="s" x="200" y="76" text-anchor="middle">直接：取数访存 1 次</text><rect class="boxa" x="20" y="96" width="68" height="28" rx="5"/><text class="w" x="54" y="115" text-anchor="middle">指令 A</text><line class="lna" x1="88" y1="110" x2="142" y2="110" marker-end="url(#arwa)"/><rect class="box" x="150" y="96" width="82" height="28" rx="5"/><text class="t" x="191" y="115" text-anchor="middle">M[A]=EA</text><line class="lna" x1="232" y1="110" x2="286" y2="110" marker-end="url(#arwa)"/><rect class="boxw" x="294" y="96" width="82" height="28" rx="5"/><text class="t" x="335" y="115" text-anchor="middle">取操作数</text></svg><div class="cap">间接：先从 A 取出有效地址，再按 EA 取数；若计算整条指令总访存次数，还需另加取指 1 次。</div></div>
+    <ul>
+      <li><b>基址与变址辨析</b>：同为寄存器 + A；基址 BR 由操作系统设定、执行中不变而 A 可变（重定位），变址 IX 由用户改、A 不变（数组）。</li>
+      <li class="hot"><b>有效地址与访存次数</b>：一条指令的总访存次数 = 取指令 1 次 + 取操作数次数（间接寻址还要加取地址的次数）。相对寻址的基准 PC 是<em>取指之后</em>的 PC 值，即 PC + 指令字节数，A 为带符号补码位移量，可正可负。堆栈寻址由 SP 隐含指出栈顶：向低地址增长时进栈先 SP−1 再存、出栈先取再 SP+1。考法：给内存内容表求各方式的 EA 与总访存次数。<div class="ex"><p><b>例题</b>一条间接寻址指令在执行阶段共访存几次？</p><p><b>解析</b>① 取指令 1 次；② 取有效地址 1 次；③ 取操作数 1 次；共 3 次。</p><p><b>易错点</b>漏掉「取指令」的那一次访存，答成 2 次。</p><p><b>拓展</b>有 Cache 时实际访存次数会减少，但题目默认按主存计算。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>主存按字节编址，指令长 2 字节，格式为「操作码 6 位 | 寻址特征 2 位 | 地址码 A 8 位」，寻址特征 00 直接、01 间接、10 变址(R1)、11 相对。已知取指前 (PC) = 2000H，(R1) = 0100H，A = 40H，(0040H) = 0200H，(0200H) = 1234H。求四种方式的有效地址与执行该指令的总访存次数。</p><p><b>解析</b>取指后 (PC) = 2000H + 2 = 2002H，取指访存 1 次。① 直接：EA = 0040H，取数 1 次 → 总 <b>2 次</b>。② 间接：EA = (0040H) = 0200H，先取地址 1 次再取数 1 次 → 总 <b>3 次</b>。③ 变址：EA = (R1) + A = 0100H + 0040H = 0140H，取数 1 次 → 总 <b>2 次</b>。④ 相对：EA = (PC) + A = 2002H + 0040H = 2042H，取数 1 次 → 总 <b>2 次</b>。</p><p><b>易错点</b>相对寻址误用取指前的 2000H 得 2040H（正确是 2002H + 40H = 2042H）；把间接寻址的 A = 0040H 直接当 EA；忘了"取指令本身也要访存 1 次"，只答取数次数。</p>
+    </div>
+    <div class="warn"><b>易错</b>：基址寄存器 BR 由操作系统/管理程序设定、执行中不变，A 可变；变址寄存器 IX 由用户改变，A 不变。两者计算式相同、用途相反，不可混答。堆栈增长方向决定进出栈的 SP 加减顺序。</div>
+    <h3>4.3 CISC 与 RISC</h3>
+    <ul>
+      <li class="hot"><b>CISC 与 RISC 的本质区别</b>：CISC 以"缩小指令条数、让一条指令做更多事"为目标，指令多、变长、寻址方式多、多用微程序控制、CPI 大，编译程序负担轻。RISC 以"简单规整、便于流水"为目标，指令少而等长、只有 Load/Store 访存、寻址方式少、通用寄存器多、硬布线控制，CPI 接近 1，靠优化编译器与流水线取胜。判断题常把两者特性互换（如"RISC 采用微程序控制""CISC 指令定长"）作为错误选项。结论：RISC 的寄存器多、指令少，是为了让每条指令都能在一个时钟周期内完成并进入流水线。<div class="ex"><p><b>例题</b>RISC 的典型特征有哪些？</p><p><b>解析</b>① 指令条数少、长度固定、格式规整；② 只有 load/store 访存；③ 通用寄存器多、以组合逻辑控制为主；④ 便于流水线。</p><p><b>易错点</b>说 RISC 采用微程序控制——微程序控制是 CISC 的典型特征。</p><p><b>拓展</b>RISC 靠编译优化提高性能，CISC 靠硬件复杂度。</p></div></li>
+    </ul>
+    <table>
+      <tr><th>项目</th><th>CISC</th><th>RISC</th></tr>
+      <tr><td>指令数量/长度</td><td>多 / 变长</td><td>少 / 定长</td></tr>
+      <tr><td>访存指令</td><td>不限，运算可直接访存</td><td>仅 Load/Store</td></tr>
+      <tr><td>寻址方式 / 通用寄存器</td><td>多 / 少</td><td>少 / 多</td></tr>
+      <tr><td>控制器 / CPI</td><td>多为微程序 / 大</td><td>多为硬布线 / 接近 1</td></tr>
+      <tr><td>优化途径</td><td>增强指令功能</td><td>优化编译 + 流水线</td></tr>
+    </table>
+    <ul>
+      <li><b>RISC-V</b>：2010 年伯克利开放指令集，整数指令 40 余条、RV32I/RV64I 定长 32 位，扩展 M/A/F/D/C，x0 恒为 0。</li>
+    </ul>
+    <h3>4.4 x86 汇编与过程调用</h3>
+    <ul>
+      <li><b>寄存器与两种语法</b>：EAX/EBX/ECX/EDX、ESI/EDI、ESP/EBP/EIP/EFLAGS；AT&amp;T 源在前（<code>movl %eax, %ebx</code>）、Intel 目的在前（<code>mov ebx, eax</code>）。</li>
+      <li><b>常用指令与条件码</b>：<code>lea</code> 取有效地址<em>不访存</em>；<code>cmp</code>/<code>test</code> 只置标志；有符号看 SF⊕OF、ZF，无符号看 CF、ZF；跳转 jg/jge/jl/jle、ja/jae/jb/jbe。</li>
+      <li class="hot"><b>过程调用与栈帧</b>：x86-32 传统下调用者把参数<em>从右向左</em>压栈，<code>call</code> 把返回地址压栈并跳转；被调者执行 <code>push %ebp; mov %esp,%ebp</code> 建立栈帧，再用 <code>sub $n,%esp</code> 分配局部变量。以 %ebp 为基准，+4 是返回地址、+8 起是参数，−4 起依次是保存的寄存器与局部变量。返回时 <code>leave</code>（等价 mov %ebp,%esp; pop %ebp）恢复栈指针，<code>ret</code> 弹出返回地址，返回值放 EAX。x86-64 前 6 个整型参数改用 RDI/RSI/RDX/RCX/R8/R9 传递，更省访存。<div class="ex"><p><b>例题</b>call 与 ret 指令各完成什么操作？</p><p><b>解析</b>① call：把返回地址（PC 已加 1）压栈，然后转到目标地址；② ret：从栈顶弹出返回地址送入 PC。</p><p><b>易错点</b>以为 call 会自动保存所有通用寄存器，那是由被调用者或编译器完成的。</p><p><b>拓展</b>x86-32 参数从右向左压栈；x86-64 前 6 个参数用寄存器传递。</p></div></li>
+    </ul>
+    <div class="key"><b>重点</b>：栈帧的核心是"两层指针"——EBP 固定指向本帧底部作为基准，ESP 随压栈出栈浮动；局部变量用 EBP 负偏移访问，参数用正偏移访问，故递归调用时各层帧互不干扰。</div>
+    <h3>4.5 数据对齐与大小端</h3>
+    <ul>
+      <li class="hot"><b>数据对齐</b>：K 字节类型的变量地址必须是 K 的整数倍，编译器在成员之间插入填充字节；结构体整体大小取最大对齐数的整数倍。一维数组元素地址 = a + i×sizeof(T)，二维按行优先 = a + (i×列数 + j)×sizeof(T)，结构体成员访问即"基址 + 常量偏移"。对齐的代价是浪费空间，收益是一次总线访问即可取出数据；考法多为给结构体求 sizeof 与成员偏移。<div class="ex"><p><b>例题</b>4 字节对齐下 struct{char a; int b; short c;} 占多少字节？</p><p><b>解析</b>① a 占 1 字节 + 填充 3；② b 占 4 字节（偏移 4）；③ c 占 2 字节 + 尾部填充 2；共 12 字节。</p><p><b>易错点</b>只把成员大小相加得 7，忘记成员间填充与尾部填充。</p><p><b>拓展</b>调整成员顺序为 int、short、char 可减小结构体大小。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>在 64 位 x86-64 下定义 <code>struct S { char a; int b; short c; double d; };</code>，char 1B、short 2B、int 4B、double 8B，成员按自身大小对齐、结构体按最大对齐数对齐。① 求 sizeof(struct S) 及各成员偏移；② 若 b = 0x12345678，写出 b 在小端机中 4 个字节的存放顺序。</p><p><b>解析</b>① a 偏移 0 占 1B；b 需 4 字节对齐 → 填充 3B，偏移 4~7；c 偏移 8~9；d 需 8 字节对齐，从 10 补到 16，占 16~23。总大小 24，恰为最大对齐数 8 的整数倍，故 <b>sizeof = 24</b>，偏移依次为 0、4、8、16。② 小端把低字节放低地址：偏移 4 处 78H、5 处 56H、6 处 34H、7 处 12H（大端则 12H、34H、56H、78H）。</p><p><b>易错点</b>给每个成员都补到 8 字节（只有 d 需要补到 8 的倍数）；算出 20 或 18 却不做"整体大小取最大对齐数整数倍"的收尾；把小端记成"高位在前"。</p>
+    </div>
+    <ul>
+      <li><b>大小端</b>：大端高位字节放低地址（网络字节序），小端低位字节放低地址（x86、ARM 默认）。</li>
+    </ul>
+    <div class="warn"><b>易错</b>：<code>lea</code> 只算地址不访问内存，常被编译器用来做快速算术（如 lea 3(%eax,%ebx,4),%ecx）；<code>cmp</code> 与 <code>sub</code> 的唯一区别是不写回目的操作数，<code>test</code> 与 <code>and</code> 同理。</div>
+    <div class="tip"><b>记忆</b>：取操作数访存次数口诀——立即 0、寄存器 0、直接 1、寄存器间接 1、变址/基址/相对 1、存储器间接 2；有符号比较看 SF⊕OF，无符号比较看 CF。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">5</span>中央处理器<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>5.1 CPU 结构与指令周期</h3>
+    <ul>
+      <li><b>CPU 结构与功能</b>：指令控制、操作控制、时间控制、数据加工、中断处理；结构分运算器（ALU、通用寄存器、PSW）与控制器（PC、IR、CU）。</li>
+      <li class="hot"><b>指令周期与数据通路微操作</b>：指令周期按 取指 → 间址（若需）→ 执行 → 中断 划分，每周期含若干机器周期、每机器周期含若干时钟周期，<em>不同指令的指令周期长度不同</em>但取指周期必存在。微操作是控制器发出的最小操作命令，取指微操作固定为 <code>PC→MAR，M(MAR)→MDR，MDR→IR，PC+1→PC</code>（后两条可并行）。单总线结构一次只传一个数据，故每传送一次至少占一个时钟周期，微操作序列长度决定该指令所需节拍数，如单总线 ADD R1,(R2) 需 <code>R2→MAR，M(MAR)→MDR，MDR→Y，R1→X，X+Y→Z，Z→R1</code> 共 6 拍。常见考法：给定数据通路写出某指令的微操作序列或数出节拍数。结论：通路越窄、节拍越多，这是时序设计与微程序划分的基础。<div class="ex"><p><b>例题</b>取指周期需要完成哪些微操作？至少几个时钟？</p><p><b>解析</b>① PC→MAR；② M(MAR)→MDR；③ MDR→IR；④ (PC)+1→PC。至少 4 个微操作。</p><p><b>易错点</b>漏掉 PC 自增，顺序执行就断了。</p><p><b>拓展</b>间址周期多一步「取有效地址」；中断周期要保存断点。</p></div></li>
+    </ul>
+    <h3>5.2 控制器：硬布线与微程序</h3>
+    <ul>
+      <li><b>硬布线与微程序控制器</b>：硬布线用组合逻辑产生控制信号，快、难改、RISC 常用；微程序存于 CM（ROM，<em>不是主存</em>），慢、易扩充、CISC 常用。</li>
+      <li><b>微地址形成与微指令格式</b>：下地址由下地址字段（断定）、微程序计数器加 1 或操作码映射；分水平型（并行度高、指令长）与垂直型（并行度低、指令短）。</li>
+      <li class="hot"><b>微指令编码方式</b>：直接编码（控制字段每位对应一个微命令，速度最快、位数最多、无需译码）；字段直接编码（互斥微命令编在同一段，段内二进制编码，每段必须留出全 0 表示"不操作"，位数约为 Σ⌈log₂(nᵢ+1)⌉）；字段间接编码（再经译码器二次译码，位数最少但最慢）。常见考法：给出各段互斥微命令个数求控制字段最少位数，或比较三种编码的位数与速度。结论：位数与速度反向——直接编码最宽最快，字段直接编码是折中最常用。<div class="ex"><p><b>例题</b>30 个微命令用字段直接编码，控制字段至少多少位？</p><p><b>解析</b>① 每个字段要留「全 0」表示不操作；② 分 5 组、每组 ≤6 个命令 → 每组 3 位；③ 共 15 位。</p><p><b>易错点</b>忘记每组留全 0，位宽算小导致某组编码不够。</p><p><b>拓展</b>直接编码位数=微命令数、最快；字段间接编码更短但要译码。</p></div></li>
+    </ul>
+    <table>
+      <thead><tr><th>项目</th><th>硬布线</th><th>微程序</th></tr></thead>
+      <tbody>
+        <tr><td>实现</td><td>组合逻辑电路</td><td>CM 中的微程序</td></tr>
+        <tr><td>速度</td><td>快（无取微指令）</td><td>较慢</td></tr>
+        <tr><td>修改扩展</td><td>难</td><td>易（重写微程序）</td></tr>
+        <tr><td>适用</td><td>RISC、规整指令</td><td>CISC、复杂指令</td></tr>
+      </tbody>
+    </table>
+    >
+    <h3>5.3 异常与中断</h3>
+    <ul>
+      <li><b>分类</b>：中断（外中断，如 I/O、时钟）与当前指令无关；异常（内中断，如缺页、除零、trap、fault）由当前指令引起，断点为当前或下一条。</li>
+      <li class="hot"><b>中断响应过程</b>：中断隐指令由硬件自动完成——关中断 → 保存断点（PC，及 PSW）→ 识别中断源并判优 → 转入中断服务程序；<em>保存通用寄存器与现场由中断服务程序用指令（软件）完成</em>，返回时用中断返回指令恢复。常见考法：判断"哪些操作由硬件完成"，或比较中断与异常、中断与子程序调用。结论：硬件只保存断点 PC/PSW，其余现场靠软件，二者主体不可混。<div class="ex"><p><b>例题</b>中断响应时由硬件自动完成哪些操作？</p><p><b>解析</b>① 关中断；② 保存断点（PC 与 PSW）；③ 识别中断源并转中断服务程序。</p><p><b>易错点</b>把「保存通用寄存器」也算进中断隐指令——那由服务程序用指令完成。</p><p><b>拓展</b>中断隐指令用户不可见；保存现场与恢复现场成对出现。</p></div></li>
+      <li><b>多重中断与屏蔽字</b>：屏蔽字中"1"表示屏蔽该中断源，优先级高的源屏蔽自己及所有更低优先级源，高优先级可打断低优先级服务，嵌套深度受栈空间限制。</li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 200" role="img" aria-label="中断处理流程">
+        <text x="200" y="16" text-anchor="middle" class="t">一次中断响应的五步</text>
+        <rect x="14" y="34" width="76" height="30" class="box"/><text x="52" y="53" text-anchor="middle" class="x">中断请求</text>
+        <rect x="108" y="34" width="76" height="30" class="box"/><text x="146" y="53" text-anchor="middle" class="x">中断判优</text>
+        <rect x="202" y="34" width="90" height="30" class="boxa"/><text x="247" y="53" text-anchor="middle" class="w">关中断</text>
+        <rect x="310" y="34" width="76" height="30" class="boxa"/><text x="348" y="53" text-anchor="middle" class="w">保存断点</text>
+        <line x1="90" y1="49" x2="106" y2="49" class="lna" marker-end="url(#arwa)"/>
+        <line x1="184" y1="49" x2="200" y2="49" class="lna" marker-end="url(#arwa)"/>
+        <line x1="292" y1="49" x2="308" y2="49" class="lna" marker-end="url(#arwa)"/>
+        <line x1="348" y1="64" x2="348" y2="92" class="lna" marker-end="url(#arwa)"/>
+        <rect x="240" y="94" width="130" height="30" class="box"/><text x="305" y="113" text-anchor="middle" class="x">引出中断服务程序</text>
+        <rect x="240" y="140" width="130" height="30" class="box"/><text x="305" y="159" text-anchor="middle" class="x">执行服务程序</text>
+        <rect x="96" y="140" width="120" height="30" class="box"/><text x="156" y="159" text-anchor="middle" class="x">恢复现场、开中断</text>
+        <rect x="14" y="140" width="66" height="30" class="box"/><text x="47" y="159" text-anchor="middle" class="x">中断返回</text>
+        <line x1="305" y1="124" x2="305" y2="138" class="lna" marker-end="url(#arwa)"/>
+        <line x1="240" y1="155" x2="218" y2="155" class="lna" marker-end="url(#arwa)"/>
+        <line x1="96" y1="155" x2="82" y2="155" class="lna" marker-end="url(#arwa)"/>
+        <text x="120" y="192" class="s">前三步由硬件完成，保存断点用隐指令</text>
+      </svg>
+      <div class="cap">中断响应三件事由<b>硬件</b>完成：关中断、保存断点（PC）、引出服务程序；保存现场与恢复现场由<b>软件</b>做。中断屏蔽字决定多重中断的嵌套顺序。</div>
+    </div>
+      
+    >
+    <div class="fig"><svg class="dg" viewBox="0 0 400 150" role="img" aria-label="流水线三类冒险与解决办法"><text class="x" x="200" y="17" text-anchor="middle">流水线冒险：冲突来源不同，解决办法也不同</text><rect class="box" x="18" y="34" width="104" height="34" rx="5"/><text class="t" x="70" y="49" text-anchor="middle">结构冒险</text><text class="s" x="70" y="61" text-anchor="middle">争用同一部件</text><rect class="boxa" x="148" y="34" width="104" height="34" rx="5"/><text class="w" x="200" y="49" text-anchor="middle">数据冒险</text><text class="s" x="200" y="61" text-anchor="middle">结果尚未写回</text><rect class="boxw" x="278" y="34" width="104" height="34" rx="5"/><text class="t" x="330" y="49" text-anchor="middle">控制冒险</text><text class="s" x="330" y="61" text-anchor="middle">分支改变 PC</text><text class="x" x="70" y="97" text-anchor="middle">加部件 / 分离 Cache</text><text class="x" x="200" y="97" text-anchor="middle">转发 / 插气泡</text><text class="x" x="330" y="97" text-anchor="middle">预测 / 冲刷流水线</text><line class="lna" x1="70" y1="72" x2="70" y2="88" marker-end="url(#arwa)"/><line class="lna" x1="200" y1="72" x2="200" y2="88" marker-end="url(#arwa)"/><line class="lna" x1="330" y1="72" x2="330" y2="88" marker-end="url(#arwa)"/><text class="s" x="200" y="127" text-anchor="middle">RAW 是最常见真实相关；WAR/WAW 多靠寄存器重命名消除</text></svg><div class="cap">先判断“争资源、等数据还是猜分支”，再选择对策；能转发就不插气泡，load-use 仍常需停顿。</div></div>
+    <h3>5.4 指令流水线</h3>
+    <ul>
+      <li class="hot"><b>流水线性能公式</b>：把指令执行分为 IF、ID、EX、MEM、WB 等段并行处理不同指令，提高的是吞吐率而非单条指令延迟。k 段（各段 Δt 相等）连续执行 n 条指令：总时间 <code>T=(k+n-1)Δt</code>，吞吐率 <code>TP=n/T</code>（最大 <code>1/Δt</code>），加速比 <code>S=nkΔt/T=nk/(k+n-1)</code>（极限 k），效率 <code>E=S/k=n/(k+n-1)</code>（极限 1）。常见考法：给 k、n、Δt 求 T/TP/S/E，或由 S 反求 n；各段不等长时 Δt 取最长时间（含锁存器延迟）。结论：n 越大 S 越接近 k、E 越接近 1，但 S 恒小于 k。<div class="ex"><p><b>例题</b>5 段流水、段时 2ns，执行 100 条指令，求时间与加速比。</p><p><b>解析</b>① T=(k+n−1)Δt=(5+100−1)×2=208ns；② 非流水 100×5×2=1000ns；③ 加速比 1000/208≈4.8。</p><p><b>易错点</b>用 k·n·Δt 算流水时间；加速比不会超过段数 k。</p><p><b>拓展</b>吞吐率 TP=n/T；指令越多，加速比越接近 k。</p></div></li>
+      <li class="hot"><b>三类冒险与解决</b>：结构冒险——多条指令争用同一部件（同时取指与取数），解决为指令/数据 Cache 分离、加部件、分段访问存储器；数据冒险——后指令用到前指令尚未写回的结果（RAW 最常见，乱序下还有 WAR、WAW），解决为转发/旁路、插入气泡（阻塞）、编译器调度、寄存器重命名；控制冒险——转移改变 PC 使预取错误，解决为延迟转移（延迟槽）、静态/动态分支预测、提前在 ID 段判转移并算目标、预测失败冲刷流水线。常见考法：给指令序列判断冒险类型、数停顿周期。结论：能转发就转发，不能转发才插气泡，控制冒险靠预测。<div class="ex"><p><b>例题</b>load 之后紧接一条使用该数据的指令，需停顿几拍？</p><p><b>解析</b>① load 的数据在 MEM 段末才可用；② 下一条在 EX 段就要用 → 需插入 1 个气泡（无转发时 2 个）。</p><p><b>易错点</b>把结构冒险的解决办法（资源重复、指令/数据分离 Cache）套到数据冒险上。</p><p><b>拓展</b>转发可解决多数 RAW；load-use 无法靠转发完全消除。</p></div></li>
+      <li><b>超标量与动态调度</b>：超标量每周期发射多条指令，超流水线细分流水段提高主频；乱序执行配寄存器重命名消除 WAR/WAW 假相关，ROB 保证精确异常。</li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 230" role="img" aria-label="五段流水线时空图">
+        <text x="8" y="32" class="s">时间周期</text>
+        <text x="82" y="57" text-anchor="end" class="x"><tspan x="82" y="57">IF</tspan><tspan x="82" y="83">ID</tspan><tspan x="82" y="109">EX</tspan><tspan x="82" y="135">MEM</tspan><tspan x="82" y="161">WB</tspan></text>
+        <text x="106" y="32" text-anchor="middle" class="s"><tspan x="106">1</tspan><tspan x="138">2</tspan><tspan x="170">3</tspan><tspan x="202">4</tspan><tspan x="234">5</tspan><tspan x="266">6</tspan><tspan x="298">7</tspan><tspan x="330">8</tspan><tspan x="362">9</tspan></text>
+        <path d="M122 40V170M154 40V170M186 40V170M218 40V170M250 40V170M282 40V170M314 40V170M90 66H378M90 92H378M90 118H378M90 144H378" class="dash"/>
+        <polygon points="90,40 122,40 122,66 154,66 154,92 186,92 186,118 218,118 218,144 250,144 250,170 218,170 218,144 186,144 186,118 154,118 154,92 122,92 122,66 90,66" class="boxa"/>
+        <polygon points="122,40 154,40 154,66 186,66 186,92 218,92 218,118 250,118 250,144 282,144 282,170 250,170 250,144 218,144 218,118 186,118 186,92 154,92 154,66 122,66" class="box"/>
+        <polygon points="154,40 186,40 186,66 218,66 218,92 250,92 250,118 282,118 282,144 314,144 314,170 282,170 282,144 250,144 250,118 218,118 218,92 186,92 186,66 154,66" class="box"/>
+        <text x="106" y="57" text-anchor="middle" class="w">I1</text>
+        <text x="138" y="57" text-anchor="middle" class="x">I2</text>
+        <text x="170" y="57" text-anchor="middle" class="x">I3</text>
+        <line x1="314" y1="40" x2="314" y2="176" class="lna" marker-end="url(#arwa)"/>
+        <text x="314" y="190" text-anchor="middle" class="s">7 周期</text>
+        <text x="90" y="208" class="x">总时间 = k + (n-1) = 5 + 2 = 7 周期</text>
+        <text x="90" y="224" class="x">加速比 = n·k / 总时间 = 15 / 7 ≈ 2.14</text>
+      </svg>
+      <div class="cap">满流水后每周期出 1 条；总时间 = k + (n−1)，加速比 = n·k /(k+n−1)；瓶颈段（最慢段）决定流水线周期上限</div>
+    </div>
+      
+    <table>
+      <thead><tr><th>冒险</th><th>原因</th><th>主要解决</th></tr></thead>
+      <tbody>
+        <tr><td>结构</td><td>争用同一硬件部件</td><td>分离 Cache、加部件</td></tr>
+        <tr><td>数据</td><td>RAW / WAR / WAW</td><td>转发、阻塞、重命名</td></tr>
+        <tr><td>控制</td><td>转移改变 PC</td><td>分支预测、延迟槽</td></tr>
+      </tbody>
+    </table>
+    >
+    <h3>5.5 多核与多线程</h3>
+    <ul>
+      <li><b>Flynn 分类与多核超线程</b>：SISD、SIMD、MISD、MIMD（多核、共享 L3）；超线程 SMT 让一核存多套寄存器状态，<em>不增加物理核数</em>。</li>
+      <li class="hot"><b>Cache 一致性与 MESI</b>：多核各自 Cache 持有同一主存块副本，写操作不同步即产生一致性问题。常用写无效（write invalidate）协议：某核写共享块时先发出无效化消息，把其他核的副本置为无效；MESI 四态为 M 已修改（脏且独占）、E 独占（干净）、S 共享（干净、可多核持有）、I 无效，本核写 S 态行后其他副本转 I、自己转 M。常见考法：判断一次读/写后各核 Cache 行的状态迁移，或问某状态是否需要写回主存。结论：M/E 为本核独占，S 可多副本，I 必须重新访存；UMA 各核访存延迟相同、NUMA 本地快远程慢，均需一致性协议。<div class="ex"><p><b>例题</b>双核各有同一主存块副本，核 0 写入后核 1 会读到什么？</p><p><b>解析</b>① 写后该块在核 0 变 M，核 1 的副本被置 I（失效）；② 核 1 再读时经总线侦听，从核 0 取回或先写回主存。</p><p><b>易错点</b>以为「写直达」就不需要一致性协议——多核仍需侦听或目录协议。</p><p><b>拓展</b>MESI 四态 M/E/S/I；伪共享会让多核性能大幅下降。</p></div></li>
+      <li><b>RISC 与 RISC-V</b>：RISC 指令少而规整、定长、仅 load/store 访存、寄存器多；RISC-V 开源，含 RV32I、M/A/F/D。</li>
+    </ul>
+    <div class="key"><b>重点</b>：流水线四大指标公式、三类冒险识别与对策、微指令字段编码位数、中断隐指令的硬件/软件分工，四块几乎年年出现。</div>
+    <div class="warn"><b>易错</b>：流水线提高吞吐率、缩短平均执行时间，但单条指令执行时间不变甚至变长；微程序存放在 CM（ROM）而非主存；中断隐指令只保存 PC/PSW，通用寄存器由软件保存。</div>
+    <div class="tip"><b>记忆</b>：k 段 n 条总时间 (k+n-1)Δt，S 极限 k、E 极限 1；RAW 真相关靠转发，WAR/WAW 假相关靠重命名；字段编码"每段留个全 0"。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">6</span>总线<span class="lv">★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>6.1 概念与分类</h3>
+    <ul>
+      <li><b>总线</b>：连接多部件、可共享的公共传输线路，本质是<em>分时共享</em>，同一时刻只允许一个主设备发送，易成瓶颈。</li>
+      <li><b>按功能分三类</b>：数据总线双向、宽度即一次传送位数；地址总线单向，宽度定寻址空间 <code>2^n</code>；控制总线每根方向固定、整体双向。</li>
+      <li><b>串行与并行</b>：串行线少、抗干扰、可远距（PCIe/USB）；并行易同步、只宜短距（PCI）；总线复用省引脚但降速。</li>
+    </ul>
+    <h3>6.2 性能指标与带宽计算</h3>
+    <ul>
+      <li class="hot"><b>总线带宽</b>：指总线单位时间内能传送的数据量，单位 B/s。基本式 <code>带宽 = 每次传送字节数 × 总线传输频率</code>，其中 <code>传输频率 = 时钟频率 ÷ 一个总线周期所含时钟周期数</code>（一个总线周期可传 1 次或多次数据，如突发传送、双沿传输）。常见考法：给数据线宽度、时钟频率、每周期传送次数或突发长度求带宽，或反求时钟频率。结论：带宽只由"每次字节数 × 每秒传输次数"决定，与地址线宽度无关，地址线只影响寻址空间。<div class="ex"><p><b>例题</b>总线频率 66 MHz、每次传送 4 字节，带宽是多少？</p><p><b>解析</b>① 带宽 = 每次字节数 × 频率；② = 4×66×10⁶ = 264 MB/s。</p><p><b>易错点</b>用 32 位数据线宽度直接乘，单位混成 b/s 或漏乘字节换算。</p><p><b>拓展</b>若每 3 个时钟周期才传一次，带宽要再除以 3。</p></div></li>
+      <li><b>其他指标</b>：信号线数、负载能力、传输距离、时序开销；突发传送一次给地址、连续传多个数据，可提高有效带宽。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>某总线数据线宽 32 位，时钟频率 100 MHz，每个总线周期含 2 个时钟周期，每个总线周期传送 1 次数据。① 求该总线带宽；② 若改为双沿传输（每时钟周期传 2 次），带宽为多少？</p><p><b>解析</b>① 每次传送字节数 = 32 ÷ 8 = 4 B；② 传输频率 = 100 MHz ÷ 2 = 50 M 次/s；③ 带宽 = 4 B × 50 M/s = <b>200 MB/s</b>；④ 双沿时传输频率 = 100 M 次/s，带宽 = 4 B × 100 M/s = <b>400 MB/s</b>（相当于每个总线周期传 2 次）。</p><p><b>易错点</b>漏除总线周期所含时钟数，直接用 100 MHz × 4 B 得 400 MB/s；另外单位别混：200 MB/s = 1600 Mb/s，若按位算须再乘 8。</p>
+    </div>
+    <h3>6.3 总线结构与仲裁</h3>
+    <ul>
+      <li><b>单总线与多总线</b>：单总线简单，但同一时刻只有一对部件通信、易成瓶颈；多总线分局部、系统、扩展三层并用桥连接。</li>
+      <li class="hot"><b>总线仲裁三方式</b>：多个主设备争用总线时由总线控制器判优。① 链式查询：总线允许信号沿链逐级下传，<em>离控制器越近优先级越高</em>，只需请求、允许、忙 3 根线，最简单，但优先级固定且某一级故障会使其后设备全部失去总线；② 计数器定时查询：计数值与设备地址比较选中设备，需请求、忙 2 根线加 ⌈log₂n⌉ 根设备地址线，优先级可由计数初值改变，故障影响小；③ 独立请求：每设备各一对请求/允许线（共 2n 根），响应最快、优先级最灵活，但线数最多、成本最高。常见考法：给设备数求控制线数、判断优先级与故障影响、比较三者速度。结论：线数 少→多、速度 慢→快、灵活 差→好。<div class="ex"><p><b>例题</b>链式查询、计数器定时查询、独立请求各有什么优缺点？</p><p><b>解析</b>① 链式查询：线少、优先级固定、对电路故障敏感；② 计数器定时查询：较灵活、线略多；③ 独立请求：响应最快但连线最多。</p><p><b>易错点</b>把链式查询说成「最灵活」——它最不灵活，优先级由物理位置固定。</p><p><b>拓展</b>链式查询中离总线控制器越近的设备优先级越高。</p></div></li>
+    </ul>
+    <table>
+      <thead><tr><th>仲裁方式</th><th>控制线数（n 设备）</th><th>速度</th><th>优先级</th><th>故障影响</th></tr></thead>
+      <tbody>
+        <tr><td>链式查询</td><td>3 根</td><td>最慢</td><td>固定，近端高</td><td>大（其后全断）</td></tr>
+        <tr><td>计数器定时</td><td>2 + ⌈log₂n⌉ 根</td><td>中</td><td>可由初值改变</td><td>小</td></tr>
+        <tr><td>独立请求</td><td>2n 根</td><td>最快</td><td>灵活</td><td>最小</td></tr>
+      </tbody>
+    </table>
+    <div class="ex">
+      <p><b>例题</b>某系统有 8 个主设备共享总线，分别求三种仲裁方式所需的控制线数（不计总线忙线以外的辅助线）。</p><p><b>解析</b>① 链式查询：总线请求 BR 1 根 + 总线允许 BG 1 根 + 总线忙 BB 1 根 = <b>3 根</b>（BG 在设备间串接，不随设备数增加）；② 计数器定时：BR 1 + BB 1 + 设备地址线 ⌈log₂8⌉ = 3 根，共 <b>5 根</b>；③ 独立请求：每设备 1 根请求 + 1 根允许 = 2 × 8 = <b>16 根</b>（若再把 BB 计入则 17 根）。</p><p><b>易错点</b>计数器定时误用 n = 8 根地址线（应为 ⌈log₂n⌉ = 3）；独立请求漏乘 2 只算 8 根；链式查询误以为允许线随设备数线性增加。</p>
+    </div>
+    <h3>6.4 总线定时</h3>
+    <ul>
+      <li><b>同步定时</b>：所有部件按统一时钟节拍工作，协议简单、速度快，但必须按最慢设备设计周期，只适合速度相近的部件。</li>
+      <li class="hot"><b>异步定时（握手）</b>：不用统一时钟，靠"请求—回答"信号互锁，按时序分三种——<em>不互锁</em>：请求与回答各发固定宽度脉冲，双方都不等对方，最快最不可靠；<em>半互锁</em>：请求方收到回答才撤请求，回答方不等请求撤销（回答宽度固定）；<em>全互锁</em>：请求方等回答才撤请求，回答方等请求撤销才撤回答，最可靠最慢。常见考法：给时序图判断属哪种互锁、算一次传输的节拍/时间、比较适用场合。结论：速度 不互锁 > 半互锁 > 全互锁，可靠性相反；异步适合速度差异大的设备，但控制复杂、开销大。<div class="ex"><p><b>例题</b>不互锁、半互锁、全互锁三种方式的区别？</p><p><b>解析</b>① 不互锁：请求与回答都立即撤销，不等对方；② 半互锁：请求等回答，回答不等；③ 全互锁：双方互等，最可靠但最慢。</p><p><b>易错点</b>把全互锁当成速度最快的方式。</p><p><b>拓展</b>异步定时能适配不同速度的设备，但开销大于同步定时。</p></div></li>
+      <li><b>半同步定时</b>：在同步定时基础上增加 WAIT（等待）信号，慢速设备可插入等待周期，兼顾速度与兼容性。</li>
+      <li class="hot"><b>分离事务（流水线总线）</b>：把一次传输拆成"发地址请求—释放总线—传数据"两个子事务，等待从设备准备数据的这段时间总线可交给其他主设备使用。它<em>并不缩短单次事务占用总线的时间</em>（仍为地址期 + 数据期），只是把空闲期让出去，故吞吐率提高而单次事务的端到端延迟不减小。常见考法：比较不分离与分离事务的带宽利用率、求稳定后的平均传输间隔。结论：适合"读延迟大、并发请求多"的场合。<div class="ex"><p><b>例题</b>分离事务为什么能提高总线利用率？</p><p><b>解析</b>① 主设备发出地址后立即释放总线；② 从设备准备数据期间，总线可服务其他主设备；③ 适合块传输。</p><p><b>易错点</b>以为它缩短了单次传输的时间，它缩短的是「总线被占用的等待时间」。</p><p><b>拓展</b>分离事务是流水线总线的基础，能显著提高吞吐。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>某总线一次读事务：地址期 100 ns，从设备收到地址后需 200 ns 才能给出数据，数据期 100 ns。求：① 不分离事务时每完成一次传输的平均占用时间与总线利用率；② 采用分离事务（等待期间总有其他主设备请求）时的平均传输间隔与利用率。</p><p><b>解析</b>① 不分离：主设备独占总线 100 + 200 + 100 = 400 ns，其中真正传数据仅 100 ns（加上地址期有效占用 200 ns），利用率 = 200 ÷ 400 = <b>50%</b>，平均每 400 ns 完成 1 次传输；② 分离：地址期 100 ns 后即释放总线，随后 200 ns 等待期交给其他主设备发地址，数据期 100 ns 回总线；稳定后地址期与数据期可背靠背流水，平均每 100 + 100 = <b>200 ns</b> 完成 1 次传输，利用率接近 <b>100%</b>，吞吐率提高约 1 倍；③ 单次事务从发地址到收到数据仍为 100 + 200 + 100 = 400 ns，延迟未变。</p><p><b>易错点</b>把"利用率提高"误说成"单次传输时间缩短"；或忘记等待期必须确有其他主设备可用，否则分离事务毫无收益（总线仍空闲 200 ns）。</p>
+    </div>
+    <h3>6.5 常见总线标准与一致性</h3>
+    <ul>
+      <li><b>PCI 与 PCIe</b>：PCI 为 32/64 位并行共享总线、带宽共享；PCIe 为点对点串行全双工，按 lane 叠加带宽、分组交换。</li>
+      <li><b>USB 与 SATA</b>：USB 主从式由主机轮询，支持热插拔、总线供电、集线器扩展；SATA 串行点对点、用于磁盘。</li>
+      <li class="hot"><b>总线监听与 Cache 一致性</b>：多核共享总线（或互连网络）时，各核 Cache 监听总线上的读写事务（snooping 协议），以此维护一致性。MESI 给每个 Cache 块设四种状态：<em>M 修改</em>（仅本核有且已改，与主存不同）、<em>E 独占</em>（仅本核有且与主存相同）、<em>S 共享</em>（多核都有且与主存相同）、<em>I 无效</em>。某核要写 S 状态的块时，须先发无效化事务把其他副本置 I 再写，得到 M；写 E 状态块可直接改为 M 而无需发总线事务。常见考法：给出一串读写序列判断状态迁移、判断是否产生总线事务。结论：只有写共享块和读未命中才需总线事务，M/E 的区别正在于"是否要发无效化"。<div class="ex"><p><b>例题</b>写直达 + 总线监听如何保证多核 Cache 一致性？</p><p><b>解析</b>① 任一核的写操作都会出现在总线上；② 其他核监听到相同块地址时，把自己的副本置为无效。</p><p><b>易错点</b>认为写回方式不需要监听——写回方式同样需要（作废或写回策略）。</p><p><b>拓展</b>写回方式常用「作废」策略，写直达常用「更新/作废」策略。</p></div></li>
+    </ul>
+    <div class="key"><b>重点</b>：本章三块必考——带宽计算（字节数 × 传输频率）、三种仲裁的线数/优先级/故障敏感性、四种定时方式（同步、异步、半同步、分离事务）的特点与适用场合。</div>
+    <div class="warn"><b>易错</b>：地址总线单向、数据总线双向；n 根地址线只给出 <code>2^n</code> 个可寻址单元，存储容量还需乘存储字长；带宽单位是 B/s，与 Mb/s 相差 8 倍。</div>
+    <div class="warn"><b>易错</b>：链式查询离控制器越近优先级越高，某一级故障会使其后所有设备都得不到总线；异步定时中"半互锁"是不等请求撤销，别与全互锁混为一谈。</div>
+    <div class="tip"><b>记忆</b>：仲裁"链式 → 计数 → 独立"= 线少→多、慢→快、差→好；握手"不互锁 → 半互锁 → 全互锁"= 快→慢、可靠性低→高。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">7</span>输入输出系统<span class="lv">★★</span><span class="cnt">13 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>7.1 I/O 系统与接口</h3>
+    <ul>
+      <li><b>I/O 系统</b>：由 I/O 软件与 I/O 硬件组成；按 CPU 干预由多到少分程序查询、程序中断、DMA、通道、I/O 处理机五种方式。</li>
+      <li><b>接口功能</b>：数据缓冲（速度匹配）、地址译码与设备选择、数据格式转换、状态与错误检测、控制与定时、中断请求。</li>
+      <li><b>端口编址</b>：统一编址（存储器映射 I/O）端口与主存共用地址空间，用访存指令访问；独立编址须用 IN/OUT 指令，译码简单但指令少。</li>
+    </ul>
+    <div class="warn"><b>易错</b>：统一编址下端口就是主存单元，用访存指令读写；独立编址必须用 I/O 指令，两者的地址位数与译码方式都不同，不可混说。</div>
+
+    <h3>7.2 程序查询与程序中断</h3>
+    <ul>
+      <li><b>程序查询</b>：CPU 循环读状态端口，未就绪则等待，就绪后传送一个数据并修改地址与计数器；CPU 与设备<em>串行</em>工作、效率最低，只用于简单低速设备。</li>
+      <li class="hot"><b>中断处理流程</b>：设备就绪发中断请求，CPU 在<em>一条指令执行结束时</em>响应，条件为有请求、开中断（IF=1）、当前指令执行完、无更高优先级请求或 DMA 占用总线；随后关中断、保存断点与现场，转入服务程序传送数据，最后恢复现场、开中断、返回。中断响应（隐指令：关中断、保存断点、找入口）由硬件完成，现场保护与数据传送由软件完成。考法多为判断「何时响应」「哪一步由硬件做」。<div class="ex"><p><b>例题</b>CPU 响应中断需要满足哪些条件？</p><p><b>解析</b>① 有中断请求且未被屏蔽；② 处于开中断状态（IF=1）；③ 当前指令执行结束。</p><p><b>易错点</b>认为中断可以随时打断正在执行的指令。</p><p><b>拓展</b>中断隐指令由硬件完成：关中断、保存断点、转中断服务程序。</p></div></li>
+      <li><b>中断判优</b>：硬件排队器或软件查询决定先后；不可屏蔽中断（如电源故障）优先于一切可屏蔽中断，DMA 请求优先于中断请求。</li>
+      <li class="hot"><b>多重中断与屏蔽字</b>：在服务程序中提前开中断，使高优先级中断可嵌套。屏蔽字中每一位对应一个中断源，「1」表示屏蔽、「0」表示允许；服务程序 i 的屏蔽字要屏蔽自己及所有优先级更低的源，允许所有优先级更高的源。考法多为给出优先级让写屏蔽字，或用屏蔽字判断某中断能否打断当前服务程序。结论：最高优先级源的服务程序屏蔽字全 1，最低优先级源只屏蔽自己。<div class="ex"><p><b>例题</b>中断屏蔽字的作用是什么？</p><p><b>解析</b>① 每一位对应一个中断源，置 1 表示屏蔽；② 服务程序中设置屏蔽字，屏蔽同级与更低级中断，实现中断嵌套。</p><p><b>易错点</b>以为屏蔽字能屏蔽优先级更高的中断（通常不能）。</p><p><b>拓展</b>中断优先级由硬件排队器与屏蔽字共同决定。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 230" role="img" aria-label="三种IO方式CPU参与度对比">
+        <line x1="78" y1="62" x2="374" y2="62" class="ln" marker-end="url(#arw)"/>
+        <text x="10" y="58" class="t">程序查询</text>
+        <text x="10" y="74" class="s">参与度高</text>
+        <rect x="78" y="53" width="38" height="18" rx="5" class="boxa"/>
+        <text x="97" y="66" text-anchor="middle" class="w">启动</text>
+        <rect x="120" y="53" width="132" height="18" rx="5" class="boxw"/>
+        <text x="186" y="66" text-anchor="middle" class="x">轮询等待（空转）</text>
+        <rect x="256" y="53" width="44" height="18" rx="5" class="boxa"/>
+        <text x="278" y="66" text-anchor="middle" class="w">处理</text>
+        <line x1="78" y1="132" x2="374" y2="132" class="ln" marker-end="url(#arw)"/>
+        <text x="10" y="128" class="t">中断方式</text>
+        <text x="10" y="144" class="s">参与度中</text>
+        <rect x="78" y="123" width="38" height="18" rx="5" class="boxa"/>
+        <text x="97" y="136" text-anchor="middle" class="w">启动</text>
+        <rect x="120" y="123" width="124" height="18" rx="5" class="boxw"/>
+        <text x="182" y="136" text-anchor="middle" class="x">执行其他程序</text>
+        <rect x="248" y="123" width="52" height="18" rx="5" class="boxa"/>
+        <text x="274" y="136" text-anchor="middle" class="w">中断处理</text>
+        <rect x="304" y="123" width="40" height="18" rx="5" class="boxw"/>
+        <text x="324" y="136" text-anchor="middle" class="s">返回</text>
+        <line x1="78" y1="202" x2="374" y2="202" class="ln" marker-end="url(#arw)"/>
+        <text x="10" y="198" class="t">DMA 方式</text>
+        <text x="10" y="214" class="s">参与度低</text>
+        <rect x="78" y="193" width="38" height="18" rx="5" class="boxa"/>
+        <text x="97" y="206" text-anchor="middle" class="w">启动</text>
+        <rect x="120" y="193" width="180" height="18" rx="5" class="boxw"/>
+        <text x="210" y="206" text-anchor="middle" class="x">DMA 传送数据</text>
+        <rect x="302" y="193" width="48" height="18" rx="5" class="boxa"/>
+        <text x="326" y="206" text-anchor="middle" class="w">结束处理</text>
+        <text x="210" y="224" text-anchor="middle" class="s">此段 CPU 完全不参与搬运</text>
+      </svg>
+      <div class="cap">CPU 参与度：DMA &lt; 中断 &lt; 查询；查询方式 CPU 空转最浪费，DMA 由硬件控制器直接搬数据，只在开始和结束时打扰 CPU 一次</div>
+    </div>
+      
+    <div class="ex">
+      <p><b>例题</b>某机有 4 个可屏蔽中断源 A、B、C、D，优先级 A&gt;B&gt;C&gt;D，只允许更高级中断嵌套。写出各级中断服务程序的屏蔽字（按 A B C D 排列，1 表示屏蔽），并判断执行 A 的服务程序时能否被 B 打断。</p><p><b>解析</b>① 规则：屏蔽自己 + 屏蔽更低优先级，允许更高优先级。② A：屏蔽 A、B、C、D → 1111；B：屏蔽 B、C、D，允许 A → 0111；C：屏蔽 C、D，允许 A、B → 0011；D：只屏蔽 D → 0001。③ 执行 A 时屏蔽字为 1111，B 对应位为 1 被屏蔽，故 B 不能打断 A，A 也不会被任何源打断。</p><p><b>易错点</b>「1 = 屏蔽」且屏蔽自己（同级）也为 1；位序必须与 A B C D 顺序严格一致，写反即全错；不要把屏蔽字写成「允许位」（0/1 含义正好相反）。</p>
+    </div>
+
+    <h3>7.3 DMA 方式</h3>
+    <ul>
+      <li class="hot"><b>DMA 传送过程</b>：预处理（CPU 送主存起始地址、字计数器、传送方向并启动设备）→ 数据传送（DMA 控制器向总线仲裁器申请总线，以数据块为单位在设备与主存间直接交换，<em>数据不经过 CPU</em>）→ 后处理（块传送结束由 DMA 控制器发中断，CPU 做校验与善后）。考法多为补全三阶段、判断哪一阶段由 CPU 介入、比较中断次数。结论：一个数据块只中断一次，CPU 只参与首尾。<div class="ex"><p><b>例题</b>DMA 传送分为哪三个阶段？</p><p><b>解析</b>① 预处理：CPU 送主存起始地址、字计数器、传送方向并启动设备；② 数据传送：由 DMA 控制器直接完成；③ 后处理：传送结束发中断通知 CPU。</p><p><b>易错点</b>以为 DMA 传送期间 CPU 完全停机——CPU 仍可执行程序，只是总线被占用。</p><p><b>拓展</b>DMA 与 CPU 争用总线，用周期挪用可减少冲突。</p></div></li>
+      <li><b>周期挪用与对比</b>：DMA 在 CPU 不访存的存储周期插入访存，使 CPU 访存推迟；以数据块为单位、不经 CPU、只在首尾中断。</li>
+      <li><b>通道与 I/O 处理机</b>：通道执行通道程序，按 I/O 指令控制多台设备，分字节多路、选择、数组多路；I/O 处理机独立指令系统、局部存储器。</li>
+    </ul>
+    <table>
+      <thead>
+        <tr><th>项目</th><th>程序查询</th><th>程序中断</th><th>DMA</th><th>通道</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>CPU 参与</td><td>全程等待</td><td>每次传送都中断</td><td>仅首尾</td><td>执行 I/O 指令即可</td></tr>
+        <tr><td>数据通路</td><td>经 CPU</td><td>经 CPU</td><td>不经 CPU</td><td>不经 CPU</td></tr>
+        <tr><td>传送单位</td><td>字节/字</td><td>字节/字</td><td>数据块</td><td>一组数据块</td></tr>
+        <tr><td>并行性与速度</td><td>无 / 最慢</td><td>较好 / 中</td><td>好 / 快</td><td>最好 / 最快</td></tr>
+      </tbody>
+    </table>
+    <div class="ex">
+      <p><b>例题</b>某机主频 1 GHz，某外设数据率为 100 KB/s。① 程序查询：每传送 1 B 平均查询 50 次状态，每次 4 个时钟周期，传送本身另需 20 个时钟周期；② 程序中断：每次中断传送 4 B，每次中断开销 500 个时钟周期；③ DMA：每传送 1 KB 中断一次，每次中断开销 500 个时钟周期（不计周期挪用）。分别求 CPU 用于该 I/O 的时间百分比。</p><p><b>解析</b>① 每秒传送字节数 = 100×1024 = 102 400 B/s。② 查询方式每字节 50×4+20 = 220 周期，总开销 = 102 400×220 = 22 528 000 周期 = 22.528 ms，占 22.528 ms / 1000 ms = <b>2.25%</b>。③ 中断方式每秒中断 102 400/4 = 25 600 次，总开销 = 25 600×500 = 12 800 000 周期 = 12.8 ms，占 <b>1.28%</b>。④ DMA 每秒中断 102 400/1024 = 100 次，总开销 = 100×500 = 50 000 周期 = 0.05 ms，占 <b>0.005%</b>。⑤ 结论：查询 &gt; 中断 &gt; DMA（2.25% &gt; 1.28% &gt; 0.005%）。</p><p><b>易错点</b>中断次数要用「字节数 ÷ 每次传送字节数」（102 400/4），不是字节数本身；DMA 次数由块大小决定（100 KB ÷ 1 KB = 100）；主频 1 GHz 下 1 个时钟周期 = 1 ns，百分比 = 周期数×1 ns ÷ 1 s，别把 ms 当 s 用。</p>
+    </div>
+
+    <h3>7.4 外设与容量计算</h3>
+    <ul>
+      <li class="hot"><b>磁盘地址结构与容量</b>：磁盘地址 = 柱面号 + 盘面号 + 扇区号，按<em>柱面优先</em>编址，连续读写同一柱面可省寻道时间；容量 = 盘面数 × 每面道数 × 每道扇区数 × 每扇区字节数，格式化容量小于非格式化容量。考法多为给参数算容量、算地址位数、判断读写顺序。结论：地址位数 = 各字段所需位数之和（取能表示最大编号的 2 的幂）；存取时间 = 寻道时间 + 旋转延迟（平均半圈）+ 传输时间。<div class="ex"><p><b>例题</b>磁盘 8 个盘面、1000 个柱面、每道 64 个扇区、每扇区 512 B，容量是多少？</p><p><b>解析</b>① 总扇区 = 1000×8×64 = 512000；② 容量 = 512000×512 B ≈ 250 MB。</p><p><b>易错点</b>把「盘面数」当成「盘片数」（每片两个盘面）；容量漏乘扇区大小。</p><p><b>拓展</b>按柱面优先编址，读写同一柱面的不同盘面无需重新寻道。</p></div></li>
+      <li><b>显存容量与刷新带宽</b>：显存容量 = 分辨率 × 色深 ÷ 8（字节）；刷新带宽 = 显存容量 × 刷新率。</li>
+      <li><b>SSD 与 Flash</b>：以闪存为介质，随机访问快、抗震、低功耗、无寻道延迟；以页读写、写前须擦除整块，擦写次数有限需磨损均衡与垃圾回收。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>① 某磁盘组有 4 个盘片、每片 2 个记录面，每面 1000 个柱面，每道 64 个扇区，每扇区 512 B。求磁盘总容量与地址格式各字段位数。② 某显示器分辨率 1920×1080、24 位真彩色、刷新率 60 Hz，求显存容量与刷新带宽。</p><p><b>解析</b>① 盘面数 = 4×2 = 8。② 容量 = 8 × 1000 × 64 × 512 B = 262 144 000 B = 250 MB。③ 柱面号 1000 个（0~999）需 10 位（2^10 = 1024），盘面号 8 个需 3 位，扇区号 64 个需 6 位，地址共 10+3+6 = 19 位。④ 显存容量 = 1920×1080×(24/8) = 2 073 600×3 = 6 220 800 B ≈ 5.93 MB。⑤ 刷新带宽 = 6 220 800 B × 60 = 373 248 000 B/s ≈ 373.2 MB/s（按 1 MB = 10^6 B）。</p><p><b>易错点</b>盘面数要「盘片数×每片面数」，漏乘 2 就少一半；柱面号位数按个数取 2 的幂（1000 → 10 位，不是 3 位十进制）；显存容量中色深是「位」，必须先 ÷8 换成字节，直接乘 24 会大 8 倍。</p>
+    </div>
+    <div class="key"><b>重点</b>：中断响应条件与多重中断屏蔽字、DMA 三阶段与周期挪用、磁盘与显存容量计算，是本章三大高频落点。</div>
+    <div class="tip"><b>记忆</b>：速度由慢到快——程序查询 &lt; 程序中断 &lt; DMA &lt; 通道 &lt; I/O 处理机；CPU 干预由多到少同序。</div>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
