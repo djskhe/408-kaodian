@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>算法代码库</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="code">
+  <div class="subhead"><h2>算法代码库</h2><span class="score">大题 15 分</span><span class="meta" data-all="16 题">16 题</span></div>
+<details class="chap">
+  <summary><span class="num">1</span>顺序表的插入与删除<span class="lv">★★★</span><span class="cnt">O(n)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：顺序表 L 中在第 i 个位置插入元素 e、删除第 i 个元素并用 e 带回、按值查找返回下标（找不到返回 0）。原型：<code>bool ListInsert(SqList &amp;L, int i, ElemType e)</code>、<code>bool ListDelete(SqList &amp;L, int i, ElemType &amp;e)</code>、<code>int LocateElem(SqList L, ElemType e)</code></li>
+      <li><b>关键点</b>：1. 408 习惯 data[0] 不用，元素存 data[1..length]，故插入时 i 的合法范围是 1 到 length+1；2. 插入必须从表尾向前逐个后移，删除必须从前往后逐个前移，方向反了会覆盖数据；3. 插入先判满、删除先判空，操作成功后别忘了改 length。</li>
+    </ul>
+    <pre class="code">#define MaxSize 50                  /* 顺序表最大长度 */
+typedef int ElemType;               /* 本卡给出定义，后续卡沿用 */
+
+typedef struct {
+    ElemType data[MaxSize];         /* 下标 0 不用，元素存 1..length */
+    int length;                     /* 当前表长 */
+} SqList;
+
+/* 插入：在第 i 个位置插入 e，1 &lt;= i &lt;= length+1 */
+bool ListInsert(SqList &amp;L, int i, ElemType e) {
+    if (i &lt; 1 || i &gt; L.length + 1) return false;   /* 位置非法 */
+    if (L.length &gt;= MaxSize) return false;         /* 表已满 */
+    for (int j = L.length; j &gt;= i; j--)            /* 从尾向前逐个后移 */
+        L.data[j + 1] = L.data[j];
+    L.data[i] = e;
+    L.length++;
+    return true;
+}
+
+/* 删除：删除第 i 个元素，值由 e 带回，1 &lt;= i &lt;= length */
+bool ListDelete(SqList &amp;L, int i, ElemType &amp;e) {
+    if (i &lt; 1 || i &gt; L.length) return false;        /* 位置非法 */
+    e = L.data[i];
+    for (int j = i; j &lt; L.length; j++)             /* 从前往后逐个前移 */
+        L.data[j] = L.data[j + 1];
+    L.length--;
+    return true;
+}
+
+/* 按值查找：返回第一个等于 e 的下标，找不到返回 0 */
+int LocateElem(SqList L, ElemType e) {
+    for (int i = 1; i &lt;= L.length; i++)
+        if (L.data[i] == e) return i;
+    return 0;
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>插入的 i 上界是 length+1（可插在表尾之后），删除的 i 上界只是 length</li><li>插入时 j 从 length 递减到 i，删除时 j 从 i 递增到 length-1，初值终值别写反</li><li>改完元素忘记 length++ / length--，返回的 length 是旧值</li><li>i 的合法性判断要写在移动元素之前，否则越界写入</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">2</span>单链表的建立、查找、插入与删除<span class="lv">★★★</span><span class="cnt">O(n)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：用头插法由数组 a[0..n-1] 建立带头结点的单链表；按序号查找第 i 个结点；在第 i 位插入元素 e；删除第 i 个结点并用 e 带回。原型：<code>void List_HeadInsert(LinkList &amp;L, ElemType a[], int n)</code>、<code>LNode *GetElem(LinkList L, int i)</code>、<code>bool ListInsert(LinkList &amp;L, int i, ElemType e)</code>、<code>bool ListDelete(LinkList &amp;L, int i, ElemType &amp;e)</code></li>
+      <li><b>关键点</b>：1. 带头结点时第 i 个结点要向后走 i 步（j 从 0 开始），插入与删除都要先取第 i-1 个前驱；2. 插入固定顺序：先让新结点 s 接住 p-&gt;next，再让 p-&gt;next 指向 s；3. 删除必须先用 q 保存待删结点，摘下链后再 free。</li>
+    </ul>
+    <pre class="code">typedef struct LNode {              /* 单链表结点，后续卡沿用 */
+    ElemType data;
+    struct LNode *next;
+} LNode, *LinkList;
+
+void List_HeadInsert(LinkList &amp;L, ElemType a[], int n) {  /* 1) 头插法建表 */
+    L = (LNode *)malloc(sizeof(LNode));     /* 头结点 */
+    L-&gt;next = NULL;
+    for (int i = 0; i &lt; n; i++) {
+        LNode *s = (LNode *)malloc(sizeof(LNode));
+        s-&gt;data = a[i];
+        s-&gt;next = L-&gt;next;                  /* 先接后继 */
+        L-&gt;next = s;                        /* 再改头指针 */
+    }
+}
+LNode *GetElem(LinkList L, int i) {         /* 2) 按序号查找，越界返回 NULL */
+    if (i &lt; 1) return NULL;
+    LNode *p = L;                           /* 从头结点起走 i 步 */
+    for (int j = 0; p != NULL &amp;&amp; j &lt; i; j++) p = p-&gt;next;
+    return p;
+}
+bool ListInsert(LinkList &amp;L, int i, ElemType e) {   /* 3) 第 i 位插入 e */
+    LNode *p = GetElem(L, i - 1);           /* 找第 i-1 个前驱 */
+    if (p == NULL) return false;
+    LNode *s = (LNode *)malloc(sizeof(LNode));
+    s-&gt;data = e;
+    s-&gt;next = p-&gt;next;                      /* 先接后 */
+    p-&gt;next = s;                            /* 再接前 */
+    return true;
+}
+bool ListDelete(LinkList &amp;L, int i, ElemType &amp;e) {  /* 4) 删除第 i 个结点 */
+    LNode *p = GetElem(L, i - 1);
+    if (p == NULL || p-&gt;next == NULL) return false;
+    LNode *q = p-&gt;next;                     /* 保存待删结点 */
+    e = q-&gt;data;
+    p-&gt;next = q-&gt;next;                      /* 先摘链，后释放 */
+    free(q);
+    return true;
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>插入必须先写 s-&gt;next = p-&gt;next，再写 p-&gt;next = s；顺序反了原后继就丢了</li><li>删除要先保存 q = p-&gt;next，再 p-&gt;next = q-&gt;next，最后 free(q)</li><li>头插法建表得到的是逆序，输出顺序别写反</li><li>遍历条件用 p != NULL，写成 p-&gt;next != NULL 会漏掉最后一个结点</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">3</span>单链表三合一：就地逆置、中间结点、判环<span class="lv">★★★</span><span class="cnt">O(n)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：对带头结点的单链表 L，① 就地逆置（额外空间 O(1)）；② 返回中间结点；③ 判断链表中是否有环。原型：<code>void Reverse(LinkList L)</code>、<code>LNode *FindMid(LinkList L)</code>、<code>bool HasCycle(LinkList L)</code></li>
+      <li><b>关键点</b>：1. 逆置用“头插法重建表”：先把 L-&gt;next 置空，再逐个把结点摘下头插回去；2. 快慢指针：slow 走 1 步、fast 走 2 步，fast 到尾时 slow 即中间结点；3. 判环同样用快慢指针，能相遇则有环，fast 先到尾则无环。</li>
+    </ul>
+    <pre class="code">/* 1) 就地逆置：摘下结点重新头插，空间 O(1) */
+void Reverse(LinkList L) {
+    if (L == NULL || L-&gt;next == NULL) return;
+    LNode *p = L-&gt;next, *q;
+    L-&gt;next = NULL;                     /* 新表先置空 */
+    while (p != NULL) {
+        q = p-&gt;next;                    /* 保存后继，防止断链 */
+        p-&gt;next = L-&gt;next;              /* 头插 */
+        L-&gt;next = p;
+        p = q;                          /* 处理下一个结点 */
+    }
+}
+
+/* 2) 找中间结点：快慢指针 */
+LNode *FindMid(LinkList L) {
+    LNode *slow = L-&gt;next, *fast = L-&gt;next;
+    while (fast != NULL &amp;&amp; fast-&gt;next != NULL) {
+        slow = slow-&gt;next;              /* 慢指针 1 步 */
+        fast = fast-&gt;next-&gt;next;        /* 快指针 2 步 */
+    }
+    return slow;                        /* 偶数个时返回靠后的中间结点 */
+}
+
+/* 3) 判断是否有环：相遇即有环 */
+bool HasCycle(LinkList L) {
+    LNode *slow = L, *fast = L;
+    while (fast != NULL &amp;&amp; fast-&gt;next != NULL) {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+        if (slow == fast) return true;  /* 快慢指针相遇 */
+    }
+    return false;
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>逆置循环里先存 q = p-&gt;next 再改 p-&gt;next，否则后面的结点全部丢失</li><li>快慢指针的循环条件必须写 fast != NULL &amp;&amp; fast-&gt;next != NULL</li><li>少判一个条件就会对 fast-&gt;next-&gt;next 空指针解引用</li><li>求「上中点」还是「下中点」，循环条件与初值要跟着改</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">4</span>双链表插入删除与循环单链表合并<span class="lv">★★</span><span class="cnt">O(1)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：① 在双链表 p 结点之后插入 s 结点；② 删除双链表 p 结点的后继；③ 循环单链表尾插元素（rear 为尾指针，rear-&gt;next 即头结点）；④ 合并两个循环单链表 ra、rb（尾指针），返回新尾指针。原型：<code>bool InsertNextDNode(DNode *p, DNode *s)</code>、<code>bool DeleteNextDNode(DNode *p)</code>、<code>void TailInsert(LinkList &amp;rear, ElemType e)</code>、<code>LinkList Merge(LinkList ra, LinkList rb)</code></li>
+      <li><b>关键点</b>：1. 双链表插入四句有先后：s-&gt;next 赋值和后继回指必须先做，最后才改 p-&gt;next；2. 凡要用到 p-&gt;next 原值的地方，都放在修改它之前；3. 循环链表尾插后必须把 rear 移到新结点，否则下一次尾插位置就错了。</li>
+    </ul>
+    <pre class="code">typedef struct DNode {              /* 双链表结点 */
+    ElemType data;
+    struct DNode *prior, *next;
+} DNode, *DLinkList;
+
+bool InsertNextDNode(DNode *p, DNode *s) {   /* 1) p 之后插入 s */
+    if (p == NULL || s == NULL) return false;
+    s-&gt;next = p-&gt;next;                  /* ① s 接住后继 */
+    if (p-&gt;next != NULL)
+        p-&gt;next-&gt;prior = s;             /* ② 后继回指 s */
+    s-&gt;prior = p;                       /* ③ s 指向前驱 */
+    p-&gt;next = s;                        /* ④ 最后改 p 的后继 */
+    return true;
+}
+bool DeleteNextDNode(DNode *p) {            /* 2) 删除 p 的后继 */
+    if (p == NULL || p-&gt;next == NULL) return false;
+    DNode *q = p-&gt;next;
+    p-&gt;next = q-&gt;next;                  /* 后继的后继前指 p */
+    if (q-&gt;next != NULL) q-&gt;next-&gt;prior = p;
+    free(q);
+    return true;
+}
+void TailInsert(LinkList &amp;rear, ElemType e) {   /* 3) 循环单链表尾插 */
+    LNode *s = (LNode *)malloc(sizeof(LNode));
+    s-&gt;data = e;
+    s-&gt;next = rear-&gt;next;               /* 新结点指向头结点，成环 */
+    rear-&gt;next = s;                     /* 原尾结点指向 s */
+    rear = s;                           /* rear 移到最后 */
+}
+LinkList Merge(LinkList ra, LinkList rb) {      /* 4) 合并两循环单链表 */
+    LNode *ha = ra-&gt;next, *hb = rb-&gt;next;   /* 两个头结点 */
+    ra-&gt;next = hb-&gt;next;                    /* A 尾接 B 首元 */
+    free(hb);                               /* 释放 B 的头结点 */
+    rb-&gt;next = ha;                          /* B 尾接 A 头，重新成环 */
+    return rb;                              /* 返回新尾指针 */
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>双链表插入不能把 p-&gt;next = s 写在最前面，p 的原后继会丢</li><li>四条指针一条都不能少：s-&gt;next、后继-&gt;prior、s-&gt;prior、p-&gt;next</li><li>合并循环链表时忘了 free 掉 B 的头结点</li><li>合并后必须补上 rb-&gt;next = ha 形成闭环，否则不再是循环链表</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">5</span>顺序栈与循环队列的基本操作<span class="lv">★★★</span><span class="cnt">O(1)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：实现顺序栈的初始化、判空、判满、进栈、出栈；实现循环队列的初始化、判空、判满、入队、出队。原型：<code>bool Push(SqStack &amp;S, ElemType x)</code>、<code>bool Pop(SqStack &amp;S, ElemType &amp;x)</code>、<code>bool EnQueue(SqQueue &amp;Q, ElemType x)</code>、<code>bool DeQueue(SqQueue &amp;Q, ElemType &amp;x)</code></li>
+      <li><b>关键点</b>：1. top 指向栈顶元素时初值为 -1，进栈写 <em>S.data[++S.top] = x</em>，出栈写 <em>x = S.data[S.top--]</em>；2. 循环队列牺牲一个存储单元区分队空队满：队空 front==rear，队满 (rear+1)%MaxSize==front；3. 元素个数为 (rear-front+MaxSize)%MaxSize。</li>
+    </ul>
+    <pre class="code">#define MaxSize 50
+typedef struct {                    /* 顺序栈：top 指向栈顶元素 */
+    ElemType data[MaxSize];
+    int top;
+} SqStack;
+void InitStack(SqStack &amp;S) { S.top = -1; }
+bool StackEmpty(SqStack S) { return S.top == -1; }
+bool StackFull(SqStack S) { return S.top == MaxSize - 1; }
+bool Push(SqStack &amp;S, ElemType x) {
+    if (S.top == MaxSize - 1) return false;    /* 栈满 */
+    S.data[++S.top] = x;                       /* 先加指针再存值 */
+    return true;
+}
+bool Pop(SqStack &amp;S, ElemType &amp;x) {
+    if (S.top == -1) return false;             /* 栈空 */
+    x = S.data[S.top--];                       /* 先取值再减指针 */
+    return true;
+}
+typedef struct {                    /* 循环队列：牺牲一个单元 */
+    ElemType data[MaxSize];
+    int front, rear;
+} SqQueue;
+void InitQueue(SqQueue &amp;Q) { Q.front = Q.rear = 0; }
+bool QueueEmpty(SqQueue Q) { return Q.front == Q.rear; }
+bool QueueFull(SqQueue Q) { return (Q.rear + 1) % MaxSize == Q.front; }
+bool EnQueue(SqQueue &amp;Q, ElemType x) {
+    if ((Q.rear + 1) % MaxSize == Q.front) return false;   /* 队满 */
+    Q.data[Q.rear] = x;
+    Q.rear = (Q.rear + 1) % MaxSize;
+    return true;
+}
+bool DeQueue(SqQueue &amp;Q, ElemType &amp;x) {
+    if (Q.front == Q.rear) return false;                    /* 队空 */
+    x = Q.data[Q.front];
+    Q.front = (Q.front + 1) % MaxSize;
+    return true;
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>进栈是 S.data[++S.top] = x，出栈是 x = S.data[S.top--]，前后顺序正好相反</li><li>循环队列判满要取模：(rear+1) % M == front</li><li>rear == front 是判空条件，不能拿来判满</li><li>入队 rear = (rear+1) % M、出队 front = (front+1) % M，别漏取模</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">6</span>二叉树递归遍历、树高与结点个数<span class="lv">★★★</span><span class="cnt">O(n)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：递归实现二叉树的先序、中序、后序遍历，并求树高、求结点总数。原型：<code>void PreOrder(BiTree T)</code>、<code>void InOrder(BiTree T)</code>、<code>void PostOrder(BiTree T)</code>、<code>int TreeHeight(BiTree T)</code>、<code>int CountNode(BiTree T)</code></li>
+      <li><b>关键点</b>：1. 三种遍历只差 visit(T) 的位置：先序在进入左子树前、中序在左右子树之间、后序在右子树之后；2. 递归出口统一为 <em>if (T == NULL)</em>；3. 树高 = max(左高, 右高) + 1，结点数 = 左 + 右 + 1，都是“先算子树再合并”。</li>
+    </ul>
+    <pre class="code">typedef struct BiTNode {            /* 二叉树结点，后续卡沿用 */
+    ElemType data;
+    struct BiTNode *lchild, *rchild;
+} BiTNode, *BiTree;
+
+/* visit(x) 是抽象访问操作，考试中可写成 printf("%d ", x-&gt;data); */
+void PreOrder(BiTree T) {           /* 先序：根 左 右 */
+    if (T != NULL) {
+        visit(T);
+        PreOrder(T-&gt;lchild);
+        PreOrder(T-&gt;rchild);
+    }
+}
+void InOrder(BiTree T) {            /* 中序：左 根 右 */
+    if (T != NULL) {
+        InOrder(T-&gt;lchild);
+        visit(T);
+        InOrder(T-&gt;rchild);
+    }
+}
+void PostOrder(BiTree T) {          /* 后序：左 右 根 */
+    if (T != NULL) {
+        PostOrder(T-&gt;lchild);
+        PostOrder(T-&gt;rchild);
+        visit(T);
+    }
+}
+int TreeHeight(BiTree T) {          /* 树高，空树为 0 */
+    if (T == NULL) return 0;
+    int l = TreeHeight(T-&gt;lchild);
+    int r = TreeHeight(T-&gt;rchild);
+    return (l &gt; r ? l : r) + 1;
+}
+int CountNode(BiTree T) {           /* 结点总数 */
+    if (T == NULL) return 0;
+    return CountNode(T-&gt;lchild) + CountNode(T-&gt;rchild) + 1;
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>递归出口写 if (T == NULL) return 0，用「左右孩子都空」当出口会漏算单分支</li><li>求树高是 max(l, r) + 1，写成 l + r + 1 那是结点个数公式</li><li>忘记最后的 +1，会把叶子结点的高度算成 0</li><li>求结点个数才用 l + r + 1，两套公式别混用</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">7</span>二叉树非递归中序遍历与层次遍历<span class="lv">★★★</span><span class="cnt">O(n)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：借助栈实现二叉树的中序非递归遍历；借助队列实现层次遍历。原型：<code>void InOrderNonRec(BiTree T)</code>、<code>void LevelOrder(BiTree T)</code>（栈、队列沿用第 5 卡定义，元素类型改为 BiTree）</li>
+      <li><b>关键点</b>：1. 非递归中序的骨架是“一路向左入栈，弹栈访问后转向右子树”，循环条件是 <em>p != NULL || !StackEmpty(S)</em>；2. 层次遍历先把根入队，出队即访问，再把非空左右孩子依次入队；3. 入队前必须判孩子是否为空，否则队列里会混入空指针。</li>
+    </ul>
+    <pre class="code">/* 栈、队列沿用第 5 卡：SqStack / SqQueue 的元素类型为 BiTree */
+
+/* 1) 非递归中序遍历 */
+void InOrderNonRec(BiTree T) {
+    SqStack S;
+    InitStack(S);
+    BiTree p = T;
+    while (p != NULL || !StackEmpty(S)) {
+        if (p != NULL) {                /* 一路向左，沿途入栈 */
+            Push(S, p);
+            p = p-&gt;lchild;
+        } else {                        /* 出栈访问，转向右子树 */
+            Pop(S, p);
+            visit(p);
+            p = p-&gt;rchild;
+        }
+    }
+}
+
+/* 2) 层次遍历 */
+void LevelOrder(BiTree T) {
+    SqQueue Q;
+    InitQueue(Q);
+    if (T != NULL) EnQueue(Q, T);       /* 根入队 */
+    while (!QueueEmpty(Q)) {
+        BiTree p;
+        DeQueue(Q, p);
+        visit(p);
+        if (p-&gt;lchild != NULL) EnQueue(Q, p-&gt;lchild);
+        if (p-&gt;rchild != NULL) EnQueue(Q, p-&gt;rchild);
+    }
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>非递归中序 Pop 之后必须写 p = p-&gt;rchild，否则在左子树上死循环</li><li>层次遍历入队前要判空，空结点入队后访问 p-&gt;data 会崩</li><li>栈初始化 top = -1，入栈写 ++top，出栈写 top--</li><li>循环条件 p != NULL || !isEmpty(S)，两个条件缺一不可</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">8</span>中序线索化与在线索树中找后继<span class="lv">★★</span><span class="cnt">O(n)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：对二叉树进行中序线索化（结点增加 ltag、rtag 标志位），并写出在中序线索二叉树中求结点 p 后继的算法。原型：<code>void CreateInThread(ThreadTree T)</code>、<code>ThreadNode *InNextNode(ThreadNode *p)</code></li>
+      <li><b>关键点</b>：1. 线索化用全局前驱指针 pre，递归顺序必须与中序一致：先递归左子树，再处理 p 的空指针，最后 pre = p；2. p 左空则 lchild 指 pre（前驱线索），pre 右空则 pre-&gt;rchild 指 p（后继线索），两个判断要配套置 ltag / rtag = 1；3. 找后继：rtag == 1 直接返回 rchild，否则到右子树一直向左走到底。</li>
+    </ul>
+    <pre class="code">typedef struct ThreadNode {         /* 线索二叉树结点 */
+    ElemType data;
+    struct ThreadNode *lchild, *rchild;
+    int ltag, rtag;                 /* 1 表示线索，0 表示孩子 */
+} ThreadNode, *ThreadTree;
+
+ThreadNode *pre = NULL;             /* 全局前驱指针 */
+
+void InThread(ThreadTree p) {       /* 中序线索化 */
+    if (p != NULL) {
+        InThread(p-&gt;lchild);        /* 先递归左子树 */
+        if (p-&gt;lchild == NULL) {    /* 左空，建立前驱线索 */
+            p-&gt;lchild = pre;
+            p-&gt;ltag = 1;
+        }
+        if (pre != NULL &amp;&amp; pre-&gt;rchild == NULL) {   /* 前驱右空 */
+            pre-&gt;rchild = p;        /* 建立后继线索 */
+            pre-&gt;rtag = 1;
+        }
+        pre = p;                    /* pre 跟上 p */
+        InThread(p-&gt;rchild);        /* 再递归右子树 */
+    }
+}
+void CreateInThread(ThreadTree T) { /* 主过程 */
+    pre = NULL;
+    if (T != NULL) {
+        InThread(T);
+        if (pre-&gt;rchild == NULL) pre-&gt;rtag = 1;     /* 处理最后一个结点 */
+    }
+}
+
+/* 在中序线索二叉树中求 p 的后继 */
+ThreadNode *InNextNode(ThreadNode *p) {
+    if (p-&gt;rtag == 1) return p-&gt;rchild;  /* 直接是后继线索 */
+    p = p-&gt;rchild;                       /* 否则进右子树 */
+    while (p-&gt;ltag == 0) p = p-&gt;lchild;  /* 找右子树最左下结点 */
+    return p;
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>写 p-&gt;lchild = pre 后必须置 p-&gt;ltag = 1，标志位与指针不一致会死循环</li><li>线索化主过程要单独处理最后一个结点，其 rtag 应置 1</li><li>找后继：rtag == 0 走右子树最左，rtag == 1 直接取 rchild，别写反</li><li>中序第一个结点的 ltag 一定是 1，可用于检查线索化是否正确</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">9</span>KMP 的 next 数组与匹配<span class="lv">★★★</span><span class="cnt">O(n+m)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：求模式串的 next 数组并实现 KMP 匹配，原型 <code>void getNext(char p[], int next[], int m)</code> 与 <code>int KMP(char s[], char p[], int n, int m)</code>，返回首次匹配的下标，失败返回 -1。</li>
+      <li><b>关键点</b>：本卡用 <em>0 起始下标</em> 的 next 约定，即 <code>next[0] = -1</code>；王道教材写的是 1 起始下标的 <code>next[1] = 0</code>，二者只差整体平移一位，含义与求法完全相同，答题时任选一种并写明约定即可。</li>
+      <li><b>关键点</b>：next[i] 的含义是「p[0..i-1] 的最长相等前后缀长度」，同时也是失配时 j 应回退到的位置；<code>j = -1</code> 是哨兵，表示模式串第 0 位也失配，主串指针 i 必须后移。</li>
+      <li><b>关键点</b>：主串指针 i 从不回溯，这是 KMP 比朴素匹配快的原因；主串、模式串长度分别记 n、m，下标范围是 0..n-1、0..m-1。</li>
+    </ul>
+    <pre class="code">/* 串用 0 起始下标；next[0] = -1 约定
+   （王道教材为 1 起始下标的 next[1] = 0，两者只差整体平移一位） */
+void getNext(char p[], int next[], int m) {     /* p[0..m-1] */
+    int i = 0, j = -1;
+    next[0] = -1;
+    while (i &lt; m - 1) {
+        if (j == -1 || p[i] == p[j]) {
+            i++;
+            j++;
+            next[i] = j;            /* 不优化版：next[i] = j */
+        } else {
+            j = next[j];            /* 失配：j 回退到 next[j] */
+        }
+    }
+}
+
+int KMP(char s[], char p[], int n, int m) {     /* 首次匹配下标，失败 -1 */
+    int next[100], i = 0, j = 0;
+    getNext(p, next, m);            /* 先做预处理 */
+    while (i &lt; n &amp;&amp; j &lt; m) {
+        if (j == -1 || s[i] == p[j]) {          /* j = -1 时主串后移 */
+            i++;
+            j++;
+        } else {
+            j = next[j];            /* 主串 i 不动，只回退模式串 */
+        }
+    }
+    if (j &gt;= m) return i - m;       /* 匹配成功，起点为 i - m */
+    return -1;
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>求 next 的循环条件写 i &lt; m，写成 i &lt; m-1 会使 next[m] 越界且无意义</li><li>next 只由模式串决定，与主串无关</li><li>匹配时忘判 j == -1 会访问 next[-1]，程序崩溃</li><li>KMP 中主串指针 i 只增不减，不要写 i 回退</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">10</span>邻接表上的 BFS 与 DFS<span class="lv">★★★</span><span class="cnt">O(n+e)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：图以邻接表存储，写出从顶点 v 出发的广度优先遍历 <code>void BFS(ALGraph *G, int v)</code> 与深度优先遍历 <code>void DFS(ALGraph *G, int v)</code>。</li>
+      <li><b>关键点</b>：顶点编号 0..G-&gt;n-1；<code>G-&gt;adj[v].first</code> 是边表头指针，<code>p-&gt;adjvex</code> 是邻接点下标。全局数组 visited 调用前置 0，非连通图需再套一层 for 循环对每个未访问顶点调用一次。</li>
+      <li><b>关键点</b>：BFS 用队列、DFS 用栈（或递归）；<em>入队/首次访问时立即置 visited = 1</em>，否则同一顶点会重复入队、复杂度退化。</li>
+      <li><b>关键点</b>：邻接表存储下两种遍历的时间复杂度都是 O(n+e)（n 个顶点、e 条边），邻接矩阵则是 O(n²)；DFS 递归深度最大为 n。</li>
+    </ul>
+    <pre class="code">/* 邻接表：G-&gt;adj[v].data 存数据，G-&gt;adj[v].first 为边表头指针
+   顶点 0..G-&gt;n-1；p-&gt;adjvex 为邻接点下标 */
+int visited[MAXV];                      /* 全局标记，调用前全部置 0 */
+
+void BFS(ALGraph *G, int v) {           /* 从 v 出发广度优先遍历 */
+    int Q[MAXV], front = 0, rear = 0;   /* 顺序队列，每个顶点至多入队一次 */
+    ArcNode *p;
+    int u;
+    visited[v] = 1;
+    printf("%c ", G-&gt;adj[v].data);
+    Q[rear++] = v;
+    while (front &lt; rear) {
+        u = Q[front++];                 /* 出队 */
+        for (p = G-&gt;adj[u].first; p != NULL; p = p-&gt;next) {
+            if (visited[p-&gt;adjvex] == 0) {
+                visited[p-&gt;adjvex] = 1; /* 入队时即标记，防重复入队 */
+                printf("%c ", G-&gt;adj[p-&gt;adjvex].data);
+                Q[rear++] = p-&gt;adjvex;
+            }
+        }
+    }
+}
+
+void DFS(ALGraph *G, int v) {           /* 递归深度优先遍历 */
+    ArcNode *p;
+    visited[v] = 1;
+    printf("%c ", G-&gt;adj[v].data);
+    for (p = G-&gt;adj[v].first; p != NULL; p = p-&gt;next)
+        if (visited[p-&gt;adjvex] == 0)
+            DFS(G, p-&gt;adjvex);
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>visited 要在入队时就置 1，等到出队才置会让同一顶点多次入队</li><li>DFS 忘记在入口处标记 visited 会造成无限递归</li><li>邻接表遍历写成 for (p = G.vertices[v].firstarc; p; p = p-&gt;nextarc)</li><li>非连通图要在外层再套一层 for，遍历所有顶点</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">11</span>拓扑排序（入度法 + 栈）<span class="lv">★★★</span><span class="cnt">O(n+e)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：基于邻接表实现拓扑排序，原型 <code>int TopoSort(ALGraph *G)</code>，成功输出序列并返回 1，存在回路返回 0。</li>
+      <li><b>关键点</b>：顶点 0..G-&gt;n-1，indegree[w] 为 w 的入度；每次取入度为 0 的顶点「输出」，并把它的所有后继入度减 1，减到 0 者入栈。用栈（或队列）都可以，用栈得到的是逆拓扑序的一种合法解。</li>
+      <li><b>关键点</b>：判环判据是 <em>已输出顶点数 cnt 是否等于 n</em>；cnt &lt; n 说明剩下的顶点入度都大于 0，必在回路中。</li>
+      <li><b>关键点</b>：只有有向无环图（DAG）才有拓扑序列；拓扑序列一般不唯一，若要求「字典序最小」应改用小根堆而非普通栈。</li>
+    </ul>
+    <pre class="code">/* 邻接表 + 顺序栈；顶点 0..G-&gt;n-1 */
+int TopoSort(ALGraph *G) {
+    int indegree[MAXV], stack[MAXV], top = -1;
+    int i, v, w, cnt = 0;
+    ArcNode *p;
+    for (i = 0; i &lt; G-&gt;n; i++)          /* 统计入度 */
+        indegree[i] = 0;
+    for (i = 0; i &lt; G-&gt;n; i++)
+        for (p = G-&gt;adj[i].first; p != NULL; p = p-&gt;next)
+            indegree[p-&gt;adjvex]++;
+    for (i = 0; i &lt; G-&gt;n; i++)          /* 入度为 0 者入栈 */
+        if (indegree[i] == 0)
+            stack[++top] = i;
+    while (top != -1) {
+        v = stack[top--];               /* 出栈，即"输出"该顶点 */
+        printf("%c ", G-&gt;adj[v].data);
+        cnt++;                          /* 已输出顶点计数 */
+        for (p = G-&gt;adj[v].first; p != NULL; p = p-&gt;next) {
+            w = p-&gt;adjvex;
+            indegree[w]--;              /* 删去 v-&gt;w 这条弧 */
+            if (indegree[w] == 0)
+                stack[++top] = w;
+        }
+    }
+    return (cnt == G-&gt;n) ? 1 : 0;       /* 1：无环；0：有环 */
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>入度必须按「全图弧尾→弧头」重新统计，别只统计部分边</li><li>入栈的是顶点编号，栈指针 top 从 -1 开始</li><li>输出顶点数 cnt &lt; n 说明有环，要显式判断并输出</li><li>每删一条边对应邻接点入度减 1，减到 0 才入栈</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">12</span>Dijkstra 单源最短路径<span class="lv">★★★</span><span class="cnt">O(n²)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：邻接矩阵存储带权有向图，求源点 v0 到其余各顶点的最短路径，原型 <code>void Dijkstra(int G[][MAXV], int n, int v0, int dist[], int path[])</code>。</li>
+      <li><b>关键点</b>：顶点 0..n-1，<code>G[i][j] = INF</code> 表示无边（自己到自己为 0）；dist[i] 为当前最短距离，final[i] 标记已确定，path[i] 记录前驱下标（-1 表示无前驱/不可达）。</li>
+      <li><b>关键点</b>：循环不变量——每轮从未确定的顶点中选 dist 最小者 v 并 final[v] = 1，此时 dist[v] 已是最终值；再用 v 做一次松弛 <code>dist[v] + G[v][i] &lt; dist[i]</code>。</li>
+      <li><b>关键点</b>：共需并入 n-1 个顶点，朴素实现 O(n²)，用优先队列可优化到 O(e log n)；<em>边权必须非负</em>，有负权要用 Bellman-Ford/SPFA。</li>
+    </ul>
+    <pre class="code">#define INF 0x3f3f3f3f
+/* 邻接矩阵 G[n][n]，顶点 0..n-1，G[i][j] = INF 表示无边 */
+void Dijkstra(int G[][MAXV], int n, int v0, int dist[], int path[]) {
+    int final[MAXV], i, k, v, min;
+    for (i = 0; i &lt; n; i++) {           /* 初始化：直接距离 */
+        dist[i] = G[v0][i];
+        final[i] = 0;
+        path[i] = (G[v0][i] &lt; INF) ? v0 : -1;
+    }
+    dist[v0] = 0;
+    final[v0] = 1;
+    path[v0] = -1;
+    for (k = 1; k &lt; n; k++) {           /* 再并入 n-1 个顶点 */
+        min = INF;
+        v = -1;
+        for (i = 0; i &lt; n; i++)         /* 选未确定顶点中 dist 最小者 */
+            if (final[i] == 0 &amp;&amp; dist[i] &lt; min) {
+                min = dist[i];
+                v = i;
+            }
+        if (v == -1) break;             /* 剩余顶点均不可达 */
+        final[v] = 1;                   /* dist[v] 已是最短距离 */
+        for (i = 0; i &lt; n; i++)         /* 以 v 为中转松弛 */
+            if (final[i] == 0 &amp;&amp; G[v][i] &lt; INF &amp;&amp; dist[v] + G[v][i] &lt; dist[i]) {
+                dist[i] = dist[v] + G[v][i];
+                path[i] = v;            /* 记录前驱，用于回溯路径 */
+            }
+    }
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>INF 直接参与加法会溢出成负数，必须先判 G[v][i] &lt; INF</li><li>源点要单独置 dist[v0] = 0、final[v0] = 1，不能靠循环推出来</li><li>每轮要在未确定顶点里选 dist 最小的，不能按编号顺序取</li><li>要输出路径就得额外用 path[] 记前驱，别指望从 dist 反推</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">13</span>折半查找（非递归 + 递归）<span class="lv">★★★</span><span class="cnt">O(log₂n)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：在升序有序表 A[0..n-1] 中查找关键字 key，写出非递归版 <code>int BinSearch(int A[], int n, int key)</code> 与递归版 <code>int BinSearchRec(int A[], int low, int high, int key)</code>，返回下标，失败返回 -1。</li>
+      <li><b>关键点</b>：数组下标 0..n-1，区间用 <code>low = 0, high = n - 1</code> 的闭区间表示，循环/递归终止条件统一为 <code>low &gt; high</code>。</li>
+      <li><b>关键点</b>：<code>mid = (low + high) / 2</code> 向下取整；比较后 low = mid + 1 或 high = mid - 1，必须 <em>±1 缩小区间</em>，否则死循环。</li>
+      <li><b>关键点</b>：要求顺序存储且按关键字有序；比较次数不超过 ⌈log₂(n+1)⌉，时间复杂度 O(log₂n)，递归版空间复杂度 O(log₂n)（栈深度）。</li>
+    </ul>
+    <pre class="code">/* 有序表 A[0..n-1] 升序；返回下标，失败返回 -1 */
+int BinSearch(int A[], int n, int key) {        /* 非递归版 */
+    int low = 0, high = n - 1, mid;
+    while (low &lt;= high) {                       /* 闭区间非空 */
+        mid = (low + high) / 2;                 /* 向下取整 */
+        if (A[mid] == key)
+            return mid;
+        else if (A[mid] &lt; key)
+            low = mid + 1;                      /* 去右半区 */
+        else
+            high = mid - 1;                     /* 去左半区 */
+    }
+    return -1;
+}
+
+int BinSearchRec(int A[], int low, int high, int key) {  /* 递归版 */
+    int mid;
+    if (low &gt; high)
+        return -1;                              /* 区间为空，查找失败 */
+    mid = (low + high) / 2;
+    if (A[mid] == key)
+        return mid;
+    if (A[mid] &lt; key)
+        return BinSearchRec(A, mid + 1, high, key);
+    return BinSearchRec(A, low, mid - 1, key);
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>写成 low = mid 或 high = mid 会死循环，必须是 mid ± 1</li><li>递归版首次调用实参是 (A, 0, n-1, key)，写 n 会多查一个越界位置</li><li>循环条件是 low &lt;= high，写成 &lt; 会漏掉最后一个元素</li><li>折半查找要求顺序存储且关键字有序，链表不能用</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">14</span>快速排序（划分 + 递归）<span class="lv">★★★</span><span class="cnt">O(nlog₂n)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：对 A[low..high] 做快速排序，写出划分函数 <code>int Partition(int A[], int low, int high)</code> 与主函数 <code>void QuickSort(int A[], int low, int high)</code>。</li>
+      <li><b>关键点</b>：下标 0..n-1，首次调用为 <code>QuickSort(A, 0, n - 1)</code>；以 A[low] 为枢轴存到 temp，用「挖坑填数」法，先从 high 向左找小于枢轴的元素填左坑，再从 low 向右找大于枢轴的元素填右坑，最后 <code>A[low] = temp</code> 归位并返回 low。</li>
+      <li><b>关键点</b>：内层两个 while 必须都带 <code>low &lt; high</code> 条件，否则指针可能越界相遇后继续跑。</li>
+      <li><b>关键点</b>：平均时间 O(nlog₂n)、空间 O(log₂n)；<em>初始序列基本有序或逆序时退化为 O(n²)</em>，此时递归深度 n。快排不稳定，一趟划分后枢轴到位，且不一定能确定任何元素的最终位置以外的东西。</li>
+    </ul>
+    <pre class="code">/* A[0..n-1]；一趟划分：以 A[low] 为枢轴，返回其最终位置 */
+int Partition(int A[], int low, int high) {
+    int pivot = A[low];                 /* 挖坑，枢轴暂存 */
+    while (low &lt; high) {
+        while (low &lt; high &amp;&amp; A[high] &gt;= pivot)
+            high--;                     /* 右侧找小于枢轴者 */
+        A[low] = A[high];               /* 填左坑 */
+        while (low &lt; high &amp;&amp; A[low] &lt;= pivot)
+            low++;                      /* 左侧找大于枢轴者 */
+        A[high] = A[low];               /* 填右坑 */
+    }
+    A[low] = pivot;                     /* 枢轴归位，左小右大 */
+    return low;
+}
+
+void QuickSort(int A[], int low, int high) {
+    if (low &lt; high) {                   /* 区间长度 &gt; 1 才递归 */
+        int pivotpos = Partition(A, low, high);
+        QuickSort(A, low, pivotpos - 1);        /* 递归左子表 */
+        QuickSort(A, pivotpos + 1, high);       /* 递归右子表 */
+    }
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>内层 while 漏写 low &lt; high 会数组越界</li><li>枢轴归位必须写在循环结束之后，用 A[low] = pivot</li><li>递归边界 if (low &lt; high) 不能漏，否则无限递归</li><li>双指针必须先动 high 再动 low，顺序反了划分结果错</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">15</span>堆排序（建堆 + 向下调整）<span class="lv">★★★</span><span class="cnt">O(nlog₂n)</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：对 A[0..n-1] 进行堆排序（升序用大根堆），写出向下调整 <code>void AdjustDown(int A[], int k, int n)</code>、建堆 <code>void BuildMaxHeap(int A[], int n)</code> 与 <code>void HeapSort(int A[], int n)</code>。</li>
+      <li><b>关键点</b>：<em>0 起始下标</em>下，结点 i 的左孩子是 2i+1、右孩子是 2i+2，最后一个非叶结点是 n/2-1（王道教材 1 起始时为 2i、2i+1 与 n/2，注意区分）。</li>
+      <li><b>关键点</b>：向下调整先存 temp = A[k]，沿「较大孩子」路径把大者上移，直到 temp 不小于该孩子或越界，再把 temp 放到最终位置；建堆必须<em>从最后一个非叶结点倒序</em>调整。</li>
+      <li><b>关键点</b>：排序时反复「堆顶与当前末尾交换 → 堆规模减 1 → 对新堆顶向下调整」，n-1 趟后得到升序；建堆 O(n)，排序 O(nlog₂n)，空间 O(1)，不稳定。</li>
+    </ul>
+    <pre class="code">/* A[0..n-1] 大根堆；0 起始：i 的孩子为 2i+1、2i+2 */
+void AdjustDown(int A[], int k, int n) {    /* 调整 k 号结点，堆规模 n */
+    int temp = A[k];
+    int i;
+    for (i = 2 * k + 1; i &lt; n; i = 2 * i + 1) {
+        if (i + 1 &lt; n &amp;&amp; A[i + 1] &gt; A[i])
+            i++;                            /* 取较大的孩子 */
+        if (temp &gt;= A[i])
+            break;                          /* 已满足堆序，结束 */
+        A[k] = A[i];                        /* 孩子上移 */
+        k = i;                              /* k 下移到孩子位置 */
+    }
+    A[k] = temp;                            /* 放到最终位置 */
+}
+
+void BuildMaxHeap(int A[], int n) {
+    for (int i = n / 2 - 1; i &gt;= 0; i--)    /* 从最后非叶结点倒序 */
+        AdjustDown(A, i, n);
+}
+
+void HeapSort(int A[], int n) {
+    int i, t;
+    BuildMaxHeap(A, n);                     /* 建大根堆 */
+    for (i = n - 1; i &gt; 0; i--) {
+        t = A[0];                           /* 堆顶（最大值）换到末尾 */
+        A[0] = A[i];
+        A[i] = t;
+        AdjustDown(A, 0, i);                /* 剩余 i 个元素恢复大根堆 */
+    }
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>0 起始下标下建堆起点是 n/2 - 1，不是 n/2</li><li>排序时 AdjustDown(A, 0, i) 的规模参数传 i，传 n 会把已排好的元素搅乱</li><li>升序必须建大根堆，降序建小根堆，别弄反</li><li>下沉时要和「较大的孩子」比较，别固定只比左孩子</li></ul></div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">16</span>归并排序 + 并查集<span class="lv">★★★</span><span class="cnt">O(nlog₂n) / O(α(n))</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题干</b>：写出二路归并排序的 <code>void Merge(int A[], int low, int mid, int high)</code>、<code>void MergeSort(int A[], int low, int high)</code>，以及并查集的 <code>int Find(int parent[], int x)</code>（路径压缩）与 <code>void Union(int parent[], int a, int b)</code>（按大小合并）。</li>
+      <li><b>关键点</b>：归并排序下标 0..n-1，首次调用 <code>MergeSort(A, 0, n - 1)</code>；辅助数组 B 必须全局或提前分配，Merge 中左段 low..mid、右段 mid+1..high，合并完<em>整段复制回 A</em>。</li>
+      <li><b>关键点</b>：比较时用 <code>A[i] &lt;= A[j]</code> 取等号才能保证稳定；空间 O(n)，时间 O(nlog₂n) 且与初始序列无关。</li>
+      <li><b>关键点</b>：并查集用 parent[x] 表示——<em>负数表示 x 是根且绝对值为集合大小</em>，非负表示 x 的父结点；Find 用路径压缩把路径上每个点直接挂到根，Union 按大小把小树并入大树，均摊 O(α(n))，可视为常数。</li>
+    </ul>
+    <pre class="code">int B[MAXN];                            /* 归并辅助数组 */
+
+void Merge(int A[], int low, int mid, int high) {
+    int i = low, j = mid + 1, k = low;
+    while (i &lt;= mid &amp;&amp; j &lt;= high) {
+        if (A[i] &lt;= A[j])               /* 取等号保证稳定 */
+            B[k++] = A[i++];
+        else
+            B[k++] = A[j++];
+    }
+    while (i &lt;= mid) B[k++] = A[i++];   /* 左段剩余 */
+    while (j &lt;= high) B[k++] = A[j++];  /* 右段剩余 */
+    for (k = low; k &lt;= high; k++)
+        A[k] = B[k];                    /* 复制回原数组 */
+}
+
+void MergeSort(int A[], int low, int high) {
+    if (low &lt; high) {
+        int mid = (low + high) / 2;
+        MergeSort(A, low, mid);         /* 递归左半 */
+        MergeSort(A, mid + 1, high);    /* 递归右半 */
+        Merge(A, low, mid, high);       /* 归并两段 */
+    }
+}
+
+/* 并查集：parent[i] &lt; 0 表示 i 是根，绝对值为集合大小 */
+int Find(int parent[], int x) {         /* 带路径压缩 */
+    if (parent[x] &lt; 0)
+        return x;
+    return parent[x] = Find(parent, parent[x]);
+}
+
+void Union(int parent[], int a, int b) {    /* 按大小合并 */
+    int ra = Find(parent, a), rb = Find(parent, b);
+    if (ra == rb)
+        return;                         /* 已同集合，不合并 */
+    if (parent[ra] &gt; parent[rb]) {       /* 保证 ra 是更大的集合 */
+        int t = ra;
+        ra = rb;
+        rb = t;
+    }
+    parent[ra] += parent[rb];           /* 大小累加（负数相加） */
+    parent[rb] = ra;                    /* 小树根挂到大树根下 */
+}</pre>
+    <div class="warn"><b>易错点</b><ul><li>Merge 里最后「复制回 A」的 for 循环不能漏，否则结果全留在 B 里</li><li>并查集初始化 parent[i] = -1，不是 0（否则自己成了自己的父结点）</li><li>Union 比的是负数绝对值：parent[ra] &gt; parent[rb] 说明 ra 更小</li><li>归并的辅助数组要按实际长度申请，别用固定大小</li></ul></div>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
