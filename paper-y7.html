@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>模拟卷 y7</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="paper">
+<details class="chap" data-set="y7" data-name="拓展卷（上） · 低频考点训练" data-min="180">
+  <summary><span class="num">24</span>拓展卷（上） · 低频考点训练<span class="lv">★★★★★</span><span class="cnt">40 选择 + 7 综合 / 150 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+<h3>数据结构（第 1~11 题，22 分）</h3>
+<div class="qz">
+  <div class="stem"><span class="no">1.</span>若用十字链表存储有向图 G = (V, E)，则统计顶点 v 的入度的方法是　。</div>
+  <div class="opt"><span>A. 沿 v 的 firstin 指针遍历其入边链表，统计链表中弧结点的个数</span><span>B. 沿 v 的 firstout 指针遍历其出边链表，统计链表中弧结点的个数</span><span>C. 统计邻接矩阵中第 v 行非零元素的个数</span><span>D. 统计顶点表中 v 之前的所有顶点个数</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 十字链表把每一条弧用一个弧结点表示，弧结点含 tailvex、headvex 两个顶点域和 hlink、tlink 两个链域。每个顶点结点有两个指针：firstin 指向<b>以该顶点为弧头</b>（即入边）的第一条弧，firstout 指向<b>以该顶点为弧尾</b>（即出边）的第一条弧。因此求入度应沿 firstin 遍历入边链表并计数，求出度应沿 firstout 遍历。易错：把 firstin 与 firstout 弄反（这是十字链表最核心的错点）；用邻接矩阵的思路去答；认为十字链表不能求入度（它正是为解决邻接表求入度难的问题而设计的）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">2.</span>若用邻接多重表存储一个含 n 个顶点、e 条边的无向图，则该邻接多重表中边结点的个数为　。</div>
+  <div class="opt"><span>A. 2e</span><span>B. e</span><span>C. n + e</span><span>D. n + 2e</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 邻接多重表专为无向图设计：每条边只用一个边结点表示（含 ivex、jvex 两个顶点域和 ilink、jlink 两个链域），同一条边的两个顶点共享这一个结点，因此边结点数恰为 <b>e</b>。作为对比，用邻接表存储无向图时每条边要在两个顶点的边表里各出现一次，共 2e 个表结点——这正是邻接多重表节省空间的原因。易错：答 2e（那是邻接表存无向图的情形）；把顶点结点数 n 混进边结点数；把邻接多重表与十字链表混淆。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">3.</span>广义表 L = ((), (a, (b, c)))，则 L 的长度和深度分别是　。</div>
+  <div class="opt"><span>A. 长度 2，深度 2</span><span>B. 长度 3，深度 3</span><span>C. 长度 2，深度 3</span><span>D. 长度 2，深度 4</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 广义表的<b>长度</b>是它最外层所含元素的个数：L 的最外层有 () 和 (a, (b, c)) 两个元素，故长度为 2。<b>深度</b>按“原子深度为 0、空表深度为 1、表的深度 = 1 + 各子表深度的最大值”计算：() 的深度为 1；(a, (b, c)) 中 a 的深度为 0、(b, c) 的深度为 1，故它深度为 1 + max(0, 1) = 2；于是 L 的深度 = 1 + max(1, 2) = <b>3</b>。易错：把长度当成所有原子个数（本题为 3）；把空表深度当成 0；深度公式漏加 1 或取了最小值；把 (b, c) 的深度算成 2（它含 2 个原子，深度却是 1）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">4.</span>用三元组表存储稀疏矩阵并进行<b>快速转置</b>时，所需的时间复杂度为　。</div>
+  <div class="opt"><span>A. O(非零元素个数²)</span><span>B. O(行数 × 列数)</span><span>C. O(非零元素个数 × 行数)</span><span>D. O(列数 + 非零元素个数)</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 快速转置（按列计数、一次定位）需要先扫描一遍三元组表统计每列的非零元素个数（O(tu)），再求各列第一个非零元素在转置后表中的位置，最后再扫描一遍把每个元素放到正确位置（O(tu)），总计 O(nu + tu)（nu 为列数、tu 为非零元素个数），是线性的。普通转置要对原表每一列都扫描一遍原表，复杂度为 O(nu × tu)。易错：把快速转置的复杂度写成 O(tu²)；以为需要 O(行数 × 列数)（那是用二维数组存稠密矩阵）；把 tu 与矩阵元素总数混淆。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">5.</span>在数组实现的静态链表中删除指针 p 所指的结点（p 非尾结点）时，正确的操作是　。</div>
+  <div class="opt"><span>A. 找到 p 的前驱并令其 next 指向 p 的 next，同时把 p 结点挂到备用链表上</span><span>B. 直接把 p 的 next 置为 −1 即可</span><span>C. 把 p 的 data 域置 0 即表示该结点已被删除</span><span>D. 把数组中最后一个结点搬到 p 的位置上</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 静态链表用数组下标充当指针，next 域存后继结点的下标，各空闲结点通过 next 串成一条<b>备用链表</b>。删除 p 要做两件事：① 在逻辑链上摘除 p——由于是单链结构，必须先找到 p 的前驱，令前驱的 next 等于 p 的 next；② 回收空间——把 p 插入备用链表的表头，以便将来重新分配。易错：只改 p 的 next 而不处理前驱（链会断）；以为改 data 就算删除（逻辑链并未改变）；把静态链表当成顺序表用下标整体搬移；忘记回收空间导致空间泄漏。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">6.</span>用树的双亲表示法实现并查集，若合并时总把结点数少的树挂到结点数多的树下（按规模合并），则 Find 操作的最坏时间复杂度为　。</div>
+  <div class="opt"><span>A. O(1)</span><span>B. O(log n)</span><span>C. O(n)</span><span>D. O(n log n)</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 按规模合并能保证：任何一棵含 k 个结点的树，其高度不超过 ⌊log₂k⌋ + 1。因为只有当两棵树规模相当时才会使树高增加 1，而每次合并后规模至少翻倍，故规模为 n 的树高不超过 O(log n)，Find 沿双亲指针上溯的最坏时间为 O(log n)。若再叠加路径压缩，Find 的均摊时间可降到 O(α(n))。易错：答 O(1)（只有路径压缩且是均摊意义下才接近 O(1)）；答 O(n)（那是不做任何优化的最坏情况，可能退化成一条链）；把“按规模合并”与“按秩合并”当成不同复杂度的策略。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">7.</span>对 k = 8 个归并段进行 k 路归并，若用败者树选出当前最小元素，则每次调整（重新选出最小元素）需要的比较次数为　。</div>
+  <div class="opt"><span>A. 7 次</span><span>B. 8 次</span><span>C. 3 次</span><span>D. 1 次</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 败者树的形态是一棵完全二叉树，k 个叶子（对应 k 个归并段的当前元素）共需 k − 1 个内部结点记录“败者”，树高为 ⌈log₂k⌉。建树时需 k − 1 次比较；建好之后每当某个叶子被更新，只需沿该叶子到根的路径重新比较，比较次数等于树高 ⌈log₂k⌉。k = 8 时 ⌈log₂8⌉ = <b>3</b> 次。与“每次顺序比较 k 个数选最小”的 7 次相比，败者树把每选一个元素的代价从 O(k) 降到 O(log k)。易错：答 7（那是建树的 k−1 次，或顺序比较的次数）；答 8（那是 k 本身）；把“建树比较次数”与“每次调整比较次数”混淆。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">8.</span>用置换-选择排序生成初始归并段时，若内存工作区最多可容纳 w 个记录，则生成的初始归并段的平均长度约为　。</div>
+  <div class="opt"><span>A. w</span><span>B. 1.5w</span><span>C. 3w</span><span>D. 2w</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 置换-选择排序借助“当前最小值”与“在内存中但小于它、暂不能输出的记录”之分，使一个归并段能持续输出到内存中再没有可输出的记录为止。理论上初始归并段的平均长度为工作区容量的 <b>2 倍</b>，即约 2w；最短为 w，最长为全部记录数（当输入序列本身已有序时）。这正是外部排序用它替代“内部排序生成归并段”的原因——归并段更长，归并趟数更少。易错：答 w（那是用内部排序生成归并段时的固定长度）；认为长度一定等于工作区大小；把“平均”与“最短”“最长”混淆。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">9.</span>设有 8 个初始归并段，采用 3 路归并，为使归并树（最佳归并树）的带权路径长度最小，需要补充的虚段个数为　。</div>
+  <div class="opt"><span>A. 1 个</span><span>B. 0 个</span><span>C. 2 个</span><span>D. 3 个</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> m 路（m = 3）归并的最佳归并树是严格的 m 叉树，必须满足“叶结点个数 n₀ = 1 + (m−1)·n_m”，即 (n₀ − 1) 能被 (m − 1) = 2 整除。本题 n₀ = 8，(8 − 1) = 7 不能被 2 整除，故需补 u 个虚段使 (8 + u − 1) 能被 2 整除，即 u 为奇数；取最小的 u = <b>1</b>，此时 8 + 1 = 9，9 − 1 = 8 能被 2 整除（内部结点 n_m = 4）。虚段权值取 0，应放在离根最远的位置。易错：答 0（未检验整除条件）；把 8 与 2 的倍数关系搞错而答 2；把“补充虚段”与“增加归并路数”混淆。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">10.</span>对长度为 900 的有序表建立分块索引，等分成 30 块、每块 30 个元素。若块间查找和块内查找均采用顺序查找，则等概率下查找成功的平均查找长度为　。</div>
+  <div class="opt"><span>A. 30</span><span>B. 31</span><span>C. 15.5</span><span>D. 62</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 分块查找的 ASL = 块间查找的 ASL + 块内查找的 ASL。块间用顺序查找：共 b = 30 块，平均比较 (b + 1)/2 = 31/2 = 15.5 次；块内也用顺序查找：每块 s = 30 个元素，平均比较 (s + 1)/2 = 31/2 = 15.5 次。故 ASL = 15.5 + 15.5 = <b>31</b>。一般结论：当 s = √n 时 ASL 取最小值 √n + 1。易错：只算块内或只算块间（得 15.5）；用折半查找的公式算块间；把 900 当成块内元素个数。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">11.</span>若双端队列允许在两端插入、也允许在两端删除，则元素 1, 2, 3 依次输入（输入顺序固定）时，能得到的不同输出序列共有　。</div>
+  <div class="opt"><span>A. 5 种</span><span>B. 4 种</span><span>C. 6 种</span><span>D. 8 种</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 双端队列（deque）两端都可插入和删除，限制最少。对 3 个元素、输入顺序固定为 1,2,3 的情形，3! = <b>6</b> 种排列全部可实现：123、132、213、231、312、321。例如要得到 312：把 1、2、3 依次从同一端插入，再从另一端逐个删除即可；要得到 231：1 从左端插入、2 与 3 从右端插入，再按 2、3、1 的顺序删除。作为对比，普通栈（只允许一端进出）对 3 个元素只能得到 5 种（卡特兰数 C₃ = 5，312 不可得）。易错：答 5（那是栈的结果）；把“输入受限”与“输出受限”的条件套错；误以为双端队列也受卡特兰数限制。</div></details>
+</div>
+<h3>计算机组成原理（第 12~22 题，22 分）</h3>
+<div class="qz">
+  <div class="stem"><span class="no">12.</span>用原码一位乘法计算两个 n 位定点小数的乘积时，共需进行加法的次数是　。</div>
+  <div class="opt"><span>A. n − 1 次</span><span>B. 2n 次</span><span>C. n + 1 次</span><span>D. n 次</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 原码一位乘法的规则是：符号位单独处理（两数符号异或），数值部分取绝对值相乘。运算时从乘数最低位开始逐位判断：该位为 1 则把被乘数加到部分积上（为 0 则加 0），然后部分积与乘数一起右移一位。乘数共 n 位，故需做 <b>n 次</b>“判断—相加—右移”，即 n 次加法。易错：答 n−1（把第一位当成不需相加）；认为符号位也要参与运算；把原码一位乘与补码 Booth 算法混淆（后者还需附加位，规则不同）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">13.</span>用 Booth 算法（补码一位乘法）计算两个补码定点数的乘积时，需要在乘数末位增加一个附加位 y(n+1)，其初值应为　。</div>
+  <div class="opt"><span>A. 0</span><span>B. 1</span><span>C. 与乘数符号位相同</span><span>D. 与乘数最低位相同</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> Booth 算法每次根据“y(n) y(n+1)”这一对位的组合决定操作：00 或 11 时只右移；01 时部分积加被乘数后右移；10 时部分积减被乘数后右移。为使第一次判断（只看 y(n) 与附加位）正确，附加位 y(n+1) 的初值必须置 <b>0</b>。这样算法能统一处理正、负数，且符号位自然参与运算、无需单独处理——这是 Booth 算法相对原码一位乘的最大优点。易错：把初值置 1；认为附加位等于符号位或最低位；忘记“01 加、10 减”的对应关系。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">14.</span>用加减交替法（不恢复余数法）进行原码除法时，若某一步得到的余数为负，则下一步应　。</div>
+  <div class="opt"><span>A. 把余数左移一位，再减去除数</span><span>B. 把余数左移一位，再加上除数</span><span>C. 先恢复余数，再左移一位并减去除数</span><span>D. 直接结束运算，商末位补 0</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 加减交替法的规则是：余数为正时商上 1，下一步“左移一位后减除数”；余数为负时商上 0，下一步“左移一位后<b>加</b>除数”。这样就不必像恢复余数法那样先把余数恢复成正值再继续，运算步数固定为 n 步，速度更快。易错：余数为负时仍减去除数（会越算越偏）；以为必须“恢复余数”（那正是本方法要避免的）；把商上 1、上 0 的条件弄反。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">15.</span>IEEE 754 标准规定的默认舍入方式是　。</div>
+  <div class="opt"><span>A. 朝零舍入（截断）</span><span>B. 朝正无穷方向舍入</span><span>C. 就近舍入，中间值取偶数</span><span>D. 朝负无穷方向舍入</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> IEEE 754 规定了 4 种舍入方式，<b>默认</b>是“就近舍入，中间值取偶数”：把结果舍入到最接近的可表示值，当恰好位于两个可表示值的正中间时，取末位为偶数的那个，这样可避免统计上的偏差累积。其余三种（朝零、朝 +∞、朝 −∞）需由程序员通过舍入模式显式指定，常用于区间运算等场合。易错：答“朝零舍入”（那是 C 语言整数转换的做法，不是浮点默认）；把“中间值取偶数”与“四舍五入”等同（二者在 .5 处结果不同）；认为默认是朝正无穷。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">16.</span>某磁盘阵列由 4 块容量均为 1TB 的磁盘组成，采用 RAID 5 方式。则该阵列的可用容量与容错能力分别是　。</div>
+  <div class="opt"><span>A. 4TB，允许任意 1 块磁盘故障</span><span>B. 2TB，允许任意 2 块磁盘故障</span><span>C. 3TB，允许任意 2 块磁盘故障</span><span>D. 3TB，允许任意 1 块磁盘故障</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> RAID 5 采用<b>分布式奇偶校验</b>：数据和校验信息都分散存放在所有磁盘上，相当于用 1 块盘的容量存放校验信息。故 4 块 1TB 的可用容量为 (4 − 1) × 1TB = <b>3TB</b>；校验信息能恢复任意<b>1 块</b>磁盘的数据，但若同时坏 2 块则不可恢复。作为对比：RAID 0 无冗余（4TB、无容错）；RAID 1 镜像（2TB、可容 1 块）；RAID 6 双校验（2TB、可容 2 块）。易错：答 4TB（那是 RAID 0）；把 RAID 5 与 RAID 6 的容错能力混淆；认为 RAID 5 的校验盘是固定的一块（那是 RAID 3/4）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">17.</span>与传统的磁盘相比，基于闪存的固态硬盘（SSD）的主要特点是　。</div>
+  <div class="opt"><span>A. 没有机械寻道与旋转延迟，随机访问速度快，但存在擦写寿命限制与写放大问题</span><span>B. 容量大、每 GB 成本低，最适合冷数据的长期归档</span><span>C. 必须按扇区顺序访问，随机访问性能差</span><span>D. 掉电后数据会立即丢失，不能作为持久存储使用</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> SSD 用闪存芯片存储数据，没有磁头、盘片等机械部件，因此不存在寻道时间和旋转延迟，随机读写速度远高于磁盘，抗震性也好。但闪存有<b>擦写次数上限</b>，且写入前必须先擦除整块，导致“写放大”；为此需要磨损均衡（wear leveling）等技术。单位容量成本仍高于磁盘，因此大容量冷数据归档仍多用磁盘。易错：以为 SSD 掉电即丢数据（它是非易失的）；认为 SSD 也需要寻道（无机械部件）；把“写放大”与“读写放大”混淆。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">18.</span>某机采用微程序控制，共有 80 条机器指令，每条机器指令对应的微程序平均含 4 条微指令（不考虑公共微程序），微指令字长为 40 位。则控制存储器的容量至少为　。</div>
+  <div class="opt"><span>A. 3200 位</span><span>B. 12800 位</span><span>C. 6400 位</span><span>D. 25600 位</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 控制存储器的容量 = 微指令总条数 × 微指令字长。微指令总条数 = 80 × 4 = 320 条，故容量 = 320 × 40 = <b>12800 位</b>（= 1600B）。控制存储器每个单元存放一条微指令，单元个数由微指令总条数决定，单元位数等于微指令字长。易错：用机器指令条数 80 乘字长（得 3200 位，漏乘每条指令的微指令数）；忘记乘微指令字长；把“位”与“字节”混用。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">19.</span>与微程序控制器相比，硬布线控制器的主要特点是　。</div>
+  <div class="opt"><span>A. 速度慢，但控制逻辑易于修改和扩充</span><span>B. 速度与微程序控制器相同，只是成本更低</span><span>C. 速度快，但控制逻辑由硬件电路固定实现，修改和扩充困难</span><span>D. 只能实现定长指令周期的指令系统</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 硬布线控制器用组合逻辑电路直接产生控制信号，信号延迟小、<b>速度快</b>，适合 RISC 等指令系统简单的机器；但控制逻辑一旦做成就难以改动，指令系统稍作调整就要重新设计电路，<b>不易修改和扩充</b>。微程序控制器把控制信号存在控制存储器里，改微程序即可改控制逻辑，灵活但每条微指令都要访存，速度较慢。易错：把两者优缺点记反；认为硬布线更便宜（复杂指令系统下硬布线电路庞大，反而更贵）；以为硬布线只能做定长周期。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">20.</span>在总线的异步定时（应答）方式中，可靠性最高但传输速度最慢的是　。</div>
+  <div class="opt"><span>A. 不互锁方式</span><span>B. 半互锁方式</span><span>C. 同步定时方式</span><span>D. 全互锁方式</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 异步通信靠“请求”与“应答”信号握手。① 不互锁：主设备发出请求后经过一段时间就撤销，不等待从设备的回答，速度最快但最不可靠；② 半互锁：主设备必须收到从设备的回答才撤销请求，但从设备的回答信号不等待请求的撤销，可靠性居中；③ <b>全互锁</b>：主设备等到从设备回答后才撤销请求，从设备又等到请求撤销后才撤销回答，双方完全互相确认，可靠性最高，但握手轮次最多、<b>速度最慢</b>。易错：把“全互锁”与“最可靠=最快”画等号（恰恰相反）；把同步定时也算作异步方式；混淆半互锁与全互锁的等待关系。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">21.</span>下列 I/O 控制方式中，CPU 干预最少且最适合连接大量低速设备的是　。</div>
+  <div class="opt"><span>A. 字节多路通道</span><span>B. 程序查询方式</span><span>C. 程序中断方式</span><span>D. 数组选择通道</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 字节多路通道含多个子通道，每个子通道连接一台低速设备，各子通道<b>分时轮流</b>使用通道与主存之间的数据通路，以字节为单位交叉传送，非常适合连接大量低速字符设备（终端、打印机等）。数组选择通道一次只能连接一台高速设备，以数据块为单位传送，利用率低；程序查询方式与中断方式都需要 CPU 逐次参与，CPU 开销大。易错：答数组选择通道（那是给高速块设备用的，一次只服务一台）；以为中断方式 CPU 干预最少（每次传送都要执行中断服务程序）；把通道 I/O 与 DMA 混淆（通道是 DMA 的进一步发展，能执行通道程序）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">22.</span>某系统有 4 个中断源 A、B、C、D，采用中断屏蔽字实现多重中断，要求中断处理次序为 A → B → C → D（A 最先处理）。若屏蔽字中“1”表示屏蔽、“0”表示开放，则中断源 A 的屏蔽字是　。</div>
+  <div class="opt"><span>A. 0111</span><span>B. 1111</span><span>C. 1000</span><span>D. 0000</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 中断屏蔽字中，第 i 位对应第 i 个中断源，1 表示屏蔽。若要求 A 的优先级最高（最先被处理），则 A 在运行中断服务程序时应屏蔽除自己以外的所有中断源，同时<b>自身也必须屏蔽</b>（防止同级中断再次打断自己）。故 A 的屏蔽字为 1111。按同样规则，B 应屏蔽 B、C、D（开放 A）→ 0111；C 应屏蔽 C、D → 0011；D 只屏蔽自己 → 0001。易错：答 0111（漏掉屏蔽自身）；答 0000（那是全开放，会允许自己重入）；把“1”与“0”的含义弄反。</div></details>
+</div>
+<h3>操作系统（第 23~32 题，20 分）</h3>
+<div class="qz">
+  <div class="stem"><span class="no">23.</span>某磁盘有 200 个柱面，磁头当前位于 100 号柱面。现有柱面请求序列 55, 58, 39, 18, 90, 160, 150, 38, 184（按到达顺序）。若采用最短寻道时间优先（SSTF）算法，则磁头移动的总距离是　。</div>
+  <div class="opt"><span>A. 208</span><span>B. 300</span><span>C. 248</span><span>D. 236</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> SSTF 每次都选距当前位置最近的请求。从 100 出发：→90（10）→58（32）→55（3）→39（16）→38（1）→18（20）→150（132）→160（10）→184（24）。总距离 = 10+32+3+16+1+20+132+10+24 = <b>248</b>。注意在 18 号柱面时剩余请求为 150、160、184，最近的 150 要移动 132 个柱面——这正是 SSTF“贪心导致大跨度寻道”的典型表现。易错：漏掉 100→90 这一段；把 58 与 55 的顺序颠倒；认为 SSTF 的总距离一定小于 SCAN（本题 SSTF 的 248 反而小于 SCAN 的 280）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">24.</span>SPOOLing 技术（假脱机技术）中的“输入井”和“输出井”位于　。</div>
+  <div class="opt"><span>A. 内存中</span><span>B. 设备控制器中</span><span>C. CPU 的高速缓存中</span><span>D. 磁盘上</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> SPOOLing 系统由输入井/输出井（在<b>磁盘</b>上开辟的存储区域）、输入缓冲区/输出缓冲区（在内存中）、输入进程/输出进程（预输入、缓输出）三部分组成。井在磁盘上，容量大，可暂存大量作业的输入输出数据；缓冲区在内存中，用于与设备之间做中转。这样就把独占设备改造成了共享设备（如多个进程共享一台打印机）。易错：把“井”与“缓冲区”混为一谈（井在磁盘、缓冲区在内存）；认为 SPOOLing 只用于输入；把 SPOOLing 与缓冲技术等同（前者是设备虚拟化技术，后者是速度匹配技术）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">25.</span>某文件的索引节点中链接计数 count 当前为 3。若用户删除其中一个硬链接，则　。</div>
+  <div class="opt"><span>A. count 减为 2，文件数据仍可访问</span><span>B. 文件数据被立即删除，其余链接失效</span><span>C. count 变为 2，但只有创建该文件的用户能继续访问</span><span>D. count 保持不变，只是该目录项被删除</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 硬链接的本质是“多个目录项指向同一个索引节点”。删除一个硬链接只是删除一个目录项，并把该索引节点的链接计数 count 减 1；只要 count 仍大于 0，索引节点和文件数据块都不会被回收，其余硬链接依然可以正常访问。只有 count 减到 0（所有硬链接都被删除）时，系统才真正释放索引节点与数据块。易错：以为“删除即删除数据”；认为删除硬链接会受文件属主限制（硬链接与属主无关）；把 count 与“打开该文件的进程数”混淆（后者是内存中的引用计数）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">26.</span>用访问控制表（ACL）实现文件保护时，其基本做法是　。</div>
+  <div class="opt"><span>A. 为每个用户建立一张表，记录该用户可访问的所有文件及其权限</span><span>B. 为每个文件建立一张表，逐一记录允许访问该文件的各用户及其可执行的操作</span><span>C. 要求用户在打开文件时输入口令，口令正确才允许访问</span><span>D. 把用户分为属主、同组、其他三类，各设 rwx 三位权限</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 访问控制表（ACL）是“以文件为主体”的记录方式：每个文件附一张表，表项为（用户名，允许的操作集合），粒度可精确到单个用户。选项 A 描述的是“访问权限表/能力表”（以用户为主体）；选项 C 描述的是 UNIX 的 9 位权限位（按用户类别分组，粒度粗）；选项 B 是口令保护。易错：把 ACL 与“能力表（capability list）”弄反（前者按文件、后者按用户）；把 ACL 与 UNIX 的 rwx 权限位混为一谈；以为口令保护属于 ACL。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">27.</span>虚拟文件系统（VFS）的主要作用是　。</div>
+  <div class="opt"><span>A. 把磁盘上的文件数据缓存到内存，提高访问速度</span><span>B. 把多个物理磁盘合并成一个逻辑卷以扩大容量</span><span>C. 屏蔽各类具体文件系统的差异，向上层提供统一的文件操作接口</span><span>D. 在内存中为所有文件建立索引以加快检索</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> VFS 在操作系统内核中提供一个抽象的、统一的文件系统接口（如 open、read、write、close 等），向上给系统调用层提供一致的文件操作语义，向下通过一组函数指针（vnode 与超级块操作表）适配 ext4、FAT32、NFS、proc 等各不相同的具体文件系统。这样应用程序无需关心文件究竟存放在哪种文件系统上，甚至可以是网络文件系统。易错：把 VFS 与“磁盘缓存/页高速缓存”混淆；把 VFS 与 RAID、LVM 的卷管理混淆；以为 VFS 是一个具体的文件系统实现。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">28.</span>与最佳适应算法相比，首次适应算法（空闲区按地址递增排列）的主要优点是　。</div>
+  <div class="opt"><span>A. 总是选最小的够用空闲区，因此产生的碎片最少</span><span>B. 总是从最大的空闲区开始分配，适合大作业</span><span>C. 不需要维护空闲区链表，管理最简单</span><span>D. 分配速度较快，且倾向于把大空闲区保留在高地址处，便于满足后续的大请求</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 首次适应按地址递增顺序检索空闲链，找到第一个足够大的空闲区就分配。它不必比较所有空闲区，因而分配<b>较快</b>；同时低地址处被反复切割成小碎片，而高地址处的大空闲区被保留下来，有利于后续的大请求。最佳适应则要求空闲区按容量递增排列，每次都要找最小的够用块，会把大空闲区切出许多难以利用的小碎片（外部碎片最多），且需遍历较长距离。易错：把“最佳适应碎片最少”当成正确说法（恰恰相反，它碎片最多）；把首次适应与循环首次适应混淆；认为首次适应需要按容量排序。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">29.</span>系统发生抖动（thrashing）的直接原因是　。</div>
+  <div class="opt"><span>A. 分配给进程的页框数少于其工作集大小，导致缺页率急剧上升，CPU 大部分时间用于换页</span><span>B. 磁盘剩余空间不足，无法再调入新的页面</span><span>C. 页面尺寸设置过小，页内碎片过多</span><span>D. CPU 主频过低，页面置换算法执行太慢</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 抖动的本质是“多道程度过高 → 每个进程分到的页框太少 → 刚换出的页立刻又被访问 → 缺页率飙升 → CPU 排队等待换页 → 系统吞吐量骤降”。其直接原因是分配给进程的物理块数不足以容纳它的<b>工作集</b>。常用解决办法：采用工作集模型按需分配页框、引入缺页率控制、适当降低多道程度（挂起部分进程）。易错：把“磁盘满”当成抖动原因（那是文件系统空间问题）；以为页面越小越好（页面过小会使页表庞大、缺页更频繁）；把抖动与“Belady 异常”混淆。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">30.</span>用资源分配图化简的方法检测死锁，若化简到最终仍存在有向边，则说明　。</div>
+  <div class="opt"><span>A. 系统处于安全状态，不会发生死锁</span><span>B. 系统中存在死锁，且仍有边连着的进程就是死锁进程</span><span>C. 系统只是发生了饥饿，并未死锁</span><span>D. 无法判断，还必须结合银行家算法才能确定</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 资源分配图的化简方法是：反复寻找“所有请求都能被满足”的进程（即它请求的资源数 ≤ 当前可用资源数），假定它运行完毕并释放全部资源，消去它的所有请求边和分配边，直到不能再化简。若能消去所有边，说明存在一个可完成的顺序，<b>无死锁</b>；若最终仍有边残留，则<b>存在死锁</b>，且仍连着边的那些进程就是死锁进程。易错：把化简结果与“安全状态”直接等同（银行家算法判断的是安全状态，二者相关但方法不同）；认为有环就一定死锁（只有每类资源仅一个实例时，有环才等价于死锁）；以为化简后仍有边说明只是饥饿。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">31.</span>下列进程通信方式中，通常只能用于具有亲缘关系（如父子进程）的进程之间的是　。</div>
+  <div class="opt"><span>A. 消息传递</span><span>B. 共享存储区</span><span>C. 管道（匿名 pipe）</span><span>D. 套接字 socket</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 匿名管道是一段由内核管理的内存缓冲区，它没有名字，只能通过 fork 时继承的文件描述符来访问，因此只能用于<b>具有亲缘关系</b>的进程（如父子、兄弟）之间；而且它是半双工的，数据只能单向流动。消息传递、共享存储区、套接字都可以用于任意进程之间（套接字还可跨主机），其中共享存储区速度最快但需自行同步。若要用于无亲缘关系进程，需改用<b>命名管道（FIFO）</b>。易错：把匿名管道与命名管道混淆；认为共享存储区也需要亲缘关系（不需要，只要知道共享区的标识）；以为套接字只能跨主机（本机也可用）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">32.</span>某系统采用循环缓冲，共有 6 个缓冲区，输入进程与输出进程可并行工作。若把一个数据块输入缓冲区需 100µs，从缓冲区取出并处理一个数据块需 60µs，则系统处理每个数据块的平均时间是　。</div>
+  <div class="opt"><span>A. 160 µs</span><span>B. 60 µs</span><span>C. 80 µs</span><span>D. 100 µs</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 循环缓冲（多缓冲）中，输入进程与输出进程可以并行工作，系统处理每块数据的平均时间取决于<b>较慢</b>的那一方，即 max(T, C) = max(100, 60) = <b>100µs</b>，而不是二者之和。这正是引入多缓冲的目的：把串行的“输入—处理”变成流水线，使总时间由瓶颈环节决定。易错：答 160µs（那是完全串行的 T + C）；答 60µs（选了较快的一方）；答 80µs（把二者取平均）。</div></details>
+</div>
+<h3>计算机网络（第 33~40 题，16 分）</h3>
+<div class="qz">
+  <div class="stem"><span class="no">33.</span>下列关于网络互联设备的叙述中，错误<span class="dotmark"></span>的是　。</div>
+  <div class="opt"><span>A. 集线器工作在数据链路层，能根据 MAC 地址转发帧</span><span>B. 中继器工作在物理层，用于延长信号的传输距离</span><span>C. 网桥工作在数据链路层，能隔离冲突域</span><span>D. 路由器工作在网络层，能隔离广播域</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 集线器（Hub）本质是一个多端口中继器，工作在<b>物理层</b>：它把收到的信号放大后向所有其他端口广播，既不识别 MAC 地址，也不隔离冲突域（所有端口同属一个冲突域）。能根据 MAC 地址转发帧的是<b>网桥/交换机</b>（数据链路层）。中继器在物理层延长传输距离、网桥在数据链路层隔离冲突域、路由器在网络层隔离广播域，这三条都正确。易错：把集线器与交换机混为一谈（这是最高频的错点）；认为网桥能隔离广播域（不能，需路由器或 VLAN）；把中继器说成数据链路层设备。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">34.</span>以太网中使用生成树协议（STP）的主要目的是　。</div>
+  <div class="opt"><span>A. 提高链路带宽利用率，实现多路径负载均衡</span><span>B. 在存在冗余链路的网络中消除逻辑环路，同时保留物理冗余以提高可靠性</span><span>C. 把多个 VLAN 合并成一个广播域</span><span>D. 为每台主机自动分配唯一的 IP 地址</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 为了提高可靠性，局域网中常部署冗余链路，但二层网络一旦出现环路，广播帧会不断循环转发形成“广播风暴”，且交换机的转发表会被反复刷新而失效。STP 通过交换 BPDU 选举根桥、确定各端口角色，把部分冗余端口置为“阻塞”状态，从而在逻辑上构造出一棵<b>无环的生成树</b>；当主链路故障时，被阻塞的端口又能自动启用，兼顾了“无环”与“冗余”。易错：以为 STP 用于负载均衡（多路径均衡要靠链路聚合或 MSTP 等）；把 STP 与 VLAN 划分混淆；认为 STP 能分配 IP（那是 DHCP）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">35.</span>下列关于 PPP 协议的叙述中，正确<span class="dotmark"></span>的是　。</div>
+  <div class="opt"><span>A. PPP 提供可靠传输，帧中带序号和确认机制</span><span>B. PPP 采用 CSMA/CD 作为介质访问控制方法</span><span>C. PPP 支持承载多种网络层协议，帧中带 FCS 用于检错，发现出错时直接丢弃而不重传</span><span>D. PPP 只能承载 IP 一种网络层协议</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> PPP 是点对点链路上的数据链路层协议，由三部分组成：① 把 IP 数据报封装到串行链路的方法（支持 IP、IPX 等多种网络层协议，靠协议字段区分）；② 链路控制协议 LCP（建立、配置、测试数据链路）；③ 网络控制协议 NCP（为不同网络层协议提供配置）。PPP 帧带 2 字节 FCS 用于<b>检错</b>，但 PPP <b>不提供</b>序号与确认机制、不做可靠传输和流量控制，出错时只丢弃，可靠性交给上层（TCP）。PPP 只用于点对点链路，不涉及 CSMA/CD。易错：以为 PPP 是可靠传输协议；把 PPP 与 HDLC 混淆（HDLC 面向比特、有编号）；认为 PPP 只能承载 IP。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">36.</span>NAT（网络地址转换）技术的主要作用是　。</div>
+  <div class="opt"><span>A. 提高网络传输速率，并减少路由器的路由表项数量</span><span>B. 实现不同自治系统之间的路由策略与路径选择</span><span>C. 为内网主机自动分配 IP 地址、子网掩码和默认网关</span><span>D. 使多台内网主机共用少量公网 IP 地址访问 Internet，从而缓解 IPv4 地址短缺</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> NAT 在路由器/网关处把内网私有地址（10/8、172.16/12、192.168/16）与少量公网地址相互转换，并通过端口号区分不同内网连接（NAPT），使大量内网主机共享少量公网 IP 出网。这极大缓解了 IPv4 地址耗尽问题，同时对外隐藏了内网结构。易错：把 NAT 与 DHCP 混淆（后者才是自动分配地址）；认为 NAT 能减少路由表项（那是 CIDR 聚合的作用）；以为 NAT 提高传输速率（转换反而增加开销）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">37.</span>与 IPv4 相比，IPv6 的主要改进是　。</div>
+  <div class="opt"><span>A. 地址长度由 32 位扩展到 128 位，基本首部简化为固定 40B，取消了首部检验和字段</span><span>B. 地址长度扩展为 64 位，并在首部中增加了检验和字段</span><span>C. 地址长度扩展为 128 位，但保留了 IPv4 的全部首部字段</span><span>D. 地址长度不变，只是取消了选项字段以减少开销</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> IPv6 的主要变化：① 地址由 32 位扩展到 <b>128 位</b>；② 基本首部简化为<b>固定 40B</b>，取消了首部长度、标识、标志、片偏移、首部检验和等字段，把可选功能移到扩展首部中；③ 取消首部检验和（链路层与传输层已有校验，减少每跳处理开销）；④ 分片只由源主机进行，路由器不再分片；⑤ 支持地址自动配置与更好的 QoS。易错：认为 IPv6 仍保留首部检验和；把“取消路由器分片”说成“取消分片”；记错地址长度。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">38.</span>100BASE-FX 快速以太网采用的线路编码方式是　。</div>
+  <div class="opt"><span>A. 曼彻斯特编码</span><span>B. 4B/5B 编码</span><span>C. 差分曼彻斯特编码</span><span>D. 8B/10B 编码</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 100BASE-FX 使用光纤作为传输介质，采用 <b>4B/5B</b> 编码：把 4 位数据映射成 5 位码元，保证有足够的电平跳变供接收方提取时钟，编码效率为 80%。作为对比：10BASE-T 以太网用<b>曼彻斯特编码</b>（效率 50%）；1000BASE-T 用 4D-PAM5；千兆光纤常用 8B/10B。易错：答曼彻斯特（那是 10M 以太网）；把 4B/5B 与 8B/10B 混淆（后者用于千兆）；认为光纤不需要线路编码。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">39.</span>数字签名中，发送方使用下列哪个密钥对报文摘要进行加密（签名）？</div>
+  <div class="opt"><span>A. 发送方的公钥</span><span>B. 接收方的私钥</span><span>C. 发送方的私钥</span><span>D. 接收方的公钥</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 数字签名的做法是：发送方先对报文计算散列值（报文摘要），再用<b>发送方的私钥</b>对该摘要加密，得到签名值并附在报文后；接收方用<b>发送方的公钥</b>解密签名值得到摘要，与自行计算的摘要比对，一致则说明报文完整且确实来自该发送方。由于只有发送方持有自己的私钥，他人无法伪造签名，从而实现<b>不可否认性</b>。注意与加密的方向区别：若要对报文保密，则用<b>接收方的公钥</b>加密、接收方用自己的私钥解密。易错：把签名与加密的密钥方向搞反（这是最高频的错点）；认为用发送方公钥签名；混淆“先签名后加密”与“先加密后签名”的用途。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">40.</span>DNS 中类型为 MX 的资源记录用于　。</div>
+  <div class="opt"><span>A. 把域名映射为 IPv4 地址</span><span>B. 把 IP 地址映射为域名</span><span>C. 指明该域的权威名字服务器</span><span>D. 指明该域的邮件服务器</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 常见 DNS 资源记录类型：<b>A</b> 把域名映射为 IPv4 地址；<b>AAAA</b> 映射为 IPv6 地址；<b>PTR</b> 把 IP 地址反向解析为域名；<b>MX</b> 指明该域的<b>邮件服务器</b>（可多条并带优先级）；<b>CNAME</b> 别名；<b>NS</b> 指明该域的权威名字服务器；<b>SOA</b> 起始授权机构。易错：把 MX 与 NS 混淆（后者才是权威名字服务器）；把 A 与 PTR 的方向弄反；认为 MX 只能有一条。</div></details>
+</div>
+
+<h3>二、综合应用题（第 41~47 题，共 70 分）</h3>
+
+<div class="comp">
+  <div class="stem"><span class="no">41.</span>（13 分）某社交平台用并查集（union-find set）维护用户的“好友圈”关系。n 个用户编号为 0 ~ n−1，用一维数组 parent[0..n−1] 以双亲表示法存储森林：parent[i] = −1 表示用户 i 是该树的根（即一个好友圈的代表），否则 parent[i] 为 i 的双亲编号。初始时每个用户各自构成一棵只有一个结点的树。现不断有“u 与 v 是好友”的关系到来，需要把 u、v 所在的两个好友圈合并。类型定义如下：<br><code>#define MAXN 1000</code><br><code>typedef struct { int parent[MAXN]; int size[MAXN]; int n; } UFSet;</code><br>其中 size[i] 只在 i 为根时有意义，表示以 i 为根的好友圈人数。请设计尽可能高效的算法：<br><code>int　Find(UFSet *S, int x);　　　// 返回 x 所在好友圈的代表（根）</code><br><code>void Union(UFSet *S, int u, int v);　// 合并 u、v 所在的两个好友圈</code><br>要求：<br>（1）给出算法的基本设计思想。（4 分）<br>（2）根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。（7 分）<br>（3）说明 Find 与 Union 的时间复杂度。（2 分）</div>
+  <details class="ans"><summary>参考答案与给分点</summary><div class="ansbody"><p><b>（1）基本设计思想（4 分）</b><br>Find：从 x 出发沿 parent 指针一路上溯，直到遇到 parent 为 −1 的结点，该结点就是所在好友圈的代表（根）。为加快后续查找，在回溯时做<b>路径压缩</b>——把路径上所有结点的 parent 直接改为根，使这棵树变“扁平”。<br>Union：先分别求出 u、v 的根 ru、rv；若 ru == rv，说明二者已在同一好友圈，直接返回；否则为控制树高，采用<b>按规模合并</b>——比较两棵树的 size，把结点少的树的根挂到结点多的树的根下面，并累加 size。这样任何一棵树的高度都不会超过 ⌊log₂n⌋ + 1，避免了合并成一条长链。</p><p><b>（2）算法（7 分）</b><br><code>int Find(UFSet *S, int x) {</code><br><code>　　int r = x;</code><br><code>　　while (S-&gt;parent[r] != -1) r = S-&gt;parent[r];　// 上溯找到根 r</code><br><code>　　while (x != r) {　　　　　　　　　　　　　　　// 路径压缩：把路径上的结点都挂到根下</code><br><code>　　　　int t = S-&gt;parent[x];　　　　　　　　　　// 先保存 x 的双亲，再改写</code><br><code>　　　　S-&gt;parent[x] = r;</code><br><code>　　　　x = t;</code><br><code>　　}</code><br><code>　　return r;</code><br><code>}</code><br><br><code>void Union(UFSet *S, int u, int v) {</code><br><code>　　int ru = Find(S, u), rv = Find(S, v);</code><br><code>　　if (ru == rv) return;　　　　　　　　　　　　// 已在同一好友圈，无需合并</code><br><code>　　if (S-&gt;size[ru] &lt; S-&gt;size[rv]) {　　　　　　 // 保证 ru 指向较大的树</code><br><code>　　　　int t = ru; ru = rv; rv = t;</code><br><code>　　}</code><br><code>　　S-&gt;parent[rv] = ru;　　　　　　　　　　　　　// 小树根挂到大树根下</code><br><code>　　S-&gt;size[ru] += S-&gt;size[rv];</code><br><code>}</code></p><p><b>（3）复杂度（2 分）</b><br>只用按规模合并时，树高不超过 ⌊log₂n⌋ + 1，Find 与 Union 均为 <b>O(log n)</b>。同时使用路径压缩后，Find 的<b>均摊</b>时间复杂度降为 <b>O(α(n))</b>（α 为反阿克曼函数，在 n &lt; 10⁶⁰⁰ 时不超过 4，可视为常数），Union 也是 O(α(n))。额外空间 O(n)（parent 与 size 数组）。</p><p><b>易错点</b>：① 把根判断条件写成 parent[x] == x（那是“每个元素指向自己”的另一种约定，本题 parent = −1 才是根）；② 路径压缩时先改 parent[x] 再去取 t，会丢掉上溯路径而陷入死循环；③ 忘记先判断 ru == rv，直接把 ru 挂到 rv 下，会造成自环、破坏结构；④ 合并时不比较规模，可能退化成一条链，Find 最坏变 O(n)；⑤ 认为路径压缩后<b>单次</b>最坏是 O(1)——正确说法是均摊 O(α(n))。</p></div></details>
+</div>
+
+<div class="comp">
+  <div class="stem"><span class="no">42.</span>（10 分）已知一棵 5 阶 B 树初始为空。将关键字序列 20, 30, 10, 40, 50, 60, 70, 80, 90 依次插入该 B 树。请回答下列问题。<br>（1）5 阶 B 树的每个结点最多、最少各有多少个关键字？除根结点外，每个结点最少有多少个孩子？（3 分）<br>（2）画出全部关键字插入完成后的 B 树。（4 分）<br>（3）在上述 B 树中删除关键字 40，画出删除后的 B 树。（3 分）</div>
+  <details class="ans"><summary>参考答案与给分点</summary><div class="ansbody"><p><b>（1）（3 分）</b>m = 5 阶 B 树：每个结点最多 m − 1 = <b>4</b> 个关键字；除根结点外，每个结点最少 ⌈m/2⌉ − 1 = ⌈2.5⌉ − 1 = 3 − 1 = <b>2</b> 个关键字（根结点最少 1 个）；除根结点外，每个结点最少 ⌈m/2⌉ = <b>3</b> 个孩子（即 2 个关键字对应 3 个孩子）。</p><p><b>（2）（4 分）</b>插入过程：<br>20 → [20]；30 → [20, 30]；10 → [10, 20, 30]；40 → [10, 20, 30, 40]（4 个，未超限）；<br>50 → 插入后为 [10, 20, 30, 40, 50]，5 个关键字超限，从中间（第 3 个）30 处分裂：左 [10, 20]、30 上移、右 [40, 50]。此时根为 [30]，两个孩子 [10, 20] 与 [40, 50]；<br>60 → 落入 [40, 50] → [40, 50, 60]；70 → [40, 50, 60, 70]（4 个，未超限）；<br>80 → [40, 50, 60, 70, 80] 超限，从第 3 个 60 处分裂：左 [40, 50]、60 上移、右 [70, 80]。根变为 [30, 60]，三个孩子 [10, 20]、[40, 50]、[70, 80]；<br>90 → 落入 [70, 80] → [70, 80, 90]（3 个，未超限）。<br>最终 B 树为：<br>根：<b>[30, 60]</b><br>　孩子 1：<b>[10, 20]</b>　　孩子 2：<b>[40, 50]</b>　　孩子 3：<b>[70, 80, 90]</b></p><p><b>（3）（3 分）</b>40 位于叶子结点 [40, 50] 中，直接删除后该结点只剩 [50]，关键字个数 1 &lt; 2，发生<b>下溢</b>。它的左兄弟 [10, 20] 只有 2 个关键字（已达下限，无法借出），右兄弟 [70, 80, 90] 有 3 个关键字（可以借出）。于是向<b>右兄弟借</b>：父结点中的分隔关键字 60 下移到该结点，右兄弟中最小的关键字 70 上移到父结点。删除后 B 树为：<br>根：<b>[30, 70]</b><br>　孩子 1：<b>[10, 20]</b>　　孩子 2：<b>[50, 60]</b>　　孩子 3：<b>[80, 90]</b></p><p><b>易错点</b>：① 把“5 阶”当成“最多 5 个关键字”（m 阶 B 树最多 m−1 个关键字）；② 分裂时取错中间位置（应在 ⌈m/2⌉ 处，即 5 个关键字中的第 3 个上移）；③ 删除叶子关键字后不做下溢检查，或借关键字时只移动兄弟结点而忘记调整父结点中的分隔关键字；④ 借出时方向搞反（本题左兄弟只有 2 个，不能借）；⑤ 忘记 B 树所有叶子在同一层这一性质，画出层次不齐的树。</p></div></details>
+</div>
+
+<div class="comp">
+  <div class="stem"><span class="no">43.</span>（10 分）某计算机采用微程序控制器，其机器指令共 64 条，每条机器指令对应的微程序平均由 5 条微指令组成，此外还有 10 条公共微指令（取指微程序等）。微指令字长为 48 位，采用字段直接编码方式，其中微命令字段分为 4 个互斥段，各段的微命令个数分别为 8、6、5、3；另有 1 个 8 位的下地址字段，其余为判别测试字段与控制字段。微指令的下一条地址采用断定（下址）方式生成。请回答下列问题。<br>（1）控制存储器（CM）至少需要多少个存储单元？每个单元多少位？（2 分）<br>（2）4 个互斥段的微命令字段各需多少位？微命令字段共需多少位？若改用直接控制（每位对应一个微命令）方式，微命令字段需要多少位？两种方式相差多少位？（4 分）<br>（3）下地址字段占 8 位是否够用？若不够，至少需要多少位？（2 分）<br>（4）与硬布线控制器相比，微程序控制器的主要优缺点是什么？（2 分）</div>
+  <div class="qfig"><svg class="dg" viewBox="0 0 400 168" role="img" aria-label="题 43 图：48 位微指令的字段划分"><text class="x" x="200" y="15" text-anchor="middle" style="font-size:9.4px">题 43 图　48 位微指令的字段划分（位序号自左向右增大）</text><rect class="boxa" x="26.0" y="36" width="29.0" height="34" rx="4"/><text class="w" x="40.5" y="57" text-anchor="middle" style="font-size:8.0px">段一</text><rect class="box" x="55.0" y="36" width="21.8" height="34" rx="4"/><text class="t" x="65.875" y="57" text-anchor="middle" style="font-size:8.0px">段二</text><rect class="boxa" x="76.8" y="36" width="21.8" height="34" rx="4"/><text class="w" x="87.625" y="57" text-anchor="middle" style="font-size:8.0px">段三</text><rect class="box" x="98.5" y="36" width="14.5" height="34" rx="4"/><text class="t" x="105.75" y="57" text-anchor="middle" style="font-size:8.0px">段四</text><rect class="boxa" x="113.0" y="36" width="58.0" height="34" rx="4"/><text class="w" x="142.0" y="57" text-anchor="middle" style="font-size:9.0px">下地址</text><rect class="boxw" x="171.0" y="36" width="203.0" height="34" rx="4"/><text class="t" x="272.5" y="57" text-anchor="middle" style="font-size:9.0px">其余字段</text><line class="ln" x1="26.0" y1="70" x2="26.0" y2="78"/><text class="s" x="26.0" y="90" text-anchor="middle" style="font-size:8.2px">0</text><line class="ln" x1="55.0" y1="70" x2="55.0" y2="78"/><text class="s" x="55.0" y="90" text-anchor="middle" style="font-size:8.2px">4</text><line class="ln" x1="76.8" y1="70" x2="76.8" y2="78"/><text class="s" x="76.75" y="90" text-anchor="middle" style="font-size:8.2px">7</text><line class="ln" x1="98.5" y1="70" x2="98.5" y2="78"/><text class="s" x="98.5" y="90" text-anchor="middle" style="font-size:8.2px">10</text><line class="ln" x1="113.0" y1="70" x2="113.0" y2="78"/><text class="s" x="113.0" y="90" text-anchor="middle" style="font-size:8.2px">12</text><line class="ln" x1="171.0" y1="70" x2="171.0" y2="78"/><text class="s" x="171.0" y="90" text-anchor="middle" style="font-size:8.2px">20</text><line class="ln" x1="374.0" y1="70" x2="374.0" y2="78"/><text class="s" x="374.0" y="90" text-anchor="middle" style="font-size:8.2px">48</text><text class="s" x="200" y="112" text-anchor="middle" style="font-size:8.6px">段一：8 个微命令，需 4 位　　段二：6 个，需 3 位</text><text class="s" x="200" y="128" text-anchor="middle" style="font-size:8.6px">段三：5 个，需 3 位　　段四：3 个，需 2 位</text><text class="s" x="200" y="146" text-anchor="middle" style="font-size:8.6px">微命令字段合计 4 + 3 + 3 + 2 = 12 位；下地址 8 位</text><text class="s" x="200" y="162" text-anchor="middle" style="font-size:9px">题 43 图</text></svg></div>
+  <details class="ans"><summary>参考答案与给分点</summary><div class="ansbody"><p><b>（1）（2 分）</b>微指令总条数 = 64 × 5 + 10 = 320 + 10 = <b>330</b> 条，故 CM 至少需要 <b>330 个存储单元</b>，每个单元的位数等于微指令字长，即 <b>48 位</b>。</p><p><b>（2）（4 分）</b>字段直接编码时，一段内 n 个微命令需 ⌈log₂(n + 1)⌉ 位（多留出的一个编码表示“本段不发任何微命令”，即该段全 0）：<br>8 个微命令 → ⌈log₂9⌉ = <b>4 位</b>；6 个 → ⌈log₂7⌉ = <b>3 位</b>；5 个 → ⌈log₂6⌉ = <b>3 位</b>；3 个 → ⌈log₂4⌉ = <b>2 位</b>。<br>微命令字段共需 4 + 3 + 3 + 2 = <b>12 位</b>。<br>若采用直接控制（水平型微指令，每位控制一个微命令），需 8 + 6 + 5 + 3 = <b>22 位</b>。<br>故字段直接编码比直接控制节省 22 − 12 = <b>10 位</b>，但代价是同一段内的微命令不能并行发出。</p><p><b>（3）（2 分）</b>CM 有 330 个存储单元，需要 ⌈log₂330⌉ 位地址。2⁸ = 256 &lt; 330 ≤ 512 = 2⁹，故至少需要 <b>9 位</b>，8 位<b>不够用</b>（只能寻址 256 个单元）。</p><p><b>（4）（2 分）</b>优点：微程序存放在控制存储器中，控制逻辑以“软件”形式存在，<b>设计规整、易于修改和扩充</b>（只需改写微程序即可），便于实现复杂的指令系统，也便于系列机之间的兼容。缺点：<b>速度比硬布线控制器慢</b>——每条微指令都要访问一次控制存储器，且需要额外的 CM 硬件，成本较高。</p><p><b>易错点</b>：① 计算微指令总数时漏掉公共微指令；② 字段直接编码忘记“多留一个编码表示不发命令”，直接用 ⌈log₂n⌉（如 8 个微命令算成 3 位就错了）；③ 认为“位数越多越好”，忘记直接控制虽快但字长过长；④ 判断下地址位数时用微指令条数以外的数（如机器指令数 64 → 6 位）；⑤ 把“断定方式”与“计数器方式”混淆（计数器方式下地址由 μPC 自增，不需要下地址字段）。</p></div></details>
+</div>
+
+<div class="comp">
+  <div class="stem"><span class="no">44.</span>（13 分）某计算机的浮点数格式如题 44 图所示：1 位符号位 S、8 位阶码 E（移码表示，偏移量为 128）、23 位尾数 M（原码表示，另有 1 位隐含整数位，故有效数字共 24 位）。现有两个规格化浮点数：<br>　　x = +1.1010…0 × 2⁵　　　　y = −1.0110…0 × 2³<br>（尾数中未写出的位均为 0。）现计算 z = x + y，请回答下列问题。<br>（1）浮点数加减运算一般分为哪 5 个步骤？（3 分）<br>（2）对阶时应把小阶向大阶看齐还是相反？为什么？本例中 y 的尾数需右移几位？阶码差是多少？（3 分）<br>（3）对阶后两尾数相加（含符号位）的结果是多少（用二进制表示）？该结果是否已规格化？若未规格化应如何处理？（4 分）<br>（4）若尾数相加后绝对值 ≥ 1，应如何处理？若最终阶码超出可表示范围，会发生什么？（3 分）</div>
+  <div class="qfig"><svg class="dg" viewBox="0 0 400 150" role="img" aria-label="题 44 图：32 位浮点数的格式"><text class="x" x="200" y="15" text-anchor="middle" style="font-size:9.4px">题 44 图　浮点数的格式（共 32 位）</text><rect class="boxa" x="26.0" y="36" width="10.9" height="34" rx="4"/><text class="w" x="31.4375" y="57" text-anchor="middle" style="font-size:8.0px">S</text><rect class="box" x="36.9" y="36" width="87.0" height="34" rx="4"/><text class="t" x="80.375" y="57" text-anchor="middle" style="font-size:9.0px">阶码 E</text><rect class="boxw" x="123.9" y="36" width="250.1" height="34" rx="4"/><text class="t" x="248.9375" y="57" text-anchor="middle" style="font-size:9.0px">尾数 M</text><line class="ln" x1="26.0" y1="70" x2="26.0" y2="78"/><text class="s" x="26.0" y="90" text-anchor="middle" style="font-size:8.2px">0</text><line class="ln" x1="36.9" y1="70" x2="36.9" y2="78"/><text class="s" x="36.875" y="90" text-anchor="middle" style="font-size:8.2px">1</text><line class="ln" x1="123.9" y1="70" x2="123.9" y2="78"/><text class="s" x="123.875" y="90" text-anchor="middle" style="font-size:8.2px">9</text><line class="ln" x1="374.0" y1="70" x2="374.0" y2="78"/><text class="s" x="374.0" y="90" text-anchor="middle" style="font-size:8.2px">32</text><text class="s" x="200" y="112" text-anchor="middle" style="font-size:8.6px">S：1 位符号　　E：8 位移码（偏移量 128）</text><text class="s" x="200" y="128" text-anchor="middle" style="font-size:8.6px">M：23 位原码尾数，另有 1 位隐含整数位，有效数字共 24 位</text><text class="s" x="200" y="144" text-anchor="middle" style="font-size:9px">题 44 图</text></svg></div>
+  <details class="ans"><summary>参考答案与给分点</summary><div class="ansbody"><p><b>（1）（3 分）</b>浮点数加减运算的 5 个步骤：<br>① <b>对阶</b>：求两数阶码之差，把小阶向大阶看齐（同时右移小阶数的尾数）；<br>② <b>尾数加减</b>：对阶后按定点数规则做尾数的加或减；<br>③ <b>规格化</b>：把结果化成 1.xxx… 的形式（左规或右规）；<br>④ <b>舍入</b>：对规格化时右移出去的位按就近舍入、朝零舍入等规则处理；<br>⑤ <b>溢出判断</b>：检查阶码是否上溢或下溢。</p><p><b>（2）（3 分）</b>应<b>把小阶向大阶看齐</b>，即把 y 的阶码由 3 提高到 5，同时把 y 的尾数右移 2 位。原因：尾数右移只是丢掉低位，精度损失小；反之若把大阶向小阶看齐，就要把 x 的尾数<b>左移</b>，高位会被移出而丢失，误差大得多，甚至可能溢出。阶码差 ΔE = 5 − 3 = <b>2</b>，故 y 的尾数右移 <b>2 位</b>。</p><p><b>（3）（4 分）</b>y 的尾数（原码）为 −1.0110…0，右移 2 位（符号位不变、数值部分右移、高位补 0）得 <b>−0.010110…0</b>。<br>相加：+1.1010…0 − 0.010110…0 = <b>+1.010010…0</b>，阶码仍为 5，即 z = +1.010010…0 × 2⁵。<br>验算：x = 1.625 × 2⁵，y = −1.375 × 2³ = −0.34375 × 2⁵，二者相加 = 1.28125 × 2⁵，而 1.01001B = 1.28125，一致。<br>该结果最高有效位为 1，<b>已经是规格化形式，无需再处理</b>。<br>若结果出现 0.0xxx… 或 1.0xxx…（即最高有效位为 0）的情形，则需<b>左规</b>：尾数每左移 1 位、阶码减 1，直到最高有效位为 1；若结果出现 1x.xxx…（向整数位进位），则需<b>右规</b>：尾数右移 1 位、阶码加 1。</p><p><b>（4）（3 分）</b>尾数绝对值 ≥ 1 说明尾数溢出，应做<b>右规</b>：把尾数右移 1 位（保留符号位），同时<b>阶码加 1</b>，然后用舍入规则处理被移出的位。<br>若右规后阶码超过了阶码字段能表示的最大值，则发生<b>阶码上溢</b>，通常置溢出标志或产生溢出异常，结果无效；若阶码小于能表示的最小值，则发生<b>阶码下溢</b>，通常把结果当作机器零（0）处理，而不算错误。</p><p><b>易错点</b>：① 对阶方向搞反（大阶向小阶看齐会丢高位，是严重错误）；② 右移时把符号位也移走（原码尾数右移时符号位应保持不动）；③ 只算尾数不管阶码，或对阶后忘记结果用的是大阶；④ 认为结果一定需要规格化（本题恰好已规格化）；⑤ 把阶码上溢与下溢的处理方式弄反（上溢是错误、下溢按 0 处理）；⑥ 移码的偏移量用错（本题给的是 128，不是 127）。</p></div></details>
+</div>
+
+<div class="comp">
+  <div class="stem"><span class="no">45.</span>（7 分）某磁盘有 200 个柱面，编号 0 ~ 199，磁头当前位于 100 号柱面，并正在向柱面号增大的方向移动。现有 9 个柱面访问请求，按到达顺序为：55, 58, 39, 18, 90, 160, 150, 38, 184。请回答下列问题。<br>（1）采用最短寻道时间优先（SSTF）算法时，磁头的移动顺序与总移动距离分别是多少？（3 分）<br>（2）采用电梯调度（SCAN）算法时，磁头的移动顺序与总移动距离分别是多少？（3 分）<br>（3）与 SSTF 相比，SCAN 算法的主要优点是什么？（1 分）</div>
+  <details class="ans"><summary>参考答案与给分点</summary><div class="ansbody"><p><b>（1）SSTF（3 分）</b>每次都选距离当前位置最近的请求：<br>100 → <b>90</b>（10）→ <b>58</b>（32）→ <b>55</b>（3）→ <b>39</b>（16）→ <b>38</b>（1）→ <b>18</b>（20）→ <b>150</b>（132）→ <b>160</b>（10）→ <b>184</b>（24）<br>访问顺序：90, 58, 55, 39, 38, 18, 150, 160, 184<br>总移动距离 = 10 + 32 + 3 + 16 + 1 + 20 + 132 + 10 + 24 = <b>248</b> 个柱面。</p><p><b>（2）SCAN（3 分）</b>磁头先沿当前方向（柱面号增大）移动，沿途服务 150、160、184，到达磁盘末端 199 号柱面后反向，再服务 90、58、55、39、38、18：<br>100 → <b>150</b>（50）→ <b>160</b>（10）→ <b>184</b>（24）→ 199（15）→ <b>90</b>（109）→ <b>58</b>（32）→ <b>55</b>（3）→ <b>39</b>（16）→ <b>38</b>（1）→ <b>18</b>（20）<br>访问顺序：150, 160, 184, 90, 58, 55, 39, 38, 18<br>总移动距离 = 50 + 10 + 24 + 15 + 109 + 32 + 3 + 16 + 1 + 20 = <b>280</b> 个柱面。<br>（若采用 LOOK 算法——只移动到最远的请求 184 就反向、不到磁盘末端，则总距离为 50 + 10 + 24 + 94 + 32 + 3 + 16 + 1 + 20 = 250 个柱面。）</p><p><b>（3）（1 分）</b>SCAN 的主要优点是<b>不会产生饥饿</b>：它按方向扫描，能保证每个请求在有限时间内一定被服务；而 SSTF 虽然每次寻道最短，却可能使远离磁头当前位置的请求长期得不到服务（饥饿）。</p><p><b>易错点</b>：① SCAN 忘记移动到磁盘末端 199 就直接反向（那是 LOOK）；② 计算总距离时把“到 199 的 15 格”漏掉，或把 199 也算成一个服务请求；③ 初始方向搞反（本题已说明向柱面号增大方向移动，故 90 是“身后”的请求，要等反向才服务）；④ 只累加相邻请求间的距离却漏掉第一段（100 → 150）；⑤ 把“移动距离”与“平均寻道长度”混淆（后者 = 总距离 ÷ 请求数）。</p></div></details>
+</div>
+
+<div class="comp">
+  <div class="stem"><span class="no">46.</span>（8 分）某文件系统采用索引节点（inode）方式，目录项由文件名和索引节点号构成，索引节点中包含链接计数 count、文件类型等信息。某目录结构如题 46 图所示：根目录 / 下有普通文件 a.txt（索引节点号 10）和目录 d1（索引节点号 20）；d1 下有普通文件 b.txt（索引节点号 10，与 a.txt 指向同一个索引节点）和一个符号链接（软链接）link1，link1 的内容是字符串「/a.txt」。请回答下列问题。<br>（1）a.txt 的索引节点中链接计数 count 的值是多少？为什么？（2 分）<br>（2）用户通过路径 /d1/link1 读取文件时，系统一共需要查找几次磁盘上的索引节点？请说明访问过程。（3 分）<br>（3）若用户执行命令删除 /a.txt，文件数据是否会被真正删除？此时能否通过 /d1/b.txt 与 /d1/link1 访问到原数据？（3 分）</div>
+  <div class="qfig"><svg class="dg" viewBox="0 0 400 214" role="img" aria-label="题 46 图：目录结构与索引节点"><text class="x" x="200" y="15" text-anchor="middle" style="font-size:9.4px">题 46 图　目录结构与索引节点（括号内为索引节点号）</text><rect class="box" x="24" y="32" width="88" height="26" rx="4"/><text class="t" x="68" y="48" text-anchor="middle" style="font-size:8.4px">/ (根目录)</text><rect class="box" x="24" y="76" width="88" height="26" rx="4"/><text class="t" x="68" y="92" text-anchor="middle" style="font-size:8.8px">a.txt (10)</text><rect class="box" x="24" y="120" width="88" height="26" rx="4"/><text class="t" x="68" y="136" text-anchor="middle" style="font-size:8.8px">d1 (20)</text><rect class="box" x="148" y="120" width="84" height="26" rx="4"/><text class="t" x="190" y="136" text-anchor="middle" style="font-size:8.8px">b.txt (10)</text><rect class="boxa" x="148" y="166" width="84" height="26" rx="4"/><text class="w" x="190" y="182" text-anchor="middle" style="font-size:8.4px">link1</text><line class="ln" x1="68" y1="58" x2="68" y2="74" marker-end="url(#arw)"/><line class="ln" x1="68" y1="102" x2="68" y2="118" marker-end="url(#arw)"/><line class="ln" x1="112" y1="130" x2="146" y2="130" marker-end="url(#arw)"/><line class="ln" x1="112" y1="136" x2="146" y2="176" marker-end="url(#arw)"/><rect class="boxa" x="258" y="32" width="124" height="26" rx="4"/><text class="w" x="320" y="48" text-anchor="middle" style="font-size:8.6px">索引节点 10</text><text class="s" x="320" y="72" text-anchor="middle" style="font-size:8.2px">类型：普通文件</text><text class="s" x="320" y="86" text-anchor="middle" style="font-size:8.2px">链接计数 count = ?</text><text class="s" x="320" y="100" text-anchor="middle" style="font-size:8.2px">数据块指针 → 文件数据</text><rect class="box" x="258" y="120" width="124" height="26" rx="4"/><text class="t" x="320" y="136" text-anchor="middle" style="font-size:8.6px">索引节点 20</text><text class="s" x="320" y="160" text-anchor="middle" style="font-size:8.2px">类型：目录</text><text class="s" x="190" y="208" text-anchor="middle" style="font-size:8.2px">link1 的内容是字符串 "/a.txt"</text></svg></div>
+  <details class="ans"><summary>参考答案与给分点</summary><div class="ansbody"><p><b>（1）（2 分）</b>count = <b>2</b>。链接计数记录的是“指向该索引节点的<b>目录项个数</b>”。本题中 /a.txt 与 /d1/b.txt 两个目录项都指向索引节点 10，即该文件存在两个硬链接，故 count = 2。</p><p><b>（2）（3 分）</b>一共需要查找 <b>3 次</b>索引节点：<br>① 解析 /d1/link1 时，先从根目录中找到目录项 d1，读入 d1 的索引节点（索引节点号 20）——第 1 次；<br>② 在 d1 的目录中查到目录项 link1，读入 link1 的索引节点——第 2 次。读入后发现其文件类型是「符号链接」，于是读出其数据内容（字符串「/a.txt」）；<br>③ 系统把该字符串当作<b>新路径重新从根目录开始解析</b>，找到 a.txt 的目录项，读入索引节点 10——第 3 次，这才得到真正的文件数据块地址。<br>可见符号链接的解析需要额外的路径解析开销；若是硬链接（如 b.txt），则只需 2 次（d1、b.txt 所指的索引节点 10），因为它与 a.txt 共用同一个索引节点，不需要“重新解析路径”。</p><p><b>（3）（3 分）</b>文件数据<b>不会被真正删除</b>。删除 /a.txt 只是删除根目录中 a.txt 这个目录项，并把索引节点 10 的链接计数由 2 减为 1。由于 count 仍大于 0，系统不会回收该索引节点和它的数据块。<br>· 通过 /d1/b.txt <b>可以</b>正常访问原数据——它是另一个指向同一索引节点的硬链接；<br>· 通过 /d1/link1 <b>不能</b>访问——它是符号链接，内容只是字符串「/a.txt」，该路径已不存在，访问时会得到「文件（或路径）不存在」的错误。<br>只有当 count 减到 0（即所有硬链接都被删除）时，系统才真正释放索引节点与数据块。</p><p><b>易错点</b>：① 认为“删除文件就是删除数据”（实际只删目录项并减计数）；② 把硬链接当成“复制了一份文件”（硬链接不复制数据，只增加一个目录项）；③ 认为符号链接也指向索引节点（它只保存一个路径字符串，有自己的索引节点）；④ 删除后忘记 count 减 1，或认为 count 归零前就能释放数据块；⑤ 把「删除硬链接」与「删除原文件」混为一谈（本题 a.txt 与 b.txt 地位完全平等）。</p></div></details>
+</div>
+
+<div class="comp">
+  <div class="stem"><span class="no">47.</span>（9 分）某电商网站的用户通过浏览器访问 https://www.example.com 进行登录，登录信息（用户名、口令）需要在网络中安全传输。该网站持有由权威 CA 签发的数字证书。请回答下列问题。<br>（1）浏览器如何验证服务器证书的真实性？请简述验证过程。（3 分）<br>（2）在 TLS 握手协商出会话密钥之后，登录信息为什么用对称加密传输而不用非对称加密？（2 分）<br>（3）数字签名与报文鉴别码（MAC）都能保证完整性，二者在使用密钥上的根本区别是什么？（2 分）<br>（4）若攻击者在网络中截获了全部报文，能否伪造用户的登录请求？为什么？（2 分）</div>
+  <details class="ans"><summary>参考答案与给分点</summary><div class="ansbody"><p><b>（1）（3 分）</b>验证过程：<br>① 浏览器用<b>该 CA 的公钥</b>（CA 的根证书内置在浏览器/操作系统的信任证书库中）验证证书上的 CA 数字签名，即用 CA 公钥解密签名值，得到证书内容的报文摘要；<br>② 用与签发时相同的散列函数重新计算证书内容的摘要，与①得到的摘要比对，一致说明证书内容未被篡改；<br>③ 检查证书链能否逐级追溯到某个受信任的根 CA；<br>④ 检查证书中的域名与正在访问的域名是否一致、是否在有效期内、是否已被吊销（查 CRL 或 OCSP）。<br>全部通过后，浏览器才认为证书可信，并从中取出服务器的<b>公钥</b>。</p><p><b>（2）（2 分）</b>非对称加密（如 RSA）的运算基于大数模幂，其运算量比对称加密（如 AES）大几个数量级，速度慢得多，而且一次能加密的数据长度受模长限制。而登录过程中交互频繁、数据量相对较大、且要求实时响应，因此非对称加密只用于<b>握手阶段协商会话密钥、验证身份</b>，真正的业务数据用<b>对称加密</b>传输，既保证了安全性，又兼顾了效率。</p><p><b>（3）（2 分）</b>根本区别在于<b>密钥是否对称</b>：<br>· MAC（如 HMAC）用通信双方<b>共享的同一把对称密钥</b>计算，因此只能向“知道该密钥的对方”证明报文未被篡改，无法向第三方证明，也<b>不能防止接收方伪造</b>，且无法提供不可否认性；<br>· 数字签名用<b>发送方的私钥</b>计算、用<b>发送方的公钥</b>验证，密钥不对称，任何第三方都能验证，因而具有<b>不可否认性</b>（发送方事后无法抵赖）。</p><p><b>（4）（2 分）</b>不能伪造。原因：<br>① 截获的业务报文是用<b>会话密钥</b>对称加密的，攻击者不掌握会话密钥，无法构造出合法的密文；<br>② 会话密钥是在 TLS 握手中协商的，其安全性依赖服务器的私钥和双方产生的随机数，攻击者只有服务器的公钥，无法推出会话密钥；<br>③ 每个报文都带 MAC（或 AEAD 认证标签），攻击者若篡改内容，无法重新计算出正确的 MAC 值。<br>因此攻击者最多只能做重放攻击或流量分析，无法伪造新的登录请求（重放可由随机数/序号机制防御）。</p><p><b>易错点</b>：① 说“浏览器用服务器公钥验证证书签名”（应为 <b>CA 的公钥</b>）；② 把数字签名与加密的方向搞反（签名用发送方<b>私钥</b>、验证用发送方<b>公钥</b>；加密用接收方<b>公钥</b>、解密用接收方<b>私钥</b>）；③ 认为非对称加密更安全所以应该全程使用（忽略效率）；④ 认为 MAC 也能提供不可否认性；⑤ 认为 HTTPS 只是“把数据加密”，漏掉身份认证与完整性保护这两个同样重要的目标。</p></div></details>
+</div>
+
+  </div>
+</details>
+</section>
+<div class="landcard"><a class="landb" href="paper.html"><b>← 返回套卷目录</b></a></div>
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
