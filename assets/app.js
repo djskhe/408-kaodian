@@ -603,7 +603,7 @@ var SLUGS=["ask", "calc", "cheat", "co", "code", "confuse", "ds", "fig", "link",
     if(v!=='search' && v!==curV) lastV=curV;
     [].forEach.call(document.querySelectorAll('.page'),function(p){ p.classList.toggle('on',p.id===v); });
     if(pageTitle) pageTitle.textContent=TT[v]||'408 考点精讲';
-    if(backBtn) backBtn.hidden=(['home','learn','drill','ref','me'].indexOf(v)>=0);
+    if(backBtn) backBtn.hidden=(['home','learn','drill','ref','me'].indexOf(v)>=0) && !!document.getElementById('home');
     if(tabbar) [].forEach.call(tabbar.querySelectorAll('button'),function(b){
       var on=(b.dataset.v===v)||(groupOf[v]===b.dataset.v);
       b.classList.toggle('on',on);
