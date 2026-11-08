@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>模拟卷 J</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="paper">
+<details class="chap" data-set="J" data-name="卷 J · 单项选择题">
+  <summary><span class="num">9</span>卷 J · 单项选择题<span class="lv">★★★★</span><span class="cnt">40 题 / 80 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+<h3>数据结构（第 1~11 题，22 分）</h3>
+<div class="qz">
+  <div class="stem"><span class="no">1.</span>求解 n 阶汉诺塔问题时，移动圆盘次数的递归关系及其时间复杂度分别是　。</div>
+  <div class="opt"><span>A. T(n) = 2T(n−1) + 1，T(n) = 2ⁿ − 1</span><span>B. T(n) = T(n−1) + 1，T(n) = n</span><span>C. T(n) = 2T(n/2) + n，T(n) = O(n log n)</span><span>D. T(n) = T(n−1) + n，T(n) = O(n²)</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> n 阶汉诺塔的解法是：先把上面 n−1 个盘从 A 移到 B，再把最大的盘从 A 移到 C，最后把 n−1 个盘从 B 移到 C，故 T(n) = 2T(n−1) + 1。展开得 T(n) = 2ⁿ − 1，时间复杂度 O(2ⁿ)。易错：误选（把递归当成线性的单次调用）；误选（把规模当成折半）；注意 n = 64 时需移动约 1.8×10¹⁹ 次，这正是“世界末日”传说的数学依据。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">2.</span>长度为 11 的顺序表采用“就地逆置”（不使用额外的数组空间）进行反转，则需要交换元素的次数是　。</div>
+  <div class="opt"><span>A. 11</span><span>B. 5</span><span>C. 6</span><span>D. 10</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 就地逆置用首尾双指针向中间靠拢，每次交换一对元素。长度 11 时共交换 ⌊11/2⌋ = 5 次（第 6 个元素位于正中，无需移动）。易错：答 6（把中间元素也当作要交换的，误用 ⌈n/2⌉）；答 11（把交换次数当成元素个数）；注意奇数长度时正中间的元素位置不变。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">3.</span>若元素 a, b, c, d 依次入栈，出栈操作可随时进行，则下列出栈序列中不可能出现的是　。</div>
+  <div class="opt"><span>A. d, c, b, a</span><span>B. a, b, c, d</span><span>C. d, a, b, c</span><span>D. c, d, b, a</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 序列 d, a, b, c 要求第一个输出 d，这就必须先把 a、b、c、d 全部入栈，此时栈内自底向上为 a、b、c（d 已弹出）。接下来出栈只能得到栈顶的 c，不可能直接得到 a。其余三个均可实现：d,c,b,a 是全部入栈后依次弹出；a,b,c,d 是每入一个立即弹出；c,d,b,a 是入 a、b、c 后弹 c，再入 d 弹 d，最后弹 b、a。易错：以为“任意排列”都能由栈产生（n = 4 时 24 种排列中只有 14 种合法）；不会用“栈内元素必须逆序弹出”去反证。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">4.</span>模式串为 "ababaa"，采用 KMP 算法，其 next 数组（下标从 1 开始，约定 next[1] = 0）是　。</div>
+  <div class="opt"><span>A. 0, 1, 2, 1, 2, 3</span><span>B. 0, 0, 1, 2, 3, 4</span><span>C. 0, 1, 1, 2, 3, 1</span><span>D. 0, 1, 1, 2, 3, 4</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> next[j] 表示 s[1..j−1] 中最长的“既是真前缀又是真后缀”的子串长度加 1。逐项计算：j=2 时前缀串为 "a"，无真前后缀匹配，next[2] = 1；j=3 时 "ab"，无匹配，next[3] = 1；j=4 时 "aba"，"a" 匹配，next[4] = 1+1 = 2；j=5 时 "abab"，"ab" 匹配，next[5] = 2+1 = 3；j=6 时 "ababa"，"aba" 匹配，next[6] = 3+1 = 4。故为 0,1,1,2,3,4。易错：把 next 与 nextval 混淆；忘记 next[1] = 0 这一约定；求最长匹配前缀时把整个串也算进去（必须是<b>真</b>前缀）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">5.</span>题 5 图所示为一棵二叉树，则该二叉树的先序遍历序列是　。</div>
+<div class="qfig"><svg class="dg" viewBox="0 0 400 228" role="img" aria-label="题 5 图：一棵二叉树"><line class="ln" x1="200" y1="28" x2="112" y2="86"/><line class="ln" x1="200" y1="28" x2="290" y2="86"/><line class="ln" x1="112" y1="86" x2="58" y2="144"/><line class="ln" x1="290" y1="86" x2="238" y2="144"/><line class="ln" x1="290" y1="86" x2="342" y2="144"/><line class="ln" x1="238" y1="144" x2="280" y2="200"/><circle class="box" cx="200" cy="28" r="14"/><text class="t" x="200" y="32" text-anchor="middle">A</text><circle class="box" cx="112" cy="86" r="14"/><text class="t" x="112" y="90" text-anchor="middle">B</text><circle class="box" cx="290" cy="86" r="14"/><text class="t" x="290" y="90" text-anchor="middle">C</text><circle class="box" cx="58" cy="144" r="14"/><text class="t" x="58" y="148" text-anchor="middle">D</text><circle class="box" cx="238" cy="144" r="14"/><text class="t" x="238" y="148" text-anchor="middle">E</text><circle class="box" cx="342" cy="144" r="14"/><text class="t" x="342" y="148" text-anchor="middle">F</text><circle class="box" cx="280" cy="200" r="14"/><text class="t" x="280" y="204" text-anchor="middle">G</text><text class="s" x="200" y="222" text-anchor="middle">题 5 图</text></svg></div>
+  <div class="opt"><span>A. A, B, D, C, E, G, F</span><span>B. A, B, C, D, E, F, G</span><span>C. A, B, D, C, E, F, G</span><span>D. A, C, B, D, E, G, F</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 先序遍历按“根 → 左子树 → 右子树”进行：先访问 A；进入左子树，访问 B，再访问 B 的左孩子 D（B 无右孩子）；回到 A 进入右子树，访问 C，再访问 C 的左子树：访问 E，E 无左孩子，访问 E 的右孩子 G；最后访问 C 的右孩子 F。得 A, B, D, C, E, G, F。易错：误选（漏掉 G，或把 G 排在 F 之后）；误选（按层序输出）；误选（把左右子树次序颠倒）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">6.</span>一棵度为 3 的树中，度为 3 的结点有 2 个、度为 2 的结点有 1 个、度为 1 的结点有 3 个，则该树的叶结点个数是　。</div>
+  <div class="opt"><span>A. 5</span><span>B. 6</span><span>C. 7</span><span>D. 12</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 设叶结点数为 n₀。树的结点总数 n = n₀ + n₁ + n₂ + n₃ = n₀ + 3 + 1 + 2 = n₀ + 6。另一方面，树的总结点数 = 分支数 + 1，而分支数 = 1·n₁ + 2·n₂ + 3·n₃ = 3 + 2 + 6 = 11，故 n = 12。于是 n₀ = 12 − 6 = 6。易错：答 5（把分支数 11 直接当作结点数）；答 12（求出了 n 就当成 n₀）；注意树的公式是“结点数 = 所有结点的度之和 + 1”，与二叉树的 n₀ = n₂ + 1 不同。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">7.</span>题 7 图所示为一个带权有向图，用 Dijkstra 算法求顶点 v1 到 v5 的最短路径长度是　。</div>
+<div class="qfig"><svg class="dg" viewBox="0 0 400 154" role="img" aria-label="题 7 图：带权有向图"><line class="ln" x1="67.1" y1="74.6" x2="148.9" y2="45.4" marker-end="url(#arw)"/><line class="ln" x1="67.0" y1="85.6" x2="149.0" y2="116.4" marker-end="url(#arw)"/><line class="ln" x1="164.0" y1="56.0" x2="164.0" y2="106.0" marker-end="url(#arw)"/><line class="ln" x1="179.0" y1="45.6" x2="257.0" y2="74.4" marker-end="url(#arw)"/><line class="ln" x1="178.9" y1="116.2" x2="257.1" y2="85.8" marker-end="url(#arw)"/><line class="ln" x1="179.6" y1="118.6" x2="344.4" y2="83.4" marker-end="url(#arw)"/><line class="ln" x1="288.0" y1="80.0" x2="344.0" y2="80.0" marker-end="url(#arw)"/><circle class="box" cx="52" cy="80" r="15"/><text class="t" x="52" y="84" text-anchor="middle">v1</text><circle class="box" cx="164" cy="40" r="15"/><text class="t" x="164" y="44" text-anchor="middle">v2</text><circle class="box" cx="164" cy="122" r="15"/><text class="t" x="164" y="126" text-anchor="middle">v3</text><circle class="box" cx="272" cy="80" r="15"/><text class="t" x="272" y="84" text-anchor="middle">v4</text><circle class="box" cx="360" cy="80" r="15"/><text class="t" x="360" y="84" text-anchor="middle">v5</text><text class="x" x="104" y="52" text-anchor="middle">4</text><text class="x" x="100" y="110" text-anchor="middle">2</text><text class="x" x="178" y="82" text-anchor="middle">1</text><text class="x" x="224" y="52" text-anchor="middle">5</text><text class="x" x="224" y="110" text-anchor="middle">8</text><text class="x" x="268" y="110" text-anchor="middle">10</text><text class="x" x="316" y="70" text-anchor="middle">2</text><text class="s" x="200" y="148" text-anchor="middle">题 7 图</text></svg></div>
+  <div class="opt"><span>A. 12</span><span>B. 9</span><span>C. 11</span><span>D. 13</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> Dijkstra 逐步求解：初始 dist = {v1:0, v2:4, v3:2, v4:∞, v5:∞}。选 v3（dist 2）：松弛 v4 = min(∞, 2+8) = 10，v5 = min(∞, 2+10) = 12。选 v2（dist 4）：松弛 v3 不变，v4 = min(10, 4+5) = 9。选 v4（dist 9）：松弛 v5 = min(12, 9+2) = 11。选 v5（dist 11）。最终 dist(v5) = 11，对应的最优路径是 v1→v2→v4→v5（4 + 5 + 2 = 11），而不是 v1→v3→v5（2 + 10 = 12）。易错：答 12（取 v1→v3→v5 的直达路径）；答 9（那只是到 v4 的距离）；忘记 Dijkstra 每选出一个顶点都要用它松弛所有出边。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">8.</span>依次插入关键字 45, 24, 53, 12, 37, 93 构造一棵二叉排序树，则查找关键字 37 时需要比较的次数是　。</div>
+  <div class="opt"><span>A. 2</span><span>B. 4</span><span>C. 1</span><span>D. 3</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 依次插入后，45 为根；24 &lt; 45 作其左孩子；53 &gt; 45 作其右孩子；12 &lt; 45 且 &lt; 24，作 24 的左孩子；37 &lt; 45、&gt; 24、&gt; 12，作 12 的右孩子；93 &gt; 45、&gt; 53，作 53 的右孩子。查找 37：与 45 比较（大，走左）、与 24 比较（大，走右）、与 37 比较（相等），共 3 次。易错：答 2（漏算最后一次“相等”的比较）；答 4（把 12 也算进去，但 37 &gt; 12 后直接转向其右孩子，无需比较 12 之后再比一次）；注意比较次数等于结点在树中的层数。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">9.</span>对序列 5, 8, 3, 9, 6, 1 采用自底向上的方法建立大根堆，建堆完成后的层序序列是　。</div>
+  <div class="opt"><span>A. 9, 8, 3, 5, 6, 1</span><span>B. 9, 6, 3, 8, 5, 1</span><span>C. 9, 8, 6, 5, 3, 1</span><span>D. 9, 5, 3, 8, 6, 1</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 按 1 起编号 a[1..6] = 5, 8, 3, 9, 6, 1，最后一个非叶结点为 ⌊6/2⌋ = 3。调整 i=3：a[3]=3，孩子 a[6]=1，3 &gt; 1，不变。调整 i=2：a[2]=8，孩子 a[4]=9、a[5]=6，最大为 9 &gt; 8，交换得 a[2]=9、a[4]=8；a[4] 无孩子，停止。调整 i=1：a[1]=5，孩子 a[2]=9、a[3]=3，最大为 9 &gt; 5，交换得 a[1]=9、a[2]=5；接着 a[2]=5，孩子 a[4]=8、a[5]=6，最大为 8 &gt; 5，交换得 a[2]=8、a[4]=5。最终层序为 9, 8, 3, 5, 6, 1。易错：误选（交换后忘记继续向下调整）；误选（建大根堆却按小根堆规则交换）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">10.</span>对 8 个元素进行二路归并排序，在最理想情况下（每趟归并时两个子序列恰好交错）所需的比较次数是　。</div>
+  <div class="opt"><span>A. 8</span><span>B. 12</span><span>C. 24</span><span>D. 17</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 最理想情况是每次归并两个子序列时，只需比较“较短子序列的长度”那么多次就能把它全部取完。逐趟计算：第 1 趟归并长度 1 的子序列，共 4 对，每对比较 1 次 → 4 次；第 2 趟归并长度 2 的子序列，共 2 对，每对比较 2 次 → 4 次；第 3 趟归并长度 4 的子序列，共 1 对，比较 4 次 → 4 次。合计 4 + 4 + 4 = 12 次。通式即 n/2 × ⌈log₂n⌉ = 4 × 3 = 12。易错：答 24（那是 n log n 的上界，最坏情况）；答 8（漏掉一趟）；注意归并排序的比较次数在 ⌈n log₂n⌉/2 到 n log₂n − n + 1 之间，理想情况取下界。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">11.</span>采用 k 路平衡归并时，k 值越大则归并趟数越少、I/O 次数越少，但 k 的增大主要受限于　。</div>
+  <div class="opt"><span>A. 磁盘的转速</span><span>B. 记录的总条数</span><span>C. 内存中可用于输入缓冲区的空间</span><span>D. CPU 的主频</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> k 路归并时，每一路都需要在内存中分配一个输入缓冲区，同时还需要一个输出缓冲区。若缓冲区总数为 b，则必须满足 k + 1 ≤ b，故 k 的最大值取决于内存能提供多少缓冲块。这正是“增加 k 可减少趟数，但要付出更多内存”这一权衡的本质。易错：误选（磁盘转速只影响物理传输时间，不影响 k 的取值）；误选（记录条数只决定初始归并段个数）；注意实际系统常采用“败者树”来降低 k 增大带来的比较开销。</div></details>
+</div>
+<h3>计算机组成原理（第 12~22 题，22 分）</h3>
+<div class="qz">
+  <div class="stem"><span class="no">12.</span>某 8 位机器中，整数 x 的补码为 1101 1000。对 x 执行算术右移一位后，所得结果的补码是　。</div>
+  <div class="opt"><span>A. 0110 1100</span><span>B. 1111 0100</span><span>C. 1011 0000</span><span>D. 1110 1100</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 算术右移保持符号位不变，空出的最高位用符号位填充。1101 1000 右移一位：最高位补 1 得 1110 1100。验证真值：1101 1000 取反加 1 得 0010 1000 = 40，故 x = −40；右移相当于除以 2，−40 ÷ 2 = −20，而 −20 的补码正是 1110 1100（取反 0001 0011 加 1 得 0001 0100 = 20）。易错：答 0110 1100（用逻辑右移，最高位补 0，会变成正数）；答 1111 0100（右移了两位）；注意算术右移对负数是“向下取整”的除法。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">13.</span>某浮点数格式为：1 位符号位、5 位阶码（移码，偏置为 16）、10 位尾数（补码，含 1 位符号位，无隐含位，规格化表示）。则该格式能表示的最大正数与最小正数分别是　。</div>
+  <div class="opt"><span>A. (1−2⁻⁹)×2¹⁵，2⁻¹⁷</span><span>B. (1−2⁻¹⁰)×2¹⁵，2⁻¹⁶</span><span>C. (1−2⁻⁹)×2¹⁶，2⁻¹⁷</span><span>D. (1−2⁻⁹)×2¹⁵，2⁻¹⁶</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 阶码 5 位移码、偏置 16，取值范围为 0−16 = −16 到 31−16 = 15。尾数 10 位补码含 1 位符号位，即 9 位数值位，规格化正数范围 0.1B ~ 0.111…1B，即 2⁻¹ ~ 1−2⁻⁹。故最大正数 = (1−2⁻⁹)×2¹⁵；最小正数 = 2⁻¹×2⁻¹⁶ = 2⁻¹⁷。易错：误选（尾数数值位算成 10 位，得 1−2⁻¹⁰）；误选（最小正数忘记乘规格化要求的 2⁻¹）；注意“规格化”要求尾数绝对值 ≥ 1/2，故最小正数的尾数是 0.1B 而不是 0.00…01B。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">14.</span>某存储器采用 4 体低位交叉编址，每个模块的存取周期为 200ns，总线传送周期为 50ns。则连续读取 8 个字所需的时间是　。</div>
+  <div class="opt"><span>A. 400 ns</span><span>B. 550 ns</span><span>C. 1600 ns</span><span>D. 600 ns</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 低位交叉编址下，模块数 m = 4，存取周期 T = 200ns，总线传送周期 τ = 50ns。连续读取 n = 8 个字的时间为 T + (n−1)×τ = 200 + 7 × 50 = 550ns。易错：答 400ns（用 n×τ 计算，忽略了第一个字要等完整的存取周期）；答 1600ns（用 8×200，那是顺序（非交叉）存储器的情形）；注意 m 应满足 m ≥ T/τ = 4，本题恰好满足，故流水线不会断流。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">15.</span>某计算机的主存地址为 32 位，Cache 容量为 512KB，块大小为 64B，采用直接映射方式。则主存地址中标记（tag）字段占多少位？</div>
+  <div class="opt"><span>A. 6 位</span><span>B. 19 位</span><span>C. 13 位</span><span>D. 32 位</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 块内地址占 log₂64 = 6 位；Cache 行数 = 512KB ÷ 64B = 8192 = 2¹³，故行号占 13 位；标记位数 = 32 − 13 − 6 = 13 位。易错：答 6 位（那是块内地址）；答 19 位（用 32 − 13，漏减块内地址）；注意标记字段保存的是主存块号的高位部分，用于判断命中。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">16.</span>某 32 位系统采用一级页表进行分页存储管理，页大小为 8KB，页表项长度为 4B。则该进程的页表所占空间是　。</div>
+  <div class="opt"><span>A. 4 MB</span><span>B. 512 KB</span><span>C. 8 MB</span><span>D. 2 MB</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 页内偏移占 log₂8192 = 13 位，故页号占 32 − 13 = 19 位，页表项数 = 2¹⁹ = 524288 项。页表大小 = 2¹⁹ × 4B = 2²¹B = 2MB。易错：答 4MB（按页大小 4KB 计算）；答 512KB（把页表项按 1B 计算）；答 8MB（把页号位数算成 21 位）；注意这正是大页能减小页表的直观体现。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">17.</span>某指令系统的指令字长为 16 位，其中操作码占 5 位、形式地址占 11 位，采用一地址指令格式。则该系统最多可以设计多少条指令？</div>
+  <div class="opt"><span>A. 32 条</span><span>B. 16 条</span><span>C. 2048 条</span><span>D. 11 条</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 定长操作码时，指令条数只由操作码位数决定：2⁵ = 32 条。形式地址占 11 位只影响可寻址的范围（2¹¹ 个单元），不影响指令条数。易错：答 2048 条（把 11 位形式地址也当作编码空间）；答 16 条（操作码位数算成 4 位）；注意若采用扩展操作码，则指令条数可以在不同地址格式间重新分配。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">18.</span>某 5 段流水线的各段执行时间均为 2ns。若第 2 段与第 3 段之间存在数据相关，且每条指令都需要插入 2 个气泡周期，则连续执行 100 条指令所需的时间是　。</div>
+  <div class="opt"><span>A. 208 ns</span><span>B. 608 ns</span><span>C. 408 ns</span><span>D. 800 ns</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 无气泡时需 5 + (100 − 1) = 104 个时钟周期，耗时 208ns。每条指令额外插入 2 个气泡，100 条共额外 200 个周期，耗时 400ns。总时间 = 208 + 400 = 608ns。易错：答 208ns（忽略气泡开销）；答 408ns（只算了 100 个气泡周期）；答 800ns（把每条指令的气泡算成 4 个周期）；注意气泡周期也要占满一个完整时钟周期。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">19.</span>某计算机采用微程序控制方式，某条机器指令对应的微程序共含 40 条微指令，微指令字长为 32 位。则控制存储器中为该指令分配的容量至少是　。</div>
+  <div class="opt"><span>A. 1280 B</span><span>B. 40 B</span><span>C. 160 B</span><span>D. 320 B</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 控制存储器按字（微指令）编址，40 条微指令 × 32 位 = 1280 位 = 1280 ÷ 8 = 160B。易错：答 1280B（把位数当作字节数）；答 40B（把微指令条数当作字节数）；答 320B（把微指令字长按 64 位计算）；注意控制存储器通常用 ROM 实现，其容量需覆盖全部机器指令的微程序之和。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">20.</span>某系统总线采用集中式仲裁的计数器定时查询方式，总线上共有 8 个设备。则所需的设备地址线至少需要多少根？</div>
+  <div class="opt"><span>A. 8 根</span><span>B. 2 根</span><span>C. 4 根</span><span>D. 3 根</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 计数器定时查询方式由总线仲裁器中的计数器依次输出设备编号，通过一组设备地址线广播给所有设备，设备将自己的编号与地址线内容比较，相符者获得总线。8 个设备需 log₂8 = 3 根地址线。易错：答 8 根（那是独立请求方式所需的授权线数量级）；答 2 根（只能区分 4 个设备）；注意计数器定时查询只需 3 根公共控制线（请求、总线忙、设备地址），与设备数无关，比链式查询多一组地址线但优先级更灵活。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">21.</span>某磁盘的平均寻道时间为 8ms，转速为 7200r/min，数据传输率为 20MB/s。则读取一个 4KB 数据块的平均时间约为　。</div>
+  <div class="opt"><span>A. 约 12.4 ms</span><span>B. 约 8.2 ms</span><span>C. 约 16.5 ms</span><span>D. 约 12.2 ms</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 平均旋转延迟 = 60s ÷ 7200 ÷ 2 = 8.33ms ÷ 2 ≈ 4.17ms；传输时间 = 4KB ÷ 20MB/s = 4096 ÷ 20×10⁶ ≈ 0.2ms。总时间 = 8 + 4.17 + 0.2 ≈ 12.37ms ≈ 12.4ms。易错：答 8.2ms（漏掉平均旋转延迟，这是最典型的错误）；答 16.5ms（把旋转延迟算成整周 8.33ms）；答 12.2ms（忽略传输时间）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">22.</span>下列关于存储器校验的叙述中，错误的是　。<br>I. 奇偶校验只能检出一位错，不能纠正错误<br>II. 海明校验既能检出一位错，也能纠正一位错<br>III. 海明校验中校验位的位数 k 需满足 2^k ≥ n + k + 1（n 为数据位位数）<br>IV. CRC 校验主要用于纠正多位错误</div>
+  <div class="opt"><span>A. 仅 I</span><span>B. 仅 IV</span><span>C. 仅 II、III</span><span>D. 仅 I、IV</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 只有 IV 错误。CRC（循环冗余校验）主要用于<b>检错</b>，虽然理论上可以通过查表进行纠错，但实际系统中 CRC 只负责发现错误并触发重传，不承担纠错任务。I、II、III 均正确：奇偶校验只有 1 位校验位，只能发现奇数个位错；海明校验用多位校验位构成“指错字”，可定位并纠正一位错，其校验位数必须满足 2^k ≥ n + k + 1。</div></details>
+</div>
+<h3>操作系统（第 23~32 题，20 分）</h3>
+<div class="qz">
+  <div class="stem"><span class="no">23.</span>下列关于进程与线程的叙述中，正确的是　。<br>I. 进程是资源分配的基本单位，线程是 CPU 调度的基本单位<br>II. 同一进程内的线程共享地址空间，彼此通信无需陷入内核<br>III. 线程的创建与撤销开销比进程小<br>IV. 用户级线程的切换一定需要进入内核态</div>
+  <div class="opt"><span>A. I、II、III、IV</span><span>B. 仅 I、III</span><span>C. 仅 I、II、III</span><span>D. 仅 II、IV</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 只有 IV 错误。用户级线程由用户空间的线程库管理，内核完全不感知这些线程的存在，因此线程切换只需保存/恢复用户栈与寄存器，<b>不进入内核态</b>；只有内核级线程的切换才需陷入内核。I、II、III 均正确：这是线程被称为“轻型进程”的原因。注意用户级线程的缺点正是一个线程阻塞会导致整个进程阻塞。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">24.</span>有 P1、P2、P3 三个进程同时到达某系统，所需运行时间分别为 4ms、5ms、6ms。若采用时间片轮转调度（时间片 q = 2ms），则 P1 的完成时间是　。</div>
+  <div class="opt"><span>A. 4 ms</span><span>B. 6 ms</span><span>C. 10 ms</span><span>D. 8 ms</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 按时间片轮转执行：0~2 P1（剩余 2）；2~4 P2（剩余 3）；4~6 P3（剩余 4）；6~8 P1（剩余 2→0，完成）。故 P1 的完成时刻为 8ms。易错：答 4ms（把 P1 的第一轮运行当作已完成）；答 6ms（漏掉 P1 的第二轮）；答 10ms（把时间片算成 1ms 或 3ms）。注意时间片轮转的平均周转时间通常比 SJF 差，但响应时间更好。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">25.</span>某系统中信号量 S 的当前值为 −3，则说明　。</div>
+  <div class="opt"><span>A. 有 3 个进程正在该信号量上等待</span><span>B. 有 3 个可用资源</span><span>C. 有 3 个进程正在使用该资源</span><span>D. 系统已发生死锁</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 信号量为负时，其绝对值表示在该信号量的等待队列中阻塞的进程个数，故 S = −3 表示有 3 个进程正在等待。信号量本身并不记录“资源数”，可用资源数在 S &gt; 0 时才等于 S 的值。易错：误选（把负值当正数读）；误选（把等待进程数当作使用资源的进程数）；注意负值只说明“资源已全部分配完且有进程在排队”，并不等于死锁。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">26.</span>某系统有 A、B 两类资源，当前 Available = (2, 2)。三个进程的 Allocation 与 Need 如下：P1 的 Allocation = (1, 0)、Need = (1, 1)；P2 的 Allocation = (1, 2)、Need = (1, 0)；P3 的 Allocation = (0, 1)、Need = (0, 1)。则系统的状态是　。</div>
+  <div class="opt"><span>A. 不安全，找不到安全序列</span><span>B. 安全，存在安全序列 P1 → P2 → P3</span><span>C. 安全，但只有安全序列 P3 → P2 → P1</span><span>D. 无法判断</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 用安全性算法逐步试算。初始 Work = (2, 2)：P1 的 Need (1,1) ≤ (2,2) ✓，P1 完成并释放其 Allocation (1,0)，Work = (2,2)+(1,0) = (3,2)；P2 的 Need (1,0) ≤ (3,2) ✓，Work = (3,2)+(1,2) = (4,4)；P3 的 Need (0,1) ≤ (4,4) ✓，Work = (4,4)+(0,1) = (4,5)。三个进程都能完成，故存在安全序列 P1→P2→P3，系统处于安全状态。易错：不逐个试算就凭直觉判断；把 Need 与 Allocation 混淆；注意安全序列可能不止一个，但只要能找到一个即可判定安全。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">27.</span>某进程的页面访问序列为 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1，系统分配 3 个页框。若采用最佳置换（OPT）算法，则缺页次数是　。</div>
+  <div class="opt"><span>A. 10</span><span>B. 12</span><span>C. 9</span><span>D. 8</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 逐次模拟（淘汰“将来最久不会被访问”的页）：7 缺[7]；0 缺[7,0]；1 缺[7,0,1]；2 缺，将来 7 要到第 17 次才用、0 在第 5 次、1 在第 14 次，淘汰 7 →[2,0,1]；0 命中；3 缺，将来 1 在第 14 次、2 在第 9 次、0 在第 7 次，淘汰 1 →[2,0,3]；0 命中；4 缺，将来 0 在第 11 次、3 在第 10 次、2 在第 9 次，淘汰 0 →[4,2,3]；2 命中；3 命中；0 缺，4 以后不再出现，淘汰 4 →[0,2,3]；3 命中；2 命中；1 缺，将来 2 在第 15 次、3 以后不出现、0 在第 16 次，淘汰 3 →[0,2,1]；2 命中；0 命中；1 命中；7 缺，将来 2 以后不出现，淘汰 2 →[0,7,1]；0 命中；1 命中。共缺页 9 次。易错：按 FIFO 模拟得 15 次、按 LRU 得 12 次（这道经典题最能体现 OPT 的优势）；淘汰“过去最久未用”而不是“将来最久不用”。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">28.</span>某分页系统中页大小为 1KB，某进程页表显示页号 2 对应的页框号为 9。若该进程访问的逻辑地址为 0x0A5C，则对应的物理地址是　。</div>
+  <div class="opt"><span>A. 0x0A5C</span><span>B. 0x2A5C</span><span>C. 0x9A5C</span><span>D. 0x265C</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 页大小 1KB = 2¹⁰B，故低 10 位为页内偏移。0x0A5C = 2652；页号 = 2652 ÷ 1024 = 2（取整），页内偏移 = 2652 − 2×1024 = 2652 − 2048 = 604 = 0x25C。物理地址 = 9 × 0x400 + 0x25C = 0x2400 + 0x25C = 0x265C。易错：答 0x0A5C（直接照抄逻辑地址）；答 0x2A5C（把页号当作页框号）；答 0x9A5C（把页框号当作高位直接拼接，忽略了页大小）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">29.</span>某文件系统采用 FAT 方式管理磁盘空间，每个 FAT 表项占 4B，每个磁盘块大小为 8KB。若磁盘总容量为 2GB，则 FAT 表本身占用多少存储空间？</div>
+  <div class="opt"><span>A. 1 MB</span><span>B. 2 MB</span><span>C. 512 KB</span><span>D. 8 MB</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 磁盘块数 = 2GB ÷ 8KB = 2×10⁹ ÷ 8192 = 262144 = 2¹⁸ 块。每个块在 FAT 表中占一个 4B 的表项，故 FAT 表大小 = 2¹⁸ × 4B = 2²⁰B = 1MB。易错：答 2MB（把表项按 8B 计算）；答 512KB（把表项按 2B 计算）；答 8MB（把块数算成 2²¹）；注意 FAT 表通常需要常驻内存，这正是 FAT 在大容量磁盘上不占优势的原因。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">30.</span>某磁盘的请求队列为 98, 183, 37, 122, 14, 124, 65, 67，磁头当前位于 53 号柱面并沿柱面号增大的方向移动。若采用 LOOK 调度算法，则磁头移动的总柱面数是　。</div>
+  <div class="opt"><span>A. 322</span><span>B. 299</span><span>C. 236</span><span>D. 208</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> LOOK 沿增大方向依次服务 65、67、98、122、124、183，到最远的请求 183 即折返（不必走到端点 199）：53→65(12)→67(2)→98(31)→122(24)→124(2)→183(59)，本段 130。折返后沿减小方向依次服务 37、14：183→37 = 146，37→14 = 23。总计 130 + 146 + 23 = 299。易错：答 322（那是 C-LOOK，折返时不服务途中的请求，需多走 183−14 与 14−37 的绕行）；答 236（那是 SSTF）；答 208（漏算折返段）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">31.</span>某系统采用 SPOOLing 技术实现虚拟设备。下列关于设备分配的叙述中，错误的是　。<br>I. 独占设备一次只能分配给一个进程使用<br>II. 共享设备可同时分配给多个进程使用<br>III. 虚拟设备是通过 SPOOLing 把独占设备改造成逻辑上的共享设备<br>IV. 设备分配时不需要考虑死锁问题</div>
+  <div class="opt"><span>A. 仅 I</span><span>B. 仅 II、III</span><span>C. 仅 IV</span><span>D. 仅 I、IV</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 只有 IV 错误。设备分配同样可能引发死锁：若多个进程各自占有一台设备又都在等待对方占有的设备，就会形成循环等待。因此设备分配必须采用安全分配策略（如静态分配、按序分配），并纳入死锁避免机制。I、II、III 均正确：独占设备（如打印机）一次只能给一个进程；共享设备（如磁盘）可被多个进程交替使用；SPOOLing 用输入井/输出井把独占设备虚拟成共享设备。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">32.</span>某分页系统中页大小为 2KB，某进程页表显示页号 0→页框 2、页号 1→页框 5、页号 2→页框 7。若该进程访问虚拟地址 0x0C00，则对应的物理地址是　。</div>
+  <div class="opt"><span>A. 0x0C00</span><span>B. 0x5C00</span><span>C. 0x7C00</span><span>D. 0x2C00</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 页大小 2KB = 2¹¹B，故低 11 位为页内偏移。0x0C00 = 3072；页号 = 3072 ÷ 2048 = 1（取整），页内偏移 = 3072 − 2048 = 1024 = 0x400。查表得页框号 5，故物理地址 = 5 × 0x800 + 0x400 = 0x2800 + 0x400 = 0x2C00。易错：答 0x0C00（直接照抄虚拟地址）；答 0x5C00（把页框号当作高位直接拼接）；答 0x7C00（用页号 2 的页框号）。</div></details>
+</div>
+<h3>计算机网络（第 33~40 题，16 分）</h3>
+<div class="qz">
+  <div class="stem"><span class="no">33.</span>某以太网的 MTU 为 1500B。若某 IP 数据报的总长度为 2000B（其中首部 20B），要在此以太网上传输，则 IP 层至少需要将其分成几个分片？</div>
+  <div class="opt"><span>A. 2 个</span><span>B. 1 个</span><span>C. 3 个</span><span>D. 4 个</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> IP 数据报的数据部分 = 2000 − 20 = 1980B。每个分片加上 20B 首部后不得超过 MTU 1500B，故每片数据最多 1480B（且必须是 8 的倍数，1480 = 8×185，符合）。1980 = 1480 + 500，共 2 个分片。易错：答 1 个（用 2000 &gt; 1500 直接判断但没算能装多少）；答 3 个（用 1980 ÷ 1500 向上取整却忘了首部占位）；注意最后一片的数据长度不必是 8 的倍数，但除最后一片外都必须对齐到 8 字节。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">34.</span>某采用 CSMA/CD 协议的以太网，其争用期为 51.2µs。若电磁波在电缆中的传播速度为 2×10⁸ m/s，则该以太网的最大跨距是　。</div>
+  <div class="opt"><span>A. 2560 m</span><span>B. 5120 m</span><span>C. 10240 m</span><span>D. 512 m</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 争用期等于往返传播时延 2τ，故单程传播时延 τ = 51.2µs ÷ 2 = 25.6µs。最大跨距 = τ × v = 25.6×10⁻⁶ × 2×10⁸ = 5120m。易错：答 2560m（用争用期直接乘速度，忘记争用期是往返时间）；答 10240m（把 2τ 又乘了 2）；答 512m（那是速率 100Mb/s、最小帧 64B 的情形）；注意“最大跨距”是网段两端主机之间的最长距离。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">35.</span>某单位分配到地址块 192.168.0.0/22，现需要把它划分成若干个 /24 的子网。则可划分出的 /24 子网个数是　。</div>
+  <div class="opt"><span>A. 2 个</span><span>B. 8 个</span><span>C. 4 个</span><span>D. 16 个</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> /22 的网络前缀为 22 位，/24 的网络前缀为 24 位，需要再借用 24 − 22 = 2 位作为子网号，故可划分 2² = 4 个子网，分别为 192.168.0.0/24、192.168.1.0/24、192.168.2.0/24、192.168.3.0/24。易错：答 2 个（借位算成 1 位）；答 8 个（借位算成 3 位，那会得到 /25）；注意 /22 共含 4 × 256 = 1024 个地址。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">36.</span>某 TCP 连接初始时 cwnd = 1 MSS、ssthresh = 16 MSS，采用慢开始与拥塞避免且全程无超时无丢包。则第 6 个 RTT 结束时 cwnd 的值是　。</div>
+  <div class="opt"><span>A. 16 MSS</span><span>B. 32 MSS</span><span>C. 17 MSS</span><span>D. 18 MSS</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 慢开始阶段 cwnd 每 RTT 翻倍：RTT1 末为 2、RTT2 末为 4、RTT3 末为 8、RTT4 末为 16（恰好达到 ssthresh = 16）。此后转入拥塞避免，每 RTT 线性加 1：RTT5 末为 17、RTT6 末为 18。故第 6 个 RTT 结束时 cwnd = 18 MSS。易错：答 16（停在 ssthresh 不再增长）；答 32（一直按翻倍算）；答 17（只加了一次）。注意“达到 ssthresh”这一刻就切换为线性增长，而不是超过后才切换。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">37.</span>某浏览器请求一个页面，该页面由 1 个基本 HTML 文件和 4 个引用图像组成，全部位于同一服务器。若采用 HTTP/1.1 的持久连接与流水线方式，且 TCP 连接尚未建立，忽略传输时延，则从开始到接收完全部内容共需多少个 RTT？</div>
+  <div class="opt"><span>A. 3</span><span>B. 5</span><span>C. 9</span><span>D. 2</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> A。<b>解析</b> 第 1 个 RTT：三次握手建立 TCP 连接；第 2 个 RTT：请求并收到 HTML 文件；解析出 4 个图像引用后，第 3 个 RTT 内一次性把 4 个请求全部发出并收到全部响应（流水线允许连续发送请求而不等响应）。共 3 个 RTT。易错：答 5（那是持久连接但非流水线：建连 1 + 每对象 1 = 1+5 = 6，或漏算建连得 5）；答 9（那是非持久连接：每对象 2 个 RTT）；答 2（漏算建连的 RTT）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">38.</span>下列关于以太网与 VLAN 的叙述中，错误的是　。<br>I. VLAN 可以在一台物理交换机内部划分出多个广播域<br>II. 802.1Q 帧在源 MAC 地址字段之后插入 4B 的 VLAN 标记<br>III. 不同 VLAN 之间的通信必须经过路由器或三层交换机<br>IV. 交换机的一个端口只能属于一个 VLAN</div>
+  <div class="opt"><span>A. 仅 I</span><span>B. 仅 IV</span><span>C. 仅 II、III</span><span>D. 仅 I、IV</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> B。<b>解析</b> 只有 IV 错误。交换机的端口可以配置为 <b>Trunk 端口</b>，同时承载多个 VLAN 的帧（帧中携带 802.1Q 标记以区分所属 VLAN），因此“一个端口只能属于一个 VLAN”不成立；只有 Access 端口才只属于一个 VLAN。I、II、III 均正确：VLAN 的核心价值就是在一台交换机内划分广播域；802.1Q 标记长 4B，插在源 MAC 之后、类型字段之前；跨 VLAN 通信属于三层转发，必须经路由设备。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">39.</span>某主机的 IP 地址为 192.168.1.100，子网掩码为 255.255.255.192。则该主机所在子网的广播地址是　。</div>
+  <div class="opt"><span>A. 192.168.1.63</span><span>B. 192.168.1.191</span><span>C. 192.168.1.127</span><span>D. 192.168.1.255</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> C。<b>解析</b> 掩码 255.255.255.192 即 /26，主机位 6 位，子网块大小 = 2⁶ = 64。100 ÷ 64 = 1 余 36，故所在子网为 192.168.1.64 ~ 192.168.1.127，网络地址 192.168.1.64、广播地址 192.168.1.127。易错：答 192.168.1.63（那是第 1 个子网的广播地址）；答 192.168.1.191（那是第 3 个子网的广播地址）；答 192.168.1.255（那是 /24 的广播地址）。</div></details>
+</div>
+<div class="qz">
+  <div class="stem"><span class="no">40.</span>某 TCP 连接中，接收方通告的接收窗口为 2000B。若发送方已发送但尚未收到确认的数据为 1500B，则发送方此刻还能再发送多少字节？</div>
+  <div class="opt"><span>A. 2000 B</span><span>B. 1500 B</span><span>C. 3500 B</span><span>D. 500 B</span></div>
+  <details class="ans"><summary>答案与解析</summary><div class="ansbody"><b>答案</b> D。<b>解析</b> 接收窗口限制的是“已发送但未确认”的数据量。当前已占用 1500B，故还能发送 2000 − 1500 = 500B。已确认的数据不占用窗口（它们已滑出窗口）。易错：答 2000B（忽略已占用的部分）；答 1500B（把已发送量当作剩余量）；答 3500B（把两者相加）；注意实际可用窗口 = min(拥塞窗口, 接收窗口) − 已发送未确认量。</div></details>
+</div>
+
+  </div>
+</details>
+</section>
+<div class="landcard"><a class="landb" href="paper.html"><b>← 返回套卷目录</b></a></div>
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
