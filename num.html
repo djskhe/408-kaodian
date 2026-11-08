@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>数字大全</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="num">
+  <div class="subhead"><h2>数字大全</h2><span class="score">必背常数</span><span class="meta" data-all="4 科">4 科</span></div>
+<details class="chap" open>
+  <summary><span class="num">1</span>数据结构<span class="lv">★★★</span><span class="cnt">22 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>树与查找</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>2^(i-1)</code></td><td>二叉树第 i 层最多结点数</td></tr>
+        <tr><td><code>2^h-1</code></td><td>高 h 的二叉树最多结点数</td></tr>
+        <tr><td><code>⌊log₂n⌋+1</code></td><td>n 个结点完全二叉树的高度</td></tr>
+        <tr><td><code>n0 = n2 + 1</code></td><td>非空二叉树叶子数与度为 2 结点数关系</td></tr>
+        <tr><td><code>2n-1</code></td><td>n 个叶子的哈夫曼树（严格二叉树）总结点数</td></tr>
+        <tr><td><code>⌈log₂(n+1)⌉</code></td><td>折半查找成功时最多比较次数</td></tr>
+        <tr><td><code>⌈m/2⌉-1 ~ m-1</code></td><td>m 阶 B 树非根结点关键字个数范围</td></tr>
+        <tr><td><code>0.75</code></td><td>散列表装填因子常用上限（超则扩容）</td></tr>
+      </tbody></table>
+    <h3>图</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>O(n²)</code></td><td>Prim 时间复杂度（邻接矩阵，适合稠密图）</td></tr>
+        <tr><td><code>O(ElogE)</code></td><td>Kruskal 时间复杂度（适合稀疏图）</td></tr>
+        <tr><td><code>O(n²)</code></td><td>Dijkstra 时间复杂度（邻接矩阵实现）</td></tr>
+        <tr><td><code>O(n³)</code></td><td>Floyd 求每对顶点最短路</td></tr>
+        <tr><td><code>O(n+e)</code></td><td>拓扑排序时间复杂度（邻接表）</td></tr>
+      </tbody></table>
+    <h3>排序与归并</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>O(n)</code></td><td>自底向上建堆的时间复杂度</td></tr>
+        <tr><td><code>O(n²)</code></td><td>快速排序最坏时间（基本有序或逆序）</td></tr>
+        <tr><td><code>⌈log₂m⌉</code></td><td>2 路归并对 m 个记录/归并段的趟数</td></tr>
+        <tr><td><code>⌈log_k m⌉</code></td><td>k 路归并 m 段的趟数，每趟读写全部数据共 <code>2n</code> 次 I/O</td></tr>
+      </tbody></table>
+    <h3>线性表与队列</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>n/2</code></td><td>顺序表插入平均移动元素个数</td></tr>
+        <tr><td><code>(n-1)/2</code></td><td>顺序表删除平均移动元素个数</td></tr>
+        <tr><td><code>(rear-front+m)%m</code></td><td>循环队列元素个数</td></tr>
+        <tr><td><code>(rear+1)%m == front</code></td><td>循环队列队满判据（牺牲 1 个单元）</td></tr>
+        <tr><td><code>n</code></td><td>串长 n 时 next 数组长度（下标 1 起，<code>next[1]=0</code>）</td></tr>
+      </tbody></table>
+    <div class="tip"><b>易记</b>树：层指数、高减一、叶子多一；图：Prim/Dijkstra 皆 <code>n²</code>，Floyd 立方；排序：建堆线性、快排最坏平方。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">2</span>计算机组成原理<span class="lv">★★★</span><span class="cnt">22 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>数据表示</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>7</code> 位</td><td>ASCII 码有效位数，<code>1</code> 字节 <code>8</code> 位</td></tr>
+        <tr><td><code>-128~127</code></td><td>8 位补码表示范围（<code>-2^7~2^7-1</code>）</td></tr>
+        <tr><td><code>-32768~32767</code></td><td>16 位补码表示范围（<code>-2^15~2^15-1</code>）</td></tr>
+        <tr><td><code>2^r ≥ k+r+1</code></td><td>海明校验：k 位数据需 r 位校验位</td></tr>
+        <tr><td><code>1+8+23</code></td><td>IEEE 754 单精度格式，偏置 <code>127</code></td></tr>
+        <tr><td><code>1+11+52</code></td><td>IEEE 754 双精度格式，偏置 <code>1023</code></td></tr>
+      </tbody></table>
+    <h3>存储系统</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>32/64B</code></td><td>Cache 行（块）大小常见取值</td></tr>
+        <tr><td><code>30</code> 位</td><td>按字节编址 1GB 主存所需地址线数（<code>2^30</code>）</td></tr>
+        <tr><td><code>2^n×字长</code></td><td>n 位地址线、字长 w 的主存容量</td></tr>
+        <tr><td><code>7200 r/min</code></td><td>常见硬盘转速（<code>120 r/s</code>）</td></tr>
+        <tr><td><code>1/(2r)</code></td><td>平均旋转延迟，r 为每秒转数</td></tr>
+        <tr><td><code>分辨率×色深/8</code></td><td>显存容量（字节），色深单位为位</td></tr>
+      </tbody></table>
+    <h3>指令与 CPU</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>(k+n-1)Δt</code></td><td>k 段流水线执行 n 条指令的总时间</td></tr>
+        <tr><td><code>k</code></td><td>流水线理想加速比（n 很大时）</td></tr>
+        <tr><td><code>主频/(CPI×10⁶)</code></td><td>MIPS = 主频(MHz)/CPI</td></tr>
+        <tr><td><code>指令字长 = 存储字长 = 机器字长</code></td><td>三者在单字长指令机器中相等，通常为字节整数倍</td></tr>
+        <tr><td><code>类型号×4</code></td><td>x86 中断向量地址 = 中断类型号 × 4B</td></tr>
+      </tbody></table>
+    <h3>总线与 I/O</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>宽度/8×频率</code></td><td>总线带宽（B/s），宽度单位为位</td></tr>
+        <tr><td><code>柱面×磁头×扇区×512B</code></td><td>磁盘容量计算式（扇区默认 512B）</td></tr>
+        <tr><td><code>512B</code></td><td>磁盘一个扇区的标准容量</td></tr>
+        <tr><td><code>1</code> 块</td><td>DMA 传送的基本单位（数据块）</td></tr>
+        <tr><td><code>2</code> 次</td><td>中断方式每次传送的 I/O 次数（每字一次中断）</td></tr>
+      </tbody></table>
+    <div class="tip"><b>易记</b>单精度 <code>127</code>、双精度 <code>1023</code>；补码负数比正数多一个（<code>-128</code>）；流水线总时间 <code>k+n-1</code> 段。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">3</span>操作系统<span class="lv">★★★</span><span class="cnt">21 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>内存管理</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>4KB</code></td><td>常见页（页面）大小，<code>2^12</code> B</td></tr>
+        <tr><td><code>4B</code></td><td>常见页表项大小</td></tr>
+        <tr><td><code>12</code> 位</td><td>32 位地址、4KB 页时的页内偏移位数</td></tr>
+        <tr><td><code>20</code> 位</td><td>对应页号位数，页表项数 <code>2^20</code>（约 1M）</td></tr>
+        <tr><td><code>10</code> 位/级</td><td>32 位两级页表常取 <code>10+10+12</code> 划分</td></tr>
+        <tr><td><code>4KB/4B=1K</code></td><td>一页可装页表项数，决定每级页表覆盖范围</td></tr>
+      </tbody></table>
+    <h3>进程与调度</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>10~100ms</code></td><td>时间片轮转中时间片典型取值</td></tr>
+        <tr><td><code>初值=资源数</code></td><td>信号量初值含义；值为负时其绝对值=等待进程数</td></tr>
+        <tr><td><code>Need = Max - Allocation</code></td><td>银行家算法需求矩阵计算式</td></tr>
+        <tr><td><code>5</code> 态</td><td>进程基本状态数（创建/就绪/运行/阻塞/终止）</td></tr>
+        <tr><td><code>1</code> 次</td><td>P、V 操作各对信号量加减 1 并判断阻塞/唤醒</td></tr>
+      </tbody></table>
+    <h3>文件系统</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>10+1+1+1=13</code></td><td>inode 混合索引：10 直接 + 1 一级 + 1 二级 + 1 三级</td></tr>
+        <tr><td><code>1KB/4KB</code></td><td>常见盘块大小，决定索引块能存的地址项数</td></tr>
+        <tr><td><code>4B</code></td><td>一个盘块地址项大小，1KB 块可存 <code>256</code> 项</td></tr>
+        <tr><td><code>32</code> 位</td><td>位示图常用字长，一字表示 32 个盘块</td></tr>
+        <tr><td><code>2^16</code></td><td>FAT16 簇号位数 16 位，最大管理簇数 <code>65536</code></td></tr>
+        <tr><td><code>255</code></td><td>常见文件名最大长度（字符）</td></tr>
+      </tbody></table>
+    <h3>I/O 与中断</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>1</code> 个</td><td>系统调用通过陷入（trap）指令触发，对应一个中断号</td></tr>
+        <tr><td><code>用户态→核心态</code></td><td>系统调用是唯一由用户程序主动进入核心态的途径</td></tr>
+        <tr><td><code>SSTF</code> 最短寻道优先</td><td>磁盘调度平均寻道长度通常小于 FCFS，但可能饥饿</td></tr>
+        <tr><td><code>1</code> 块</td><td>缓冲池中单缓冲一次交换的数据单位</td></tr>
+      </tbody></table>
+    <div class="tip"><b>易记</b>页 <code>4KB</code>、项 <code>4B</code>、偏移 <code>12</code> 位；inode 记「十直一一一，共十三」；信号量为负看等待数。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">4</span>计算机网络<span class="lv">★★★</span><span class="cnt">24 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>数据链路层</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>64B</code></td><td>以太网最小帧长（含首尾，不含前导码）</td></tr>
+        <tr><td><code>1500B</code></td><td>以太网 MTU，即最大数据载荷</td></tr>
+        <tr><td><code>14+4B</code></td><td>以太网帧首部 14B（含 MAC）与尾部 FCS 4B</td></tr>
+        <tr><td><code>48</code> 位</td><td>MAC 地址长度（前 24 位厂商，后 24 位序号）</td></tr>
+        <tr><td><code>51.2μs</code></td><td>10Mb/s 以太网争用期（<code>2τ</code>），即 512 比特时间</td></tr>
+        <tr><td><code>k=min(n,10)</code></td><td>二进制指数退避，重传 n 次取随机数 <code>r∈[0,2^k-1]</code></td></tr>
+        <tr><td><code>100m</code></td><td>10BASE-T 双绞线最大段长（5-4-3 规则）</td></tr>
+      </tbody></table>
+    <h3>网络层</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>20B</code></td><td>IP 首部固定长度，最长 <code>60B</code>（首部长度 4 位×4B）</td></tr>
+        <tr><td><code>32</code> 位</td><td>IPv4 地址长度（点分十进制 4 段）</td></tr>
+        <tr><td><code>128</code> 位</td><td>IPv6 地址长度（冒号十六进制 8 组）</td></tr>
+        <tr><td><code>8</code> 位</td><td>IPv4 TTL 字段长度，单位跳数</td></tr>
+        <tr><td><code>2^h-2</code></td><td>主机位 h 时可用主机数（全 0 网络号、全 1 广播）</td></tr>
+        <tr><td><code>15</code> 跳</td><td>RIP 最大跳数（16 表示不可达），每 <code>30s</code> 更新，用 UDP <code>520</code></td></tr>
+      </tbody></table>
+    <h3>传输层</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>20B</code></td><td>TCP 首部固定长度，最长 <code>60B</code>（数据偏移 4 位）</td></tr>
+        <tr><td><code>8B</code></td><td>UDP 首部长度（源端口+目的端口+长度+校验和）</td></tr>
+        <tr><td><code>16</code> 位</td><td>端口号长度，范围 <code>0~65535</code>（<code>0~1023</code> 熟知端口）</td></tr>
+        <tr><td><code>32</code> 位</td><td>TCP 序号与确认号字段长度</td></tr>
+        <tr><td><code>16</code> 位</td><td>TCP 窗口字段长度（最大 <code>65535B</code>）</td></tr>
+      </tbody></table>
+    <h3>应用层</h3>
+    <table><thead><tr><th>数字 / 结论</th><th>含义与出处</th></tr></thead>
+      <tbody>
+        <tr><td><code>53</code></td><td>DNS 端口（查询用 UDP，区域传送用 TCP）</td></tr>
+        <tr><td><code>80/443</code></td><td>HTTP / HTTPS 默认端口</td></tr>
+        <tr><td><code>21/20</code></td><td>FTP 控制连接 21，数据连接 20（主动模式）</td></tr>
+        <tr><td><code>25/110/143</code></td><td>SMTP 发送、POP3 接收、IMAP 接收端口</td></tr>
+        <tr><td><code>67/68/161</code></td><td>DHCP 服务器/客户机端口与 SNMP 端口</td></tr>
+        <tr><td><code>179</code></td><td>BGP 使用 TCP 端口 179</td></tr>
+      </tbody></table>
+    <div class="tip"><b>易记</b>首部：IP <code>20</code>、TCP <code>20</code>、UDP <code>8</code>；端口记「<code>53</code> 域名 <code>80</code> 网 <code>443</code> 安全，<code>21/20</code> 传文件，<code>25</code> 发 <code>110</code> 收」。</div>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
