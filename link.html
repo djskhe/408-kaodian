@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>跨科串联</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="link">
+  <div class="subhead"><h2>跨科串联</h2><span class="score">综合大题</span><span class="meta" data-all="9 卡">9 卡</span></div>
+<details class="chap" open>
+  <summary><span class="num">1</span>一次访存的全链路<span class="lv">★★★</span><span class="cnt">组原 + OS + 数据结构</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>组成原理</b>：CPU 送出虚拟地址 → MMU 查 TLB（相联比较）→ 未命中则按多级页表逐级访存，每级各需一次访存 → 得物理地址 → 查 Cache（组相联，比较标记）→ 未命中访主存 → 数据经数据总线回送；若页表项"存在位 = 0"，则发缺页异常。</li>
+      <li><b>操作系统</b>：缺页处理流程：合法性检查（越界/权限）→ 有空闲页框则分配，否则页面置换（OPT/FIFO/LRU/Clock，Belady 异常只出现在 FIFO）→ 脏页写回 → 从磁盘调入 → 更新页表并置 TLB 无效 → 重新执行引发缺页的那条指令。</li>
+      <li><b>数据结构</b>：页表本质是多级索引表（与 B+ 树的分层查找同构）；TLB 用全相联/组相联加散列，是"硬件实现的高速查找表"；inode 的 12 个直接块 + 一/二/三级间接块与多级页表完全同构。</li>
+      <li><b>计算机网络</b>：网卡收发数据靠 DMA 直接写主存，不占 CPU；DMA 结束发 I/O 中断，这与"缺页"不同——缺页是 CPU 内部的同步异常，中断是外部的异步事件。</li>
+    </ul>
+    <div class="key"><b>主线</b>：虚拟地址 →(TLB/页表)→ 物理地址 →(Cache)→ 主存 →(DMA/总线)→ 外设，一条链把"地址转换 + 存储层次 + I/O"串成同一件事。</div>
+    <div class="warn"><b>综合考法</b>：给 TLB 命中率 a、TLB 访问时间 t、访存时间 m、缺页率 p 求 <code>EAT</code>，二级页表时 <code>EAT = a(t+m) + (1-a)(t+2m)</code>；或问"访问一个不在内存的页面共需几次访存、几次中断"（答：至少 1 次缺页异常 + 处理后再访存）。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">2</span>数据从磁盘到屏幕<span class="lv">★★★</span><span class="cnt">组原 + OS + 数据结构</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>操作系统</b>：应用 read() → VFS 按路径逐级查目录（dentry 缓存）→ 找到 inode → 逻辑块号映射 → 页高速缓存命中则直接返回，否则发起块 I/O；磁盘调度（SSTF/SCAN/C-SCAN）决定请求的响应顺序。</li>
+      <li><b>组成原理</b>：磁盘存取时间 = 寻道时间 + 平均旋转延迟 + 传输时间，转速 r 转/分时平均旋转延迟为 <code>60/(2r)</code> 秒（7200 r/min 约 4.17 ms）；DMA 控制器成块搬运到主存，每块结束才中断一次。</li>
+      <li><b>数据结构</b>：inode 的直接块与三级间接块决定"最大文件长度"，是索引结构的经典计算题；FAT 为链式分配，随机访问差；目录可用线性表或 B+ 树。</li>
+      <li><b>组成原理</b>：主存/显存中的数据由显示控制器按刷新率（如 60 Hz）不断扫描输出，显存容量 = 分辨率 × 色深，带宽 = 分辨率 × 色深 × 刷新率。</li>
+    </ul>
+    <div class="key"><b>主线</b>：文件（逻辑块）→ inode（索引）→ 磁盘块（调度）→ DMA/总线 → 主存 → 显存 → 刷新率，一路都是"抽象层逐级落到硬件"。</div>
+    <div class="warn"><b>综合考法</b>：给 inode 结构求最大文件长度；给寻道时间、转速、传输率求读一个文件的总时间；或问"一次 read 最多引起几次磁盘 I/O、几次中断"。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">3</span>进程切换到底贵在哪<span class="lv">★★★</span><span class="cnt">组原 + OS</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>操作系统</b>：切换五步：保存现场到 PCB（通用寄存器、PC、PSW）→ 更新 PCB 状态并入相应队列 → 调度选中新进程 → 恢复其 PCB → 若跨地址空间则切换页表基址寄存器并置 TLB 无效。</li>
+      <li><b>组成原理</b>：保存/恢复上下文是纯访存操作，动辄几十条 load/store；切换后 TLB 中旧进程表项失效需重填；Cache 一般不强制清空（多为物理地址索引），但新进程工作集不同导致命中率骤降，这就是"隐性开销"。</li>
+      <li><b>数据结构</b>：PCB 用链表/队列组织（就绪队列、阻塞队列、设备等待队列），调度本质是"在队列间移动结点"，优先级调度可用堆实现 O(log n) 取最高优先。</li>
+      <li><b>操作系统</b>：用户态↔内核态切换（陷阱/中断）只保存少量寄存器，比进程切换便宜得多；同一进程内的线程切换不换页表，所以更快——选择题最爱把三者混为一谈。</li>
+    </ul>
+    <div class="key"><b>主线</b>：切换 = 一次"保存—选—恢复"的访存风暴，贵在寄存器保存 + 页表/TLB 重建 + Cache 冷启动，而不在几条跳转指令。</div>
+    <div class="warn"><b>综合考法</b>：判断"进程切换是否引起 TLB 刷新（是）、Cache 清空（否）"；比较"系统调用 vs 进程切换 vs 线程切换"的开销大小；或问"切换时哪些内容必须保存在 PCB 中"。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">4</span>"阻塞与唤醒"的三种实现<span class="lv">★★</span><span class="cnt">OS + 网络 + 组原</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>操作系统</b>：PV 操作：P 使信号量减 1，若结果 < 0 则进程自我阻塞并挂入该信号量的等待队列；V 使信号量加 1，若结果 ≤ 0 则唤醒一个等待者——"阻塞/唤醒"就是"就绪↔阻塞状态 + 队列操作"。</li>
+      <li><b>计算机网络</b>：socket 阻塞 recv()：接收缓冲无数据 → 进程睡眠；数据到达网卡 → 硬中断 → 软中断走协议栈 → 按四元组定位 socket → 数据入接收缓冲 → 唤醒等待进程。</li>
+      <li><b>组成原理</b>：唤醒的物理起点是中断：外设完成或数据到达产生中断请求，CPU 在指令周期末响应、进入中断服务程序，最终调用 wakeup。</li>
+      <li><b>计算机网络</b>：流量控制也是一种"阻塞"：发送窗口 <code>min(rwnd, cwnd)</code> 用完就必须停发等 ACK，收到零窗口通告则启动坚持计时器探测。</li>
+    </ul>
+    <div class="key"><b>主线</b>：三种"等"本质相同——把进程挂到某个队列上，再由某个事件（V 操作 / 中断 / ACK 到达）把它摘下并置为就绪。</div>
+    <div class="warn"><b>综合考法</b>：信号量取值题——n 个进程互斥时信号量取值 <code>-(n-1) ~ 1</code>，负值的绝对值 = 等待进程数；或问"socket 阻塞时进程处于什么状态、由谁唤醒"。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">5</span>局部性原理的四个落点<span class="lv">★★★</span><span class="cnt">数据结构 + 组原 + OS</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>组成原理</b>：Cache 靠时间局部性（循环反复访问同一变量）与空间局部性（数组顺序访问）工作；替换算法 LRU/随机，写策略写回/写直达，写分配/非写分配要配对理解。</li>
+      <li><b>操作系统</b>：虚拟存储把局部性变成"工作集"概念，缺页率随分配页框数增加而下降（超过工作集后收益递减）；页面大小是折中——太大浪费空间且单次缺页损失大，太小则页表膨胀、I/O 次数多。</li>
+      <li><b>数据结构</b>：B+ 树把索引压到 3~4 层，使一次查找的磁盘 I/O 从 O(log n) 次降为常数次，正是利用"磁盘块 = 结点"的局部性；散列表则牺牲局部性换 O(1) 平均查找。</li>
+      <li><b>操作系统</b>：磁盘调度的 SSTF/SCAN 与预读（readahead）同样是空间局部性的利用——顺序访问远快于随机访问。</li>
+    </ul>
+    <div class="key"><b>主线</b>：局部性是一条"赌你下次还访问附近"的假设，Cache、虚存、B+ 树、磁盘调度都是它的不同实现形式。</div>
+    <div class="warn"><b>综合考法</b>：给访问序列算直接映射/组相联 + LRU 的命中率；给页面引用串算 FIFO 与 LRU 缺页次数并指出 Belady 异常；比较 B 树与 B+ 树的 I/O 次数与范围查询效率。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">6</span>缓冲区与缓冲池<span class="lv">★★</span><span class="cnt">OS + 组原 + 网络</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>操作系统</b>：单缓冲处理一块的时间 <code>max(C, T) + M</code>，双缓冲为 <code>max(C + M, T)</code>，可让 CPU 与 I/O 并行；缓冲池用 emq/inq 队列管理空闲、输入、输出缓冲，是标准生产者—消费者问题。</li>
+      <li><b>组成原理</b>：Cache 是硬件缓冲（速度匹配），写缓冲（store buffer）让 CPU 不必等主存；DMA 也有自己的数据缓冲寄存器，中断/通道/DMA 三种 I/O 方式的演进本质都是"加缓冲、减 CPU 干预"。</li>
+      <li><b>计算机网络</b>：TCP 有发送缓冲与接收缓冲，滑动窗口 = 已发未确认 + 可发送；发送窗口 <code>min(rwnd, cwnd)</code>，接收窗口为 0 时启动坚持计时器，避免死锁。</li>
+      <li><b>操作系统</b>：设备与 CPU 速度不匹配处必有缓冲，SPOOLing 技术用磁盘把独占设备改造成共享设备（假脱机），是缓冲思想的最大化。</li>
+    </ul>
+    <div class="key"><b>主线</b>：凡是速度不匹配的两级之间就插一个缓冲区——OS 用软件缓冲池，组原用 Cache/DMA 缓冲，网络用滑动窗口缓冲。</div>
+    <div class="warn"><b>综合考法</b>：给 CPU 处理时间 C、I/O 时间 T、传送时间 M，算单/双缓冲处理 n 块的总时间；或算"窗口 W、往返时延 RTT 时的最大吞吐率 <code>W/RTT</code>"。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">7</span>分层与抽象<span class="lv">★★</span><span class="cnt">四科通用</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>组成原理</b>：存储层次：寄存器 → Cache(L1/L2/L3) → 主存 → 磁盘 → 磁带，越往下越慢越便宜越大，工作机制就是"上层是下层的缓存"。</li>
+      <li><b>操作系统</b>：层次式/微内核/模块化结构；虚存把地址空间抽象成连续数组，文件系统把块设备抽象成文件，设备驱动屏蔽硬件差异，VFS 屏蔽不同文件系统差异。</li>
+      <li><b>计算机网络</b>：OSI 七层 / TCP-IP 四层，每层只用自己的接口、封装自己的首部，对上层透明；对等层之间靠协议通信，相邻层之间靠服务原语。</li>
+      <li><b>数据结构</b>：抽象数据类型 ADT = 逻辑结构 + 操作，栈/队列/树/图只是"接口"，底层可顺序可链式——这正是抽象分层的编程体现。</li>
+    </ul>
+    <div class="key"><b>主线</b>：分层的唯一目的是"隔离变化"——每层只依赖下一层接口，于是换 Cache 算法不影响程序、换网卡不影响 TCP。</div>
+    <div class="warn"><b>综合考法</b>：判断某功能属于哪一层（差错控制在数据链路层与传输层都有、路由在网络层、端到端流量控制在传输层）；或问"封装/解封装时首部添加与剥离的顺序"。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">8</span>一次网络请求的完整路径<span class="lv">★★★</span><span class="cnt">网络 + OS + 组原</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>计算机网络</b>：输入域名 → DNS 解析（本地缓存 → 递归查询本地服务器 → 迭代查询根/顶级/权威）→ 得 IP → 查路由表并用 ARP 得网关 MAC → TCP 三次握手（SYN / SYN+ACK / ACK）→ 发出 HTTP 请求。</li>
+      <li><b>计算机网络</b>：数据下传：TCP 分段（MSS）→ IP 加首部，超过 MTU 则分片（片偏移以 8 字节为单位）→ 以太网帧（前导码 + 目的/源 MAC + 类型 + FCS）；交换机按 MAC 表自学习转发，路由器按最长前缀匹配查表、TTL 减 1 并重算首部校验和。</li>
+      <li><b>操作系统</b>：服务端网卡收帧 → DMA 入主存 → 硬中断 + 软中断 → 协议栈逐层解封装 → 按四元组找到监听 socket → 三次握手完成放入全连接队列 → 唤醒阻塞在 accept() 的进程 → 调度器选中它执行。</li>
+      <li><b>组成原理</b>：全过程快慢取决于中断响应、DMA 带宽与总线；零拷贝（sendfile）省掉内核态与用户态之间的两次数据拷贝，是"减少访存"的典型优化。</li>
+    </ul>
+    <div class="key"><b>主线</b>：一条请求走完"域名→IP→MAC→帧→路由→socket→进程"七道关，每一关都能单独出一道大题。</div>
+    <div class="warn"><b>综合考法</b>：给 MTU = 1500 B、IP 首部 20 B、TCP 首部 20 B，问 MSS 与分片数、各片片偏移与 MF 标志；或问"从输入 URL 到页面显示各层发生了什么"（经典 10 分大题）。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">9</span>时间与性能的统一算法<span class="lv">★★★</span><span class="cnt">四科通用</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>组成原理</b>：<code>CPU 时间 = 指令数 × CPI / 主频</code>，<code>MIPS = 主频(MHz) / CPI</code>；k 段流水线执行 n 条指令 <code>T = (k + n - 1) × 时钟周期</code>，加速比 <code>S = k·n / (k + n - 1)</code>，n 趋于无穷时趋于 k。</li>
+      <li><b>组成原理</b>：Cache 平均访问时间 <code>Ta = h·Tc + (1-h)·Tm</code>（若命中时也要先访问 Cache 则写 <code>Tc + (1-h)·Tm</code>）；磁盘存取时间 = 寻道 + 平均旋转延迟 + 传输时间。</li>
+      <li><b>操作系统</b>：有效访问时间 <code>EAT = (1-p)·访存时间 + p·缺页处理时间</code>；缺页率与分配页框数成反比，置换算法决定同一引用串下的缺页次数。</li>
+      <li><b>计算机网络</b>：总时延 = 发送 + 传播 + 处理 + 排队，<code>发送时延 = 数据长度 / 带宽</code>，<code>传播时延 = 距离 / 传播速率</code>；停止等待协议信道利用率 <code>U = Td / (Td + RTT + Ta)</code>。</li>
+    </ul>
+    <div class="key"><b>主线</b>：四科的性能公式形状完全一致——都是"分段求和"或"按概率加权"，把每段时间拆开、乘上发生概率再相加；中断与异常的统一理解同理：都是"打断—保存—处理—返回"的同一套机制，区别只在同步/异步、内部/外部。</div>
+    <div class="warn"><b>综合考法</b>：最爱跨科拼装，例如"CPI = 2、Cache 命中率 95%、缺页率 1e-4、主频 1 GHz，求平均每条指令的执行时间"——本质是加权平均，别被科目外壳吓住。</div>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
