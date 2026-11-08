@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>避坑清单</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="pit">
+  <div class="subhead"><h2>避坑清单</h2><span class="score">错题复盘</span><span class="meta" data-all="4 科">4 科</span></div>
+<details class="chap" open>
+  <summary><span class="num">1</span>数据结构<span class="lv">★★★</span><span class="cnt">22 坑</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>复杂度与线性表</h3>
+    <ul>
+      <li><b>O(1) 的含义</b>：把 <code>O(1)</code> 当成"只执行 1 次" ✗ → 指执行次数与 <code>n</code> 无关；<code>O</code> 只是上界，说"复杂度为 <code>O(n²)</code>"并不排除实际是 <code>O(n)</code>，问最坏/最好要看清。</li>
+      <li><b>循环嵌套与并列</b>：两段并列循环把次数相乘 ✗ → 并列相加取大者，只有真正嵌套才相乘。</li>
+      <li><b>位序与下标</b>：位序从 1 开始、数组下标从 0 开始，循环边界和移动个数都差 1 → 第 <code>i</code> 个元素下标是 <code>i-1</code>，插入位置 <code>1..n+1</code> 共 <code>n+1</code> 个。</li>
+      <li><b>顺序表平均移动次数</b>：插入平均移动 <code>n/2</code> 次、删除平均移动 <code>(n-1)/2</code> 次，不要一律记成 <code>n/2</code>；<code>n</code> 很大时都记 <code>≈n/2</code>，但选择题给具体 <code>n</code> 必须精确算。</li>
+      <li><b>头结点与判空</b>：把表长算上头结点 ✗ → 头结点不计入表长，判空看 <code>head-&gt;next==NULL</code>，循环单链表判空看 <code>head-&gt;next==head</code>。</li>
+      <li><b>链表删"给定结点"</b>：直接改指针冒充 <code>O(1)</code> ✗ → 单链表必须先从 <code>head</code> 找前驱，是 <code>O(n)</code>；删除后要 <code>free</code>；链表不能折半查找，凡说"链表可二分"一律错。</li>
+      <li><b>循环队列判满</b>：判满写 <code>front==rear</code> 或容量记 <code>MaxSize</code> ✗ → 牺牲单元法最多存 <code>MaxSize-1</code> 个，判满 <code>front==(rear+1)%MaxSize</code>，元素个数 <code>(rear-front+MaxSize)%MaxSize</code>；共享栈是栈顶指针"相遇"即满，不是相等。</li>
+    </ul>
+    <h3>栈、队列与串</h3>
+    <ul>
+      <li><b>中缀转后缀</b>：括号优先级记反 ✗ → 左括号"栈内最低、栈外最高"，同级运算符按左结合先弹出；后缀求值先出栈的是右操作数，减法和除法极易算反。</li>
+      <li><b>KMP 的 next 数组</b>：不看下标起点就套 <code>next[1]=0</code> ✗ → 该式是"位序从 1 起"的教材约定；若数组下标从 0 起则 <code>next[0]=-1</code>、整体左移一位，数值全变，先看清起点否则整题作废。</li>
+      <li><b>合法出栈序列数</b>：答成 <code>n!</code> ✗ → <code>n</code> 个元素进出栈序列数为卡特兰数 <code>C(2n,n)/(n+1)</code>，<code>n=3</code> 时只有 5 种，判断题可用"某元素之后比它小的元素必须逆序"快速排除。</li>
+    </ul>
+    <h3>树与二叉树</h3>
+    <ul>
+      <li><b>结点数公式混用</b>：把 <code>n₀=n₂+1</code> 用在 <code>m</code> 叉树 ✗ → 它只对二叉树恒成立，度为 <code>m</code> 的树用 <code>n₀=1+Σ(i-1)nᵢ</code>；"高度 <code>h</code> 最多 <code>2^h-1</code> 个结点"同理，<code>m</code> 叉树是 <code>(m^h-1)/(m-1)</code>。</li>
+      <li><b>序列还原</b>：先序 + 后序去唯一确定二叉树 ✗ → 单孩子分支无法定左右，只有"先序+中序"或"后序+中序"才唯一，缺中序的题答"不唯一"。</li>
+      <li><b>AVL 调整</b>：插入后一路向上逐个旋转 ✗ → 只调整自底向上遇到的第一个失衡结点所在的最小不平衡子树，一次旋转后整树即恢复平衡。</li>
+    </ul>
+    <h3>图</h3>
+    <ul>
+      <li><b>Prim 与 Dijkstra</b>：把两者当同一个算法 ✗ → Prim 的 <code>lowcost</code> 是"到已选集合的最短边权"，Dijkstra 的 <code>dist</code> 是"从源点出发的累计路径长"，且 Dijkstra 一旦入 <code>S</code> 不再修改。</li>
+      <li><b>唯一性判断</b>：认为 MST 唯一 ✗ → 权值之和唯一但树形可能不唯一；BFS/DFS 序列、拓扑序列也不唯一，题面未指定存储结构时按顶点编号升序作答并注明前提。</li>
+      <li><b>度与入度出度</b>：邻接矩阵第 <code>i</code> 行之和当度用（有向图）✗ → 有向图行和是出度、列和是入度；无向图邻接表算出度容易、数入度必须建逆邻接表；DFS 空间 <code>O(h)</code>、BFS 空间 <code>O(n)</code>。</li>
+    </ul>
+    <h3>查找</h3>
+    <ul>
+      <li><b>折半查找判定树</b>：说它是完全二叉树 ✗ → 是平衡二叉树；失败结点共 <code>n+1</code> 个，失败 ASL 的分母是 <code>n+1</code> 而非 <code>n</code>。</li>
+      <li><b>散列 ASL</b>：套公式不算比较次数 ✗ → 必须按题目指定的探测方式逐个模拟，成功 ASL 分母是元素数；开放定址删除要打删除标记（直接置空会截断探测链）。</li>
+      <li><b>B 树与 B+ 树</b>：认为插关键字就长高 ✗ → 只有根分裂才使树高 <code>+1</code>，删除只有"根只剩一个关键字且子女合并"才使树高 <code>-1</code>；<code>m</code> 阶 B 树非根结点关键字数 <code>⌈m/2⌉-1 ~ m-1</code>。</li>
+    </ul>
+    <h3>排序</h3>
+    <ul>
+      <li><b>快排最坏情况</b>：说随机序列最坏 ✗ → 最坏是基本有序或逆序（退化为 <code>O(n²)</code>）；一趟划分只确定 1 个元素的最终位置，不能据此判断整个序列已排好。</li>
+      <li><b>稳定性与空间</b>：把快排、堆排、希尔、简单选择当稳定 ✗ → 这四个都不稳定，稳定的是插入、冒泡、归并、基数；基数排序空间是 <code>O(r)</code>，且必须稳定才能保证 LSD 正确。</li>
+      <li><b>建堆代价</b>：认为建堆是 <code>O(nlog n)</code> ✗ → 自底向上建堆是 <code>O(n)</code>，堆排序额外空间 <code>O(1)</code>，插入新元素放在末尾再上滤。</li>
+    </ul>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">2</span>计算机组成原理<span class="lv">★★★</span><span class="cnt">22 坑</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>数据表示与运算</h3>
+    <ul>
+      <li><b>容量计算</b>：把 MAR 位数当容量 ✗ → <code>MAR</code> 位数决定单元数 <code>2^n</code>、<code>MDR</code> 位数决定存储字长，两者相乘才是总容量；按字编址与按字节编址的单元数差"字长/8"倍，地址线根数随之改变。</li>
+      <li><b>主频与 MIPS</b>：认为主频高就快 ✗ → <code>CPI</code> 与 <code>IC</code> 可能同时变差；MIPS 只能在同一指令集内比较，且反映不了浮点与 I/O，评价整机应用执行时间或 SPEC。</li>
+      <li><b>浮点对阶</b>：大阶向小阶看齐 ✗ → 小阶向大阶看齐，尾数右移丢低位；方向写反尾数左移会溢出；溢出只看阶码，阶码下溢按机器零处理不算溢出。</li>
+      <li><b>补码溢出</b>：把符号位进位当溢出 ✗ → 补码加法最高位进位被丢弃不等于溢出，溢出判据是"同号相加结果变号"或 <code>V=C_s⊕C_1</code>。</li>
+      <li><b>大端小端</b>：按内存图从左到右当数值高位 ✗ → 低地址存高字节是大端、存低字节是小端，x86 是小端；同一块内存按字节读与按字读的拼接顺序相反。</li>
+    </ul>
+    <h3>存储与 Cache</h3>
+    <ul>
+      <li><b>透明性归属</b>：把页面替换当成硬件做 ✗ → Cache 的映射、替换、写策略全由硬件完成、对程序员透明；虚存的页面替换与缺页处理由操作系统完成。</li>
+      <li><b>直接映射取模</b>：用字节地址取模求行号 ✗ → 行号 = 主存块号 <code>mod</code> 行数；块内地址位数 <code>= log₂(块大小)</code>，标记位数 = 主存地址位 − 行号位 − 块内位。</li>
+      <li><b>平均访问时间</b>：把"同时访问"和"缺失才访存"两个公式混用 ✗ → 后者会多算一次 <code>t_c</code>；缺失损失 = 块大小/主存带宽，别漏乘。</li>
+      <li><b>写策略配对</b>：写回配非写分配 ✗ → 写直达 + 非写分配、写回 + 写分配；写回法每行需脏位，写直达不必。</li>
+      <li><b>低位交叉编址</b>：认为交叉越多越快 ✗ → <code>T = T_m + (m-1)τ</code> 只在 <code>m ≥ T_m/τ</code> 时成立；高位交叉只是扩大容量，不提高带宽。</li>
+      <li><b>TLB 与 Cache</b>：认为 TLB 命中就有数据 ✗ → TLB 只管地址转换、Cache 才管数据；命中率题里 TLB 命中与未命中都要计 TLB 访问时间。</li>
+    </ul>
+    <h3>指令系统</h3>
+    <ul>
+      <li><b>基址与变址</b>：两者混答 ✗ → 基址寄存器 <code>BR</code> 由操作系统设定、执行中不变而 <code>A</code> 可变；变址寄存器 <code>IX</code> 由用户改变而 <code>A</code> 不变；计算式相同、用途相反。</li>
+      <li><b>lea 与 cmp</b>：把 <code>lea</code> 当访存指令 ✗ → 它只算地址不访问内存，常被编译器做快速算术；<code>cmp</code> 与 <code>sub</code> 唯一区别是不写回目的操作数，<code>test</code> 与 <code>and</code> 同理。</li>
+      <li><b>相对寻址</b>：偏移相对本条指令地址算 ✗ → 相对的是"下一条指令地址"（取指后 <code>PC</code> 已自增），跳转目标 = <code>PC + A</code>。</li>
+    </ul>
+    <h3>CPU 与流水线</h3>
+    <ul>
+      <li><b>流水线收益</b>：认为单条指令变快 ✗ → 提高吞吐率、缩短平均执行时间，单条指令时间不变甚至变长；加速比上限是流水段数 <code>k</code>，受瓶颈段制约。</li>
+      <li><b>微程序与中断隐指令</b>：把微程序当主存中的程序 ✗ → 微程序存放在控制存储器 <code>CM</code>（ROM）；中断隐指令由硬件完成，只保存 <code>PC</code> 与 <code>PSW</code>，通用寄存器由中断服务程序保存。</li>
+      <li><b>断点与响应时机</b>：认为断点保存本条指令地址 ✗ → 中断在一条指令执行结束后响应，保存的是下一条指令地址；取指周期一定访存。</li>
+      <li><b>数据冒险</b>：认为转发能解决一切 ✗ → 转发能解 RAW，但 load-use 必须停顿 1 拍；结构冒险是硬件资源冲突，与数据无关。</li>
+    </ul>
+    <h3>总线与 I/O</h3>
+    <ul>
+      <li><b>总线方向与带宽</b>：地址总线当双向 ✗ → 地址单向、数据双向；<code>n</code> 根地址线只给 <code>2^n</code> 个可寻址单元，容量还要乘存储字长；带宽单位 <code>B/s</code> 与 <code>b/s</code> 差 8 倍。</li>
+      <li><b>链式查询</b>：认为离控制器越远优先级越高 ✗ → 越近越高，且某一级故障会使其后所有设备都得不到总线；异步定时中"半互锁"是不等请求撤销，别与全互锁混。</li>
+      <li><b>编址方式</b>：两种编址混说 ✗ → 统一编址下端口就是主存单元、用访存指令；独立编址必须用 I/O 指令，地址位数与译码方式都不同。</li>
+      <li><b>中断与异常</b>：把缺页当外中断 ✗ → 中断是外中断、异常是内中断；缺页与除零是 <code>fault</code> 而非 <code>abort</code>；<code>trap</code> 是非特权指令，由用户态执行。</li>
+    </ul>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">3</span>操作系统<span class="lv">★★★</span><span class="cnt">22 坑</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>进程与调度</h3>
+    <ul>
+      <li><b>库函数与系统调用</b>：把库函数当系统调用 ✗ → 库函数可能完全在用户态运行，只有系统调用才陷入内核；态切换必须成对计（进一次必有一次出），只数单向会少一半。</li>
+      <li><b>状态转换</b>：画"就绪→阻塞""阻塞→运行" ✗ → 阻塞是进程主动行为、唤醒是被动行为，这两个转换都不存在，状态图题先查这两条。</li>
+      <li><b>三级调度</b>：把中级调度当进程调度 ✗ → 中级调度是内存调度（对换），高级调度面向作业且频率最低，低级调度频率最高。</li>
+      <li><b>调度指标</b>：把周转时间算成运行时间 ✗ → 周转 = 完成 − 到达（含等待与阻塞），带权周转 = 周转/运行；响应比 = (等待+要求)/要求；SJF 平均等待最短但可能饥饿。</li>
+    </ul>
+    <h3>同步与死锁</h3>
+    <ul>
+      <li><b>P 操作次序</b>：先互斥后同步 ✗ → 实现互斥的 P 必须放在实现同步的 P 之后，顺序反了会互相等待而死锁。</li>
+      <li><b>让权等待</b>：把 Peterson、TS、Swap 当满足让权等待 ✗ → 这三种都是忙等，只有记录型信号量与管程满足。</li>
+      <li><b>信号量初值</b>：同步信号量初值写 0 或 1 随手填 ✗ → 互斥信号量初值 1，同步信号量初值 = 初始可用资源数（缓冲空位数或初始产品数），填错整题作废。</li>
+      <li><b>不安全与死锁</b>：认为不安全就是死锁 ✗ → 不安全状态可能仍安全推进，死锁才一定不安全；有环不一定死锁，只有单实例资源时"有环即死锁"。</li>
+      <li><b>四个必要条件</b>：把"避免"与"预防"混为一谈 ✗ → 预防是破坏四个必要条件之一（静态策略），避免是银行家算法动态判断安全，检测靠资源分配图化简。</li>
+    </ul>
+    <h3>内存与置换</h3>
+    <ul>
+      <li><b>虚拟内存容量</b>：答成内存 + 外存之和 ✗ → 由逻辑地址空间与外存容量共同决定，二者取小（还要看实际配置）。</li>
+      <li><b>Belady 与碎片</b>：认为 LRU 也会有 Belady 异常 ✗ → 该异常只出现在 FIFO 等非栈式算法；分页只有内部碎片、分段只有外部碎片。</li>
+      <li><b>多级页表访存次数</b>：漏算页表级数 ✗ → <code>n</code> 级页表无快表需访存 <code>n+1</code> 次（含最后取数据），有 TLB 命中则 1 次。</li>
+      <li><b>页内偏移位数</b>：把偏移位数与页表级数挂钩 ✗ → 页内偏移位数 <code>= log₂(页大小)</code>，与级数无关；每级页表项数 <code>= 2^(该级索引位数)</code>。</li>
+      <li><b>缺页处理</b>：认为缺页是外中断 ✗ → 缺页是内中断（异常），处理时若被换出页被修改过要写回（脏位），否则可直接覆盖。</li>
+    </ul>
+    <h3>文件与磁盘</h3>
+    <ul>
+      <li><b>文件物理结构</b>：三种分配张冠李戴 ✗ → 隐式链接只能顺序访问，<code>FAT</code> 是显式链接、可随机访问，连续分配支持随机但有外部碎片。</li>
+      <li><b>位示图与成组链接</b>：公式不管编号起点 ✗ → 位示图公式随"编号从 0 还是 1 开始"变化，题面未说明按 0 起算；成组链接的额外 I/O 只发生在取到组首块那一次。</li>
+      <li><b>混合索引最大文件</b>：只算直接块 ✗ → 直接、一级、二级、三级间接各自的块数分别乘块大小再相加，还要减去索引块本身占用的指针空间。</li>
+      <li><b>硬链接与软链接</b>：两者混说 ✗ → 硬链接是同一索引结点的多个目录项、计数值加 1，删除任一不影响数据；软链接是独立文件，删除原文件即失效。</li>
+      <li><b>磁盘调度</b>：把 SCAN 与 LOOK 混同 ✗ → SCAN 走到端点、LOOK 到最远请求；SSTF 平均寻道最短但可能饥饿；调度算法只缩短寻道时间，不改善旋转延迟与传输时间。</li>
+      <li><b>访问时间</b>：漏算旋转延迟 ✗ → 磁盘访问时间 = 寻道 + 旋转延迟（平均半圈 <code>1/(2r)</code>）+ 传输时间；格式化容量小于非格式化容量。</li>
+    </ul>
+    <h3>I/O 管理</h3>
+    <ul>
+      <li><b>CPU 干预频率</b>：把通道与 DMA 的干预程度写反 ✗ → 由高到低是程序查询、中断、DMA、通道；中断以字为单位，DMA 与通道以数据块为单位。</li>
+      <li><b>DMA 数据通路</b>：认为 DMA 完全不用 CPU ✗ → 数据不经 CPU 寄存器，但块首块尾仍需 CPU 干预（预处理与后处理）。</li>
+    </ul>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">4</span>计算机网络<span class="lv">★★★</span><span class="cnt">20 坑</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>体系结构与物理层</h3>
+    <ul>
+      <li><b>协议与服务</b>：把协议说成上下层之间的约定 ✗ → 协议是"水平"的（对等层之间），服务是"垂直"的（上下层之间）；TCP/IP 把会话层、表示层并入应用层，故无此两层。</li>
+      <li><b>时延构成</b>：认为增大带宽能减小传播时延 ✗ → 发送时延 = 数据量/带宽、传播时延 = 距离/电磁波速度，彼此独立；求总时延别漏处理时延与排队时延；时延带宽积单位是比特不是字节。</li>
+      <li><b>奈氏与香农</b>：把奈氏准则的 <code>V</code> 当比特数 ✗ → <code>V</code> 是码元的离散状态数，<code>C = 2W log₂V</code>；香农用于有噪声信道 <code>C = W log₂(1+S/N)</code>，信噪比给的是 dB 必须先换成比值。</li>
+      <li><b>带宽的含义</b>：物理层"带宽"当比特率用 ✗ → 物理层指频带宽度（Hz），链路层"带宽"才是 <code>b/s</code>；曼彻斯特编码效率只有 50%。</li>
+    </ul>
+    <h3>链路层</h3>
+    <ul>
+      <li><b>冲突域与广播域</b>：认为集线器能隔离冲突域 ✗ → 集线器两者都不隔离；隔离冲突域靠交换机/网桥，隔离广播域靠路由器或 VLAN；多台集线器级联冲突域仍为 1。</li>
+      <li><b>最小帧长</b>：把前导码算进 64 B ✗ → 以太网最小帧长 <code>64 B</code> 从目的 MAC 算到 FCS，不含前导码 <code>8 B</code>，有效载荷最小 <code>46 B</code>。</li>
+      <li><b>窗口上限</b>：GBN 与 SR 窗口公式互换 ✗ → <code>n</code> 位序号时 GBN 窗口 <code>2^n-1</code>、SR 窗口 <code>2^(n-1)</code>，写反会收错帧。</li>
+      <li><b>争用期</b>：把争用期当发送时延 ✗ → 是往返传播时延 <code>2τ</code>，与发送时延无关；只有"发送时延 ≥ 2τ"才能在发送期间检测到冲突；全双工以太网无冲突，不再用 CSMA/CD。</li>
+    </ul>
+    <h3>网络层</h3>
+    <ul>
+      <li><b>路由协议封装</b>：三者端口/协议号混记 ✗ → RIP 用 UDP <code>520</code>、BGP 用 TCP <code>179</code>、OSPF 直接封装在 IP（协议号 <code>89</code>）；ARP 请求广播、应答单播，且不属于网络层。</li>
+      <li><b>最长前缀匹配</b>：认为"先到先得" ✗ → 按前缀最长匹配；默认路由 <code>0.0.0.0/0</code> 前缀最短，只在无其他匹配时才用；NAT 改写 IP 与端口号，不改 MAC。</li>
+      <li><b>子网可用主机数</b>：答成 <code>2^主机位</code> ✗ → 要减 2（去掉全 0 网络地址与全 1 广播地址）；CIDR 聚合取最长公共前缀。</li>
+      <li><b>IP 分片</b>：片偏移按字节算 ✗ → 片偏移以 <code>8 B</code> 为单位，除最后一片外每片数据长度必须是 8 的倍数；总长度字段含首部，<code>MF/DF</code> 含义别混。</li>
+      <li><b>首部长度单位</b>：把首部长度字段当字节数 ✗ → IP 与 TCP 的首部长度字段都以 <code>4 B</code> 为单位（IP 最小 <code>5</code> 即 <code>20 B</code>）；UDP 长度字段含 <code>8 B</code> 首部。</li>
+    </ul>
+    <h3>传输层</h3>
+    <ul>
+      <li><b>流量控制与拥塞控制</b>：把两者混为一谈 ✗ → 流量控制面向接收方缓存 <code>rwnd</code>，拥塞控制面向网络 <code>cwnd</code>，实际发送窗口取两者较小值；零窗口不等于连接关闭。</li>
+      <li><b>TIME_WAIT</b>：认为双方都会进入 ✗ → 只有主动关闭方等 <code>2MSL</code>，被动方停在 <code>CLOSE_WAIT</code>（等应用关闭）。</li>
+      <li><b>序号与确认号</b>：把确认号当"已收到的最后一个字节" ✗ → 确认号是期望收到的下一个字节序号（<code>ACK=n</code> 表示 <code>n-1</code> 及以前已收到）；<code>SYN</code> 与 <code>FIN</code> 各消耗一个序号。</li>
+      <li><b>拥塞窗口调整</b>：两种丢包处理写反 ✗ → 超时：<code>ssthresh=cwnd/2</code>、<code>cwnd=1</code> 重新慢开始；收到 3 个重复 ACK：<code>ssthresh=cwnd/2</code>、<code>cwnd=ssthresh</code> 快恢复。</li>
+      <li><b>UDP 首部</b>：认为 UDP 校验和必选 ✗ → UDP 首部固定 <code>8 B</code>，校验和可选（全 0 表示未使用），TCP 校验和必选；伪首部只参与计算、不传输。</li>
+    </ul>
+    <h3>应用层</h3>
+    <ul>
+      <li><b>邮件与 DNS</b>：用 SMTP 收信 ✗ → SMTP 只负责发送，收信必须用 POP3/IMAP；DNS 默认 UDP，但区域传送或响应超过 <code>512 B</code> 时改用 TCP。</li>
+      <li><b>HTTP 状态</b>：把 304 当错误码 ✗ → HTTP 始终无状态，Cookie/Session 只是在其上"补"状态；304 表示可用本地缓存、不是错误。</li>
+    </ul>
+  </div>
+</details>
+</section>
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+</section>
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
