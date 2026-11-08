@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>解题技巧</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="skill">
+  <div class="subhead"><h2>解题技巧</h2><span class="score">看到题就出招</span><span class="meta" data-all="5 条">5 条</span></div>
+<details class="chap" open>
+  <summary><span class="num">1</span>通用应试技巧<span class="lv">★★★</span><span class="cnt">10 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>时间与顺序</h3>
+    <ul>
+      <li><b>80 秒定律</b>：选择题 40 题 80 分，平均每题 80 秒；超过 2 分钟没思路先标记跳过，回头再算，一道 2 分题不值得吃掉一道 15 分大题的时间。<em>口诀：先保会做的，再抢能做的。</em></li>
+      <li><b>大题做题顺序</b>：开考先扫一遍大题，按“网络 → OS → 数据结构应用题 → 组原 → 数据结构算法设计”做：前两类套路固定，10 分钟就能拿满；算法设计题 15 分常常只能写出思想，放最后。<em>口诀：先吃软柿子，硬骨头留到最后啃。</em></li>
+      <li><b>时间分配表</b>：180 分钟切成六块——选择 55~60、数据结构 30、组原 35、OS 30、网络 25、检查 10；哪块超时立刻停手进入下一块，宁可空一道小问，也别让最后一题整页空白。<em>口诀：六块时间钉死，超时就往下走。</em></li>
+    </ul>
+    <h3>选择题套路</h3>
+    <ul>
+      <li><b>排除法三条优先级</b>：看到“一定”“只能”“唯一”“必然”这类绝对化表述先怀疑（“链式存储一定比顺序存储快”错）；量纲或单位不对直接排除（问 KB 选项给 Kb）；数值明显超范围排除（8 位补码出现 +200、命中率写成 120%）。<em>口诀：绝对话先划掉，单位错直接扔，数太大必有鬼。</em></li>
+      <li><b>计算题“三看”</b>：凡是算传输速率、带宽、时间的题，先三看：看单位 B 还是 b（1B=8b，差 8 倍）、看是否含首部（20B IP 头 + 20B TCP 头 = 40B 开销）、看问的是时间、次数还是大小（问“次数”别答“字节数”）。<em>口诀：先看单位再看头，最后看它问什么。</em></li>
+      <li><b>蒙题策略</b>：完全没思路时，数值题倾向中间值（选项 8/16/32/64 选 16 或 32，命题人爱设“看起来合理”的中档数）；概念题选限定条件最严密的那一个（带“最坏情况下”“平均”“当且仅当”的往往是标准答案）。<em>口诀：数字挑中间，概念挑条件写得最全的。</em></li>
+    </ul>
+    <h3>大题得分</h3>
+    <ul>
+      <li><b>大题三步写法</b>：每道计算大题按“写公式 → 代入数值 → 结果带单位”三行落地，阅卷按步给分，算错了公式分照样拿。例：平均访问时间 = H×tc + (1−H)×tm = 0.95×2ns + 0.05×50ns = 4.4ns。<em>口诀：公式先落地，数字后进去，单位不能丢。</em></li>
+      <li><b>画图得分</b>：遇到 Cache 映射、页面置换、TCP 窗口、PV 操作、流水线时空图，先画再算：Cache 画“标记 | 组号 | 块内地址”三段、置换画“访问序列 × 物理块”表格、TCP 画“发送窗口 / 拥塞窗口”两列推演，图画对就有步骤分。<em>口诀：算不清就画表，表一画分就来。</em></li>
+    </ul>
+    <h3>检查清单</h3>
+    <ul>
+      <li><b>检查清单五问</b>：收卷前 10 分钟只查五件事——单位换了吗（B↔b、ms↔s）、位数算对了吗（2^10=1024 不是 1000）、下标从 0 还是 1、问的是“最多”还是“最少”（哈夫曼、装填因子）、有没有漏答第二问（“并说明理由”）。<em>口诀：单位、位数、下标、最值、第二问。</em></li>
+      <li><b>心态定位</b>：408 能不能过线主要看选择题（80 分拿到 60+ 基本稳），能不能上 110 看大题；一道题抠 20 分钟是最大失分点，写个“思想 + 复杂度”拿 3 分就走。<em>口诀：选择保命，大题加分，别跟一道题死磕。</em></li>
+    </ul>
+    <div class="key"><b>考前提醒</b>：最后两周每天限时一套选择（40 题 ≤ 55 分钟），把“跳题标记”练成肌肉记忆；复盘只看“公式写错”和“单位看错”两类错，其余别耗时间。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">2</span>数据结构技巧<span class="lv">★★★</span><span class="cnt">13 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>树与二叉树</h3>
+    <ul>
+      <li><b>树的性质代入法</b>：看到“度为 2 的结点数”“叶子数”“结点总数”，立刻列 <code>n0=n2+1</code> 和 <code>n=n0+n1+n2</code> 两个方程联立。例：叶子 20 个、度为 1 的 10 个 → n2=19，n=49。<em>口诀：叶子比二度多一个，总数一加就出来。</em></li>
+      <li><b>完全二叉树编号</b>：看到“第 i 个结点”“树高”“叶子个数”，直接用编号公式：父 <code>⌊i/2⌋</code>、左孩子 <code>2i</code>、右孩子 <code>2i+1</code>，高度 <code>⌊log₂n⌋+1</code>，叶子数 <code>⌈n/2⌉</code>。例：n=1000 → 高度 10、叶子 500 个。<em>口诀：父除二、左乘二，高度取整再加一。</em></li>
+      <li><b>遍历还原二叉树</b>：看到“先序 + 中序求后序”，先序第一个（后序最后一个）是根，拿根去中序里切成左右两段，递归切到底；只有先序 + 后序不能唯一确定（分不清单孩子的左右）。<em>口诀：先序后序定根，中序切刀，切到只剩一个。</em></li>
+      <li><b>哈夫曼 WPL 速算</b>：看到“求 WPL / 平均码长”，别逐个叶子数路径长度，直接把构造过程中所有非叶结点的权值相加。例：权 1,2,3,4,5 → 新结点 3,6,9,15 → WPL=3+6+9+15=33。<em>口诀：WPL 就是新结点权值的总和。</em></li>
+      <li><b>线索二叉树</b>：看到“线索化后找前驱/后继”，记“左空指前驱、右空指后继”；中序线索化后找中序后继：有右孩子 → 右子树最左下结点，无右孩子 → 顺着右线索走，不用栈就能遍历。<em>口诀：左空指前、右空指后，中序线索不用栈。</em></li>
+    </ul>
+    <h3>图</h3>
+    <ul>
+      <li><b>图算法选型</b>：看到“稠密图最小生成树”用 Prim + 邻接矩阵 <code>O(n²)</code>；看到“稀疏图、边少”用 Kruskal + 边表 <code>O(ElogE)</code>；看到“单源最短路且权非负”用 Dijkstra，看到“各顶点对最短路”用 Floyd <code>O(n³)</code>。<em>口诀：稠密 Prim 稀 Kruskal，单源 Dijkstra 全源 Floyd。</em></li>
+      <li><b>Dijkstra 与 Floyd 陷阱</b>：看到带负权边的单源最短路，Dijkstra 失效（要换 Bellman-Ford）；Floyd 三重循环必须把 k 放最外层，写成 i 最外层就会漏掉中间点。<em>口诀：k 在最外层，负权绕道走。</em></li>
+      <li><b>拓扑排序判环</b>：看到“能否拓扑排序 / 图中是否有环”，先取入度为 0 的顶点入队，出队时把邻接点入度减 1；输出顶点数少于 n 就说明有环。<em>口诀：出队不满 n，图里必有环。</em></li>
+    </ul>
+    <h3>查找与排序</h3>
+    <ul>
+      <li><b>KMP 手算 next</b>：看到“求 next 数组 / 失配后移动几位”，next[j] = 前 j−1 个字符的“最长相等前后缀”长度 + 1（教材约定 <code>next[1]=0</code>，有的书写 −1，跟着题干）；移动位数 = 已匹配字符数 − next 值。例：模式 ababaa → next = 0,1,1,2,3,4。<em>口诀：掐头去尾，找最长公共前后缀。</em></li>
+      <li><b>B 树数量题</b>：看到“m 阶 B 树最多/最少关键字”，非根结点关键字 <code>⌈m/2⌉-1 ~ m-1</code>，每结点最多 m 棵子树；插入溢出（关键字达 m 个）时取第 <code>⌈m/2⌉</code> 个关键字上移分裂。例：5 阶 B 树非根结点 2~4 个关键字。<em>口诀：上限 m−1，下限取半减一。</em></li>
+      <li><b>排序稳定性与比较次数</b>：看到“哪个排序稳定 / 与初始序列无关”，背“快选堆希不稳定”（快速、简单选择、堆、希尔不稳定），基数、冒泡、直接插入、归并稳定；比较次数与初始序列无关的是简单选择排序，恒为 <code>n(n-1)/2</code>。<em>口诀：快选堆希不稳定，选择比较恒不变。</em></li>
+      <li><b>复杂度速判</b>：看到“求时间复杂度”，数最内层语句执行次数（i&lt;n、j&lt;i 的双重循环 → n(n−1)/2 即 <code>O(n²)</code>）；递归就写递推式，T(n)=2T(n/2)+n → <code>O(nlogn)</code>。<em>口诀：循环数最内层，递归写递推。</em></li>
+    </ul>
+    <h3>算法题</h3>
+    <ul>
+      <li><b>算法设计四步法</b>：按“① 一句话算法思想 ② 判空与边界 ③ 主体代码（能 <code>O(n)</code> 不写 <code>O(n²)</code>，空间 <code>O(1)</code> 加分）④ 时间/空间复杂度”四段写；代码写不出也要把思想和复杂度写满，稳拿 3~5 分。数组题优先“双指针原地”，链表题优先“头插法、快慢指针找中点”。<em>口诀：思想先行，代码其次，复杂度收尾。</em></li>
+    </ul>
+    <div class="key"><b>考前提醒</b>：数据结构应用题 90% 是“树的遍历 + 排序过程 + 图算法手工推演”，考前把二叉树遍历还原、堆排序建堆、Prim/Dijkstra 逐步表格各手推两遍，比刷十道新题管用。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">3</span>计算机组成原理技巧<span class="lv">★★★</span><span class="cnt">13 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>数据表示</h3>
+    <ul>
+      <li><b>单位三步走</b>：看到容量、速率、时间混着给，先全部换成 bit 与秒再套公式：1B=8b，1KB=2^10B，速率用 10 进制（1Gb/s=10^9 b/s）。例：100MB 数据在 1Gb/s 上传 ≈ 8×2^20×100 / 10^9 ≈ 0.84s。<em>口诀：容量按 1024，速率按 1000，全换 bit 再算。</em></li>
+      <li><b>补码范围与溢出</b>：看到“n 位补码的表示范围 / 是否溢出”，范围 <code>-2^(n-1) ~ 2^(n-1)-1</code>（8 位即 −128~127）；加法溢出看双符号位：<code>01</code> 正溢、<code>10</code> 负溢、<code>00</code> 或 <code>11</code> 正常。<em>口诀：正溢 01 负溢 10，双符号不同就溢出。</em></li>
+      <li><b>IEEE 754 拆位</b>：看到“浮点数格式 / 最大值 / 偏置”，单精度 1+8+23、偏置 127，双精度 1+11+52、偏置 1023；阶码用移码（真值 = 阶码 − 偏置），规格化数尾数隐藏最高位 1，实际有效 24 位。<em>口诀：阶码减偏置，尾数藏个 1。</em></li>
+    </ul>
+    <h3>存储与 Cache</h3>
+    <ul>
+      <li><b>地址位数</b>：看到“按字节编址 / 按字编址 + 地址线根数”，先确认编址单位：<code>2^n</code> 个单元需 n 位地址；按字编址时一个字对应一个地址，字长 32 位则字地址位数比字节地址少 2 位。<em>口诀：先问按啥编址，再取 log₂。</em></li>
+      <li><b>Cache 三步法</b>：看到“求标记位 / 组号位数”，块大小定块内地址（64B 块 → 6 位）→ 行数（组数）定行号（1K 行 → 10 位）→ 剩下全是标记位（32−6−10=16 位）；组相联先算组数 = 行数 ÷ 路数。<em>口诀：块内、行号、剩标记，组相联先除路数。</em></li>
+      <li><b>平均访问时间两模型</b>：看到“求平均访问时间”，先分清模型：同时访问 <code>ta = H·tc + (1−H)·tm</code>；先查 Cache 再查主存 <code>ta = tc + (1−H)·tm</code>。例：H=0.95、tc=2ns、tm=50ns → 前者 4.4ns，后者 4.5ns。<em>口诀：同时算加权，串行要加 tc。</em></li>
+      <li><b>主存扩展芯片数</b>：看到“用 xx 芯片组成 xx 存储器”，芯片数 = 总容量 ÷ 单片容量，位扩展并联、字扩展分组。例：用 1K×4 芯片组成 4K×8 → 4K×8 / 1K×4 = 8 片（2 片位扩展 × 4 组字扩展）。<em>口诀：总除单得片数，先位后字分清楚。</em></li>
+    </ul>
+    <h3>CPU 与流水线</h3>
+    <ul>
+      <li><b>流水线三公式</b>：看到“k 段流水线执行 n 条指令”，总时间 <code>(k+n-1)Δt</code>，吞吐率 <code>n/((k+n-1)Δt)</code>，加速比 <code>kn/(k+n-1)</code>。例：5 段、100 条 → 104Δt，加速比 500/104 ≈ 4.8。有取指/分析/执行重叠时，画时空图数格子最保险。<em>口诀：k 加 n 减一，加速比看 k 除。</em></li>
+      <li><b>扩展操作码</b>：看到“设计操作码 / 判断编码是否合法”，短码不能是长码的前缀：4 位操作码只留 1111 作扩展标志，则三地址指令最多 15 条，其余前缀逐层扩展；用“前缀不重复”逐条检验。<em>口诀：短码不当长码头，前缀一撞就作废。</em></li>
+      <li><b>相对寻址偏移</b>：看到“相对寻址求转移目标”，偏移要加指令长度，因为取指后 PC 已自增：<code>EA = (PC) + A</code>。例：指令长 2B、取指前 PC=2000H，则 PC=2002H，A=+08H → 目标 200AH。<em>口诀：PC 先自增，再加偏移量。</em></li>
+    </ul>
+    <h3>I/O 与总线</h3>
+    <ul>
+      <li><b>磁盘存取时间</b>：看到“读一个扇区/一个文件要多久”，时间 = 寻道时间 + 旋转延迟（平均 <code>1/(2r)</code>）+ 传输时间（扇区数 ÷ 每道扇区数 × 1/r）。例：7200rpm 转一圈 8.33ms，平均旋转延迟 ≈ 4.17ms。<em>口诀：寻道加半圈，最后加传输。</em></li>
+      <li><b>总线带宽</b>：看到“总线带宽 / 数据传输率”，带宽 = 总线宽度（字节）× 总线频率，双沿传输（DDR）再乘 2。例：32 位总线、66MHz → 4B×66M = 264MB/s。<em>口诀：宽度乘频率，双沿再翻倍。</em></li>
+      <li><b>中断与 DMA 对比</b>：看到“CPU 干预次数 / 谁适合大批量传送”，DMA 靠硬件在内存与外设间直接传送，只在开始和结束各打扰 CPU 一次；中断方式靠程序，每个字都要进中断服务程序。例：传 1KB，中断干预 1024 次，DMA 只 2 次。<em>口诀：中断靠程序，DMA 靠硬件，两次就收工。</em></li>
+    </ul>
+    <div class="key"><b>考前提醒</b>：组原大题最爱“Cache 地址划分 + 平均访问时间 + 流水线时空图”，这三类公式考前默写一遍；所有数值题第一步都是把 B/b、KB/Kb、MHz 统一成基本单位。</div>
+    <div class="key"><b>易错点</b>：Cache 行数不等于主存块数；加速比一定小于段数 k；相对寻址别忘 PC 自增；DMA 也要占用总线（周期挪用）。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">4</span>操作系统技巧<span class="lv">★★★</span><span class="cnt">13 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>进程与调度</h3>
+    <ul>
+      <li><b>调度一律表格法</b>：看到"给出到达时间与服务时间、求平均周转"，就画六列表 到达|服务|开始|完成|周转|带权周转，一行一个进程按时间轴往下填；抢占式（SRTF、优先级抢占）必须单独标出"被抢占时刻"，否则开始/完成一定填错。<em>口诀：调度不画表，等于白忙活；抢占不标点，全盘都算错。</em></li>
+      <li><b>周转时间三公式</b>：周转 = 完成 − 到达，带权周转 = 周转 ÷ 服务，平均周转 = 各周转之和 ÷ 进程数。例：到达 0、服务 3、完成 10 → 周转 10、带权 10/3≈3.33；带权是算术平均，不是按服务时间加权。<em>口诀：完成减到达，周转除服务，最后再除个数。</em></li>
+    </ul>
+    <h3>PV 与死锁</h3>
+    <ul>
+      <li><b>PV 三步法</b>：① 定信号量语义与初值（互斥量初值 1、资源量初值 = 资源数）② 定 P/V 位置（P 在临界区之前、V 在之后，互斥的 P 要放在资源 P 的里面）③ 检查两个进程 P 的顺序是否会造成死锁。<em>口诀：先 P 资源后 P 互斥，V 的顺序反过来。</em></li>
+      <li><b>死锁最少资源数</b>：看到"n 个进程、每个最多需 m 个资源、至少给多少才不死锁"，直接代 n(m−1)+1。例：5 个进程各需 3 个 → 5×2+1 = 11 个；若是"每个进程需 m 个且一次申请完"，则要 n·m 个。<em>口诀：人手都差一个，再多给一个，就谁也不等谁。</em></li>
+      <li><b>银行家算法</b>：先列 Need = Max − Allocation 表，再拿 Available 逐行"试分配 → 假设它跑完 → 回滚"，能排出安全序列就安全，排不出就拒绝。挑候选时优先 Need ≤ Available 且 Need 最小的，能一次成功。<em>口诀：Need 一减，Available 逐个试，回滚不欠账。</em></li>
+      <li><b>信号量取值范围</b>：初值 n、m 个进程竞争，S 的最小值 = n − m；S 为负时其绝对值就是阻塞队列里的进程数。例：初值 2、5 个进程 → 最小 −3，表示 3 个在排队。<em>口诀：负几就有几个在排队。</em></li>
+    </ul>
+    <h3>内存</h3>
+    <ul>
+      <li><b>EAT 分三档</b>：① 无 TLB 无缺页：EAT = 2×访存时间（查页表 + 取数据）② 有 TLB：EAT = 命中率×(t+m) + 未命中率×(t+2m) ③ 有缺页：把缺页处理时间按缺页率加权加进去，且缺页处理后还要再访存一次。<em>口诀：TLB 加一层，缺页加一笔，漏一个就全错。</em></li>
+      <li><b>页面置换画表逐列推</b>：画"访问序列 / 内存块 / 是否缺页"三行，一列一次访问。FIFO 淘汰最早进入的、LRU 淘汰最久未使用的、OPT 往后看谁最晚才用；FIFO 可能出现 Belady 异常（块数变多缺页反而变多），LRU、OPT 不会。<em>口诀：FIFO 看辈分，LRU 看回忆，OPT 看未来。</em></li>
+      <li><b>地址变换全过程</b>：逻辑地址 ÷ 页面大小 → 商是页号、余是页内偏移，查页表得块号，物理地址 = 块号×页面大小 + 偏移；每查一级页表算一次访存。例：32 位、4KB 页、二级页表 → 至少 3 次访存（两级页表 + 取数据）。<em>口诀：除得页号余偏移，一级页表一次访。</em></li>
+      <li><b>位示图换算</b>：字号 = (块号 − 起始值) ÷ 字长，位号取余；反过来 (字号, 位号) 求块号 = 字号×字长 + 位号 + 起始值。动笔前先看题目块号从 0 还是 1 开始，差 1 就全错。<em>口诀：先看起点零或一，除字长取商余。</em></li>
+    </ul>
+    <h3>文件与 I/O</h3>
+    <ul>
+      <li><b>混合索引最大文件</b>：最大长度 = 直接块数×块大小 + 一级块数×块大小 + 二级 + 三级，块数按指针数逐层推算。例：块 1KB、指针 4B → 每块 256 个指针，10 个直接 + 1 个一级 = 10KB + 256KB = 266KB。<em>口诀：直接加一级加二级加三级，逐项相加别漏项。</em></li>
+      <li><b>磁盘调度先画轨迹</b>：把磁头位置和请求序列画在数轴上，SSTF 每次贪心挑最近的、SCAN 扫到一个端点再折返、CSCAN 单向扫到底直接跳回另一端；总寻道 = 相邻两次移动距离求和。例：请求 98、183、37，磁头 53 → SSTF 走 53→37→98→183 = 16+61+85 = 162。<em>口诀：SSTF 就近、SCAN 到底回头、CSCAN 到底就跳。</em></li>
+      <li><b>缓冲区时间</b>：设 T 输入、M 传送、C 处理，单缓冲每块耗时 max(C,T)+M，双缓冲 max(C+M, T)。先找瓶颈：谁最大谁定节奏。例：T=100、M=50、C=50 → 单缓冲 150、双缓冲 100。<em>口诀：单缓冲取大再加 M，双缓冲拿 C+M 跟 T 比。</em></li>
+    </ul>
+    <div class="key"><b>考前提醒</b>：PV 题先给每个信号量写注释（初值 + 含义）再写代码，阅卷按注释给分；调度、置换、磁盘三类题必须列表或画图，只写最终答案不给分。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">5</span>计算机网络技巧<span class="lv">★★★</span><span class="cnt">14 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>计算基本功</h3>
+    <ul>
+      <li><b>单位与量纲</b>：1B = 8b、1KB = 2^10 B、速率一律用 b/s；发送时延 = 数据量 ÷ 速率（先把 MB 换成 bit），传播时延 = 距离 ÷ 2×10^8 m/s。例：1000B 用 10Mb/s 发 → 8000b ÷ 10^7 = 0.8ms。<em>口诀：先换比特再除速率，别拿字节当比特。</em></li>
+      <li><b>时延带宽积</b>：时延带宽积 = 传播时延 × 带宽，单位 bit，表示"这条链路能装多少比特"（管子容积），也等于发方收到第一个 ACK 前最多能连发的数据量。<em>口诀：管子多粗乘多长，就是管里的比特数。</em></li>
+      <li><b>奈氏与香农</b>：无噪声用奈氏 2W·log₂V（V 为码元种类数），有噪声用香农 W·log₂(1+S/N)；给 dB 先换算 S/N = 10^(dB/10)，例 30dB → 1000。两式都给出时取较小值，因为实际信道两者同时受限。<em>口诀：无噪用奈氏，有噪用香农，都给取小的。</em></li>
+    </ul>
+    <h3>链路层</h3>
+    <ul>
+      <li><b>CRC 模 2 除法</b>：被除数末尾补 r 个 0（r = 生成多项式位数 − 1），逐位异或、不借位，余数即 FCS 附在数据后发出；接收方同多项式再除，余数为 0 判无错。例：生成式 4 位 → 补 3 个 0。<em>口诀：补零、异或、不借位，余数就是校验位。</em></li>
+      <li><b>CSMA/CD 最小帧长</b>：最小帧长 = 2τ × 速率。10Mb/s 以太网争用期 51.2μs → 512bit = 64B，故以太网帧最小 64B（含首部）、最大 1518B；帧短了要填充，否则冲突检测不到。<em>口诀：往返时延乘速率，短了就填充。</em></li>
+      <li><b>滑动窗口公式</b>：停止等待利用率 = Td ÷ (Td + RTT + Tack)；n 位序号下 GBN 发送窗口 ≤ 2^n − 1、SR 窗口 ≤ 2^(n−1)。例：n = 3 时 GBN 最多 7 帧、SR 最多 4 帧。<em>口诀：GBN 少一个，SR 砍一半。</em></li>
+    </ul>
+    <h3>网络层</h3>
+    <ul>
+      <li><b>子网划分借位表</b>：借 n 位得 2^n 个子网，主机位剩 h−n 位，每子网可用主机 2^(h−n) − 2；掩码速记 /25=128、/26=192、/27=224、/28=240、/29=248、/30=252。<em>口诀：借位翻倍分子网，全 0 全 1 不能用。</em></li>
+      <li><b>网络地址与广播地址</b>：网络地址 = IP 与掩码按位与（主机位全 0），广播地址 = 主机位全置 1，可用范围去掉首尾两个。例：192.168.1.130/26 → 网络 .128、广播 .191、可用 .129~.190。<em>口诀：与出网络、全 1 广播、首尾别用。</em></li>
+      <li><b>CIDR 聚合</b>：把各地址写成二进制找最长公共前缀，前缀长度就是聚合后的 /n，主机位补 0。例：192.168.0.0/24 与 192.168.1.0/24 → 192.168.0.0/23。<em>口诀：写成二进制找共同前缀，从哪分叉就从哪截断。</em></li>
+      <li><b>IP 分片</b>：每片数据部分必须是 8 的倍数，片偏移 = 该片首字节 ÷ 8，除最后一片外 MF = 1。例：4000B 数据、MTU 1500 → 1480+1480+1040，偏移 0 / 185 / 370。<em>口诀：八的倍数、偏移除八、末片 MF 归零。</em></li>
+    </ul>
+    <h3>传输层与应用层</h3>
+    <ul>
+      <li><b>TCP 拥塞控制推演表</b>：列"轮次 / cwnd / ssthresh / 事件"四列逐轮推。慢开始每轮 cwnd 翻倍，到 ssthresh 转拥塞避免每轮 +1 MSS；收到 3 个重复 ACK 走快重传 + 快恢复（ssthresh = cwnd/2、cwnd = ssthresh）；超时则 ssthresh = cwnd/2、cwnd = 1 回慢开始。<em>口诀：慢开始翻倍、拥塞避免加一、超时回到 1、三重复只减半。</em></li>
+      <li><b>握手挥手话术</b>：为什么三次？防止已失效的连接请求突然到达、让服务器白建连接；TIME_WAIT 等 2MSL 是为了保证最后那个 ACK 能到达（丢了对方会重发 FIN），同时让旧报文在网络中消亡。<em>口诀：三次防旧请求，2MSL 保 ACK、清旧包。</em></li>
+      <li><b>HTTP 连接时间</b>：非持久连接每个对象 2RTT（1 建连 + 1 请求响应），n 个对象 ≈ 2n RTT；持久非流水线 = 1RTT 建连 + n×1RTT；持久流水线 = 1RTT 建连 + 1RTT 取全部。例：n = 10 → 20 / 11 / 2 个 RTT。<em>口诀：非持久翻倍算，流水线一刀切。</em></li>
+      <li><b>首部长度速记</b>：IP 首部 20B（含选项最长 60B）、TCP 首部 20B（最长 60B）、UDP 首部 8B、以太网首部 14B + FCS 4B。算封装开销一层层加，FCS 不算进上层数据。<em>口诀：IP20、TCP20、UDP8、以太 14+4。</em></li>
+    </ul>
+    <div class="key"><b>考前提醒</b>：网络计算先统一单位（bit、s、B）再代公式，卷面上写出公式本身也有分；子网题画二进制、分片题画表格，一半的分能白拿。</div>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
