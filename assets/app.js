@@ -618,10 +618,16 @@ var SLUGS=["ask", "calc", "cheat", "co", "code", "confuse", "ds", "fig", "link",
     if(v==='examset') renderExamSets();
     closeMenu();
   }
+  var TABHREF={home:'index.html',map:'learn',learn:'map.html',drill:'quiz.html',ref:'fig.html'};
   if(tabbar) tabbar.addEventListener('click',function(e){
-    var b=e.target.closest('button'); if(!b) return; go(b.dataset.v);
+    var b=e.target.closest('button'); if(!b) return;
+    var v=b.dataset.v, target=TABHREF[v]||v;
+    if(/\.html$/.test(target)) location.href=target; else go(target);
   });
-  if(backBtn) backBtn.addEventListener('click',function(){ go(groupOf[curV]||'home'); });
+  if(backBtn){
+    backBtn.hidden=false;
+    backBtn.addEventListener('click',function(){ location.href='index.html'; });
+  }
   window.addEventListener('popstate',function(e){
     var v=(e.state&&e.state.v)||'home'; go(v,true);
   });
