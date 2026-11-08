@@ -16403,8 +16403,7 @@ void Union(int parent[], int a, int b) {    /* 按大小合并 */
   /* 首页卡片 */
   (function(){
     var box=document.getElementById('homeGrid');
-    if(!box) return;
-    [['learn','学 · 把考点过一遍'],['drill','练 · 做题找手感'],['ref','查 · 忘了就翻这里']].forEach(function(g){
+    if(box) [['learn','学 · 把考点过一遍'],['drill','练 · 做题找手感'],['ref','查 · 忘了就翻这里']].forEach(function(g){
       var h=document.createElement('div'); h.className='gtitle'; h.textContent=g[1]; box.appendChild(h);
       var grid=document.createElement('div'); grid.className='grid';
       SEC.filter(function(s){ return s[2]===g[0]; }).forEach(function(s){
