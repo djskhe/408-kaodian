@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>公式速查卡</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="cheat">
+  <div class="subhead"><h2>公式速查卡</h2><span class="score">考前 10 分钟</span><span class="meta" data-all="4 科">4 科</span></div>
+<details class="chap" open>
+<summary><span class="num">1</span>数据结构<span class="lv">★★★</span><span class="cnt">21 式</span><span class="arw">▼</span></summary>
+<div class="body">
+<h3>复杂度与树</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>O(1)&lt;O(log₂n)&lt;O(n)&lt;O(nlog₂n)&lt;O(n²)&lt;O(n³)&lt;O(2ⁿ)&lt;O(n!)</code></td><td>量级由小到大，取最高阶项、弃系数</td></tr>
+<tr><td><code>n0 = n2 + 1</code></td><td>非空二叉树叶子数 = 度2结点数+1</td></tr>
+<tr><td><code>第i层 ≤ 2^(i-1)</code></td><td>二叉树第i层最多结点数，i≥1</td></tr>
+<tr><td><code>高度h ≤ 2^h-1</code></td><td>高度h的二叉树最多结点总数</td></tr>
+<tr><td><code>⌊log₂n⌋+1</code></td><td>完全二叉树高度，根算第1层</td></tr>
+<tr><td><code>n/2</code></td><td>顺序表等概率插入平均移动；删除为(n-1)/2</td></tr>
+<tr><td><code>WPL=Σwᵢlᵢ</code></td><td>wᵢ权值，lᵢ根到叶路径长，哈夫曼树最小</td></tr>
+<tr><td><code>2n-1</code></td><td>n个叶子的哈夫曼树结点总数</td></tr>
+</tbody>
+</table>
+<h3>图与查找</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>⌈log₂(n+1)⌉</code></td><td>折半查找判定树高度，即最多比较次数</td></tr>
+<tr><td><code>ASL成功≈log₂(n+1)-1</code></td><td>折半查找等概率成功平均查找长度</td></tr>
+<tr><td><code>e ≤ n(n-1)/2</code></td><td>简单无向图边数上限；有向图为n(n-1)</td></tr>
+<tr><td><code>O(n²)</code></td><td>Prim，适合稠密图，与边数无关</td></tr>
+<tr><td><code>O(ElogE)</code></td><td>Kruskal，适合稀疏图，需并查集</td></tr>
+<tr><td><code>O(n²)</code></td><td>Dijkstra，单源最短路，不能有负权边</td></tr>
+<tr><td><code>O(n³)</code></td><td>Floyd，各顶点对最短路，允许负权不许负环</td></tr>
+<tr><td><code>⌈m/2⌉-1 ≤ 关键字数 ≤ m-1</code></td><td>m阶B树非根非叶结点；根至少1个</td></tr>
+<tr><td><code>ASL=ΣCᵢ/n</code></td><td>散列平均查找长度，成功与失败分别计算</td></tr>
+</tbody>
+</table>
+<h3>排序</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>平均O(nlog₂n)，最坏O(n²)</code></td><td>快排，递归栈深O(log₂n)，不稳定</td></tr>
+<tr><td><code>O(nlog₂n)</code></td><td>归并排序，稳定，需O(n)辅助空间</td></tr>
+<tr><td><code>O(nlog₂n)</code></td><td>堆排序，建堆O(n)，空间O(1)，不稳定</td></tr>
+<tr><td><code>O(d(n+r))</code></td><td>基数排序，d趟，r为基数，稳定</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="chap" open>
+<summary><span class="num">2</span>计算机组成原理<span class="lv">★★★</span><span class="cnt">18 式</span><span class="arw">▼</span></summary>
+<div class="body">
+<h3>性能与数据表示</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>CPU时间=IC×CPI/f</code></td><td>IC指令条数，CPI每指令周期数，f主频Hz</td></tr>
+<tr><td><code>MIPS=f/(CPI×10⁶)</code></td><td>f用Hz，10⁶即百万，勿写成2²⁰</td></tr>
+<tr><td><code>CPI=ΣCPIᵢ×pᵢ</code></td><td>pᵢ各类指令比例，加权平均，Σpᵢ=1</td></tr>
+<tr><td><code>S=1/[(1-f)+f/k]</code></td><td>Amdahl，f可优化比例，k加速倍数</td></tr>
+<tr><td><code>2^r ≥ k+r+1</code></td><td>海明码，k数据位，r校验位</td></tr>
+<tr><td><code>127 / 1023</code></td><td>IEEE754偏移：float偏127，double偏1023</td></tr>
+<tr><td><code>(-1)^s×1.M×2^(E-127)</code></td><td>float规格化真值；非规格化用0.M</td></tr>
+<tr><td><code>-2^(n-1) ~ 2^(n-1)-1</code></td><td>n位补码范围；原码为-(2^(n-1)-1)起</td></tr>
+</tbody>
+</table>
+<h3>Cache 与存储</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>T=t_c+(1-h)t_m</code></td><td>先Cache后主存；并行访问为h·t_c+(1-h)t_m</td></tr>
+<tr><td><code>T=T_m+(m-1)τ</code></td><td>低位交叉，m体，连续读m字，τ总线周期</td></tr>
+<tr><td><code>行号=主存块号 mod Cache行数</code></td><td>直接映射冲突多；组相联组数=行数/路数</td></tr>
+<tr><td><code>芯片数=总容量/单片容量</code></td><td>字扩展；位扩展需按数据线位数另算</td></tr>
+<tr><td><code>显存=分辨率×色深/8</code></td><td>色深单位bit，结果单位字节B</td></tr>
+<tr><td><code>传输率=总线宽度(B)×频率</code></td><td>宽度先按字节换算，频率单位Hz</td></tr>
+</tbody>
+</table>
+<h3>磁盘与流水线</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>T=寻道+1/(2r)+b/(rN)</code></td><td>r转速，b读写字节，N每磁道字节数</td></tr>
+<tr><td><code>容量=磁道数×每道扇区×扇区字节</code></td><td>非格式化容量；格式化略小</td></tr>
+<tr><td><code>T=(k+n-1)Δt</code></td><td>k段流水执行n条指令，Δt时钟周期</td></tr>
+<tr><td><code>S=kn/(k+n-1)</code></td><td>理想流水加速比，k段n条指令</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="chap" open>
+<summary><span class="num">3</span>操作系统<span class="lv">★★★</span><span class="cnt">17 式</span><span class="arw">▼</span></summary>
+<div class="body">
+<h3>地址变换与内存</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>EAT=h(t₁+t)+(1-h)(t₁+2t)</code></td><td>h快表命中率，t₁查TLB，t访存一次</td></tr>
+<tr><td><code>访存 n+1 次</code></td><td>n级页表且无TLB时，含取数1次</td></tr>
+<tr><td><code>页表项数=2^逻辑地址位/页大小</code></td><td>页大小按B计，即2^页内偏移位数</td></tr>
+<tr><td><code>逻辑地址=页号×页大小+页内偏移</code></td><td>页大小2^k则偏移占低k位</td></tr>
+<tr><td><code>页表大小=页表项数×项长</code></td><td>单级页表；超过1页则需多级</td></tr>
+<tr><td><code>页框数=内存大小/页大小</code></td><td>物理块数，决定驻留页面上限</td></tr>
+<tr><td><code>页内地址位数=log₂(页大小)</code></td><td>4KB对应12位，其余为页号</td></tr>
+</tbody>
+</table>
+<h3>调度与死锁</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>周转时间=完成-到达</code></td><td>带权周转=周转/服务时间，可小于1比较</td></tr>
+<tr><td><code>响应比=(等待+服务)/服务</code></td><td>HRRN，比值越大越先调度</td></tr>
+<tr><td><code>Need=Max-Allocation</code></td><td>银行家算法，先算Need矩阵再试分配</td></tr>
+<tr><td><code>Work ≥ Needᵢ</code></td><td>安全序列判定，满足后Work+=Allocᵢ</td></tr>
+<tr><td><code>n(k-1)+1</code></td><td>n进程各需k个同类资源，不死锁最少总数</td></tr>
+</tbody>
+</table>
+<h3>文件、磁盘与置换</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>字号=块号/字长</code></td><td>位示图；位号=块号%字长，均自0起</td></tr>
+<tr><td><code>缺页率=缺页次数/访问次数</code></td><td>EAT=(1-p)t+p×缺页开销</td></tr>
+<tr><td><code>移动道数=Σ|当前-下一请求|</code></td><td>FCFS/SSTF/SCAN 均按此累加</td></tr>
+<tr><td><code>总块数=直接+一级+二级</code></td><td>混合索引，最大文件=块数×块大小</td></tr>
+<tr><td><code>mutex=1</code></td><td>互斥信号量初值1；同步量初值=初始资源数</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="chap" open>
+<summary><span class="num">4</span>计算机网络<span class="lv">★★★</span><span class="cnt">19 式</span><span class="arw">▼</span></summary>
+<div class="body">
+<h3>时延与带宽</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>总时延=发送+传播+处理+排队</code></td><td>计算题常忽略处理与排队时延</td></tr>
+<tr><td><code>发送时延=数据长度/发送速率</code></td><td>与距离无关，勿与传播时延混淆</td></tr>
+<tr><td><code>传播时延=距离/传播速率</code></td><td>铜缆光纤≈2×10⁸ m/s，与带宽无关</td></tr>
+<tr><td><code>时延带宽积=R×传播时延</code></td><td>即链路上容纳的比特数，单位bit</td></tr>
+<tr><td><code>C=2Wlog₂V</code></td><td>奈氏：理想无噪声低通信道，V码元数</td></tr>
+<tr><td><code>C=Wlog₂(1+S/N)</code></td><td>香农：有噪声，S/N为比值不是dB</td></tr>
+<tr><td><code>10log₁₀(S/N)</code></td><td>信噪比dB；反算S/N=10^(dB/10)</td></tr>
+<tr><td><code>U=T_d/(T_d+RTT)</code></td><td>停等协议信道利用率，T_d为发送时延</td></tr>
+</tbody>
+</table>
+<h3>可靠传输与拥塞</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>2^n-1</code></td><td>GBN发送窗口上限，n为序号位数</td></tr>
+<tr><td><code>2^(n-1)</code></td><td>SR收发窗口上限，n为序号位数</td></tr>
+<tr><td><code>慢开始 cwnd×2</code></td><td>每RTT翻倍；达ssthresh转拥塞避免</td></tr>
+<tr><td><code>ssthresh=cwnd/2</code></td><td>超时则cwnd=1；三重复ACK则cwnd=ssthresh</td></tr>
+<tr><td><code>最小帧长=2τ×R</code></td><td>以太网τ=25.6μs，得64B即512bit</td></tr>
+<tr><td><code>TCP首部20B</code></td><td>IP首部20B，UDP首部8B</td></tr>
+</tbody>
+</table>
+<h3>子网与分片</h3>
+<table>
+<thead><tr><th>公式 / 结论</th><th>含义与条件</th></tr></thead>
+<tbody>
+<tr><td><code>片偏移单位8B</code></td><td>除最后一片，各片数据长须为8的倍数</td></tr>
+<tr><td><code>可用主机数=2^h-2</code></td><td>h为主机位数，/24得254个</td></tr>
+<tr><td><code>子网数=2^借位数</code></td><td>题目按传统规定扣全0全1子网</td></tr>
+<tr><td><code>地址数=2^(32-n)</code></td><td>CIDR /n 地址块，含网络地址与广播</td></tr>
+<tr><td><code>信道利用率=nT_d/(T_d+RTT)</code></td><td>窗口n的流水线协议，无差错理想情形</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
