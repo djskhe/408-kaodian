@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>模拟套卷 · 目录</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="paper">
+<div class="subhead"><h2>模拟套卷</h2><span class="score">25 套</span></div>
+<div class="landcard"><div class="landh">选择一套开始</div><div class="landg">
+<a class="landb" href="paper-A.html"><b>整卷 A</b><span>48 KB</span></a>
+<a class="landb" href="paper-B.html"><b>整卷 B</b><span>49 KB</span></a>
+<a class="landb" href="paper-D.html"><b>专项 D</b><span>21 KB</span></a>
+<a class="landb" href="paper-E.html"><b>专项 E</b><span>22 KB</span></a>
+<a class="landb" href="paper-F.html"><b>专项 F</b><span>21 KB</span></a>
+<a class="landb" href="paper-G.html"><b>专项 G</b><span>24 KB</span></a>
+<a class="landb" href="paper-H.html"><b>专项 H</b><span>25 KB</span></a>
+<a class="landb" href="paper-I.html"><b>专项 I</b><span>25 KB</span></a>
+<a class="landb" href="paper-J.html"><b>专项 J</b><span>26 KB</span></a>
+<a class="landb" href="paper-K.html"><b>专项 K</b><span>25 KB</span></a>
+<a class="landb" href="paper-L.html"><b>专项 L</b><span>25 KB</span></a>
+<a class="landb" href="paper-M.html"><b>专项 M</b><span>25 KB</span></a>
+<a class="landb" href="paper-N.html"><b>专项 N</b><span>26 KB</span></a>
+<a class="landb" href="paper-P.html"><b>专项 P</b><span>25 KB</span></a>
+<a class="landb" href="paper-Q.html"><b>专项 Q</b><span>26 KB</span></a>
+<a class="landb" href="paper-R.html"><b>专项 R</b><span>29 KB</span></a>
+<a class="landb" href="paper-S.html"><b>专项 S</b><span>27 KB</span></a>
+<a class="landb" href="paper-y1.html"><b>重点综合 y1</b><span>70 KB</span></a>
+<a class="landb" href="paper-y2.html"><b>重点综合 y2</b><span>66 KB</span></a>
+<a class="landb" href="paper-y3.html"><b>重点综合 y3</b><span>65 KB</span></a>
+<a class="landb" href="paper-y4.html"><b>重点综合 y4</b><span>63 KB</span></a>
+<a class="landb" href="paper-y5.html"><b>重点综合 y5</b><span>48 KB</span></a>
+<a class="landb" href="paper-y6.html"><b>重点综合 y6</b><span>51 KB</span></a>
+<a class="landb" href="paper-y7.html"><b>重点综合 y7</b><span>42 KB</span></a>
+<a class="landb" href="paper-y8.html"><b>重点综合 y8</b><span>43 KB</span></a>
+</div></div></section>
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
