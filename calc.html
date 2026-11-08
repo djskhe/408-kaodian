@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>计算专项</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="calc">
+  <div class="subhead"><h2>计算专项</h2><span class="score">考前热身 40 题</span><span class="meta" data-all="3 题">3 题</span></div>
+<details class="chap" open>
+  <summary><span class="num">1</span>计算专项<span class="lv">★★★</span><span class="cnt">20 题</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>数据结构（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">1.</span>长度为 1000 的顺序表，等概率删除一个元素，平均移动多少个元素？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>499.5</code>。<b>算式</b> 各位置移动 <code>0,1,…,999</code>，和 <code>999×1000/2</code> 除以 <code>1000</code> 得 <code>(n−1)/2=499.5</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">2.</span>一棵完全二叉树有 1001 个结点，其中叶子结点有多少个？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>501</code>。<b>算式</b> <code>n−⌊n/2⌋=1001−500=501</code>（另：<code>2⁹=512≤1001&lt;1024</code>，树高 <code>10</code>）。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">3.</span>权值 5,7,8,11,15,18,20,23,25,30,33,40 构造哈夫曼树，WPL 为多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>800</code>。<b>算式</b> 每次取两最小合并，WPL 等于各次合并结点权之和 <code>12+19+27+37+43+52+63+77+95+140+235=800</code>；平均码长 <code>800/235≈3.40</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">4.</span>关键字 25,37,12,51,26,40,64,78，<code>H(k)=k mod 13</code>，线性探测，查找成功的 ASL？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>3.125</code>。<b>算式</b> 比较次数依次 <code>1,1,2,3,3,3,6,6</code>，合计 <code>25</code>，<code>ASL=25/8=3.125</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">5.</span>对 <code>49,38,65,97,76,13,27,49</code> 以首元素为枢轴做一趟快速排序，结果？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>27,38,13,49,76,97,65,49</code>。<b>算式</b> 高低指针交替挖坑填数，枢轴 <code>49</code> 落位下标 <code>3</code>，左侧均小于它。</div></details>
+    </div>
+    <h3>组成原理（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">6.</span>主存地址 24 位，Cache 16 行，块大小 64B，直接映射，标记位多少位？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>14</code>。<b>算式</b> 块内 <code>log₂64=6</code> 位、行号 <code>log₂16=4</code> 位，标记 <code>24−4−6=14</code> 位。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">7.</span>某机主频 2GHz，CPI=4，其运算速度为多少 MIPS？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>500</code>。<b>算式</b> <code>MIPS=f/(CPI×10⁶)=2000/4=500</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">8.</span>8 位补码下 <code>[−105]补+[−50]补</code> 的 8 位结果及是否溢出？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>01100101</code>（+101），<b>溢出</b>。<b>算式</b> <code>10010111+11001110=1 01100101</code>，两负数相加得正数，判负溢出。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">9.</span>五段流水线，时钟周期 2ns，连续执行 100 条指令需多少时间？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>208ns</code>。<b>算式</b> <code>T=(k+n−1)Δt=(5+99)×2=208ns</code>；加速比 <code>1000/208≈4.81</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">10.</span>磁盘转速 7200r/min，每道 500 个扇区，每扇区 512B，平均旋转延迟？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>4.17ms</code>。<b>算式</b> 转一圈 <code>60/7200=8.33ms</code>，取其半 <code>4.17ms</code>；传输率 <code>500×512B/8.33ms≈30.72MB/s</code>。</div></details>
+    </div>
+    <h3>操作系统（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">11.</span>进程 P1(0,7)、P2(2,4)、P3(4,1) 按 SJF 调度，平均周转时间？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>7.0</code>。<b>算式</b> 执行序 P1→P3→P2，周转 <code>7、4、10</code>，<code>(7+4+10)/3=7</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">12.</span>页面大小 4KB，逻辑地址 <code>0x2A5F</code>，其页号是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> 页号 <code>2</code>。<b>算式</b> <code>0x2A5F=10847=2×4096+2655</code>，页内偏移 <code>0xA5F=2655</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">13.</span>引用串 <code>7 0 1 2 0 3 0 4</code>，3 个页框，FIFO 缺页次数？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>7</code> 次。<b>算式</b> 8 次访问仅第 5 次的 <code>0</code> 命中，<code>8−1=7</code>（LRU 命中 2 次，缺页 <code>6</code>）。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">14.</span>位示图字长 32 位，块号从 1 开始，第 2050 块的字号与位号（从 0 起）？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> 字号 <code>64</code>，位号 <code>1</code>。<b>算式</b> <code>2050−1=2049=64×32+1</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">15.</span>块 1KB、指针 4B，10 个直接块 + 1 个一级间接 + 1 个二级间接，最大文件多长？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>65802KB≈64.26MB</code>。<b>算式</b> 每块 <code>1KB/4B=256</code> 个指针，块数 <code>10+256+256²=65802</code>。</div></details>
+    </div>
+    <h3>计算机网络（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">16.</span>100Mbps 链路上发送 1000B 的帧，发送时延是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>80μs</code>。<b>算式</b> <code>1000×8b/10⁸b/s=8×10⁻⁵s</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">17.</span>带宽 4kHz、信噪比 30dB，香农极限数据率约为多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>≈39.9kb/s</code>。<b>算式</b> <code>S/N=10^(30/10)=1000</code>，<code>C=4000×log₂1001≈4000×9.97</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">18.</span><code>192.168.1.0/24</code> 借 3 位划分子网，子网掩码是？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>255.255.255.224</code>。<b>算式</b> <code>/24+3=/27</code>，子网数 <code>2³=8</code>，每子网可用主机 <code>2⁵−2=30</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">19.</span>MTU 1500B，IP 数据报总长 4000B（含 20B 首部），需分成几片？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>3</code> 片。<b>算式</b> 数据 <code>3980B</code>，每片 <code>1480B</code>：<code>1480/1480/1020</code>，偏移 <code>0/185/370</code>，总长 <code>1500/1500/1040</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">20.</span>GBN 序号 3 位、帧长 1000B、速率 10Mbps、RTT 20ms，最大信道利用率？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>≈26.9%</code>。<b>算式</b> 窗口 <code>2³−1=7</code>，<code>Tt=8000/10⁷=0.8ms</code>，<code>7×0.8/(0.8+20)=26.9%</code>。</div></details>
+    </div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">2</span>计算专项（进阶 20 题）<span class="lv">★★★★</span><span class="cnt">20 题</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>数据结构（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">21.</span>递归式 <code>T(n)=2T(n/2)+n</code>，<code>T(1)=1</code>，则 <code>T(64)</code> 等于多少次基本运算？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>448</code>。<b>算式</b> 每层代价均为 <code>n</code>，共 <code>log₂n+1</code> 层，故 <code>T(n)=n(log₂n+1)=64×(6+1)=448</code>；验算 <code>T(2)=2×1+2=4</code>、<code>T(4)=2×4+4=12</code>，与公式 <code>2×(1+1)=4</code>、<code>4×(2+1)=12</code> 一致。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">22.</span>一棵二叉树有 100 个叶子结点、30 个只有一个孩子的结点，该树共有多少个结点？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>229</code>。<b>算式</b> 由 <code>n0=n2+1</code> 得 <code>n2=99</code>，故 <code>n=n0+n1+n2=100+30+99=229</code>；验算边数 <code>n−1=228=n1+2n2=30+198=228</code>，吻合。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">23.</span>权值 <code>2,3,4,5,6,7,8</code> 构造哈夫曼树，其 WPL 为多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>95</code>。<b>算式</b> 依次合并：<code>2+3=5</code>、<code>4+5=9</code>、<code>5+6=11</code>、<code>7+8=15</code>、<code>9+11=20</code>、<code>15+20=35</code>；WPL 等于各次合并权值之和 <code>5+9+11+15+20+35=95</code>；总权 <code>35</code> 即根权，平均码长 <code>95/35≈2.71</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">24.</span>一棵 5 阶 B 树（每个结点最多 5 个孩子）存放 1000 个关键字，其最大高度（含根，不含失败结点）是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>6</code>。<b>算式</b> 非根结点至少 <code>⌈5/2⌉=3</code> 个孩子、<code>2</code> 个关键字；高度为 <code>h</code> 时最少关键字 <code>1+Σ(4×3^(i−2))</code>：<code>h=5</code> 需 <code>161</code>、<code>h=6</code> 需 <code>485</code>、<code>h=7</code> 需 <code>1457</code>；因 <code>485≤1000&lt;1457</code>，故最大高度为 6。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">25.</span>AOE 网中活动 <code>a1:v1→v2=6</code>、<code>a2:v1→v3=4</code>、<code>a3:v1→v4=5</code>、<code>a4:v2→v5=1</code>、<code>a5:v3→v5=1</code>、<code>a6:v4→v6=2</code>、<code>a7:v5→v6=9</code>，求关键路径长度（工期）。</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>16</code>。<b>算式</b> 最早发生时间：<code>ve2=6</code>、<code>ve3=4</code>、<code>ve4=5</code>、<code>ve5=max(6+1,4+1)=7</code>、<code>ve6=max(5+2,7+9)=16</code>；关键路径 <code>v1→v2→v5→v6</code>，长度 <code>6+1+9=16</code>，关键活动为 <code>a1,a4,a7</code> 共 3 个。</div></details>
+    </div>
+    <h3>组成原理（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">26.</span>8 位补码下计算 <code>0x50+0x50</code>，结果的 8 位编码是什么？是否溢出？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>0xA0</code>（按补码解释为 −96），<b>正溢出</b>。<b>算式</b> <code>01010000+01010000=10100000</code>；两正数相加符号位变 1，真值 <code>80+80=160&gt;127</code>，超出 8 位补码范围 <code>[−128,127]</code>，故溢出，硬件 OF 置 1。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">27.</span>十进制数 <code>−12.5</code> 用 IEEE 754 单精度浮点数表示，其十六进制编码是什么？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>0xC1480000</code>。<b>算式</b> <code>12.5=1100.1₂=1.1001₂×2³</code>，符号位 <code>1</code>，阶码 <code>3+127=130=10000010</code>，尾数取小数点后 <code>1001</code> 再补 0，拼接 <code>1 10000010 10010000…0</code> 分组得 <code>1100 0001 0100 1000 0000 0000 0000 0000</code>，即 <code>0xC1480000</code>；验算阶码 <code>130−127=3</code>，<code>1.1001×2³=12.5</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">28.</span>主存地址 32 位，Cache 数据区 32KB，块大小 32B，4 路组相联；若命中率 95%、命中时间 2ns、缺失代价 80ns，平均访问时间 AMAT 是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>6ns</code>。<b>算式</b> 块数 <code>32KB/32B=1024</code>，组数 <code>1024/4=256</code>，组索引 <code>log₂256=8</code> 位，块内 <code>log₂32=5</code> 位，标记 <code>32−8−5=19</code> 位；<code>AMAT=2+0.05×80=2+4=6ns</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">29.</span>用 <code>8K×4</code> 位的 SRAM 芯片组成 <code>64K×8</code> 位的存储器，共需多少片芯片？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>16</code> 片。<b>算式</b> 位扩展：<code>8/4=2</code> 片并联成一组；字扩展：<code>64K/8K=8</code> 组；总数 <code>8×2=16</code> 片；片内地址线 <code>log₂8192=13</code> 根，片选需 <code>log₂8=3</code> 根（3-8 译码器）。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">30.</span>某程序共 <code>10⁶</code> 条指令，各类指令比例与 CPI 为：ALU 40%／CPI=1，访存 30%／CPI=2，转移 20%／CPI=3，其他 10%／CPI=4；主频 1GHz，程序执行时间是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>2ms</code>。<b>算式</b> <code>CPI=0.4×1+0.3×2+0.2×3+0.1×4=2.0</code>；总周期 <code>10⁶×2=2×10⁶</code>，<code>T=2×10⁶/10⁹=2×10⁻³s=2ms</code>；<code>MIPS=1000/2=500</code>。</div></details>
+    </div>
+    <h3>操作系统（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">31.</span>进程 <code>P1(0,7)、P2(2,4)、P3(4,1)、P4(5,4)</code>（到达时间,运行时间）采用高响应比优先（HRRN）调度，平均周转时间是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>8.0</code>。<b>算式</b> <code>t=0</code> 只有 P1，运行至 7；<code>t=7</code> 响应比 <code>P2=5/4+1=2.25</code>、<code>P3=3/1+1=4</code>、<code>P4=2/4+1=1.5</code>，选 P3，运行 7→8；<code>t=8</code> 时 <code>P2=6/4+1=2.5&gt;P4=3/4+1=1.75</code>，选 P2 运行 8→12；P4 运行 12→16；周转时间 <code>7,10,4,11</code>，平均 <code>(7+10+4+11)/4=8.0</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">32.</span>信号量 <code>S</code> 初值为 5，最多可能有 12 个进程同时执行 <code>P(S)</code> 操作，<code>S</code> 可能取到的最小值是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>−7</code>。<b>算式</b> 每执行一次 <code>P</code> 减 1、<code>V</code> 加 1，最多减 12 次，故 <code>S∈[5−12,5]=[−7,5]</code>；取负值时其绝对值即在该信号量队列上等待的进程数（最多 7 个）。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">33.</span>系统有 5 个进程，每个进程最多需要 3 个同类资源，为保证一定不发生死锁，该类资源至少需要多少个？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>11</code>。<b>算式</b> 最坏情况每个进程都只差 1 个资源，即各持 <code>3−1=2</code> 个，共 <code>5×2=10</code> 个仍可能死锁；再多 1 个必能唤醒某进程并推动其释放，故 <code>n(m−1)+1=5×2+1=11</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">34.</span>TLB 命中率 90%，TLB 访问时间 10ns，内存访问时间 100ns（不计缺页），有效访问时间 EAT 是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>120ns</code>。<b>算式</b> 命中：<code>10+100=110ns</code>；未命中：<code>10+100</code>（查页表）<code>+100</code>（取数）<code>=210ns</code>；<code>EAT=0.9×110+0.1×210=99+21=120ns</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">35.</span>文件系统采用混合索引：索引结点含 10 个直接块指针、1 个一次间接指针、1 个二次间接指针；块大小 4KB，块地址占 4B，单个文件最大长度是多少字节？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>4299202560 B</code>（4GB+4MB+40KB）。<b>算式</b> 每块指针数 <code>4KB/4B=1024</code>；直接 <code>10×4KB=40KB</code>；一次间接 <code>1024×4KB=4MB</code>；二次间接 <code>1024²×4KB=4GB=4294967296B</code>；合计 <code>4294967296+4194304+40960=4299202560B</code>。</div></details>
+    </div>
+    <h3>计算机网络（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">36.</span>主机 A 经 1000km 光纤（传播速率 <code>2×10⁸ m/s</code>）向 B 发送 4000B 数据，链路带宽 1Mb/s，从开始发送到 B 完整收妥共需多少时间？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>37ms</code>。<b>算式</b> 发送时延 <code>4000×8/10⁶=32ms</code>；传播时延 <code>10⁶/2×10⁸=5ms</code>；总时延 <code>32+5=37ms</code>（忽略处理与排队时延）。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">37.</span>某信道带宽 3kHz，信噪比为 30dB，按香农定理其极限数据率约为多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>≈30kb/s</code>（约 29.9kb/s）。<b>算式</b> <code>30dB</code> 对应 <code>S/N=10^(30/10)=1000</code>；<code>C=W·log₂(1+S/N)=3000×log₂1001≈3000×9.97=29901b/s</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">38.</span>采用 CSMA/CD 的总线网，数据率 100Mb/s，最大跨度 2000m，信号传播速率 <code>2×10⁸ m/s</code>，最小帧长是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>250B</code>（2000bit）。<b>算式</b> 单程传播时延 <code>2000/2×10⁸=10μs</code>，争用期 <code>2τ=20μs</code>；<code>Lmin=100Mb/s×20μs=2000bit=250B</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">39.</span>一个 4000B 的 IP 数据报（含 20B 首部）经 MTU=1500B 的链路转发，将被分成几片？最后一片的数据长度是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>3 片</code>，最后一片数据 <code>1020B</code>（总长 1040B）。<b>算式</b> 数据部分 <code>4000−20=3980B</code>，每片数据上限 <code>⌊(1500−20)/8⌋×8=1480B</code>；<code>3980=1480+1480+1020</code>，偏移量 <code>0、185、370</code>（单位 8B），前两片 MF=1。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">40.</span>TCP 慢开始＋拥塞避免，初始 <code>cwnd=1 MSS</code>，<code>ssthresh=16 MSS</code>，无超时无丢包，到第 10 个 RTT 结束时 <code>cwnd</code> 为多少 MSS？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>21 MSS</code>。<b>算式</b> 慢开始阶段按 RTT 依次 <code>1,2,4,8,16</code>（第 5 个 RTT 达到门限），此后转拥塞避免每 RTT 加 1：<code>17,18,19,20,21</code>；故第 10 个 RTT 末 <code>cwnd=16+(10−5)=21 MSS</code>。</div></details>
+    </div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">3</span>计算专项（真题风格 41~60）<span class="lv">★★★★</span><span class="cnt">20 题</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>数据结构（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">41.</span>递归式 <code>f(n)=2f(n−1)+n</code>（<code>n≥2</code>），<code>f(1)=1</code>，逐层展开后 <code>f(5)</code> 等于多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>57</code>。<b>算式</b> 逐层代：<code>f(2)=2×1+2=4</code>、<code>f(3)=2×4+3=11</code>、<code>f(4)=2×11+4=26</code>、<code>f(5)=2×26+5=57</code>。展开式验算：<code>f(5)=2⁴f(1)+2³×2+2²×3+2¹×4+2⁰×5=16+16+12+8+5=57</code>，两条路径一致。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">42.</span>一棵满三叉树（每个非叶结点恰有 3 个孩子），高度为 5（根为第 1 层），该树共有多少个结点？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>121</code>。<b>算式</b> 各层结点数 <code>1,3,9,27,81</code>，求和 <code>1+3+9+27+81=121</code>；等比公式 <code>(3⁵−1)/(3−1)=242/2=121</code>。验算：叶子 <code>3⁴=81</code>、内部结点 <code>1+3+9+27=40</code>，三叉树有 <code>n=3n₂+1=3×40+1=121</code>，吻合。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">43.</span>无向带权图边集：<code>v1−v2=2</code>、<code>v1−v3=6</code>、<code>v2−v3=3</code>、<code>v2−v4=7</code>、<code>v3−v4=1</code>、<code>v3−v5=8</code>、<code>v4−v5=2</code>。用 Floyd 逐次插入中间点，求 <code>v1</code> 到 <code>v5</code> 的最短路径长度。</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>8</code>。<b>算式</b> 插入 v2：<code>d(1,3)=min(6,2+3)=5</code>、<code>d(1,4)=min(∞,2+7)=9</code>；插入 v3：<code>d(1,4)=min(9,5+1)=6</code>、<code>d(1,5)=min(∞,5+8)=13</code>；插入 v4：<code>d(1,5)=min(13,6+2)=8</code>。最短路径 <code>v1→v2→v3→v4→v5</code>，长度 <code>2+3+1+2=8</code>；其余候选 <code>6+1+2=9</code>、<code>2+7+2=11</code>、<code>2+3+8=13</code> 均更长。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">44.</span>大根堆按层序存放为 <code>88,72,65,50,40,30</code>，现删除堆顶元素并把末尾元素移到堆顶做一次向下调整，调整后的堆顶元素是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>72</code>。<b>算式</b> 删除 88，末元素 30 移到堆顶得 <code>30,72,65,50,40</code>；30 与较大孩子 72 交换 → <code>72,30,65,50,40</code>；30 再与较大孩子 50 交换 → <code>72,50,65,30,40</code>，此时 30 已落到叶子，调整结束。堆顶即原次大关键字 72，共交换 2 次。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">45.</span>待排文件共 20000 个记录，内存工作区一次容纳 200 个记录，采用 5 路平衡归并对初始归并段做多趟归并，共需多少趟归并？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>3 趟</code>。<b>算式</b> 初始归并段数 <code>r=20000/200=100</code>，<code>k=5</code>，趟数 <code>S=⌈log₅100⌉</code>；因 <code>5²=25&lt;100≤5³=125</code>，故 <code>S=3</code>。逐趟验算段数：<code>100→20→4→1</code>，第 3 趟后只剩 1 个有序段，归并完成。</div></details>
+    </div>
+    <h3>组成原理（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">46.</span>8 位补码下计算 <code>[0x4E]−[0x9B]</code>，结果保留 8 位，其编码是什么（十六进制）？是否溢出？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>0xB3</code>，发生<b>正溢出</b>。<b>算式</b> <code>0x4E=78</code>，<code>0x9B=155−256=−101</code>；减法化加法，<code>−0x9B</code> 各位取反得 <code>0110 0100</code> 再加 1 得 <code>0110 0101=0x65</code>；<code>0x4E+0x65</code> 即 <code>0100 1110+0110 0101=1011 0011=0xB3</code>。按补码解释 <code>0xB3=179−256=−77</code>，而真值 <code>78−(−101)=179&gt;127</code>，超出 8 位补码上限，故溢出（正数减负数却得负数，符号位异常，OF 置 1）。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">47.</span>某 IEEE 754 单精度浮点数的 32 位编码为 <code>0xC2C80000</code>，其十进制真值是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>−100.0</code>。<b>算式</b> <code>0xC2C80000=1100 0010 1100 1000 0000…0</code>，拆成 <code>1 | 10000101 | 1001000…0</code>：符号位 1（负），阶码 <code>1000 0101=133</code>，实际阶 <code>133−127=6</code>；尾数 <code>1.1001₂=1+0.5+0.0625=1.5625</code>；真值 <code>−1.5625×2⁶=−1.5625×64=−100.0</code>。验算：<code>100=1100100₂=1.1001₂×2⁶</code>，阶码 <code>6+127=133</code>，与编码一致。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">48.</span>主存地址 32 位，Cache 数据区 64KB，块大小 32B，2 路组相联；命中率 98%，命中时间 1ns，缺失代价 50ns。平均访问时间 AMAT 是多少 ns？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>2ns</code>。<b>算式</b> 块数 <code>64KB/32B=2048</code>，组数 <code>2048/2=1024</code>，组索引 <code>log₂1024=10</code> 位，块内地址 <code>log₂32=5</code> 位，标记 <code>32−10−5=17</code> 位。AMAT <code>=1+2%×50=1+1=2ns</code>；验算：每 100 次访问有 2 次缺失、多花 <code>2×50=100ns</code>，摊到每次 1ns，故合计 2ns。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">49.</span>五段流水线，时钟周期 2ns，连续执行 300 条指令；其中 25% 的指令因数据相关各需插入 2 个停顿周期。总执行时间是多少 ns？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>908ns</code>。<b>算式</b> 无相关时周期数 <code>k+(n−1)=5+299=304</code>；停顿周期 <code>300×25%×2=150</code>；总周期 <code>304+150=454</code>，时间 <code>454×2=908ns</code>。验算：理想时间 <code>304×2=608ns</code>，停顿多花 <code>150×2=300ns</code>，<code>608+300=908ns</code>；流水线效率 <code>304/454≈67%</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">50.</span>某同步总线数据线 32 位，总线时钟 200MHz，每次总线传输占 1 个时钟周期、传送 4B。连续传送 4KB 数据需要多少时间？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>5.12μs</code>。<b>算式</b> 每个时钟传 4B，总线带宽 <code>4B×200×10⁶=800MB/s</code>；时间 <code>4096B÷800×10⁶B/s=5.12×10⁻⁶s=5.12μs</code>。验算：需传输 <code>4096/4=1024</code> 次，占 1024 个时钟，<code>1024÷200×10⁶=5.12μs</code>。</div></details>
+    </div>
+    <h3>操作系统（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">51.</span>三个进程 <code>P1(0,3)、P2(0,2)、P3(0,5)</code>（到达时间,运行时间）在 <code>t=0</code> 同时就绪，采用时间片 <code>q=2</code> 的轮转调度，就绪队列初始顺序 P1→P2→P3，平均周转时间是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>7.0</code>。<b>算式</b> 执行序列：<code>P1(0~2)</code>、<code>P2(2~4 完成)</code>、<code>P3(4~6)</code>、<code>P1(6~7 完成)</code>、<code>P3(7~9)</code>、<code>P3(9~10 完成)</code>；完成时刻 <code>P1=7、P2=4、P3=10</code>，周转时间 <code>7,4,10</code>，平均 <code>(7+4+10)/3=21/3=7.0</code>。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">52.</span>生产者—消费者问题中缓冲区容量为 8，<code>empty</code> 初值 8、<code>full</code> 初值 0、<code>mutex</code> 初值 1。某时刻 <code>empty</code> 的值为 <code>−1</code>，此时缓冲区中产品的个数是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>8</code> 个。<b>算式</b> <code>empty</code> 是空位计数，<code>empty≥0</code> 时产品数 <code>=8−empty</code>；<code>empty=0</code> 时 8 个空位全部占满，产品 8 个、<code>full=8</code>。此后又有一个生产者执行 <code>P(empty)</code>，<code>empty</code> 减为 <code>−1</code> 并被阻塞，该生产者并未放入产品，故产品数仍为 8；负值的绝对值 1 表示阻塞的生产者个数。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">53.</span>系统共有 14 个同类资源由 3 个进程共享，当前已分配 <code>5、5、4</code>，三个进程各还需 6 个才能运行完。系统已死锁，最少需终止几个进程才能解除死锁？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>2</code> 个。<b>算式</b> 已分配 <code>5+5+4=14</code>，可用资源为 0，各进程尚需 6，均无法推进，故死锁。终止 1 个进程最多释放 5 个（<code>5&lt;6</code>），仍不能满足任一进程，死锁无法解除；终止 2 个进程可释放 <code>5+5=10</code> 或 <code>5+4=9</code>，均 <code>≥6</code>，剩下的进程获得资源后可运行完并归还全部资源。故最少 2 个。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">54.</span>进程分得 3 个页框且初始为空，按 FIFO 置换算法依次访问页面 <code>1,2,3,4,1,2,5,1,2,3,4,5</code>，共发生多少次缺页？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>9</code> 次。<b>算式</b> 逐次置换：<code>1</code>缺<code>[1]</code>；<code>2</code>缺<code>[1,2]</code>；<code>3</code>缺<code>[1,2,3]</code>；<code>4</code>缺淘汰1<code>[2,3,4]</code>；<code>1</code>缺淘汰2<code>[3,4,1]</code>；<code>2</code>缺淘汰3<code>[4,1,2]</code>；<code>5</code>缺淘汰4<code>[1,2,5]</code>；<code>1</code>命中；<code>2</code>命中；<code>3</code>缺淘汰1<code>[2,5,3]</code>；<code>4</code>缺淘汰2<code>[5,3,4]</code>；<code>5</code>命中。共 3 次命中，缺页 <code>12−3=9</code> 次；若给 4 个页框反而缺页 10 次，即 Belady 异常。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">55.</span>某文件系统块大小 1KB、块指针 4B，索引结点含 10 个直接指针、1 个一级间接、1 个二级间接指针。一个 300KB 的文件需占用多少个索引块（含各级间接块，不含数据块）？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>3</code> 个。<b>算式</b> 每块指针数 <code>1KB/4B=256</code>；数据块 <code>300KB/1KB=300</code> 个。直接指针覆盖 10 块，余 <code>290</code>；一级间接覆盖 <code>256</code> 块、占 1 个间接块，余 <code>34</code>；二级间接中 34 块 <code>≤256</code>，需 1 个顶层间接块 + 1 个二级块 = 2 个。合计 <code>1+2=3</code> 个索引块。验算：直接 10KB + 一级 <code>256KB</code> + 二级 <code>256×256KB=64MB</code>，300KB 落在二级区间，与计算一致。</div></details>
+    </div>
+    <h3>计算机网络（5 题）</h3>
+    <div class="qz">
+      <div class="stem"><span class="no">56.</span>某链路长 400km、信号传播速率 <code>2×10⁸ m/s</code>、带宽 100Mb/s。以字节表示，该链路的时延带宽积是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>25000 字节</code>（200000 bit）。<b>算式</b> 单程传播时延 <code>d=4×10⁵÷(2×10⁸)=2×10⁻³s=2ms</code>；时延带宽积 <code>=100×10⁶bit/s×2×10⁻³s=2×10⁵bit</code>；换算 <code>200000÷8=25000B≈24.4KB</code>。含义：链路“管道”中最多可容纳 25000 字节数据，也是停止—等待协议不浪费带宽所需的最小窗口。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">57.</span>某信道带宽 3kHz，信噪比为 30dB，按香农公式其极限数据率约为多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> 约 <code>30kb/s</code>。<b>算式</b> 由 <code>30dB=10lg(S/N)</code> 得 <code>S/N=10³=1000</code>；<code>C=W·log₂(1+S/N)=3000×log₂1001</code>，而 <code>log₂1001≈9.97</code>，故 <code>C≈3000×9.97≈29910b/s≈30kb/s</code>。验算：<code>2¹⁰=1024</code>，<code>log₂1001</code> 略小于 10，取 10 得上限 <code>30kb/s</code>，与近似值吻合。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">58.</span>某 CSMA/CD 网络数据率 100Mb/s，信号传播速率 <code>2×10⁸ m/s</code>，网络最大跨度为 1km（单程）。其最小帧长应为多少字节？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>125B</code>。<b>算式</b> 单程传播时延 <code>τ=1000÷(2×10⁸)=5μs</code>，争用期（往返）<code>2τ=10μs</code>；最小帧长 <code>=2τ×R=10×10⁻⁶×100×10⁶=1000bit=125B</code>。验算：125B 的发送时间 <code>1000÷10⁸=10μs</code>，恰等于往返传播时延，保证发送方在发完之前就能检测到冲突。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">59.</span>某路由器有 <code>202.100.0.0/24、202.100.1.0/24、202.100.2.0/24、202.100.3.0/24</code> 四条直连路由，做最长前缀聚合后，该聚合地址块可分配给主机的地址数是多少？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>1022</code> 个。<b>算式</b> 第三字节为 <code>0~3</code> 即 <code>000000xx</code>，前 22 位相同，聚合为 <code>202.100.0.0/22</code>；主机位 <code>32−22=10</code> 位，地址总数 <code>2¹⁰=1024</code>，去掉网络地址 <code>202.100.0.0</code> 与广播地址 <code>202.100.3.255</code> 得 <code>1024−2=1022</code>。验算：4 个 /24 各 254 个可用地址共 <code>4×254=1016</code>，聚合后多出 <code>1022−1016=6</code> 个，正好对应被合并掉的 3 个 /24 的网络地址与广播地址。</div></details>
+    </div>
+    <div class="qz">
+      <div class="stem"><span class="no">60.</span>某 TCP 连接 <code>cwnd=10KB</code>、接收方通告窗口 <code>rwnd=8KB</code>、<code>MSS=1KB</code>，当前已发送但尚未收到确认的数据为 4KB。发送方现在还能发送多少字节？</div>
+      <details class="ans"><summary>答案与算式</summary><div class="ansbody"><b>答案</b> <code>4096 字节</code>（4 个 MSS）。<b>算式</b> 发送窗口取两者较小值：<code>min(cwnd,rwnd)=min(10KB,8KB)=8KB</code>；已用 4KB，故可用 <code>8−4=4KB=4×1024=4096B</code>，可再发 4 个满 MSS 报文段。验算：窗口右沿为 <code>已确认序号+8KB</code>，已发至 <code>+4KB</code>，还能推进 <code>8−4=4KB</code>；若 <code>rwnd</code> 增到 16KB 则由 <code>cwnd=10KB</code> 限制，可发 <code>10−4=6KB</code>。</div></details>
+    </div>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
