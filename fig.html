@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>图解</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="fig">
+  <div class="subhead"><h2>图解</h2><span class="score">看一遍胜读十遍</span><span class="meta" data-all="9 图">9 图</span></div>
+<details class="chap" open>
+  <summary><span class="num">6</span>组成原理（新增）<span class="lv">★★★</span><span class="cnt">1 图</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>1.6 中断处理的完整流程</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 200" role="img" aria-label="中断处理流程">
+        <text x="200" y="16" text-anchor="middle" class="t">一次中断响应的五步</text>
+        <rect x="14" y="34" width="76" height="30" class="box"/><text x="52" y="53" text-anchor="middle" class="x">中断请求</text>
+        <rect x="108" y="34" width="76" height="30" class="box"/><text x="146" y="53" text-anchor="middle" class="x">中断判优</text>
+        <rect x="202" y="34" width="90" height="30" class="boxa"/><text x="247" y="53" text-anchor="middle" class="w">关中断</text>
+        <rect x="310" y="34" width="76" height="30" class="boxa"/><text x="348" y="53" text-anchor="middle" class="w">保存断点</text>
+        <line x1="90" y1="49" x2="106" y2="49" class="lna" marker-end="url(#arwa)"/>
+        <line x1="184" y1="49" x2="200" y2="49" class="lna" marker-end="url(#arwa)"/>
+        <line x1="292" y1="49" x2="308" y2="49" class="lna" marker-end="url(#arwa)"/>
+        <line x1="348" y1="64" x2="348" y2="92" class="lna" marker-end="url(#arwa)"/>
+        <rect x="240" y="94" width="130" height="30" class="box"/><text x="305" y="113" text-anchor="middle" class="x">引出中断服务程序</text>
+        <rect x="240" y="140" width="130" height="30" class="box"/><text x="305" y="159" text-anchor="middle" class="x">执行服务程序</text>
+        <rect x="96" y="140" width="120" height="30" class="box"/><text x="156" y="159" text-anchor="middle" class="x">恢复现场、开中断</text>
+        <rect x="14" y="140" width="66" height="30" class="box"/><text x="47" y="159" text-anchor="middle" class="x">中断返回</text>
+        <line x1="305" y1="124" x2="305" y2="138" class="lna" marker-end="url(#arwa)"/>
+        <line x1="240" y1="155" x2="218" y2="155" class="lna" marker-end="url(#arwa)"/>
+        <line x1="96" y1="155" x2="82" y2="155" class="lna" marker-end="url(#arwa)"/>
+        <text x="120" y="192" class="s">前三步由硬件完成，保存断点用隐指令</text>
+      </svg>
+      <div class="cap">中断响应三件事由<b>硬件</b>完成：关中断、保存断点（PC）、引出服务程序；保存现场与恢复现场由<b>软件</b>做。中断屏蔽字决定多重中断的嵌套顺序。</div>
+    </div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">6</span>数据结构（新增）<span class="lv">★★★</span><span class="cnt">2 图</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>1.4 循环队列的下标关系</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 180" role="img" aria-label="循环队列">
+        <text x="200" y="16" text-anchor="middle" class="t">front=2、rear=6 的循环队列</text>
+        <rect x="20" y="40" width="44" height="34" class="box"/><text x="42" y="62" text-anchor="middle" class="x">0</text>
+        <rect x="64" y="40" width="44" height="34" class="box"/><text x="86" y="62" text-anchor="middle" class="x">1</text>
+        <rect x="108" y="40" width="44" height="34" class="boxa"/><text x="130" y="62" text-anchor="middle" class="w">2</text>
+        <rect x="152" y="40" width="44" height="34" class="boxa"/><text x="174" y="62" text-anchor="middle" class="w">3</text>
+        <rect x="196" y="40" width="44" height="34" class="boxa"/><text x="218" y="62" text-anchor="middle" class="w">4</text>
+        <rect x="240" y="40" width="44" height="34" class="boxa"/><text x="262" y="62" text-anchor="middle" class="w">5</text>
+        <rect x="284" y="40" width="44" height="34" class="box"/><text x="306" y="62" text-anchor="middle" class="x">6</text>
+        <rect x="328" y="40" width="44" height="34" class="box"/><text x="350" y="62" text-anchor="middle" class="x">7</text>
+        <line x1="130" y1="86" x2="130" y2="100" class="lna" marker-end="url(#arwa)"/><text x="130" y="116" text-anchor="middle" class="s">front</text>
+        <line x1="306" y1="86" x2="306" y2="100" class="lna" marker-end="url(#arwa)"/><text x="306" y="116" text-anchor="middle" class="s">rear</text>
+        <text x="200" y="142" text-anchor="middle" class="x">元素个数 = (rear − front + MaxSize) % MaxSize = 4</text>
+        <text x="200" y="164" text-anchor="middle" class="s">牺牲一个单元判满：front == (rear+1)%MaxSize</text>
+      </svg>
+      <div class="cap">循环队列用<b>取模</b>把线性数组首尾接起来；判满有两种套路——牺牲一个单元（front==(rear+1)%m）或另设计数器，<b>元素个数恒为 (rear−front+m)%m</b>。</div>
+    </div>
+    <h3>1.5 KMP 的 next 数组与滑动</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 190" role="img" aria-label="KMP next 数组">
+        <text x="200" y="16" text-anchor="middle" class="t">模式串 ababaa 的 next 值</text>
+        <text x="14" y="46" class="s">j</text><text x="14" y="76" class="s">字符</text><text x="8" y="106" class="s">next</text>
+        <rect x="44" y="30" width="48" height="22" class="boxw"/><text x="68" y="45" text-anchor="middle" class="x">1</text>
+        <rect x="92" y="30" width="48" height="22" class="boxw"/><text x="116" y="45" text-anchor="middle" class="x">2</text>
+        <rect x="140" y="30" width="48" height="22" class="boxw"/><text x="164" y="45" text-anchor="middle" class="x">3</text>
+        <rect x="188" y="30" width="48" height="22" class="boxw"/><text x="212" y="45" text-anchor="middle" class="x">4</text>
+        <rect x="236" y="30" width="48" height="22" class="boxw"/><text x="260" y="45" text-anchor="middle" class="x">5</text>
+        <rect x="284" y="30" width="48" height="22" class="boxw"/><text x="308" y="45" text-anchor="middle" class="x">6</text>
+        <rect x="44" y="60" width="48" height="22" class="box"/><text x="68" y="75" text-anchor="middle" class="x">a</text>
+        <rect x="92" y="60" width="48" height="22" class="box"/><text x="116" y="75" text-anchor="middle" class="x">b</text>
+        <rect x="140" y="60" width="48" height="22" class="box"/><text x="164" y="75" text-anchor="middle" class="x">a</text>
+        <rect x="188" y="60" width="48" height="22" class="box"/><text x="212" y="75" text-anchor="middle" class="x">b</text>
+        <rect x="236" y="60" width="48" height="22" class="box"/><text x="260" y="75" text-anchor="middle" class="x">a</text>
+        <rect x="284" y="60" width="48" height="22" class="box"/><text x="308" y="75" text-anchor="middle" class="x">a</text>
+        <rect x="44" y="90" width="48" height="22" class="boxa"/><text x="68" y="105" text-anchor="middle" class="w">0</text>
+        <rect x="92" y="90" width="48" height="22" class="boxa"/><text x="116" y="105" text-anchor="middle" class="w">1</text>
+        <rect x="140" y="90" width="48" height="22" class="boxa"/><text x="164" y="105" text-anchor="middle" class="w">1</text>
+        <rect x="188" y="90" width="48" height="22" class="boxa"/><text x="212" y="105" text-anchor="middle" class="w">2</text>
+        <rect x="236" y="90" width="48" height="22" class="boxa"/><text x="260" y="105" text-anchor="middle" class="w">3</text>
+        <rect x="284" y="90" width="48" height="22" class="boxa"/><text x="308" y="105" text-anchor="middle" class="w">4</text>
+        <text x="200" y="136" text-anchor="middle" class="s">失配时主串指针 i 不动，模式串滑到 j = next[j]</text>
+        <text x="200" y="158" text-anchor="middle" class="s">next[j] = 前 j−1 个字符的最长相等前后缀长度 + 1</text>
+        <text x="200" y="178" text-anchor="middle" class="s">求 next 与匹配都是 O(n+m)，比 BF 的 O(nm) 快</text>
+      </svg>
+      <div class="cap">next[j] 的含义是<b>失配后模式串该跳到哪一位</b>，主串指针不回退；手算口诀：看前 j−1 位的最长相等前后缀长度再加 1。</div>
+    </div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">6</span>计算机网络（新增）<span class="lv">★★★</span><span class="cnt">2 图</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>1.1 曼彻斯特与差分曼彻斯特编码</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 190" role="img" aria-label="曼彻斯特编码波形">
+        <text x="200" y="18" text-anchor="middle" class="t">0 1 1 0 的编码波形</text>
+        <line x1="55" y1="60" x2="345" y2="60" class="dash"/><line x1="55" y1="110" x2="345" y2="110" class="dash"/>
+        <text x="95" y="42" text-anchor="middle" class="x">0</text><text x="165" y="42" text-anchor="middle" class="x">1</text>
+        <text x="235" y="42" text-anchor="middle" class="x">1</text><text x="305" y="42" text-anchor="middle" class="x">0</text>
+        <line x1="130" y1="30" x2="130" y2="125" class="dash"/><line x1="200" y1="30" x2="200" y2="125" class="dash"/><line x1="270" y1="30" x2="270" y2="125" class="dash"/>
+        <text x="12" y="90" class="s">曼彻斯特</text>
+        <path d="M60,60 H95 V110 H165 V60 H200 V110 H235 V60 H305 V110 H340" class="lna"/>
+        <text x="12" y="160" class="s">差分</text>
+        <path d="M60,160 V130 H95 V160 H130 V130 H200 V160 H270 V130 H305 V160 H340" class="lna"/>
+      </svg>
+      <div class="cap">曼彻斯特：<b>0＝高→低、1＝低→高</b>，每位中间必跳变，自带时钟但带宽翻倍；差分曼彻斯特：<b>每位起始必跳变</b>，位中间有跳变＝0、无跳变＝1，抗干扰更强。</div>
+    </div>
+    <h3>1.2 IP 数据报分片</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 215" role="img" aria-label="IP 数据报分片">
+        <text x="200" y="16" text-anchor="middle" class="t">4000B 数据报在 MTU=1500 下的分片</text>
+        <rect x="20" y="28" width="40" height="24" class="boxa"/><text x="40" y="44" text-anchor="middle" class="w">首部</text>
+        <rect x="60" y="28" width="300" height="24" class="box"/><text x="210" y="44" text-anchor="middle" class="x">数据 3980B</text>
+        <rect x="20" y="72" width="40" height="24" class="boxa"/><text x="40" y="88" text-anchor="middle" class="w">20</text>
+        <rect x="60" y="72" width="112" height="24" class="box"/><text x="116" y="88" text-anchor="middle" class="x">1480B</text>
+        <text x="182" y="88" class="s">偏移 0　MF=1</text>
+        <rect x="20" y="108" width="40" height="24" class="boxa"/><text x="40" y="124" text-anchor="middle" class="w">20</text>
+        <rect x="60" y="108" width="112" height="24" class="box"/><text x="116" y="124" text-anchor="middle" class="x">1480B</text>
+        <text x="182" y="124" class="s">偏移 185　MF=1</text>
+        <rect x="20" y="144" width="40" height="24" class="boxa"/><text x="40" y="160" text-anchor="middle" class="w">20</text>
+        <rect x="60" y="144" width="78" height="24" class="box"/><text x="99" y="160" text-anchor="middle" class="x">1020B</text>
+        <text x="148" y="160" class="s">偏移 370　MF=0</text>
+        <line x1="20" y1="62" x2="360" y2="62" class="ln"/>
+        <text x="200" y="196" text-anchor="middle" class="s">片偏移以 8B 为单位：1480÷8＝185，2960÷8＝370</text>
+      </svg>
+      <div class="cap">分片只切<b>数据部分</b>，每片都要重装 20B 首部；片偏移以 <b>8B 为单位</b>，故每片数据长度必须是 8 的倍数。</div>
+    </div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">6</span>操作系统（新增）<span class="lv">★★★</span><span class="cnt">1 图</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>1.3 二级页表的地址变换</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 200" role="img" aria-label="二级页表地址变换">
+        <text x="200" y="16" text-anchor="middle" class="t">32 位虚拟地址的三段划分</text>
+        <rect x="24" y="28" width="104" height="26" class="boxa"/><text x="76" y="45" text-anchor="middle" class="w">页目录号 10</text>
+        <rect x="128" y="28" width="104" height="26" class="box"/><text x="180" y="45" text-anchor="middle" class="x">页表索引 10</text>
+        <rect x="232" y="28" width="120" height="26" class="box"/><text x="292" y="45" text-anchor="middle" class="x">页内偏移 12</text>
+        <line x1="76" y1="54" x2="76" y2="86" class="lna" marker-end="url(#arwa)"/>
+        <line x1="180" y1="54" x2="180" y2="122" class="lna" marker-end="url(#arwa)"/>
+        <rect x="30" y="88" width="92" height="26" class="box"/><text x="76" y="105" text-anchor="middle" class="x">页目录项</text>
+        <rect x="134" y="124" width="92" height="26" class="box"/><text x="180" y="141" text-anchor="middle" class="x">页表项</text>
+        <line x1="122" y1="101" x2="132" y2="132" class="ln"/>
+        <line x1="180" y1="150" x2="180" y2="170" class="lna" marker-end="url(#arwa)"/>
+        <rect x="232" y="150" width="120" height="26" class="boxa"/><text x="292" y="167" text-anchor="middle" class="w">物理页框号</text>
+        <line x1="226" y1="163" x2="232" y2="163" class="ln"/>
+        <text x="200" y="192" text-anchor="middle" class="s">页目录项存页表基址，页表项存页框号；偏移 12 位 → 页大小 4KB</text>
+      </svg>
+      <div class="cap">两级页表把页表本身也分页，<b>每级索引 10 位、页内偏移 12 位</b>；一次访存要 3 次访问主存（目录→页表→数据），TLB 命中后降到 1 次。</div>
+    </div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">2</span>计算机组成原理<span class="lv">★★★</span><span class="cnt">5 图</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>2.1 存储层次结构</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 200" role="img" aria-label="存储层次金字塔">
+        <text x="348" y="14" text-anchor="middle" class="s">由谁管理</text>
+        <polygon points="155,18 245,18 260,56 140,56" class="box"/>
+        <text x="200" y="41" text-anchor="middle" class="x">寄存器</text>
+        <polygon points="140,58 260,58 275,96 125,96" class="boxa"/>
+        <text x="200" y="81" text-anchor="middle" class="w">Cache</text>
+        <polygon points="125,98 275,98 295,136 105,136" class="box"/>
+        <text x="200" y="121" text-anchor="middle" class="x">主存</text>
+        <polygon points="105,138 295,138 320,176 80,176" class="box"/>
+        <text x="200" y="161" text-anchor="middle" class="x">辅存</text>
+        <line x1="50" y1="20" x2="50" y2="174" class="lna" marker-end="url(#arwa)"/>
+        <text x="30" y="100" text-anchor="middle" class="s" transform="rotate(90 30 100)">容量↑ 速度↓ 价格↓</text>
+        <text x="258" y="45" class="s">编译器</text>
+        <text x="270" y="85" class="s">硬件</text>
+        <text x="290" y="125" class="s">硬件+OS</text>
+        <text x="310" y="165" class="s">OS+硬件</text>
+      </svg>
+      <div class="cap">越往上越快越贵越小；<b>Cache-主存</b>由硬件解决速度，<b>主存-辅存</b>由软硬件共同解决容量</div>
+    </div>
+    <h3>2.2 Cache 三种映射方式</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 270" role="img" aria-label="Cache三种映射方式">
+        <text x="10" y="40" class="t">直接映射</text>
+        <text x="10" y="56" class="s">mod 行数</text>
+        <rect x="95" y="14" width="50" height="68" rx="5" class="box"/>
+        <path d="M97 31H143M97 48H143M97 65H143" class="ln"/>
+        <text x="120" y="27" text-anchor="middle" class="s"><tspan x="120" y="27">块0</tspan><tspan x="120" y="44">块1</tspan><tspan x="120" y="61">块2</tspan><tspan x="120" y="78">块3</tspan></text>
+        <path d="M147 27L248 35M147 44L248 69M147 61L248 35M147 78L248 69" class="lna" marker-end="url(#arwa)"/>
+        <rect x="252" y="14" width="60" height="68" rx="5" class="boxw"/>
+        <path d="M252 48H312" class="ln"/>
+        <text x="282" y="35" text-anchor="middle" class="x">行0</text>
+        <text x="282" y="69" text-anchor="middle" class="x">行1</text>
+        <text x="10" y="126" class="t">全相联</text>
+        <text x="10" y="142" class="s">任意块→任意行</text>
+        <rect x="95" y="100" width="50" height="68" rx="5" class="box"/>
+        <path d="M97 117H143M97 134H143M97 151H143" class="ln"/>
+        <text x="120" y="113" text-anchor="middle" class="s"><tspan x="120" y="113">块0</tspan><tspan x="120" y="130">块1</tspan><tspan x="120" y="147">块2</tspan><tspan x="120" y="164">块3</tspan></text>
+        <path d="M147 113H248M147 130H248M147 147H248M147 164H248" class="lna" marker-end="url(#arwa)"/>
+        <rect x="252" y="100" width="60" height="68" rx="5" class="boxw"/>
+        <text x="282" y="138" text-anchor="middle" class="x">任意行</text>
+        <text x="10" y="212" class="t">组相联</text>
+        <text x="10" y="228" class="s">组内全相联</text>
+        <rect x="95" y="186" width="50" height="68" rx="5" class="box"/>
+        <path d="M97 203H143M97 220H143M97 237H143" class="ln"/>
+        <text x="120" y="199" text-anchor="middle" class="s"><tspan x="120" y="199">块0</tspan><tspan x="120" y="216">块1</tspan><tspan x="120" y="233">块2</tspan><tspan x="120" y="250">块3</tspan></text>
+        <path d="M147 199L248 203M147 216L248 203M147 233L248 237M147 250L248 237" class="lna" marker-end="url(#arwa)"/>
+        <rect x="252" y="186" width="60" height="68" rx="5" class="boxw"/>
+        <path d="M252 220H312" class="ln"/>
+        <text x="282" y="207" text-anchor="middle" class="x">组0</text>
+        <text x="282" y="241" text-anchor="middle" class="x">组1</text>
+      </svg>
+      <div class="cap">冲突＝块号 mod 行数（组数）相同；直接映射比较器只要 1 个但命中率低，全相联命中率最高但要比较全部行，组相联是折中</div>
+    </div>
+    <h3>2.3 虚拟地址到物理地址的转换</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 300" role="img" aria-label="虚拟地址到物理地址转换流程">
+        <text x="165" y="18" text-anchor="middle" class="s">虚拟地址</text>
+        <rect x="70" y="24" width="110" height="22" rx="5" class="box"/>
+        <text x="125" y="39" text-anchor="middle" class="x">虚页号</text>
+        <rect x="180" y="24" width="80" height="22" rx="5" class="box"/>
+        <text x="220" y="39" text-anchor="middle" class="x">页内偏移</text>
+        <line x1="125" y1="46" x2="125" y2="72" class="ln" marker-end="url(#arw)"/>
+        <rect x="40" y="74" width="120" height="26" rx="5" class="boxa"/>
+        <text x="100" y="91" text-anchor="middle" class="w">TLB 快表</text>
+        <line x1="162" y1="87" x2="214" y2="87" class="lna" marker-end="url(#arwa)"/>
+        <text x="188" y="82" text-anchor="middle" class="s">命中</text>
+        <line x1="100" y1="102" x2="100" y2="126" class="ln" marker-end="url(#arw)"/>
+        <text x="106" y="118" class="s">未命中</text>
+        <rect x="40" y="128" width="120" height="26" rx="5" class="box"/>
+        <text x="100" y="145" text-anchor="middle" class="x">查页表（主存）</text>
+        <path d="M160 141H190V106" class="ln" marker-end="url(#arw)"/>
+        <rect x="220" y="74" width="120" height="26" rx="5" class="boxa"/>
+        <text x="280" y="91" text-anchor="middle" class="w">得页框号</text>
+        <line x1="200" y1="46" x2="200" y2="238" class="dash"/>
+        <text x="204" y="176" class="s">偏移不变</text>
+        <path d="M280 102V214H155V236" class="ln" marker-end="url(#arw)"/>
+        <text x="52" y="254" text-anchor="middle" class="s">物理地址</text>
+        <rect x="110" y="240" width="90" height="22" rx="5" class="boxa"/>
+        <text x="155" y="255" text-anchor="middle" class="w">页框号</text>
+        <rect x="200" y="240" width="80" height="22" rx="5" class="box"/>
+        <text x="240" y="255" text-anchor="middle" class="x">页内偏移</text>
+        <text x="30" y="284" class="s">TLB 命中：共 1 次访存（取数据）</text>
+        <text x="30" y="296" class="s">TLB 未命中：查页表 1 次 + 取数 1 次 = 2 次</text>
+      </svg>
+      <div class="cap">页内偏移全程不变，只换页号→页框号；TLB 命中 1 次访存，未命中 2 次，<b>多级页表每多一级就多 1 次访存</b></div>
+    </div>
+    <h3>2.4 五段流水线时空图</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 230" role="img" aria-label="五段流水线时空图">
+        <text x="8" y="32" class="s">时间周期</text>
+        <text x="82" y="57" text-anchor="end" class="x"><tspan x="82" y="57">IF</tspan><tspan x="82" y="83">ID</tspan><tspan x="82" y="109">EX</tspan><tspan x="82" y="135">MEM</tspan><tspan x="82" y="161">WB</tspan></text>
+        <text x="106" y="32" text-anchor="middle" class="s"><tspan x="106">1</tspan><tspan x="138">2</tspan><tspan x="170">3</tspan><tspan x="202">4</tspan><tspan x="234">5</tspan><tspan x="266">6</tspan><tspan x="298">7</tspan><tspan x="330">8</tspan><tspan x="362">9</tspan></text>
+        <path d="M122 40V170M154 40V170M186 40V170M218 40V170M250 40V170M282 40V170M314 40V170M90 66H378M90 92H378M90 118H378M90 144H378" class="dash"/>
+        <polygon points="90,40 122,40 122,66 154,66 154,92 186,92 186,118 218,118 218,144 250,144 250,170 218,170 218,144 186,144 186,118 154,118 154,92 122,92 122,66 90,66" class="boxa"/>
+        <polygon points="122,40 154,40 154,66 186,66 186,92 218,92 218,118 250,118 250,144 282,144 282,170 250,170 250,144 218,144 218,118 186,118 186,92 154,92 154,66 122,66" class="box"/>
+        <polygon points="154,40 186,40 186,66 218,66 218,92 250,92 250,118 282,118 282,144 314,144 314,170 282,170 282,144 250,144 250,118 218,118 218,92 186,92 186,66 154,66" class="box"/>
+        <text x="106" y="57" text-anchor="middle" class="w">I1</text>
+        <text x="138" y="57" text-anchor="middle" class="x">I2</text>
+        <text x="170" y="57" text-anchor="middle" class="x">I3</text>
+        <line x1="314" y1="40" x2="314" y2="176" class="lna" marker-end="url(#arwa)"/>
+        <text x="314" y="190" text-anchor="middle" class="s">7 周期</text>
+        <text x="90" y="208" class="x">总时间 = k + (n-1) = 5 + 2 = 7 周期</text>
+        <text x="90" y="224" class="x">加速比 = n·k / 总时间 = 15 / 7 ≈ 2.14</text>
+      </svg>
+      <div class="cap">满流水后每周期出 1 条；总时间 = k + (n−1)，加速比 = n·k /(k+n−1)；瓶颈段（最慢段）决定流水线周期上限</div>
+    </div>
+    <h3>2.5 程序查询 / 中断 / DMA 三种 I/O 方式</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 230" role="img" aria-label="三种IO方式CPU参与度对比">
+        <line x1="78" y1="62" x2="374" y2="62" class="ln" marker-end="url(#arw)"/>
+        <text x="10" y="58" class="t">程序查询</text>
+        <text x="10" y="74" class="s">参与度高</text>
+        <rect x="78" y="53" width="38" height="18" rx="5" class="boxa"/>
+        <text x="97" y="66" text-anchor="middle" class="w">启动</text>
+        <rect x="120" y="53" width="132" height="18" rx="5" class="boxw"/>
+        <text x="186" y="66" text-anchor="middle" class="x">轮询等待（空转）</text>
+        <rect x="256" y="53" width="44" height="18" rx="5" class="boxa"/>
+        <text x="278" y="66" text-anchor="middle" class="w">处理</text>
+        <line x1="78" y1="132" x2="374" y2="132" class="ln" marker-end="url(#arw)"/>
+        <text x="10" y="128" class="t">中断方式</text>
+        <text x="10" y="144" class="s">参与度中</text>
+        <rect x="78" y="123" width="38" height="18" rx="5" class="boxa"/>
+        <text x="97" y="136" text-anchor="middle" class="w">启动</text>
+        <rect x="120" y="123" width="124" height="18" rx="5" class="boxw"/>
+        <text x="182" y="136" text-anchor="middle" class="x">执行其他程序</text>
+        <rect x="248" y="123" width="52" height="18" rx="5" class="boxa"/>
+        <text x="274" y="136" text-anchor="middle" class="w">中断处理</text>
+        <rect x="304" y="123" width="40" height="18" rx="5" class="boxw"/>
+        <text x="324" y="136" text-anchor="middle" class="s">返回</text>
+        <line x1="78" y1="202" x2="374" y2="202" class="ln" marker-end="url(#arw)"/>
+        <text x="10" y="198" class="t">DMA 方式</text>
+        <text x="10" y="214" class="s">参与度低</text>
+        <rect x="78" y="193" width="38" height="18" rx="5" class="boxa"/>
+        <text x="97" y="206" text-anchor="middle" class="w">启动</text>
+        <rect x="120" y="193" width="180" height="18" rx="5" class="boxw"/>
+        <text x="210" y="206" text-anchor="middle" class="x">DMA 传送数据</text>
+        <rect x="302" y="193" width="48" height="18" rx="5" class="boxa"/>
+        <text x="326" y="206" text-anchor="middle" class="w">结束处理</text>
+        <text x="210" y="224" text-anchor="middle" class="s">此段 CPU 完全不参与搬运</text>
+      </svg>
+      <div class="cap">CPU 参与度：DMA &lt; 中断 &lt; 查询；查询方式 CPU 空转最浪费，DMA 由硬件控制器直接搬数据，只在开始和结束时打扰 CPU 一次</div>
+    </div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">4</span>数据结构<span class="lv">★★★</span><span class="cnt">5 图</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>4.1 单链表插入与删除的指针变化</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 200" role="img" aria-label="单链表插入删除指针变化">
+        <text x="200" y="20" text-anchor="middle" class="t">插入 s 到 p 之后</text>
+        <rect x="20" y="36" width="54" height="28" rx="5" class="box"/><line x1="54" y1="36" x2="54" y2="64" class="ln"/><text x="37" y="54" text-anchor="middle" class="t">p</text>
+        <rect x="150" y="36" width="54" height="28" rx="5" class="box"/><line x1="184" y1="36" x2="184" y2="64" class="ln"/><text x="167" y="54" text-anchor="middle" class="t">s</text>
+        <rect x="300" y="36" width="54" height="28" rx="5" class="box"/><line x1="334" y1="36" x2="334" y2="64" class="ln"/><text x="317" y="54" text-anchor="middle" class="t">q</text>
+        <line x1="74" y1="50" x2="146" y2="50" class="lna" marker-end="url(#arwa)"/><text x="110" y="44" text-anchor="middle" class="s">②</text>
+        <line x1="204" y1="50" x2="296" y2="50" class="lna" marker-end="url(#arwa)"/><text x="250" y="44" text-anchor="middle" class="s">①</text>
+        <text x="200" y="88" text-anchor="middle" class="s">①先 ②后</text>
+        <text x="200" y="118" text-anchor="middle" class="t">删除 p 的后继 q</text>
+        <rect x="20" y="132" width="54" height="28" rx="5" class="box"/><line x1="54" y1="132" x2="54" y2="160" class="ln"/><text x="37" y="150" text-anchor="middle" class="t">p</text>
+        <rect x="150" y="132" width="54" height="28" rx="5" class="boxa"/><text x="177" y="150" text-anchor="middle" class="w">q</text>
+        <rect x="300" y="132" width="54" height="28" rx="5" class="box"/><line x1="334" y1="132" x2="334" y2="160" class="ln"/><text x="317" y="150" text-anchor="middle" class="t">r</text>
+        <line x1="74" y1="146" x2="146" y2="146" class="dash" marker-end="url(#arw)"/><text x="177" y="178" text-anchor="middle" class="s">free(q)</text>
+        <path d="M47 162 V188 H327 V164" class="lna" marker-end="url(#arwa)"/><text x="56" y="182" class="s">②</text>
+      </svg>
+      <div class="cap">插入顺序：① s-&gt;next=p-&gt;next ② p-&gt;next=s，<b>反了就断链</b>；删除 p-&gt;next=q-&gt;next 后 free(q)，虚线为原指针</div>
+    </div>
+
+    <h3>4.2 二叉树三种遍历</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 205" role="img" aria-label="二叉树三种遍历">
+        <line x1="95" y1="45" x2="50" y2="110" class="ln"/><line x1="95" y1="45" x2="140" y2="110" class="ln"/>
+        <line x1="50" y1="110" x2="25" y2="175" class="ln"/><line x1="50" y1="110" x2="80" y2="175" class="ln"/>
+        <line x1="140" y1="110" x2="115" y2="175" class="ln"/><line x1="140" y1="110" x2="170" y2="175" class="ln"/>
+        <circle cx="95" cy="45" r="17" class="boxa"/><text x="95" y="43" text-anchor="middle" class="w">A</text><text x="95" y="56" text-anchor="middle" class="w">1</text>
+        <circle cx="50" cy="110" r="17" class="box"/><text x="50" y="108" text-anchor="middle" class="t">B</text><text x="50" y="121" text-anchor="middle" class="s">2</text>
+        <circle cx="140" cy="110" r="17" class="box"/><text x="140" y="108" text-anchor="middle" class="t">C</text><text x="140" y="121" text-anchor="middle" class="s">5</text>
+        <circle cx="25" cy="175" r="17" class="boxw"/><text x="25" y="173" text-anchor="middle" class="t">D</text><text x="25" y="186" text-anchor="middle" class="s">3</text>
+        <circle cx="80" cy="175" r="17" class="boxw"/><text x="80" y="173" text-anchor="middle" class="t">E</text><text x="80" y="186" text-anchor="middle" class="s">4</text>
+        <circle cx="115" cy="175" r="17" class="boxw"/><text x="115" y="173" text-anchor="middle" class="t">F</text><text x="115" y="186" text-anchor="middle" class="s">6</text>
+        <circle cx="170" cy="175" r="17" class="boxw"/><text x="170" y="173" text-anchor="middle" class="t">G</text><text x="170" y="186" text-anchor="middle" class="s">7</text>
+        <text x="205" y="42" class="t">先序</text><text x="248" y="42" class="x">A B D E C F G</text>
+        <text x="205" y="72" class="t">中序</text><text x="248" y="72" class="x">D B E A F C G</text>
+        <text x="205" y="102" class="t">后序</text><text x="248" y="102" class="x">D E B F G C A</text>
+        <text x="205" y="132" class="t">层次</text><text x="248" y="132" class="x">A B C D E F G</text>
+        <text x="205" y="165" class="s">圈内小字=先序序号</text>
+      </svg>
+      <div class="cap">先序"根左右"、中序"左根右"、后序"左右根"；<b>中序序列 + 先序/后序/层次任一即可唯一还原树</b></div>
+    </div>
+
+    <h3>4.3 哈夫曼树构造</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 245" role="img" aria-label="哈夫曼树构造">
+        <line x1="104" y1="35" x2="61" y2="95" class="ln"/><line x1="104" y1="35" x2="148" y2="95" class="ln"/>
+        <line x1="61" y1="95" x2="40" y2="155" class="ln"/><line x1="61" y1="95" x2="82" y2="155" class="ln"/>
+        <line x1="148" y1="95" x2="127" y2="155" class="ln"/><line x1="148" y1="95" x2="170" y2="155" class="ln"/>
+        <line x1="40" y1="155" x2="22" y2="215" class="ln"/><line x1="40" y1="155" x2="58" y2="215" class="ln"/>
+        <line x1="127" y1="155" x2="108" y2="215" class="ln"/><line x1="127" y1="155" x2="146" y2="215" class="ln"/>
+        <circle cx="104" cy="35" r="15" class="boxa"/><text x="104" y="39" text-anchor="middle" class="w">71</text>
+        <circle cx="61" cy="95" r="15" class="box"/><text x="61" y="99" text-anchor="middle" class="t">27</text>
+        <circle cx="148" cy="95" r="15" class="box"/><text x="148" y="99" text-anchor="middle" class="t">44</text>
+        <circle cx="40" cy="155" r="15" class="box"/><text x="40" y="159" text-anchor="middle" class="t">12</text>
+        <circle cx="82" cy="155" r="15" class="boxw"/><text x="82" y="159" text-anchor="middle" class="t">15</text>
+        <circle cx="127" cy="155" r="15" class="box"/><text x="127" y="159" text-anchor="middle" class="t">19</text>
+        <circle cx="170" cy="155" r="15" class="boxw"/><text x="170" y="159" text-anchor="middle" class="t">25</text>
+        <circle cx="22" cy="215" r="15" class="boxw"/><text x="22" y="219" text-anchor="middle" class="t">5</text>
+        <circle cx="58" cy="215" r="15" class="boxw"/><text x="58" y="219" text-anchor="middle" class="t">7</text>
+        <circle cx="108" cy="215" r="15" class="boxw"/><text x="108" y="219" text-anchor="middle" class="t">8</text>
+        <circle cx="146" cy="215" r="15" class="boxw"/><text x="146" y="219" text-anchor="middle" class="t">11</text>
+        <text x="195" y="45" class="t">WPL=173</text>
+        <text x="195" y="80" class="x">5:000 7:001</text>
+        <text x="195" y="105" class="x">8:100 11:101</text>
+        <text x="195" y="130" class="x">15:01 25:11</text>
+        <text x="195" y="162" class="s">左 0 右 1</text>
+        <text x="195" y="186" class="s">叶子=权值</text>
+        <text x="195" y="210" class="s">每次取最小两个</text>
+      </svg>
+      <div class="cap">每次合并最小两权：5+7=12、8+11=19、12+15=27、19+25=44、27+44=71；<b>WPL=(5+7+8+11)×3+(15+25)×2=173</b>，编码无前缀</div>
+    </div>
+
+    <h3>4.4 快速排序一趟划分</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 240" role="img" aria-label="快速排序一趟划分">
+        <text x="60" y="32" text-anchor="middle" class="t">枢轴=49</text>
+        <rect x="40" y="42" width="40" height="34" rx="5" class="boxa"/><text x="60" y="63" text-anchor="middle" class="w">49</text>
+        <rect x="80" y="42" width="40" height="34" rx="5" class="box"/><text x="100" y="63" text-anchor="middle" class="t">38</text>
+        <rect x="120" y="42" width="40" height="34" rx="5" class="box"/><text x="140" y="63" text-anchor="middle" class="t">65</text>
+        <rect x="160" y="42" width="40" height="34" rx="5" class="box"/><text x="180" y="63" text-anchor="middle" class="t">97</text>
+        <rect x="200" y="42" width="40" height="34" rx="5" class="box"/><text x="220" y="63" text-anchor="middle" class="t">76</text>
+        <rect x="240" y="42" width="40" height="34" rx="5" class="box"/><text x="260" y="63" text-anchor="middle" class="t">13</text>
+        <rect x="280" y="42" width="40" height="34" rx="5" class="box"/><text x="300" y="63" text-anchor="middle" class="t">27</text>
+        <rect x="320" y="42" width="40" height="34" rx="5" class="box"/><text x="340" y="63" text-anchor="middle" class="t">49</text>
+        <text x="60" y="92" text-anchor="middle" class="s">0</text><text x="100" y="92" text-anchor="middle" class="s">1</text><text x="140" y="92" text-anchor="middle" class="s">2</text><text x="180" y="92" text-anchor="middle" class="s">3</text>
+        <text x="220" y="92" text-anchor="middle" class="s">4</text><text x="260" y="92" text-anchor="middle" class="s">5</text><text x="300" y="92" text-anchor="middle" class="s">6</text><text x="340" y="92" text-anchor="middle" class="s">7</text>
+        <line x1="60" y1="124" x2="60" y2="98" class="lna" marker-end="url(#arwa)"/><text x="60" y="138" text-anchor="middle" class="t">low</text>
+        <line x1="340" y1="124" x2="340" y2="98" class="lna" marker-end="url(#arwa)"/><text x="340" y="138" text-anchor="middle" class="t">high</text>
+        <text x="200" y="160" text-anchor="middle" class="t">一趟划分后</text>
+        <rect x="40" y="170" width="40" height="34" rx="5" class="boxw"/><text x="60" y="191" text-anchor="middle" class="t">27</text>
+        <rect x="80" y="170" width="40" height="34" rx="5" class="boxw"/><text x="100" y="191" text-anchor="middle" class="t">38</text>
+        <rect x="120" y="170" width="40" height="34" rx="5" class="boxw"/><text x="140" y="191" text-anchor="middle" class="t">13</text>
+        <rect x="160" y="170" width="40" height="34" rx="5" class="boxa"/><text x="180" y="191" text-anchor="middle" class="w">49</text>
+        <rect x="200" y="170" width="40" height="34" rx="5" class="box"/><text x="220" y="191" text-anchor="middle" class="t">76</text>
+        <rect x="240" y="170" width="40" height="34" rx="5" class="box"/><text x="260" y="191" text-anchor="middle" class="t">97</text>
+        <rect x="280" y="170" width="40" height="34" rx="5" class="box"/><text x="300" y="191" text-anchor="middle" class="t">65</text>
+        <rect x="320" y="170" width="40" height="34" rx="5" class="box"/><text x="340" y="191" text-anchor="middle" class="t">49</text>
+        <text x="200" y="224" text-anchor="middle" class="s">枢轴落位 i=3</text>
+      </svg>
+      <div class="cap">挖坑法：high 找小于枢轴者填 low 坑，low 找大于枢轴者填 high 坑，最后枢轴入位，落位后左边全小于它、右边全大于它；<b>一趟只确定枢轴最终位置</b>，不产生有序子序列</div>
+    </div>
+
+    <h3>4.5 完全二叉树与数组的对应</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 295" role="img" aria-label="完全二叉树与数组的对应">
+        <text x="110" y="24" text-anchor="middle" class="s">左孩子=2i</text><text x="290" y="24" text-anchor="middle" class="s">右孩子=2i+1</text>
+        <line x1="100" y1="40" x2="60" y2="95" class="ln"/><line x1="100" y1="40" x2="150" y2="95" class="ln"/>
+        <line x1="60" y1="95" x2="30" y2="150" class="ln"/><line x1="60" y1="95" x2="85" y2="150" class="ln"/>
+        <line x1="150" y1="95" x2="125" y2="150" class="ln"/><line x1="150" y1="95" x2="180" y2="150" class="ln"/>
+        <circle cx="100" cy="40" r="17" class="boxa"/><text x="100" y="44" text-anchor="middle" class="w">62</text>
+        <circle cx="60" cy="95" r="17" class="box"/><text x="60" y="99" text-anchor="middle" class="t">41</text>
+        <circle cx="150" cy="95" r="17" class="box"/><text x="150" y="99" text-anchor="middle" class="t">30</text>
+        <circle cx="30" cy="150" r="17" class="boxw"/><text x="30" y="154" text-anchor="middle" class="t">28</text>
+        <circle cx="85" cy="150" r="17" class="boxw"/><text x="85" y="154" text-anchor="middle" class="t">16</text>
+        <circle cx="125" cy="150" r="17" class="boxw"/><text x="125" y="154" text-anchor="middle" class="t">22</text>
+        <circle cx="180" cy="150" r="17" class="boxw"/><text x="180" y="154" text-anchor="middle" class="t">13</text>
+        <line x1="100" y1="57" x2="80" y2="235" class="dash"/><line x1="60" y1="112" x2="120" y2="235" class="dash"/>
+        <line x1="150" y1="112" x2="160" y2="235" class="dash"/><line x1="30" y1="167" x2="200" y2="235" class="dash"/>
+        <line x1="85" y1="167" x2="240" y2="235" class="dash"/><line x1="125" y1="167" x2="280" y2="235" class="dash"/>
+        <line x1="180" y1="167" x2="320" y2="235" class="dash"/>
+        <rect x="60" y="235" width="40" height="34" rx="5" class="box"/><text x="80" y="256" text-anchor="middle" class="t">62</text>
+        <rect x="100" y="235" width="40" height="34" rx="5" class="box"/><text x="120" y="256" text-anchor="middle" class="t">41</text>
+        <rect x="140" y="235" width="40" height="34" rx="5" class="box"/><text x="160" y="256" text-anchor="middle" class="t">30</text>
+        <rect x="180" y="235" width="40" height="34" rx="5" class="box"/><text x="200" y="256" text-anchor="middle" class="t">28</text>
+        <rect x="220" y="235" width="40" height="34" rx="5" class="box"/><text x="240" y="256" text-anchor="middle" class="t">16</text>
+        <rect x="260" y="235" width="40" height="34" rx="5" class="box"/><text x="280" y="256" text-anchor="middle" class="t">22</text>
+        <rect x="300" y="235" width="40" height="34" rx="5" class="box"/><text x="320" y="256" text-anchor="middle" class="t">13</text>
+        <text x="80" y="285" text-anchor="middle" class="s">1</text><text x="120" y="285" text-anchor="middle" class="s">2</text><text x="160" y="285" text-anchor="middle" class="s">3</text><text x="200" y="285" text-anchor="middle" class="s">4</text>
+        <text x="240" y="285" text-anchor="middle" class="s">5</text><text x="280" y="285" text-anchor="middle" class="s">6</text><text x="320" y="285" text-anchor="middle" class="s">7</text>
+      </svg>
+      <div class="cap">结点 i 的左孩子 2i、右孩子 2i+1、父结点 ⌊i/2⌋，<b>数组下标 1 起存才有此公式</b>；结点 4、5 的下标正好是 2i=4、2i+1=5</div>
+    </div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">1</span>计算机网络<span class="lv">★★★</span><span class="cnt">6 图</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>1.1 HTTP 请求与响应报文格式</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 170" role="img" aria-label="HTTP 请求与响应报文格式">
+        <text class="t" x="73" y="20" text-anchor="middle">请求报文</text>
+        <text class="t" x="265" y="20" text-anchor="middle">响应报文</text>
+        <rect class="boxa" x="14" y="28" width="118" height="26" rx="5"/>
+        <text class="w" x="73" y="45" text-anchor="middle">请求行</text>
+        <text class="s" x="133" y="45">方法 URL 版本</text>
+        <rect class="box" x="14" y="60" width="118" height="42" rx="5"/>
+        <text class="x" x="73" y="85" text-anchor="middle">首部行</text>
+        <text class="s" x="133" y="85">Host 等</text>
+        <rect class="boxw" x="14" y="108" width="118" height="16" rx="5"/>
+        <text class="s" x="73" y="120" text-anchor="middle">空行</text>
+        <text class="s" x="133" y="120">必须有 CRLF</text>
+        <rect class="box" x="14" y="130" width="118" height="26" rx="5"/>
+        <text class="x" x="73" y="147" text-anchor="middle">实体主体</text>
+        <text class="s" x="133" y="147">POST 才有</text>
+        <rect class="boxa" x="206" y="28" width="118" height="26" rx="5"/>
+        <text class="w" x="265" y="45" text-anchor="middle">状态行</text>
+        <text class="s" x="329" y="45">状态码 短语</text>
+        <rect class="box" x="206" y="60" width="118" height="42" rx="5"/>
+        <text class="x" x="265" y="85" text-anchor="middle">首部行</text>
+        <text class="s" x="329" y="85">Server 等</text>
+        <rect class="boxw" x="206" y="108" width="118" height="16" rx="5"/>
+        <text class="s" x="265" y="120" text-anchor="middle">空行</text>
+        <text class="s" x="329" y="120">必须有 CRLF</text>
+        <rect class="box" x="206" y="130" width="118" height="26" rx="5"/>
+        <text class="x" x="265" y="147" text-anchor="middle">实体主体</text>
+        <text class="s" x="329" y="147">HTML 文档</text>
+      </svg>
+      <div class="cap">请求行（方法+URL+版本）/ 状态行（版本+状态码+短语）+ 首部行 + <b>空行</b> + 实体主体；空行是首部结束的标志，绝不能省，否则服务器会一直等首部。</div>
+    </div>
+
+    <h3>1.2 HTTP 三种连接方式的时间线</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 234" role="img" aria-label="HTTP 三种连接方式的时间线">
+        <text class="s" x="12" y="20">每级台阶 = 1 RTT，箭头向下为时间</text>
+        <line class="ln" x1="94" y1="38" x2="94" y2="120" marker-end="url(#arw)"/>
+        <path class="lna" d="M100,46 H130 V60 H160 V74 H190 V88 H220 V102 H250 V116 H280"/>
+        <text class="s" x="115" y="40">建连 1RTT</text>
+        <text class="s" x="145" y="54">取对象 1RTT</text>
+        <text class="x" x="12" y="52">非持久连接</text>
+        <text class="s" x="12" y="66">每对象 2RTT</text>
+        <text class="t" x="284" y="120">6 RTT</text>
+        <line class="ln" x1="94" y1="132" x2="94" y2="184" marker-end="url(#arw)"/>
+        <path class="lna" d="M100,136 H130 V150 H160 V164 H190 V178 H220"/>
+        <text class="s" x="100" y="130">建连 1RTT</text>
+        <text class="x" x="12" y="148">持久非流水</text>
+        <text class="s" x="12" y="162">每对象 1RTT</text>
+        <text class="t" x="224" y="182">4 RTT</text>
+        <line class="ln" x1="94" y1="200" x2="94" y2="228" marker-end="url(#arw)"/>
+        <path class="lna" d="M100,206 H130 V220 H160"/>
+        <text class="s" x="100" y="200">建连 1RTT</text>
+        <text class="s" x="145" y="214">全部对象</text>
+        <text class="x" x="12" y="212">持久流水线</text>
+        <text class="s" x="12" y="226">一次全发</text>
+        <text class="t" x="164" y="224">2 RTT</text>
+      </svg>
+      <div class="cap">以取 3 个对象为例：<b>非持久连接 = 每对象 2RTT</b>（1RTT 建 TCP + 1RTT 请求响应）；持久连接只建一次 TCP，非流水线仍要逐个等响应，流水线可连续发请求，只要 1RTT。</div>
+    </div>
+
+    <h3>1.3 TCP 三次握手与四次挥手时序图</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 320" role="img" aria-label="TCP 三次握手与四次挥手时序图">
+        <rect class="box" x="76" y="8" width="68" height="22" rx="5"/>
+        <text class="t" x="110" y="23" text-anchor="middle">客户端</text>
+        <rect class="box" x="256" y="8" width="68" height="22" rx="5"/>
+        <text class="t" x="290" y="23" text-anchor="middle">服务器</text>
+        <line class="ln" x1="110" y1="32" x2="110" y2="300" marker-end="url(#arw)"/>
+        <line class="ln" x1="290" y1="32" x2="290" y2="300" marker-end="url(#arw)"/>
+        <text class="t" x="14" y="62">三次握手</text>
+        <line class="lna" x1="110" y1="60" x2="286" y2="60" marker-end="url(#arwa)"/>
+        <text class="s" x="200" y="54" text-anchor="middle">SYN, seq=x</text>
+        <text class="s" x="104" y="66" text-anchor="end">SYN_SENT</text>
+        <line class="lna" x1="290" y1="92" x2="114" y2="92" marker-end="url(#arwa)"/>
+        <text class="s" x="200" y="86" text-anchor="middle">SYN+ACK, seq=y, ack=x+1</text>
+        <text class="s" x="296" y="98">SYN_RCVD</text>
+        <line class="lna" x1="110" y1="124" x2="286" y2="124" marker-end="url(#arwa)"/>
+        <text class="s" x="200" y="118" text-anchor="middle">ACK, seq=x+1, ack=y+1</text>
+        <text class="s" x="104" y="130" text-anchor="end">ESTABLISHED</text>
+        <text class="s" x="296" y="130">ESTABLISHED</text>
+        <line class="dash" x1="30" y1="152" x2="370" y2="152"/>
+        <text class="t" x="14" y="172">四次挥手</text>
+        <line class="lna" x1="110" y1="186" x2="286" y2="186" marker-end="url(#arwa)"/>
+        <text class="s" x="200" y="180" text-anchor="middle">FIN, seq=u</text>
+        <text class="s" x="104" y="192" text-anchor="end">FIN_WAIT_1</text>
+        <line class="lna" x1="290" y1="214" x2="114" y2="214" marker-end="url(#arwa)"/>
+        <text class="s" x="200" y="208" text-anchor="middle">ACK, ack=u+1</text>
+        <text class="s" x="296" y="220">CLOSE_WAIT</text>
+        <line class="lna" x1="290" y1="242" x2="114" y2="242" marker-end="url(#arwa)"/>
+        <text class="s" x="200" y="236" text-anchor="middle">FIN, seq=w, ack=u+1</text>
+        <text class="s" x="296" y="248">LAST_ACK</text>
+        <line class="lna" x1="110" y1="270" x2="286" y2="270" marker-end="url(#arwa)"/>
+        <text class="s" x="200" y="264" text-anchor="middle">ACK, ack=w+1</text>
+        <text class="s" x="104" y="276" text-anchor="end">TIME_WAIT</text>
+        <text class="s" x="296" y="276">CLOSED</text>
+      </svg>
+      <div class="cap">握手第三次的 <b>ack=x+1</b> 已能携带数据；挥手要 4 次是因为服务器收到 FIN 后可能还有数据要发（CLOSE_WAIT）。主动关闭方最后进入 <b>TIME_WAIT</b>，等 2MSL 才关闭。</div>
+    </div>
+
+    <h3>1.4 TCP 拥塞控制 cwnd 曲线</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 250" role="img" aria-label="TCP 拥塞控制 cwnd 曲线">
+        <line class="ln" x1="60" y1="220" x2="378" y2="220" marker-end="url(#arw)"/>
+        <line class="ln" x1="60" y1="220" x2="60" y2="26" marker-end="url(#arw)"/>
+        <text class="s" x="56" y="40" text-anchor="end">cwnd</text>
+        <text class="s" x="362" y="238" text-anchor="end">轮次 RTT</text>
+        <line class="dash" x1="64" y1="100" x2="196" y2="100"/>
+        <line class="dash" x1="196" y1="130" x2="268" y2="130"/>
+        <line class="dash" x1="268" y1="160" x2="370" y2="160"/>
+        <text class="s" x="66" y="95">ssthresh</text>
+        <path class="lna" d="M70,205 L88,190 L106,160 L124,100 L142,85 L160,70 L178,55 L196,40 L196,130 L214,130 L232,115 L250,100 L268,85 L268,205 L286,205 L304,190 L322,160 L340,145 L358,130"/>
+        <circle class="dot" cx="196" cy="40" r="2.5"/>
+        <circle class="dot" cx="196" cy="130" r="2.5"/>
+        <circle class="dot" cx="268" cy="85" r="2.5"/>
+        <circle class="dot" cx="268" cy="205" r="2.5"/>
+        <text class="s" x="70" y="150">慢开始</text>
+        <text class="s" x="140" y="120">拥塞避免</text>
+        <text class="s" x="202" y="60">快重传</text>
+        <text class="s" x="202" y="74">快恢复</text>
+        <text class="s" x="274" y="104">超时 cwnd=1</text>
+      </svg>
+      <div class="cap">慢开始 cwnd 每 RTT 翻倍，到 <b>ssthresh</b> 转拥塞避免（每 RTT +1）；3 个重复 ACK 走快重传快恢复：<b>ssthresh=cwnd/2、cwnd=ssthresh</b> 不回到 1；只有超时才 ssthresh=cwnd/2 且 cwnd=1 重来。</div>
+    </div>
+
+    <h3>1.5 数据封装与解封装</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 228" role="img" aria-label="数据封装与解封装">
+        <rect class="box" x="150" y="36" width="110" height="32" rx="5"/>
+        <text class="x" x="205" y="56" text-anchor="middle">应用层数据</text>
+        <text class="s" x="110" y="77">＋TCP首部 20B</text>
+        <rect class="boxa" x="110" y="84" width="40" height="32" rx="5"/>
+        <text class="w" x="130" y="104" text-anchor="middle">TCP</text>
+        <rect class="box" x="150" y="84" width="150" height="32" rx="5"/>
+        <text class="s" x="225" y="104" text-anchor="middle">应用层数据</text>
+        <text class="s" x="70" y="125">＋IP首部 20B</text>
+        <rect class="boxa" x="70" y="132" width="40" height="32" rx="5"/>
+        <text class="w" x="90" y="152" text-anchor="middle">IP</text>
+        <rect class="box" x="110" y="132" width="230" height="32" rx="5"/>
+        <text class="s" x="225" y="152" text-anchor="middle">TCP报文段</text>
+        <text class="s" x="30" y="173">＋以太网首尾 18B</text>
+        <rect class="boxa" x="30" y="180" width="40" height="32" rx="5"/>
+        <text class="w" x="50" y="200" text-anchor="middle">以太</text>
+        <rect class="box" x="70" y="180" width="270" height="32" rx="5"/>
+        <text class="s" x="205" y="200" text-anchor="middle">IP数据报</text>
+        <rect class="boxa" x="340" y="180" width="30" height="32" rx="5"/>
+        <text class="w" x="355" y="200" text-anchor="middle">FCS</text>
+      </svg>
+      <div class="cap">每下一层就在前面加首部、尾部加 FCS，块越包越宽——<b>封装</b>；收方逐层剥掉首部（解封装）。记住常考字节数：TCP 20B、IP 20B、以太网首部 14B + 尾部 4B = 18B。</div>
+    </div>
+
+    <h3>1.6 子网划分中的地址位分配</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 196" role="img" aria-label="子网划分中的地址位分配">
+        <text class="s" x="20" y="30">32 位 IPv4 地址按位切分</text>
+        <line class="ln" x1="20" y1="52" x2="20" y2="58"/>
+        <text class="s" x="20" y="49" text-anchor="middle">0</text>
+        <line class="ln" x1="110" y1="52" x2="110" y2="58"/>
+        <text class="s" x="110" y="49" text-anchor="middle">8</text>
+        <line class="ln" x1="200" y1="52" x2="200" y2="58"/>
+        <text class="s" x="200" y="49" text-anchor="middle">16</text>
+        <line class="ln" x1="290" y1="52" x2="290" y2="58"/>
+        <text class="s" x="290" y="49" text-anchor="middle">24</text>
+        <line class="ln" x1="324" y1="52" x2="324" y2="58"/>
+        <text class="s" x="324" y="49" text-anchor="middle">27</text>
+        <line class="ln" x1="380" y1="52" x2="380" y2="58"/>
+        <text class="s" x="380" y="49" text-anchor="end">32</text>
+        <rect class="box" x="20" y="58" width="270" height="36" rx="5"/>
+        <text class="x" x="155" y="80" text-anchor="middle">网络位 24 位</text>
+        <rect class="boxa" x="290" y="58" width="34" height="36" rx="5"/>
+        <text class="w" x="307" y="80" text-anchor="middle">3位</text>
+        <rect class="boxw" x="324" y="58" width="56" height="36" rx="5"/>
+        <text class="x" x="352" y="80" text-anchor="middle">主机5位</text>
+        <line class="dash" x1="290" y1="94" x2="290" y2="120"/>
+        <line class="dash" x1="324" y1="94" x2="324" y2="120"/>
+        <text class="t" x="286" y="114" text-anchor="end">/24</text>
+        <text class="t" x="328" y="114">/27</text>
+        <text class="t" x="200" y="142" text-anchor="middle">借 3 位：/24 → /27</text>
+        <text class="x" x="200" y="164" text-anchor="middle">子网数 2³ = 8</text>
+        <text class="x" x="200" y="184" text-anchor="middle">每子网主机 2⁵−2 = 30</text>
+      </svg>
+      <div class="cap">借主机位做子网位：<b>网络位+子网位 = 新的网络前缀</b>。借 n 位 → 前缀 /(24+n)，子网数 2ⁿ，每子网主机数 2^(剩余主机位)−2（去掉全 0 网络地址和全 1 广播地址）。</div>
+    </div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">3</span>操作系统<span class="lv">★★★</span><span class="cnt">5 图</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>3.1 进程五状态转换</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 190" role="img" aria-label="进程五状态转换图">
+        <rect x="8" y="34" width="58" height="32" rx="5" class="box"/>
+        <text x="37" y="54" text-anchor="middle" class="t">创建</text>
+        <rect x="108" y="34" width="58" height="32" rx="5" class="box"/>
+        <text x="137" y="54" text-anchor="middle" class="t">就绪</text>
+        <rect x="208" y="34" width="58" height="32" rx="5" class="boxa"/>
+        <text x="237" y="54" text-anchor="middle" class="w">运行</text>
+        <rect x="300" y="34" width="62" height="32" rx="5" class="boxw"/>
+        <text x="331" y="54" text-anchor="middle" class="t">终止</text>
+        <rect x="208" y="140" width="58" height="32" rx="5" class="box"/>
+        <text x="237" y="160" text-anchor="middle" class="t">阻塞</text>
+        <line x1="66" y1="50" x2="104" y2="50" class="ln" marker-end="url(#arw)"/>
+        <text x="85" y="44" text-anchor="middle" class="s">创建</text>
+        <line x1="166" y1="50" x2="204" y2="50" class="ln" marker-end="url(#arw)"/>
+        <text x="185" y="44" text-anchor="middle" class="s">调度</text>
+        <line x1="266" y1="50" x2="296" y2="50" class="ln" marker-end="url(#arw)"/>
+        <text x="281" y="44" text-anchor="middle" class="s">退出</text>
+        <line x1="237" y1="66" x2="237" y2="136" class="lna" marker-end="url(#arwa)"/>
+        <text x="243" y="100" class="s">等待事件</text>
+        <path d="M253 34 V18 H137 V30" class="ln" marker-end="url(#arw)"/>
+        <text x="195" y="13" text-anchor="middle" class="s">时间片到</text>
+        <path d="M208 156 H137 V70" class="ln" marker-end="url(#arw)"/>
+        <text x="131" y="112" text-anchor="end" class="s">事件发生</text>
+      </svg>
+      <div class="cap">创建→就绪→运行→终止，运行态可转阻塞或就绪；<b>阻塞态不能直接变运行态</b>，必须先回就绪队列被重新调度</div>
+    </div>
+
+    <h3>3.2 生产者-消费者 PV 流程</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 230" role="img" aria-label="生产者消费者PV流程图">
+        <rect x="8" y="16" width="70" height="34" rx="5" class="boxa"/>
+        <text x="43" y="37" text-anchor="middle" class="w">生产者</text>
+        <rect x="110" y="18" width="28" height="30" rx="3" class="boxw"/>
+        <rect x="142" y="18" width="28" height="30" rx="3" class="boxw"/>
+        <rect x="174" y="18" width="28" height="30" rx="3" class="boxw"/>
+        <rect x="206" y="18" width="28" height="30" rx="3" class="boxw"/>
+        <rect x="238" y="18" width="28" height="30" rx="3" class="boxw"/>
+        <text x="188" y="62" text-anchor="middle" class="s">缓冲区 n 格</text>
+        <rect x="322" y="16" width="70" height="34" rx="5" class="boxa"/>
+        <text x="357" y="37" text-anchor="middle" class="w">消费者</text>
+        <line x1="78" y1="33" x2="106" y2="33" class="lna" marker-end="url(#arwa)"/>
+        <text x="92" y="27" text-anchor="middle" class="s">put</text>
+        <line x1="266" y1="33" x2="318" y2="33" class="lna" marker-end="url(#arwa)"/>
+        <text x="292" y="27" text-anchor="middle" class="s">get</text>
+        <rect x="8" y="76" width="180" height="120" rx="5" class="box"/>
+        <text x="98" y="94" text-anchor="middle" class="t">生产者循环</text>
+        <text x="20" y="114" class="x">P(empty)</text>
+        <text x="20" y="132" class="x">P(mutex)</text>
+        <text x="20" y="150" class="x">放入缓冲区</text>
+        <text x="20" y="168" class="x">V(mutex)</text>
+        <text x="20" y="186" class="x">V(full)</text>
+        <rect x="212" y="76" width="180" height="120" rx="5" class="box"/>
+        <text x="302" y="94" text-anchor="middle" class="t">消费者循环</text>
+        <text x="224" y="114" class="x">P(full)</text>
+        <text x="224" y="132" class="x">P(mutex)</text>
+        <text x="224" y="150" class="x">取出产品</text>
+        <text x="224" y="168" class="x">V(mutex)</text>
+        <text x="224" y="186" class="x">V(empty)</text>
+        <text x="20" y="214" class="s">初值 empty=n</text>
+        <text x="150" y="214" class="s">full=0</text>
+        <text x="262" y="214" class="s">mutex=1</text>
+      </svg>
+      <div class="cap">生产者先 P(empty) 再 P(mutex)，消费者先 P(full) 再 P(mutex)；<b>两个 P 的顺序不能颠倒</b>，否则持有锁等空位会死锁，V 顺序可交换</div>
+    </div>
+
+    <h3>3.3 页面置换轨迹对比</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 245" role="img" aria-label="FIFO与LRU页面置换轨迹对比">
+        <text x="6" y="32" class="s">引用串</text>
+        <rect x="64" y="16" width="36" height="24" rx="3" class="box"/><rect x="104" y="16" width="36" height="24" rx="3" class="box"/><rect x="144" y="16" width="36" height="24" rx="3" class="box"/><rect x="184" y="16" width="36" height="24" rx="3" class="box"/><rect x="224" y="16" width="36" height="24" rx="3" class="box"/><rect x="264" y="16" width="36" height="24" rx="3" class="box"/><rect x="304" y="16" width="36" height="24" rx="3" class="box"/><rect x="344" y="16" width="36" height="24" rx="3" class="box"/>
+        <text x="82" y="32" text-anchor="middle" class="t">7</text><text x="122" y="32" text-anchor="middle" class="t">0</text><text x="162" y="32" text-anchor="middle" class="t">1</text><text x="202" y="32" text-anchor="middle" class="t">2</text><text x="242" y="32" text-anchor="middle" class="t">0</text><text x="282" y="32" text-anchor="middle" class="t">3</text><text x="322" y="32" text-anchor="middle" class="t">0</text><text x="362" y="32" text-anchor="middle" class="t">4</text>
+        <text x="6" y="93" class="t">FIFO</text>
+        <rect x="64" y="48" width="36" height="24" rx="3" class="boxa"/><rect x="104" y="48" width="36" height="24" rx="3" class="boxw"/><rect x="144" y="48" width="36" height="24" rx="3" class="boxw"/><rect x="184" y="48" width="36" height="24" rx="3" class="boxa"/><rect x="224" y="48" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="48" width="36" height="24" rx="3" class="boxw"/><rect x="304" y="48" width="36" height="24" rx="3" class="boxw"/><rect x="344" y="48" width="36" height="24" rx="3" class="boxa"/>
+        <text x="82" y="64" text-anchor="middle" class="w">7</text><text x="122" y="64" text-anchor="middle" class="x">7</text><text x="162" y="64" text-anchor="middle" class="x">7</text><text x="202" y="64" text-anchor="middle" class="w">2</text><text x="242" y="64" text-anchor="middle" class="x">2</text><text x="282" y="64" text-anchor="middle" class="x">2</text><text x="322" y="64" text-anchor="middle" class="x">2</text><text x="362" y="64" text-anchor="middle" class="w">4</text>
+        <rect x="64" y="77" width="36" height="24" rx="3" class="boxw"/><rect x="104" y="77" width="36" height="24" rx="3" class="boxa"/><rect x="144" y="77" width="36" height="24" rx="3" class="boxw"/><rect x="184" y="77" width="36" height="24" rx="3" class="boxw"/><rect x="224" y="77" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="77" width="36" height="24" rx="3" class="boxa"/><rect x="304" y="77" width="36" height="24" rx="3" class="boxw"/><rect x="344" y="77" width="36" height="24" rx="3" class="boxw"/>
+        <text x="82" y="93" text-anchor="middle" class="s">-</text><text x="122" y="93" text-anchor="middle" class="w">0</text><text x="162" y="93" text-anchor="middle" class="x">0</text><text x="202" y="93" text-anchor="middle" class="x">0</text><text x="242" y="93" text-anchor="middle" class="x">0</text><text x="282" y="93" text-anchor="middle" class="w">3</text><text x="322" y="93" text-anchor="middle" class="x">3</text><text x="362" y="93" text-anchor="middle" class="x">3</text>
+        <rect x="64" y="106" width="36" height="24" rx="3" class="boxw"/><rect x="104" y="106" width="36" height="24" rx="3" class="boxw"/><rect x="144" y="106" width="36" height="24" rx="3" class="boxa"/><rect x="184" y="106" width="36" height="24" rx="3" class="boxw"/><rect x="224" y="106" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="106" width="36" height="24" rx="3" class="boxw"/><rect x="304" y="106" width="36" height="24" rx="3" class="boxa"/><rect x="344" y="106" width="36" height="24" rx="3" class="boxw"/>
+        <text x="82" y="122" text-anchor="middle" class="s">-</text><text x="122" y="122" text-anchor="middle" class="s">-</text><text x="162" y="122" text-anchor="middle" class="w">1</text><text x="202" y="122" text-anchor="middle" class="x">1</text><text x="242" y="122" text-anchor="middle" class="x">1</text><text x="282" y="122" text-anchor="middle" class="x">1</text><text x="322" y="122" text-anchor="middle" class="w">0</text><text x="362" y="122" text-anchor="middle" class="x">0</text>
+        <text x="6" y="183" class="t">LRU</text>
+        <rect x="64" y="138" width="36" height="24" rx="3" class="boxa"/><rect x="104" y="138" width="36" height="24" rx="3" class="boxw"/><rect x="144" y="138" width="36" height="24" rx="3" class="boxw"/><rect x="184" y="138" width="36" height="24" rx="3" class="boxa"/><rect x="224" y="138" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="138" width="36" height="24" rx="3" class="boxa"/><rect x="304" y="138" width="36" height="24" rx="3" class="boxw"/><rect x="344" y="138" width="36" height="24" rx="3" class="boxa"/>
+        <text x="82" y="154" text-anchor="middle" class="w">7</text><text x="122" y="154" text-anchor="middle" class="x">7</text><text x="162" y="154" text-anchor="middle" class="x">7</text><text x="202" y="154" text-anchor="middle" class="w">2</text><text x="242" y="154" text-anchor="middle" class="x">2</text><text x="282" y="154" text-anchor="middle" class="w">3</text><text x="322" y="154" text-anchor="middle" class="x">3</text><text x="362" y="154" text-anchor="middle" class="w">4</text>
+        <rect x="64" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="104" y="167" width="36" height="24" rx="3" class="boxa"/><rect x="144" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="184" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="224" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="304" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="344" y="167" width="36" height="24" rx="3" class="boxw"/>
+        <text x="82" y="183" text-anchor="middle" class="s">-</text><text x="122" y="183" text-anchor="middle" class="w">0</text><text x="162" y="183" text-anchor="middle" class="x">0</text><text x="202" y="183" text-anchor="middle" class="x">0</text><text x="242" y="183" text-anchor="middle" class="x">0</text><text x="282" y="183" text-anchor="middle" class="x">0</text><text x="322" y="183" text-anchor="middle" class="x">0</text><text x="362" y="183" text-anchor="middle" class="x">0</text>
+        <rect x="64" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="104" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="144" y="196" width="36" height="24" rx="3" class="boxa"/><rect x="184" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="224" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="304" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="344" y="196" width="36" height="24" rx="3" class="boxw"/>
+        <text x="82" y="212" text-anchor="middle" class="s">-</text><text x="122" y="212" text-anchor="middle" class="s">-</text><text x="162" y="212" text-anchor="middle" class="w">1</text><text x="202" y="212" text-anchor="middle" class="x">1</text><text x="242" y="212" text-anchor="middle" class="x">1</text><text x="282" y="212" text-anchor="middle" class="x">1</text><text x="322" y="212" text-anchor="middle" class="x">1</text><text x="362" y="212" text-anchor="middle" class="x">1</text>
+        <text x="64" y="236" class="x">FIFO 缺页 7 次</text>
+        <text x="232" y="236" class="x">LRU 缺页 6 次</text>
+      </svg>
+      <div class="cap">引用串 7 0 1 2 0 3 0 4、3 个页框：<b>FIFO 缺页 7 次、LRU 缺页 6 次</b>（实心格为缺页装入）；第 5、7 次访问 0 命中，FIFO 淘汰最早进入者，LRU 淘汰最久未用者</div>
+    </div>
+
+    <h3>3.4 磁盘调度磁道轨迹</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 280" role="img" aria-label="FCFS与SCAN磁盘调度轨迹">
+        <text x="30" y="26" class="t">FCFS 移臂 640 磁道</text>
+        <path d="M 123.2 44 L 202.4 53 L 351.9 62 L 95.1 71 L 244.6 80 L 54.6 89 L 248.1 98 L 144.3 107 L 147.8 116" class="ln" marker-end="url(#arw)"/>
+        <circle cx="123.2" cy="44" r="2.5" class="dot"/>
+        <text x="123.2" y="40" text-anchor="middle" class="s">53</text>
+        <line x1="30" y1="128" x2="380" y2="128" class="ln"/>
+        <line x1="30" y1="128" x2="30" y2="133" class="ln"/><line x1="118" y1="128" x2="118" y2="133" class="ln"/><line x1="206" y1="128" x2="206" y2="133" class="ln"/><line x1="294" y1="128" x2="294" y2="133" class="ln"/><line x1="380" y1="128" x2="380" y2="133" class="ln"/>
+        <text x="30" y="146" text-anchor="middle" class="s">0</text><text x="118" y="146" text-anchor="middle" class="s">50</text><text x="206" y="146" text-anchor="middle" class="s">100</text><text x="294" y="146" text-anchor="middle" class="s">150</text><text x="380" y="146" text-anchor="middle" class="s">199</text>
+        <text x="30" y="168" class="t">SCAN 移臂 299 磁道</text>
+        <text x="196" y="168" class="s">先右至 183 再左返</text>
+        <path d="M 123.2 180 L 144.3 189 L 147.8 198 L 202.4 207 L 244.6 216 L 248.1 225 L 351.9 234 L 95.1 243 L 54.6 252" class="lna" marker-end="url(#arwa)"/>
+        <circle cx="123.2" cy="180" r="2.5" class="dot"/>
+        <text x="123.2" y="176" text-anchor="middle" class="s">53</text>
+        <line x1="30" y1="264" x2="380" y2="264" class="ln"/>
+        <line x1="30" y1="264" x2="30" y2="269" class="ln"/><line x1="118" y1="264" x2="118" y2="269" class="ln"/><line x1="206" y1="264" x2="206" y2="269" class="ln"/><line x1="294" y1="264" x2="294" y2="269" class="ln"/><line x1="380" y1="264" x2="380" y2="269" class="ln"/>
+        <text x="30" y="277" text-anchor="middle" class="s">0</text><text x="118" y="277" text-anchor="middle" class="s">50</text><text x="206" y="277" text-anchor="middle" class="s">100</text><text x="294" y="277" text-anchor="middle" class="s">150</text><text x="380" y="277" text-anchor="middle" class="s">199</text>
+      </svg>
+      <div class="cap">起点 53，请求 98 183 37 122 14 124 65 67：FCFS 按到达顺序来回跑，共 640 磁道；SCAN 先向大号扫到最远请求 183 再折返，只需 299 磁道——<b>纵轴向下是访问顺序，折线左右折返即方向</b></div>
+    </div>
+
+    <h3>3.5 进程调度甘特图</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 215" role="img" aria-label="FCFS与SJF调度甘特图">
+        <text x="60" y="18" class="s">P1(0,3)</text>
+        <text x="150" y="18" class="s">P2(1,2)</text>
+        <text x="240" y="18" class="s">P3(2,1)</text>
+        <text x="8" y="67" class="t">FCFS</text>
+        <rect x="60" y="46" width="150" height="34" rx="5" class="boxw"/>
+        <text x="135" y="67" text-anchor="middle" class="t">P1</text>
+        <rect x="210" y="46" width="100" height="34" rx="5" class="boxw"/>
+        <text x="260" y="67" text-anchor="middle" class="t">P2</text>
+        <rect x="310" y="46" width="50" height="34" rx="5" class="boxw"/>
+        <text x="335" y="67" text-anchor="middle" class="t">P3</text>
+        <text x="210" y="42" text-anchor="middle" class="s">3</text>
+        <text x="310" y="42" text-anchor="middle" class="s">5</text>
+        <text x="356" y="42" text-anchor="middle" class="s">6</text>
+        <text x="60" y="96" class="s">周转 3,4,4 平均 3.67</text>
+        <text x="8" y="141" class="t">SJF</text>
+        <rect x="60" y="120" width="150" height="34" rx="5" class="boxa"/>
+        <text x="135" y="141" text-anchor="middle" class="w">P1</text>
+        <rect x="210" y="120" width="50" height="34" rx="5" class="boxa"/>
+        <text x="235" y="141" text-anchor="middle" class="w">P3</text>
+        <rect x="260" y="120" width="100" height="34" rx="5" class="boxa"/>
+        <text x="310" y="141" text-anchor="middle" class="w">P2</text>
+        <text x="210" y="116" text-anchor="middle" class="s">3</text>
+        <text x="260" y="116" text-anchor="middle" class="s">4</text>
+        <text x="356" y="116" text-anchor="middle" class="s">6</text>
+        <text x="60" y="170" class="s">周转 3,2,5 平均 3.33</text>
+        <line x1="60" y1="186" x2="360" y2="186" class="ln"/>
+        <line x1="60" y1="186" x2="60" y2="191" class="ln"/><line x1="110" y1="186" x2="110" y2="191" class="ln"/><line x1="160" y1="186" x2="160" y2="191" class="ln"/><line x1="210" y1="186" x2="210" y2="191" class="ln"/><line x1="260" y1="186" x2="260" y2="191" class="ln"/><line x1="310" y1="186" x2="310" y2="191" class="ln"/><line x1="360" y1="186" x2="360" y2="191" class="ln"/>
+        <text x="60" y="204" text-anchor="middle" class="s">0</text><text x="110" y="204" text-anchor="middle" class="s">1</text><text x="160" y="204" text-anchor="middle" class="s">2</text><text x="210" y="204" text-anchor="middle" class="s">3</text><text x="260" y="204" text-anchor="middle" class="s">4</text><text x="310" y="204" text-anchor="middle" class="s">5</text><text x="360" y="204" text-anchor="middle" class="s">6</text>
+      </svg>
+      <div class="cap">P1(0,3)、P2(1,2)、P3(2,1)：FCFS 完成时刻 3/5/6，平均周转 3.67；SJF 在 t=3 选最短的 P3，完成时刻 3/4/6，平均周转 <b>3.33 更优</b>，但需预知服务时间且长作业易饥饿</div>
+    </div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">5</span>进阶图解<span class="lv">★★★</span><span class="cnt">6 图</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>5.1 HTTP 状态码分类与缓存流程</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 236" role="img" aria-label="HTTP 状态码分类与缓存流程">
+        <rect class="boxa" x="8" y="26" width="72" height="34" rx="5"/><rect class="boxa" x="86" y="26" width="72" height="34" rx="5"/>
+        <rect class="boxa" x="164" y="26" width="72" height="34" rx="5"/><rect class="boxa" x="242" y="26" width="72" height="34" rx="5"/>
+        <rect class="boxa" x="320" y="26" width="72" height="34" rx="5"/>
+        <text class="w" x="44" y="40" text-anchor="middle">1xx</text><text class="w" x="44" y="54" text-anchor="middle">信息</text>
+        <text class="w" x="122" y="40" text-anchor="middle">2xx</text><text class="w" x="122" y="54" text-anchor="middle">成功</text>
+        <text class="w" x="200" y="40" text-anchor="middle">3xx</text><text class="w" x="200" y="54" text-anchor="middle">重定向</text>
+        <text class="w" x="278" y="40" text-anchor="middle">4xx</text><text class="w" x="278" y="54" text-anchor="middle">客户端</text>
+        <text class="w" x="356" y="40" text-anchor="middle">5xx</text><text class="w" x="356" y="54" text-anchor="middle">服务器</text>
+        <text class="x" x="44" y="78" text-anchor="middle">200</text><text class="x" x="122" y="78" text-anchor="middle">301</text>
+        <text class="x" x="200" y="78" text-anchor="middle">304</text><text class="x" x="278" y="78" text-anchor="middle">404</text>
+        <text class="x" x="356" y="78" text-anchor="middle">500</text>
+        <line class="ln" x1="8" y1="90" x2="392" y2="90"/>
+        <rect class="boxw" x="16" y="100" width="104" height="34" rx="5"/>
+        <text class="x" x="68" y="121" text-anchor="middle">① 首次请求</text>
+        <line class="ln" x1="120" y1="117" x2="152" y2="117" marker-end="url(#arw)"/>
+        <rect class="boxw" x="160" y="100" width="150" height="34" rx="5"/>
+        <text class="x" x="235" y="121" text-anchor="middle">② 响应带 ETag</text>
+        <line class="ln" x1="180" y1="134" x2="180" y2="166" marker-end="url(#arw)"/>
+        <rect class="boxw" x="10" y="172" width="190" height="40" rx="5"/>
+        <text class="x" x="105" y="190" text-anchor="middle">③ 再次请求</text>
+        <text class="s" x="105" y="205" text-anchor="middle">If-Modified-Since</text>
+        <line class="ln" x1="200" y1="192" x2="232" y2="192" marker-end="url(#arw)"/>
+        <rect class="boxw" x="240" y="172" width="150" height="40" rx="5"/>
+        <text class="x" x="315" y="190" text-anchor="middle">④ 返回 304</text>
+        <text class="s" x="315" y="205" text-anchor="middle">用本地缓存</text>
+        <text class="s" x="200" y="228" text-anchor="middle">缓存验证靠 Last-Modified / ETag</text>
+      </svg>
+      <div class="cap">记住五类语义：2xx 成功、3xx 重定向、4xx 客户端错、5xx 服务端错；缓存命中时服务器只回 304 空体，省的是流量不是时间。</div>
+    </div>
+
+    <h3>5.2 RIP 距离向量路由更新</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 210" role="img" aria-label="RIP 距离向量路由更新">
+        <text class="s" x="6" y="26">R1 原路由表</text><text class="s" x="250" y="26">R2 发来的向量</text>
+        <rect class="boxw" x="6" y="34" width="148" height="80" rx="5"/><rect class="box" x="6" y="34" width="148" height="20" rx="5"/>
+        <line class="ln" x1="6" y1="74" x2="154" y2="74"/><line class="ln" x1="6" y1="94" x2="154" y2="94"/>
+        <line class="ln" x1="62" y1="34" x2="62" y2="114"/><line class="ln" x1="102" y1="34" x2="102" y2="114"/>
+        <text class="s" x="34" y="48" text-anchor="middle">目的</text><text class="s" x="82" y="48" text-anchor="middle">距离</text>
+        <text class="s" x="128" y="48" text-anchor="middle">下一跳</text>
+        <text class="s" x="34" y="68" text-anchor="middle">网2</text><text class="s" x="82" y="68" text-anchor="middle">4</text>
+        <text class="s" x="128" y="68" text-anchor="middle">R3</text>
+        <text class="s" x="34" y="88" text-anchor="middle">网3</text><text class="s" x="82" y="88" text-anchor="middle">2</text>
+        <text class="s" x="128" y="88" text-anchor="middle">R2</text>
+        <text class="s" x="34" y="108" text-anchor="middle">网5</text><text class="s" x="128" y="108" text-anchor="middle">—</text>
+        <rect class="boxa" x="62" y="94" width="40" height="20"/><text class="w" x="82" y="108" text-anchor="middle">16</text>
+        <rect class="boxw" x="250" y="34" width="96" height="80" rx="5"/><rect class="box" x="250" y="34" width="96" height="20" rx="5"/>
+        <line class="ln" x1="250" y1="74" x2="346" y2="74"/><line class="ln" x1="250" y1="94" x2="346" y2="94"/>
+        <line class="ln" x1="306" y1="34" x2="306" y2="114"/>
+        <text class="s" x="278" y="48" text-anchor="middle">目的</text><text class="s" x="326" y="48" text-anchor="middle">距离</text>
+        <text class="s" x="278" y="68" text-anchor="middle">网2</text><text class="s" x="326" y="68" text-anchor="middle">2</text>
+        <text class="s" x="278" y="88" text-anchor="middle">网3</text><text class="s" x="326" y="88" text-anchor="middle">2</text>
+        <text class="s" x="278" y="108" text-anchor="middle">网5</text><text class="s" x="326" y="108" text-anchor="middle">15</text>
+        <line class="lna" x1="250" y1="64" x2="162" y2="64" marker-end="url(#arwa)"/>
+        <text class="s" x="206" y="58" text-anchor="middle">先各加 1</text>
+        <text class="x" x="8" y="136">网2：2+1=3 &lt; 4，改为 3，下一跳 R2</text>
+        <text class="x" x="8" y="156">网3：2+1=3 &gt; 2，保持 2，下一跳 R2</text>
+        <text class="x" x="8" y="176">网5：15+1=16，即不可达（16 就是 ∞）</text>
+        <text class="s" x="8" y="198">口诀：邻居距离加 1，与本地比小取小，16 一律当不可达</text>
+      </svg>
+      <div class="cap">看图三步：先把 R2 的每个距离 <b>+1</b>（下一跳记 R2），再与本地表逐项<b>取小</b>，等于 16 表示不可达；只有变小的项才替换。</div>
+    </div>
+
+    <h3>5.3 CSMA/CD 争用期与最小帧长</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 200" role="img" aria-label="CSMA/CD 争用期与最小帧长">
+        <line class="ln" x1="44" y1="58" x2="372" y2="58" marker-end="url(#arw)"/>
+        <text class="s" x="356" y="50" text-anchor="middle">时间</text>
+        <line class="ln" x1="60" y1="58" x2="60" y2="140"/><line class="ln" x1="350" y1="58" x2="350" y2="140"/>
+        <text class="t" x="60" y="72" text-anchor="middle">A</text><text class="t" x="350" y="72" text-anchor="middle">B</text>
+        <circle class="dot" cx="60" cy="82" r="3"/><text class="s" x="54" y="86" text-anchor="end">t=0</text>
+        <line class="lna" x1="60" y1="82" x2="348" y2="104" marker-end="url(#arwa)"/>
+        <circle class="dot" cx="350" cy="96" r="3"/><text class="s" x="356" y="100">τ</text>
+        <line class="lna" x1="350" y1="96" x2="62" y2="122" marker-end="url(#arwa)"/>
+        <circle class="dot" cx="300" cy="99" r="3"/><text class="s" x="300" y="90" text-anchor="middle">冲突</text>
+        <text class="s" x="54" y="126" text-anchor="end">2τ</text>
+        <text class="s" x="70" y="106">争用期</text>
+        <line class="dash" x1="60" y1="122" x2="350" y2="122"/>
+        <text class="t" x="200" y="152" text-anchor="middle">最小帧发送时间 ≥ 2τ</text>
+        <text class="x" x="200" y="170" text-anchor="middle">10Mb/s × 51.2μs = 512bit = 64B</text>
+        <text class="s" x="200" y="188" text-anchor="middle">τ = 25.6μs，2τ = 51.2μs；发送不足 2τ 就发完，则检测不到冲突</text>
+      </svg>
+      <div class="cap">记住：2τ 是最坏情况下的冲突检测时间（A 发到最远端再传回），帧必须发得够长，10Mb/s 下 51.2μs 折合 64B 最小帧。</div>
+    </div>
+
+    <h3>5.4 B 树插入分裂过程</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 250" role="img" aria-label="3 阶 B 树插入 1 到 7 的分裂过程">
+        <text class="s" x="12" y="22">① 插入 1、2</text><text class="s" x="207" y="22">② 插入 3：结点分裂</text>
+        <rect class="boxw" x="68" y="34" width="64" height="24" rx="5"/><line class="ln" x1="100" y1="34" x2="100" y2="58"/>
+        <text class="x" x="84" y="50" text-anchor="middle">1</text><text class="x" x="116" y="50" text-anchor="middle">2</text>
+        <rect class="boxw" x="282" y="34" width="30" height="22" rx="5"/><text class="x" x="297" y="49" text-anchor="middle">2</text>
+        <rect class="boxw" x="236" y="76" width="28" height="22" rx="5"/><text class="x" x="250" y="91" text-anchor="middle">1</text>
+        <rect class="boxw" x="330" y="76" width="28" height="22" rx="5"/><text class="x" x="344" y="91" text-anchor="middle">3</text>
+        <line class="ln" x1="288" y1="56" x2="258" y2="76"/><line class="ln" x1="306" y1="56" x2="336" y2="76"/>
+        <text class="s" x="12" y="124">③ 插 4、5：根变 [2,4]</text><text class="s" x="207" y="124">④ 插 6、7：根分裂</text>
+        <rect class="boxw" x="68" y="134" width="64" height="24" rx="5"/><line class="ln" x1="100" y1="134" x2="100" y2="158"/>
+        <text class="x" x="84" y="150" text-anchor="middle">2</text><text class="x" x="116" y="150" text-anchor="middle">4</text>
+        <rect class="boxw" x="36" y="170" width="28" height="22" rx="5"/><text class="x" x="50" y="185" text-anchor="middle">1</text>
+        <rect class="boxw" x="86" y="170" width="28" height="22" rx="5"/><text class="x" x="100" y="185" text-anchor="middle">3</text>
+        <rect class="boxw" x="136" y="170" width="28" height="22" rx="5"/><text class="x" x="150" y="185" text-anchor="middle">5</text>
+        <line class="ln" x1="80" y1="158" x2="58" y2="170"/><line class="ln" x1="100" y1="158" x2="100" y2="170"/>
+        <line class="ln" x1="120" y1="158" x2="142" y2="170"/>
+        <rect class="boxw" x="282" y="134" width="30" height="22" rx="5"/><text class="x" x="297" y="149" text-anchor="middle">4</text>
+        <rect class="boxw" x="236" y="170" width="28" height="22" rx="5"/><text class="x" x="250" y="185" text-anchor="middle">2</text>
+        <rect class="boxw" x="330" y="170" width="28" height="22" rx="5"/><text class="x" x="344" y="185" text-anchor="middle">6</text>
+        <line class="ln" x1="288" y1="156" x2="258" y2="170"/><line class="ln" x1="306" y1="156" x2="336" y2="170"/>
+        <rect class="boxw" x="208" y="206" width="28" height="22" rx="5"/><text class="x" x="222" y="221" text-anchor="middle">1</text>
+        <rect class="boxw" x="264" y="206" width="28" height="22" rx="5"/><text class="x" x="278" y="221" text-anchor="middle">3</text>
+        <rect class="boxw" x="302" y="206" width="28" height="22" rx="5"/><text class="x" x="316" y="221" text-anchor="middle">5</text>
+        <rect class="boxw" x="358" y="206" width="28" height="22" rx="5"/><text class="x" x="372" y="221" text-anchor="middle">7</text>
+        <line class="ln" x1="244" y1="192" x2="226" y2="206"/><line class="ln" x1="256" y1="192" x2="274" y2="206"/>
+        <line class="ln" x1="338" y1="192" x2="320" y2="206"/><line class="ln" x1="350" y1="192" x2="368" y2="206"/>
+        <text class="s" x="200" y="242" text-anchor="middle">3 阶 B 树每结点最多 2 个关键字，满则中位数上移分裂，根分裂树高 +1</text>
+      </svg>
+      <div class="cap">看图记三步：<b>插入找叶</b> → 叶满 <b>取中位数上移分裂</b> → 根也满则根再分裂、<b>树高 +1</b>；1~7 插完根为 [4]，共 3 层。</div>
+    </div>
+
+    <h3>5.5 Dijkstra 逐步求解过程</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 286" role="img" aria-label="Dijkstra 算法逐轮求解">
+        <line class="ln" x1="50" y1="55" x2="150" y2="30"/><line class="ln" x1="150" y1="30" x2="250" y2="55"/>
+        <line class="ln" x1="50" y1="55" x2="100" y2="120"/><line class="ln" x1="150" y1="30" x2="100" y2="120"/>
+        <line class="ln" x1="250" y1="55" x2="200" y2="120"/><line class="ln" x1="100" y1="120" x2="200" y2="120"/>
+        <circle class="boxw" cx="50" cy="55" r="14"/><circle class="boxw" cx="150" cy="30" r="14"/>
+        <circle class="boxw" cx="250" cy="55" r="14"/><circle class="boxw" cx="200" cy="120" r="14"/>
+        <circle class="boxw" cx="100" cy="120" r="14"/>
+        <text class="t" x="50" y="59" text-anchor="middle">v1</text><text class="t" x="150" y="34" text-anchor="middle">v2</text>
+        <text class="t" x="250" y="59" text-anchor="middle">v3</text><text class="t" x="200" y="124" text-anchor="middle">v4</text>
+        <text class="t" x="100" y="124" text-anchor="middle">v5</text>
+        <text class="s" x="100" y="36" text-anchor="middle">10</text><text class="s" x="200" y="36" text-anchor="middle">1</text>
+        <text class="s" x="62" y="84" text-anchor="middle">5</text><text class="s" x="138" y="72" text-anchor="middle">2</text>
+        <text class="s" x="236" y="88" text-anchor="middle">4</text><text class="s" x="150" y="113" text-anchor="middle">6</text>
+        <rect class="boxw" x="50" y="150" width="300" height="108" rx="5"/><rect class="box" x="50" y="150" width="300" height="18" rx="5"/>
+        <line class="ln" x1="50" y1="186" x2="350" y2="186"/><line class="ln" x1="50" y1="204" x2="350" y2="204"/>
+        <line class="ln" x1="50" y1="222" x2="350" y2="222"/><line class="ln" x1="50" y1="240" x2="350" y2="240"/>
+        <line class="ln" x1="118" y1="150" x2="118" y2="258"/><line class="ln" x1="176" y1="150" x2="176" y2="258"/>
+        <line class="ln" x1="234" y1="150" x2="234" y2="258"/><line class="ln" x1="292" y1="150" x2="292" y2="258"/>
+        <text class="s" x="84" y="163" text-anchor="middle">选出</text><text class="s" x="147" y="163" text-anchor="middle">v2</text>
+        <text class="s" x="205" y="163" text-anchor="middle">v3</text><text class="s" x="263" y="163" text-anchor="middle">v4</text>
+        <text class="s" x="321" y="163" text-anchor="middle">v5</text>
+        <text class="x" x="84" y="182" text-anchor="middle">v1 (0)</text><text class="x" x="147" y="182" text-anchor="middle">10</text>
+        <text class="x" x="205" y="182" text-anchor="middle">∞</text><text class="x" x="263" y="182" text-anchor="middle">∞</text>
+        <text class="x" x="321" y="182" text-anchor="middle">5</text>
+        <text class="x" x="84" y="200" text-anchor="middle">v5 (5)</text><text class="t" x="147" y="200" text-anchor="middle">7</text>
+        <text class="x" x="205" y="200" text-anchor="middle">∞</text><text class="t" x="263" y="200" text-anchor="middle">11</text>
+        <text class="x" x="321" y="200" text-anchor="middle">5</text>
+        <text class="x" x="84" y="218" text-anchor="middle">v2 (7)</text><text class="x" x="147" y="218" text-anchor="middle">7</text>
+        <text class="t" x="205" y="218" text-anchor="middle">8</text><text class="x" x="263" y="218" text-anchor="middle">11</text>
+        <text class="x" x="321" y="218" text-anchor="middle">5</text>
+        <text class="x" x="84" y="236" text-anchor="middle">v3 (8)</text><text class="x" x="147" y="236" text-anchor="middle">7</text>
+        <text class="x" x="205" y="236" text-anchor="middle">8</text><text class="x" x="263" y="236" text-anchor="middle">11</text>
+        <text class="x" x="321" y="236" text-anchor="middle">5</text>
+        <text class="x" x="84" y="254" text-anchor="middle">v4 (11)</text><text class="x" x="147" y="254" text-anchor="middle">7</text>
+        <text class="x" x="205" y="254" text-anchor="middle">8</text><text class="x" x="263" y="254" text-anchor="middle">11</text>
+        <text class="x" x="321" y="254" text-anchor="middle">5</text>
+        <text class="s" x="200" y="276" text-anchor="middle">最短路径：v1→v5→v2→v3 = 8，v1→v5→v4 = 11，v1→v5→v2 = 7</text>
+      </svg>
+      <div class="cap">每轮只做两件事：在<b>未确定顶点里挑 dist 最小</b>的并入 S（表中加粗值），再用它<b>松弛</b>邻居；选中顺序即最短路径的生成顺序。</div>
+    </div>
+
+    <h3>5.6 银行家算法安全性检查</h3>
+    <div class="fig">
+      <svg class="dg" viewBox="0 0 400 228" role="img" aria-label="银行家算法安全性检查">
+        <text class="s" x="200" y="24" text-anchor="middle">Available = (3, 3, 2)，资源为 (A, B, C)，Work 初值即 Available</text>
+        <rect class="boxw" x="52" y="40" width="296" height="120" rx="5"/><rect class="box" x="52" y="40" width="296" height="20" rx="5"/>
+        <line class="ln" x1="52" y1="80" x2="348" y2="80"/><line class="ln" x1="52" y1="100" x2="348" y2="100"/>
+        <line class="ln" x1="52" y1="120" x2="348" y2="120"/><line class="ln" x1="52" y1="140" x2="348" y2="140"/>
+        <line class="ln" x1="100" y1="40" x2="100" y2="160"/><line class="ln" x1="180" y1="40" x2="180" y2="160"/>
+        <line class="ln" x1="260" y1="40" x2="260" y2="160"/>
+        <text class="s" x="76" y="54" text-anchor="middle">进程</text><text class="s" x="140" y="54" text-anchor="middle">Need</text>
+        <text class="s" x="220" y="54" text-anchor="middle">Work</text><text class="s" x="304" y="54" text-anchor="middle">Work+Alloc</text>
+        <text class="x" x="76" y="74" text-anchor="middle">P1</text><text class="x" x="140" y="74" text-anchor="middle">1 2 2</text>
+        <text class="x" x="220" y="74" text-anchor="middle">3 3 2</text><text class="x" x="304" y="74" text-anchor="middle">5 3 2</text>
+        <text class="x" x="76" y="94" text-anchor="middle">P3</text><text class="x" x="140" y="94" text-anchor="middle">0 1 1</text>
+        <text class="x" x="220" y="94" text-anchor="middle">5 3 2</text><text class="x" x="304" y="94" text-anchor="middle">7 4 3</text>
+        <text class="x" x="76" y="114" text-anchor="middle">P4</text><text class="x" x="140" y="114" text-anchor="middle">4 3 1</text>
+        <text class="x" x="220" y="114" text-anchor="middle">7 4 3</text><text class="x" x="304" y="114" text-anchor="middle">7 4 5</text>
+        <text class="x" x="76" y="134" text-anchor="middle">P2</text><text class="x" x="140" y="134" text-anchor="middle">6 0 0</text>
+        <text class="x" x="220" y="134" text-anchor="middle">7 4 5</text><text class="x" x="304" y="134" text-anchor="middle">10 4 7</text>
+        <text class="x" x="76" y="154" text-anchor="middle">P0</text><text class="x" x="140" y="154" text-anchor="middle">7 4 3</text>
+        <text class="x" x="220" y="154" text-anchor="middle">10 4 7</text><text class="x" x="304" y="154" text-anchor="middle">10 5 7</text>
+        <text class="t" x="200" y="184" text-anchor="middle">安全序列：P1 → P3 → P4 → P2 → P0</text>
+        <text class="s" x="200" y="206" text-anchor="middle">每行都满足 Need ≤ Work，可找到安全序列，故当前状态安全</text>
+      </svg>
+      <div class="cap">看两列关系：<b>Work 逐行下传</b>（上一行 Work+Alloc 成为下一行 Work），只要有一轮所有进程都 Need &gt; Work 就<b>不安全</b>。</div>
+    </div>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
