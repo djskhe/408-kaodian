@@ -601,7 +601,11 @@ var SLUGS=["ask", "calc", "cheat", "co", "code", "confuse", "ds", "fig", "link",
       v='home';
     }
     if(v!=='search' && v!==curV) lastV=curV;
-    [].forEach.call(document.querySelectorAll('.page'),function(p){ p.classList.toggle('on',p.id===v); });
+    var _hit=false;
+    [].forEach.call(document.querySelectorAll('.page, section.subject'),function(p){
+      var _m=(p.id===v); if(_m) _hit=true; p.classList.toggle('on',_m);
+    });
+    if(!_hit){ var _f=document.querySelector('section.page, section.subject'); if(_f) _f.classList.add('on'); }
     if(pageTitle) pageTitle.textContent=TT[v]||'408 考点精讲';
     if(backBtn) backBtn.hidden=(['home','learn','drill','ref','me'].indexOf(v)>=0) && !!document.getElementById('home');
     if(tabbar) [].forEach.call(tabbar.querySelectorAll('button'),function(b){
@@ -1236,7 +1240,8 @@ var PLAN30=[[1, "数据结构1~2章+题库1~2组（8题）+图解4.1", "90min"],
 
   var init=(location.hash||'').replace('#',''), saved=null;
   try{ saved=JSON.parse(localStorage.getItem(POSKEY)||'null'); }catch(e){}
-  var startV='home';
+  var _ownSec=document.querySelector('section.page, section.subject');
+  var startV=_ownSec?_ownSec.id:'home';
   if(init && document.getElementById(init)) startV=init;
   else if(saved && saved.v && document.getElementById(saved.v)) startV=saved.v;
   go(startV,true);
