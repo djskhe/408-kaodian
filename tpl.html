@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>大题模板</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="tpl">
+  <div class="subhead"><h2>大题答题模板</h2><span class="score">大题 70 分</span><span class="meta" data-all="11 套">11 套</span></div>
+<details class="chap" open>
+  <summary><span class="num">1</span>数据结构算法设计题<span class="lv">★★★</span><span class="cnt">13~15 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题目特征</b>：给一个结构（顺序表／链表／树／图）与一个要求（找、删、判、统计），要求"给出算法思想并实现"。</li>
+      <li><b>答题骨架</b>：① 先用 2~3 行中文写<em>算法思想</em>（阅卷先看这段给分）；② 定义必要的辅助变量或结构（指针、计数器、栈/队列）；③ 写函数，先写边界判断（空表、单结点、非法下标、空树）；④ 写主体循环，每步说明在做什么；⑤ 结尾写 <code>return</code> 或说明修改后的状态；⑥ 最后一句写时间复杂度与空间复杂度。</li>
+      <li><b>时间分配</b>：约 12 分钟（想 3 分钟、写 7 分钟、查 2 分钟）。</li>
+    </ul>
+    <div class="key"><b>得分点</b>：算法思想 2~3 分、代码主体 8~9 分、复杂度 1~2 分；只要思想正确且代码能跑通主干，即使有小瑕疵也能拿大头。</div>
+    <div class="warn"><b>扣分雷区</b>：不写算法思想直接堆代码（丢 2~3 分）；不判空、下标越界；把"返回下标"写成"返回值"；忘记 <code>length</code> 增减；用未定义变量；复杂度写错（如把链表逆置写成 <code>O(n²)</code>）。</div>
+    <div class="tip"><b>示例骨架</b>："删除单链表中所有值为 x 的结点"——思想：用工作指针 <code>p</code> 与 <code>pre</code> 同步后移，遇值等于 x 时 <code>pre-&gt;next = p-&gt;next; free(p); p = pre-&gt;next;</code> 否则两指针同进。复杂度 <code>O(n)</code>、<code>O(1)</code>。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">2</span>数据结构应用题（手工算法）<span class="lv">★★★</span><span class="cnt">10~13 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题目特征</b>：不给代码，要求手算过程——求 WPL 与哈夫曼编码、关键路径、Dijkstra 过程表、B 树插入/删除、散列表构造与 ASL、排序过程（一趟结果）。</li>
+      <li><b>答题骨架</b>：① 先抄题目给的数据或图的关键信息（顶点表、权值、初始序列），便于自查；② 用<em>表格或逐步列表</em>记录每一步状态，列名写清（顶点、dist、path、已选集合）；③ 每步只做一次操作，写明依据（"选最小 dist 的顶点"、"取两个最小权合并"）；④ 画结果结构（哈夫曼树、B 树、关键路径图），标全权值；⑤ 用一句结论句收尾（"WPL = …"、"平均查找长度 ASL = …"、"关键路径为 …，长度 …"）。</li>
+      <li><b>时间分配</b>：约 10 分钟（列表 6 分钟、画图与结论 4 分钟）。</li>
+    </ul>
+    <div class="key"><b>得分点</b>：过程表每行 0.5~1 分，画图 2~3 分，最终数值 1~2 分；过程分远多于结果分，宁可多写两行也不要跳步。</div>
+    <div class="warn"><b>扣分雷区</b>：Dijkstra 忘记更新 <code>path</code> 或漏写"已确定集合"；哈夫曼编码左右不分（约定左 0 右 1 并写明）；B 树插入后忘分裂、根分裂未增高度；ASL 算成功不除元素个数；排序写成最终有序序列而非"一趟结果"；关键路径漏判次关键活动。</div>
+    <div class="tip"><b>示例骨架</b>：Dijkstra 表头写 <code>步骤 | v | dist[2..6] | path[2..6] | S</code>，从初始行开始每行只改一个顶点，最后一行即答案；再补"最短路径长度 = …"。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">3</span>组成原理·存储与 Cache 计算<span class="lv">★★★</span><span class="cnt">10~15 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题目特征</b>：给主存容量与芯片规格求扩展方案；给地址位数与块大小求 Cache 地址划分、行数、命中率、平均访问时间；或给 MAR/MDR 位数求寻址范围。</li>
+      <li><b>答题骨架</b>：① 先统一单位并写出<em>已知量</em>（容量、字长、块大小、地址位数），全部化成 2 的幂；② 地址划分按"标记 + 组号/行号 + 块内地址"顺序写，<code>块内地址位数 = log2(块大小)</code>，组数 = Cache 容量 ÷（块大小 × 路数）；③ 写出公式再代数字（<code>t = h·t1 + (1-h)·t2</code>、命中率 = 命中次数 ÷ 总访问次数），代完给结果并带单位；④ 主存扩展先算"所需芯片数 = 总容量 ÷ 单片容量"，再拆成位扩展与字扩展，画出片选/地址分配说明；⑤ 结论句写清"因此需要 … 片 … 芯片，地址划分为 …"。</li>
+      <li><b>时间分配</b>：约 12 分钟（读题列已知 3 分钟、计算 7 分钟、检查单位 2 分钟）。</li>
+    </ul>
+    <div class="key"><b>得分点</b>：地址划分（各字段位数）3~4 分、行数/组数 2 分、命中率与平均访问时间公式+数值 3~4 分、扩展片数 2~3 分；写公式本身也有分，先写公式再代数。</div>
+    <div class="warn"><b>扣分雷区</b>：块大小按字节还是按字混淆；把 Cache 容量当"行数×数据区"而漏算标记位；平均访问时间漏乘未命中率或用 <code>t1+t2</code> 直接相加；单位混用（B 与 b、KB 与 Kb）；只写答案不写过程导致过程分全丢；扩展题忘写片选逻辑。</div>
+    <div class="tip"><b>示例骨架</b>：地址 32 位、块 64B、4 路组相联、Cache 32KB：先写 <code>块内地址 6 位</code>、<code>组数 = 32K ÷ (64×4) = 128 → 组号 7 位</code>、<code>标记 32-6-7 = 19 位</code>，再补命中率与 <code>t</code> 的计算。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">4</span>组成原理·指令与 CPU 大题<span class="lv">★★★</span><span class="cnt">10~15 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题目特征</b>：扩展操作码设计、求某寻址方式的有效地址 EA、按数据通路写微操作序列、流水线时空图与加速比/效率计算。</li>
+      <li><b>答题骨架</b>：① 扩展操作码先列"指令字长 + 地址字段位数"，按"用满短码才扩展"的规则分配，写出每段码点数与对应指令条数，验证总数够用；② 有效地址题先写各寻址方式的定义式（<code>EA = (PC) + A</code>、<code>EA = (Rn) + A</code>、<code>EA = ((Rn))</code>），再逐个代值；③ 数据通路题按<em>取指、译码、执行</em>三段列出微操作，每条写成 <code>寄存器 ← 来源</code>，并说明控制信号来源；④ 流水线先画时空图（横轴时间、纵轴段），再写 <code>k</code> 段 <code>n</code> 条指令耗时 <code>(k+n-1)·Δt</code>，加速比 <code>S = n·k·Δt / ((k+n-1)·Δt)</code>，最后算效率。</li>
+      <li><b>时间分配</b>：约 12 分钟（时空图 4 分钟、公式与计算 6 分钟、复查 2 分钟）。</li>
+    </ul>
+    <div class="key"><b>得分点</b>：操作码分配表 3~4 分、EA 每个 1~2 分、微操作序列 4~5 分、时空图 3 分、加速比与效率公式+数值 2~3 分；微操作写对顺序即得分，不必纠结信号名。</div>
+    <div class="warn"><b>扣分雷区</b>：扩展操作码未留足码点导致指令数不够；间接寻址少写一层括号；微操作漏写"PC 自增"或"访存"步；流水线忘记加"装入时间"直接用 <code>k·Δt</code>；加速比不写极限值 <code>k</code>；时空图不标时间段与单位。</div>
+    <div class="tip"><b>示例骨架</b>：16 位指令、4 位基本操作码、三地址格式：先算三地址码点 16 个，剩 <code>16-已用</code> 个扩展位，再按二地址、一地址逐级展开，列成"码点区间 → 指令类型 → 条数"三列表。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">5</span>组成原理·I/O 大题<span class="lv">★★</span><span class="cnt">8~12 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题目特征</b>：中断屏蔽字设计与中断处理次序、DMA 传送过程与传送时间、磁盘存取时间（寻道+旋转+传输）与磁盘容量/数据传输率。</li>
+      <li><b>答题骨架</b>：① 中断题先列设备优先级顺序，画<em>屏蔽字表</em>（行=本设备，列=被屏蔽设备，1 屏蔽、0 不屏蔽，自身恒为 1），再写出各设备的响应次序；② DMA 题按"预处理 → 数据传送（周期挪用/停止 CPU）→ 后处理"三段写，时间按 <code>块大小 ÷ 传输率</code> 或 <code>周期数 × 周期</code> 计算，注明是否与 CPU 并行；③ 磁盘题先写 <code>存取时间 = 寻道时间 + 旋转延迟 + 传输时间</code>，旋转延迟取半周 <code>1/(2r)</code>，传输时间 <code>= 块字节数 ÷ 数据传输率</code>；④ 每问结尾写数值+单位，并给结论句（"故平均存取时间为 … ms"）。</li>
+      <li><b>时间分配</b>：约 8 分钟（屏蔽字表或公式 3 分钟、计算 4 分钟、单位复查 1 分钟）。</li>
+    </ul>
+    <div class="key"><b>得分点</b>：屏蔽字表 3~4 分（错一格只扣该格）、DMA 过程描述 2~3 分、时间计算 2~3 分、磁盘三段时间 3 分；过程描述用文字分点写也能拿分。</div>
+    <div class="warn"><b>扣分雷区</b>：屏蔽字对角线不写 1；把"屏蔽"方向写反（高位设备屏蔽低位）；DMA 时间漏算块数；旋转延迟用整周而非半周（题目未特别说明时取半周）；ms 与 s、KB 与 B 单位错；只给数不写公式导致过程分丢失。</div>
+    <div class="tip"><b>示例骨架</b>：4 台设备优先级 A&gt;B&gt;C&gt;D，屏蔽字表 4×4，行 A 为 <code>1111</code>、行 B 为 <code>0111</code>…，表下写"中断响应次序为 A→B→C→D"。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">6</span>操作系统·PV 同步大题<span class="lv">★★★</span><span class="cnt">10~13 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题目特征</b>：给一个并发场景（生产者-消费者、读者-写者、哲学家进餐、司机-售票员、缓冲区/流水线），要求"用信号量实现同步互斥，并说明各信号量含义"。</li>
+      <li><b>答题骨架</b>：① 先写<em>信号量定义</em>并注释含义与初值：互斥量 <code>mutex = 1</code>、资源量 <code>empty = n</code>、<code>full = 0</code>，同步量按"谁等谁"定初值；② 按进程逐个写代码框架 <code>while(1){ … }</code>，结构统一；③ P 在前 V 在后，<em>互斥 P 放在资源 P 之后</em>（先 P(empty) 再 P(mutex)，否则死锁）；④ 每个 P/V 后加一行注释"申请空缓冲区／释放满缓冲区"；⑤ 结尾用一句话总结同步关系与互斥关系的数量。</li>
+      <li><b>时间分配</b>：约 10 分钟（定信号量 3 分钟、写代码 5 分钟、查 P/V 顺序 2 分钟）。</li>
+    </ul>
+    <div class="key"><b>得分点</b>：信号量定义与初值 3~4 分、P/V 位置正确 5~6 分、注释说明 1~2 分；只写对 P/V 位置不写初值也能拿大头，但初值错则全错。</div>
+    <div class="warn"><b>扣分雷区</b>：P(mutex) 写在 P(empty) 之前造成死锁；互斥量当同步量用（初值写成 0）；读者-写者漏写 <code>count</code> 的互斥保护；哲学家题不破坏循环等待；忘记 <code>while(1)</code> 或进程名与题目不符；不写信号量初值直接写代码。</div>
+    <div class="tip"><b>示例骨架</b>：生产者-消费者——<code>semaphore mutex=1, empty=n, full=0;</code> 生产者 <code>P(empty); P(mutex); 放入; V(mutex); V(full);</code> 消费者对称写，末尾注明"empty/full 为同步信号量，mutex 为互斥信号量"。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">7</span>操作系统·调度与死锁大题<span class="lv">★★★</span><span class="cnt">10~15 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题目特征</b>：给进程到达时间与服务时间，求 FCFS/SJF/HRRN/时间片轮转/优先级调度下的完成时间、周转时间、带权周转时间与平均值；或给银行家算法的 Allocation/Need/Available，判断安全性并回答能否分配。</li>
+      <li><b>答题骨架</b>：① 调度题先画<em>表格</em>，列固定为"进程 | 到达时间 | 服务时间 | 开始 | 完成 | 周转 | 带权周转"，逐行按算法规则填；② 每填一行注明依据（"此时就绪队列中服务时间最短者为 P2"）；③ 表下写 <code>平均周转时间 = Σ周转 ÷ n</code>，<code>平均带权周转 = Σ带权 ÷ n</code>，保留两位小数；④ 银行家算法先算 <code>Need = Max - Allocation</code>，列成矩阵，再做安全性检查表（Work | Need | Allocation | Work+Allocation | Finish），逐步推进；⑤ 结论句写"存在安全序列 …，故系统处于安全状态／可以分配"。</li>
+      <li><b>时间分配</b>：约 12 分钟（列表 7 分钟、求和 3 分钟、结论 2 分钟）。</li>
+    </ul>
+    <div class="key"><b>得分点</b>：表格每行 1 分左右、平均值为 2~3 分、安全序列 3~4 分、结论 1 分；表格列名写全、过程可追溯，即使算错一处也只扣该处。</div>
+    <div class="warn"><b>扣分雷区</b>：周转时间算成"完成-服务"（应为"完成-到达"）；带权周转忘记除服务时间；抢占式与非抢占式混用；时间片轮转漏写就绪队列变化；银行家算法不先算 Need；安全性检查漏判"Work 更新"；只写"安全"不写安全序列。</div>
+    <div class="tip"><b>示例骨架</b>：SJF 表只写"进程 | 到达 | 服务 | 开始 | 完成 | 周转 | 带权"七列，每行末尾标 <code>(完成-到达)</code> 与 <code>(周转/服务)</code> 便于自查。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">8</span>操作系统·内存与文件大题<span class="lv">★★★</span><span class="cnt">10~15 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题目特征</b>：给逻辑地址与页表/段表，要求写地址变换全过程；给页面访问串求 FIFO/LRU/OPT 置换过程与缺页率；给 inode 与索引结构求最大文件长度或某偏移的物理块号。</li>
+      <li><b>答题骨架</b>：① 地址变换按"拆逻辑地址 → 查表 → 拼物理地址"三步写，每步给具体数值：<code>页号 = 逻辑地址 ÷ 页大小</code>、<code>页内偏移 = 逻辑地址 mod 页大小</code>、<code>物理地址 = 块号 × 页大小 + 偏移</code>；② 置换题画表格，列"访问串 | 内存块状态 | 是否缺页 | 淘汰页"，逐次填并标命中/缺页；③ 表下写 <code>缺页率 = 缺页次数 ÷ 总访问次数</code>；④ 索引题先算每个索引项能指向的数据块数与块大小关系，按"直接 → 一级间接 → 二级 → 三级"逐级累加，写出 <code>最大长度 = (直接块数 + 一级指针数 + 一级指针数² + …) × 块大小</code>；⑤ 结论句给出数值并带单位（B 或 KB）。</li>
+      <li><b>时间分配</b>：约 12 分钟（变换 4 分钟、置换表 5 分钟、索引计算 3 分钟）。</li>
+    </ul>
+    <div class="key"><b>得分点</b>：地址变换三步各 1~2 分、置换过程每列 0.5~1 分、缺页率 2 分、最大文件长度公式 2~3 分；公式与代入数字都写，过程分才稳。</div>
+    <div class="warn"><b>扣分雷区</b>：页大小是 2 的幂却用错除法；逻辑地址十进制与十六进制混用；置换表漏标"是否缺页"；LRU 淘汰最近<em>最久</em>未用而非最少使用；索引题漏算间接块的指针项本身占用；最大长度用 B 却写成 KB；忘记页表项长度对页数的限制。</div>
+    <div class="tip"><b>示例骨架</b>：页大小 4KB、逻辑地址 0x2A5F：先写 <code>页号 = 2</code>、<code>偏移 = 0xA5F</code>，查页表得块号 <code>b</code>，再写 <code>物理地址 = b×4K + 0xA5F</code>。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">9</span>网络·子网划分与路由大题<span class="lv">★★★</span><span class="cnt">10~13 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题目特征</b>：给一个网络前缀与各部门主机数，要求划分子网并列表给出网络地址、子网掩码、可用地址范围、广播地址；或给若干前缀做 CIDR 聚合求聚合后的地址块与最长前缀。</li>
+      <li><b>答题骨架</b>：① 先写<em>需求分析</em>：按主机数从大到小排序，算出每个子网所需主机位 <code>2^h - 2 ≥ 主机数</code>；② 定子网位数 <code>s</code>，写掩码 <code>/前缀 + s</code> 并换成点分十进制；③ 画<em>五列表格</em>：子网 | 网络地址 | 子网掩码 | 可用地址范围 | 广播地址，按块大小递增地址填满；④ 聚合题把各前缀写成二进制，找出公共前缀位数，得出聚合地址与掩码，注明"聚合后包含的地址块大小"；⑤ 结论句写"共需划分为 k 个子网，掩码为 …，其中部门 A 的可用地址范围为 …"。</li>
+      <li><b>时间分配</b>：约 10 分钟（算主机位 2 分钟、列表 5 分钟、聚合与结论 3 分钟）。</li>
+    </ul>
+    <div class="key"><b>得分点</b>：子网位数与掩码 2~3 分、五列表格每行 1 分、可用地址范围与广播地址 3~4 分、聚合结果 2~3 分；表格是最稳的得分载体，务必画全。</div>
+    <div class="warn"><b>扣分雷区</b>：可用主机数用 <code>2^h</code> 而忘记减 2；网络地址与广播地址当成可用地址；子网掩码与前缀不同步（/27 写成 255.255.255.224 以外）；聚合时未按 2 的幂对齐边界；地址范围首尾写错（网络地址+1 到广播-1）；漏写掩码只写网络地址。</div>
+    <div class="tip"><b>示例骨架</b>：192.168.1.0/24 分 4 个子网 → <code>s = 2</code>、掩码 <code>/26 = 255.255.255.192</code>；表第一行写"子网1 | 192.168.1.0 | 255.255.255.192 | 192.168.1.1~192.168.1.62 | 192.168.1.63"，其余三行按 +64 递增。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">10</span>网络·链路层与传输层计算<span class="lv">★★★</span><span class="cnt">10~15 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题目特征</b>：CRC 生成多项式与余数计算、GBN/SR/停等协议的序号范围与信道利用率、以太网最小帧长与冲突检测时间、TCP 拥塞窗口随轮次推演与发送窗口、以及 RTT/吞吐量计算。</li>
+      <li><b>答题骨架</b>：① CRC 题先写"被除数 = 数据 + (r 个 0)"与"除数 = 生成多项式位串"，用<em>模 2 除法竖式</em>逐步写，最后写余数并说明"发送的帧为 …"，再验证接收端余数为 0；② 协议题先写窗口与序号关系：GBN 需 <code>W ≤ 2^n - 1</code>，SR 需 <code>W ≤ 2^(n-1)</code>，停等 <code>W = 1</code>；③ 效率题先写 <code>U = 发送时间 ÷ (发送时间 + RTT + 处理)</code> 或 <code>n·L/(RTT + n·L)</code>，代数字后给百分数；④ TCP 推演题画表格"轮次 | 拥塞窗口 | 阈值 | 状态（慢开始/拥塞避免/快重传）"，每轮只变一次并标依据；⑤ 结论句给最终数值与单位（bit/s、μs、帧）。</li>
+      <li><b>时间分配</b>：约 12 分钟（CRC 竖式 4 分钟、协议与效率 5 分钟、TCP 表 3 分钟）。</li>
+    </ul>
+    <div class="key"><b>得分点</b>：CRC 竖式每步 0.5~1 分、余数与发送帧 2 分、窗口范围 2~3 分、效率公式+百分数 3 分、TCP 表每行 0.5~1 分；竖式写出来即使最后一位错也只扣末分。</div>
+    <div class="warn"><b>扣分雷区</b>：CRC 补 0 个数与生成多项式阶数不符；用普通减法代替模 2 异或；GBN 与 SR 窗口上限写反；效率公式漏乘帧数或忘记加首部；TCP 拥塞避免阶段加法增长写成倍增；阈值变化后阶段判断错；时间单位未统一（ms 与 μs）；只写结论不写推演过程。</div>
+    <div class="tip"><b>示例骨架</b>：CRC 题写"数据 101001、G(x)=x³+x²+1 → 除数 1101，被除数 101001000"，竖式 3 行异或后得余数，再写"应发送 101001 + 余数"。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">11</span>通用得分规范（全科通用）<span class="lv">★★</span><span class="cnt">隐性 5~10 分</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <ul>
+      <li><b>题目特征</b>：不单独出题，但贯穿所有大题——同样的思路，卷面规范与否可差 5~10 分。</li>
+      <li><b>答题骨架</b>：① 每问<em>先写公式或方法</em>，再代数字，最后给结果，三步齐全；② 所有数值带单位（ns、MB、bit/s、%），2 的幂写成 <code>2^10</code> 或 <code>1KB</code> 统一；③ 画图用直尺：时空图、哈夫曼树、状态图、地址划分条都要标刻度和权值；④ 每大题末尾写一句<em>结论句</em>（"故 … 为 …"），方便阅卷找答案；⑤ 分区作答，标清题号与小问号，写错处只划一条线不涂黑。</li>
+      <li><b>时间分配</b>：整卷留 8~10 分钟复查，重点查单位、上下标、遗漏小问。</li>
+    </ul>
+    <div class="key"><b>得分点</b>：公式 1 分、代入 1 分、结果与单位 1 分；有结论句的答案更容易被判为"完整"，画图题标注齐全常可多拿 1~2 分。</div>
+    <div class="warn"><b>扣分雷区</b>：只有答案没有过程；数值裸奔无单位；小问漏答（一题 3 问只答 2 问）；答案写在装订线外或跨页；涂改后无法辨认；把多问答案混成一段导致阅卷找不到。</div>
+    <div class="tip"><b>示例骨架</b>：标准三行式——"由 <code>t = h·t1 + (1-h)·t2</code>，代入 <code>h=0.95, t1=1ns, t2=20ns</code>，得 <code>t = 1.95ns</code>。故平均访问时间为 1.95ns。"</div>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
