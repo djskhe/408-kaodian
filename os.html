@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>操作系统</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="os">
+  <div class="subhead"><h2>操作系统</h2><span class="score">35 分</span><span class="meta" data-all="6 章">6 章</span></div>
+<details class="chap" open>
+  <summary><span class="num">1</span>操作系统概述<span class="lv">★★</span><span class="cnt">13 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>1.1 概念与四大特征</h3>
+    <ul>
+      <li><b>OS 定义</b>：控制和管理整个计算机系统软硬件资源、合理组织调度作业与资源分配，并为用户和其他软件提供方便接口与环境的<em>系统软件</em>。</li>
+      <li class="hot"><b>并发与并行</b>：并发指两个或多个事件在<em>同一时间间隔内</em>发生，并行指<em>同一时刻</em>发生。单处理机上多道程序宏观同时、微观交替，只有多处理机或多核才能真并行；多核时代常考 SMP 下的负载均衡，即把就绪任务尽量均摊到各核、减少核间迁移，避免"一核忙死、多核空闲"。判断是并发还是并行，先看处理机个数，再看是"间隔"还是"时刻"。结论：并发是 OS 与生俱来的特征，并行是硬件提供的物理能力。<div class="ex"><p><b>例题</b>单 CPU 上同时运行 3 个程序，是并发还是并行？</p><p><b>解析</b>① 单 CPU 同一时刻只能执行一个程序 → 并发；② 并行要求同一时刻真正同时执行，需多核或多机。</p><p><b>易错点</b>把「宏观上同时」当成并行；并发是交替执行。</p><p><b>拓展</b>并发是并行的基础，单处理机只能并发不能并行。</p></div></li>
+      <li><b>共享</b>：互斥共享（打印机等临界资源，一段时间内只允许一个进程使用）与同时共享（磁盘文件、可重入代码）。</li>
+      <li><b>虚拟</b>：把一个物理实体变为若干逻辑对应物——时分复用（虚拟处理器、虚拟设备）与空分复用（虚拟存储器）。</li>
+      <li><b>异步与特征关系</b>：进程以不可预知的速度走走停停推进，相同环境下结果唯一可再现；并发与共享互为存在条件、是<em>最基本特征</em>，虚拟与异步以其为前提。</li>
+      <li><b>虚拟与共享的现代实现</b>：写时复制（fork 后写入才复制）、内存映射文件（按页共享）、SPOOLing（磁盘虚拟独占设备）属共享＋虚拟。</li>
+    </ul>
+    <div class="fig"><svg class="dg" viewBox="0 0 400 142" role="img" aria-label="用户态内核态与系统调用转换"><text class="x" x="200" y="17" text-anchor="middle">用户态不能直接执行特权操作：通过中断、异常或系统调用进入内核态</text><rect class="box" x="28" y="43" width="118" height="36" rx="6"/><text class="t" x="87" y="59" text-anchor="middle">用户态</text><text class="s" x="87" y="72" text-anchor="middle">普通程序·非特权指令</text><line class="lna" x1="146" y1="61" x2="250" y2="61" marker-end="url(#arwa)"/><text class="s" x="198" y="51" text-anchor="middle">trap / 中断 / 异常</text><rect class="boxa" x="254" y="43" width="118" height="36" rx="6"/><text class="w" x="313" y="59" text-anchor="middle">内核态</text><text class="s" x="313" y="72" text-anchor="middle">系统调用·特权操作</text><line class="lna" x1="250" y1="96" x2="146" y2="96" marker-end="url(#arwa)"/><text class="s" x="198" y="114" text-anchor="middle">中断返回 / 恢复 PSW</text></svg><div class="cap">系统调用在用户态发起、内核态执行；用户程序不能自行修改 PSW、关中断或直接执行 I/O。</div></div>
+    <h3>1.2 功能与用户接口</h3>
+    <ul>
+      <li><b>四大管理功能</b>：处理机管理（进程控制、调度）、存储器管理（分配回收、地址映射）、文件管理（目录、存取保护）、设备管理（缓冲、虚拟设备）。</li>
+      <li><b>用户接口</b>：命令接口（联机交互式与脱机批处理）面向用户操作，程序接口即系统调用、面向程序员代码，另有图形用户界面。</li>
+    </ul>
+    <h3>1.3 发展与分类</h3>
+    <ul>
+      <li><b>用户接口</b>：命令接口（联机交互式、脱机批处理）面向用户，程序接口即系统调用、面向程序员，另有图形用户界面。</li>
+    </ul>
+    <table>
+      <thead><tr><th>阶段</th><th>核心特征</th><th>主要追求</th></tr></thead>
+      <tbody>
+        <tr><td>单道批处理</td><td>内存仅一道作业，CPU 与 I/O 串行</td><td>解决人机矛盾，资源利用率低</td></tr>
+        <tr><td>多道批处理</td><td>多道并发交替执行</td><td>提高利用率与吞吐量，无交互</td></tr>
+        <tr><td>分时系统</td><td>时间片轮转、多终端交互</td><td>响应及时、独占感（多路、独立、及时、交互）</td></tr>
+        <tr><td>实时系统</td><td>硬/软实时，须在截止时间内完成</td><td>及时性与可靠性，不追求吞吐量</td></tr>
+      </tbody>
+    </table>
+    <div class="ex">
+      <p><b>例题</b>某多道系统中，每道作业在其运行期间占用 CPU 的时间比例为 40%，其余 60% 等待 I/O，且各作业的 I/O 可完全重叠。求 1 道、3 道、4 道作业并发时的 CPU 利用率，并说明道数增加的效果。</p><p><b>解析</b>① 单道时 CPU 空闲率 = 60%，利用率 = 1-0.6 = 40%。② n 道并发时 CPU 空闲的概率为各道同时等待 I/O 的概率 0.6ⁿ，故 3 道：1-0.6³ = 1-0.216 = <b>78.4%</b>。③ 4 道：1-0.6⁴ = 1-0.1296 = <b>87.04%</b>。→ 道数增加利用率提高但边际递减（40%→78.4%→87.04%），前提是 I/O 与 CPU 能重叠、内存放得下多道作业。</p><p><b>易错点</b>用 40%×3 = 120% 直接相加（CPU 只有 1 个，利用率不可能超 100%）；忽略公式假设——各道作业相互独立、I/O 可完全重叠，若只有一个磁盘串行访问，实际达不到 78.4%。</p>
+    </div>
+    <h3>1.4 运行机制与体系结构</h3>
+    <ul>
+      <li class="hot"><b>内核态与用户态</b>：CPU 由程序状态字 PSW 中的标志位区分用户态（目态）与内核态（管态、核心态），用户态只能执行非特权指令，内核态可执行全部指令并访问全部资源。特权指令包括 I/O 指令、置中断向量、修改 PSW、停机、清内存、设置时钟、装页表基址寄存器等；非特权指令如算术逻辑运算、取数访存、陷入指令 trap。用户态→内核态的<em>唯一途径</em>是中断或异常（含系统调用陷入），内核态→用户态由中断返回指令修改 PSW 完成。内核功能分支撑功能（时钟管理、中断处理、原语）与资源管理功能（进程、存储、设备管理）。常见考法是给若干指令/操作让判断"能否在用户态执行"：凡涉及硬件资源或全局状态，必为特权指令。<div class="ex"><p><b>例题</b>举出三个必须在内核态完成的操作。</p><p><b>解析</b>① 修改 PSW 中的模式位；② 执行 I/O 指令与关中断；③ 访管指令（系统调用）陷入内核。</p><p><b>易错点</b>以为读文件在用户态就能完成——必须经系统调用陷入内核。</p><p><b>拓展</b>用户态转内核态的唯一途径：中断、异常、陷入。</p></div></li>
+      <li><b>多道程序设计</b>：内存同时存放多道程序，在管理程序控制下交替占用 CPU 运行，宏观并行、微观串行，是并发与资源共享的技术基础。</li>
+    </ul>
+    <div class="key"><b>重点</b>：态转换方向决定指令归属——用户态只能"进"，靠中断/异常陷入内核；内核态只能"出"，靠中断返回指令改 PSW。凡说"用户程序自己关中断、改 PSW、装页表基址寄存器"的都是错的。</div>
+    <h3>1.5 中断与异常</h3>
+    <ul>
+      <li class="hot"><b>中断与异常分类</b>：外中断（中断）来自 CPU 外部，如 I/O 完成、时钟、键盘，与当前指令无关，属异步事件，分可屏蔽与不可屏蔽；内中断（异常）来自 CPU 内部，与当前指令相关，分故障 fault（缺页、除零、非法操作码，处理完<em>重新执行</em>该指令）、自陷 trap（系统调用、断点，处理完执行下一条）与终止 abort（硬件故障、掉电，不可恢复）。处理过程：关中断→保存断点（PC 与 PSW）→由中断向量引出服务程序→保存现场与屏蔽字→执行服务程序→恢复现场与屏蔽字→开中断→中断返回。中断判优由硬件排队器按优先级仲裁，不可屏蔽中断优先于可屏蔽中断，高优先级可打断低优先级服务形成嵌套。近年考法多为给一串事件，判断"是中断还是异常、属哪一类、处理完从何处继续"。<div class="ex"><p><b>例题</b>缺页、除零、时钟中断、I/O 完成分别属于哪类？</p><p><b>解析</b>① 缺页是故障（内中断）；② 除零是故障/陷入（内中断）；③ 时钟中断与 I/O 完成是外中断。</p><p><b>易错点</b>把缺页当成外中断；内中断与当前指令有关，外中断无关。</p><p><b>拓展</b>中断处理流程：关中断→保存断点→识别中断源→转服务程序。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>某程序运行中依次发生：①执行除法指令时除数为 0；②访问的页面不在内存；③键盘输入完成；④执行 trap 指令请求 read；⑤内存校验出错。判断各事件属于中断还是异常、具体类别，以及处理后从哪里继续。</p><p><b>解析</b>① 异常中的 fault（除零），能修复则重新执行该指令，否则终止进程。② fault（缺页），调页后<em>重新执行</em>引起缺页的那条指令。③ 外中断（可屏蔽 I/O 中断），与当前指令无关，处理完执行下一条指令。④ 自陷 trap，系统调用正常入口，返回后执行 trap 的下一条指令。⑤ 终止 abort（硬件故障），不可恢复，直接终止。→ ①②⑤ 属异常（内中断），③ 属外中断，④ 属自陷。</p><p><b>易错点</b>把缺页说成"终止、不可恢复"；把 trap 当特权指令；混淆返回点——fault 恢复后重执行本指令，trap 返回后执行下一条。</p>
+    </div>
+    <div class="warn"><b>易错</b>：中断是外中断、异常是内中断；缺页与除零是 fault 而非 abort；陷入指令 trap 本身是非特权指令，由用户态执行。</div>
+    <h3>1.6 系统调用</h3>
+    <ul>
+      <li class="hot"><b>系统调用</b>：OS 提供给应用程序的接口，凡与共享资源有关的操作（I/O、文件、内存分配、进程通信）都必须通过系统调用完成，且<em>在用户态发起、在内核态执行</em>。调用过程：传参（寄存器/栈/参数块）→执行陷入指令 trap→按系统调用号查表转入内核服务程序→返回用户态并带回返回值。与库函数的区别：库函数是语言库提供的用户态普通函数，有的不含系统调用（如 abs、sqrt），有的封装了系统调用（如 printf 最终调用 write）。考法一是判断某操作是否"必须"用系统调用，二是数一段程序执行中陷入次数与态切换次数。<div class="ex"><p><b>例题</b>系统调用与普通函数调用的本质区别？</p><p><b>解析</b>① 系统调用要陷入内核、切换 CPU 状态，开销大；② 普通函数调用在用户态完成。</p><p><b>易错点</b>把 printf 当系统调用——它是库函数，内部封装了 write 系统调用。</p><p><b>拓展</b>系统调用是 OS 唯一入口，凡涉及共享资源的操作都必须经它。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>某用户程序依次执行：①调用数学库函数 sqrt()；②调用 read() 读磁盘文件；③调用 printf() 输出结果；④执行一条 jmp 循环指令。问：发生几次陷入（trap）？用户态→内核态、内核态→用户态各切换几次？总态切换几次？</p><p><b>解析</b>① sqrt 为纯计算库函数，不含系统调用，用户态执行，0 次。② read 是系统调用，1 次 trap，用户态→内核态 1 次，返回时内核态→用户态 1 次。③ printf 属库函数但内部封装 write，再 1 次 trap 与一对态切换。④ jmp 是非特权指令，0 次。→ trap 共 <b>2 次</b>，用户→内核 2 次、内核→用户 2 次，总态切换 <b>4 次</b>。</p><p><b>易错点</b>把库函数一律当系统调用（sqrt 不陷入）；只数"进内核"的 2 次而漏掉返回的 2 次；printf 有缓冲，未真正写出时本次可能不陷入，408 按"最终调用 write"计 1 次。</p>
+    </div>
+    <div class="warn"><b>易错</b>：库函数≠系统调用；态切换必须成对计（进一次必有一次出），只数单向会少一半。</div>
+    <div class="tip"><b>记忆</b>：并发共享是根本，虚拟异步随其后；两态转换靠中断，陷入指令用户态；缺页除零是故障，接口调用在核心。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">2</span>进程管理<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>2.1 进程与 PCB</h3>
+    <ul>
+      <li><b>进程</b>：程序在某数据集合上的一次运行过程，是<em>资源分配的基本单位</em>；特征为动态性（最基本）、并发性、独立性、异步性、结构性。</li>
+      <li><b>PCB</b>：进程存在的<em>唯一标志</em>，含 PID、处理机状态（通用寄存器、PC、PSW、栈指针）、调度信息与控制信息；组织分链接、索引两种。</li>
+    </ul>
+    <h3>2.2 进程状态与转换</h3>
+    <ul>
+      <li class="hot"><b>五状态转换</b>：创建→就绪→运行→终止，加阻塞（等待）共五态；就绪→运行只能由<em>调度</em>触发，运行→就绪因时间片到或被抢占，运行→阻塞因请求资源或 I/O（<em>进程主动</em>），阻塞→就绪因事件完成（<em>由他人唤醒</em>）。<b>阻塞不能直接转运行，就绪不能直接转阻塞</b>，这是判断状态图对错的两条铁律。常见考法：给出一个动作（如"申请打印机"、"I/O 完成"、"时间片用完"）问状态如何变化，或问"某转换是否可能"。结论：凡需要 CPU 的都必先经就绪，凡等待事件都必先经阻塞。<div class="ex"><p><b>例题</b>五状态模型中哪些转换不可能发生？</p><p><b>解析</b>① 就绪→阻塞（没运行不能等 I/O）；② 阻塞→运行（必须先回就绪）；③ 创建只有出边、终止只有入边。</p><p><b>易错点</b>认为阻塞可以直接转到运行态。</p><p><b>拓展</b>加上挂起状态后变七态，多出就绪挂起与阻塞挂起。</p></div></li>
+      <li><b>七状态</b>：五态上加就绪挂起、阻塞挂起，由<em>中级调度（对换）</em>在内存与外存间移动；运行态须先转就绪或阻塞才能挂起。</li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 190" role="img" aria-label="进程五状态转换图">
+        <rect x="8" y="34" width="58" height="32" rx="5" class="box"/>
+        <text x="37" y="54" text-anchor="middle" class="t">创建</text>
+        <rect x="108" y="34" width="58" height="32" rx="5" class="box"/>
+        <text x="137" y="54" text-anchor="middle" class="t">就绪</text>
+        <rect x="208" y="34" width="58" height="32" rx="5" class="boxa"/>
+        <text x="237" y="54" text-anchor="middle" class="w">运行</text>
+        <rect x="300" y="34" width="62" height="32" rx="5" class="boxw"/>
+        <text x="331" y="54" text-anchor="middle" class="t">终止</text>
+        <rect x="208" y="140" width="58" height="32" rx="5" class="box"/>
+        <text x="237" y="160" text-anchor="middle" class="t">阻塞</text>
+        <line x1="66" y1="50" x2="104" y2="50" class="ln" marker-end="url(#arw)"/>
+        <text x="85" y="44" text-anchor="middle" class="s">创建</text>
+        <line x1="166" y1="50" x2="204" y2="50" class="ln" marker-end="url(#arw)"/>
+        <text x="185" y="44" text-anchor="middle" class="s">调度</text>
+        <line x1="266" y1="50" x2="296" y2="50" class="ln" marker-end="url(#arw)"/>
+        <text x="281" y="44" text-anchor="middle" class="s">退出</text>
+        <line x1="237" y1="66" x2="237" y2="136" class="lna" marker-end="url(#arwa)"/>
+        <text x="243" y="100" class="s">等待事件</text>
+        <path d="M253 34 V18 H137 V30" class="ln" marker-end="url(#arw)"/>
+        <text x="195" y="13" text-anchor="middle" class="s">时间片到</text>
+        <path d="M208 156 H137 V70" class="ln" marker-end="url(#arw)"/>
+        <text x="131" y="112" text-anchor="end" class="s">事件发生</text>
+      </svg>
+      <div class="cap">创建→就绪→运行→终止，运行态可转阻塞或就绪；<b>阻塞态不能直接变运行态</b>，必须先回就绪队列被重新调度</div>
+    </div>
+      
+    <h3>2.3 进程控制与通信</h3>
+    <ul>
+      <li><b>原语</b>：关/开中断实现的不可分割操作；创建＝申请 PCB→分配资源（<em>写时复制 COW</em>）→初始化 PCB→入就绪队列；终止＝归还资源→删除 PCB。</li>
+      <li><b>阻塞与唤醒</b>：阻塞由<em>进程自身</em>调用（主动，入等待队列），唤醒由<em>其他进程或系统</em>调用（被动，移入就绪队列）。</li>
+      <li><b>进程通信</b>：共享存储（<em>需自行同步互斥</em>）、消息传递（send/receive）、管道 pipe（半双工 FIFO，<em>仅亲缘进程可用</em>）、<em>内存映射文件</em>。</li>
+    </ul>
+    <h3>2.4 线程</h3>
+    <ul>
+      <li class="hot"><b>线程与进程对比</b>：线程是 <em>CPU 调度的基本单位</em>，是进程内的一条执行流，进程仍是资源分配单位。同进程线程<em>共享</em>代码段、数据段、堆、打开文件表，<em>私有</em>寄存器、栈、PC、线程 ID 与状态。线程切换不切换地址空间，故开销远小于进程切换；同进程线程通信无需内核介入。近年新考法：问"线程共享/私有哪些内容"、"同一进程两线程能否同时执行同一函数"（能，各有独立栈）、"线程崩溃是否影响同进程其他线程"（进程级崩溃则全体失效）。结论：共享的是资源，私有的是执行现场。<div class="ex"><p><b>例题</b>同一进程的两个线程共享什么？不共享什么？</p><p><b>解析</b>① 共享地址空间、全局变量、打开文件表；② 不共享栈、寄存器、PC、线程 ID。</p><p><b>易错点</b>说线程之间共享栈和寄存器，这会导致栈帧混乱。</p><p><b>拓展</b>线程切换不换地址空间，开销小于进程切换。</p></div></li>
+      <li><b>用户级线程 ULT</b>：用户态管理，内核不可见，但<em>一线程阻塞则整个进程阻塞、不能多核</em>；<b>内核级线程 KLT</b>：可多核并行，模型多对一/一对一/多对多。</li>
+    </ul>
+    <h3>2.5 调度层次与指标</h3>
+    <ul>
+      <li><b>三层次</b>：高级（作业）调度频率最低；中级（内存）调度即对换；低级（进程）调度<em>频率最高</em>。不能调度：中断处理中、内核临界区、原子操作中。</li>
+      <li><b>抢占式</b>在时间片到、高优先级到达时切换，响应好但开销大；<b>非抢占式</b>须主动放弃或阻塞才切换。<b>指标</b>：周转＝完成−到达、带权周转＝周转/运行（<em>≥1</em>）。</li>
+    </ul>
+    <div class="key"><b>重点</b>：周转时间从<em>到达</em>算到<em>完成</em>，不是从开始运行算；带权周转一定 ≥1，等于 1 说明一到达就跑且无等待。</div>
+    <div class="ex">
+      <p><b>例题</b>四个进程 A(到达 0, 运行 7)、B(2, 4)、C(4, 1)、D(5, 4)，忽略切换开销。求 FCFS、SJF（非抢占）、SRTN 三种算法下的平均周转时间与平均带权周转时间。</p><p><b>解析</b>① FCFS 顺序 A→B→C→D，完成时刻 7、11、12、16，周转 7、9、8、11，平均＝35/4＝<b>8.75</b>；带权 1、2.25、8、2.75，平均＝14/4＝<b>3.50</b>。② SJF：t=0 只有 A，A 跑 0–7；t=7 时 B、C、D 均已到达，按运行时间 C(1)→B(4)→D(4)，完成时刻 A7、C8、B12、D16，周转 7、10、4、11，平均＝32/4＝<b>8.00</b>；带权 1、2.5、4、2.75，平均＝10.25/4≈<b>2.56</b>。③ SRTN：t=2 时 A 剩 5 > B 的 4，B 抢占；t=4 时 B 剩 2 > C 的 1，C 抢占并 4–5 完成；t=5 时剩 A5、B2、D4，B 跑 5–7 完成；t=7 剩 A5、D4，D 跑 7–11 完成；A 11–16 完成。完成时刻 A16、B7、C5、D11，周转 16、5、1、6，平均＝28/4＝<b>7.00</b>；带权 16/7≈2.29、1.25、1、1.5，平均≈<b>1.51</b>。</p><p><b>易错点</b>SJF 中 t=7 时不能只看到达顺序，必须先比较 C、B、D 的服务时间；SRTN 抢占后必须重算"剩余时间"而非原始运行时间，A 第二次运行时剩 5 不是 7。</p>
+    </div>
+    <h3>2.6 调度算法</h3>
+    <table>
+      <thead><tr><th>算法</th><th>思想</th><th>抢占</th><th>评价</th></tr></thead>
+      <tbody>
+        <tr><td>FCFS</td><td>按到达先后</td><td>非抢占</td><td>公平简单无饥饿，短作业与 I/O 型吃亏</td></tr>
+        <tr><td>SJF/SPF</td><td>选运行时间最短</td><td>非抢占</td><td>平均等待、平均周转最短，但需预知时间且长作业饥饿</td></tr>
+        <tr><td>SRTN</td><td>剩余时间最短者抢占</td><td>抢占</td><td>平均周转更优，开销大、长作业饥饿</td></tr>
+        <tr><td>HRRN</td><td>响应比最高者先</td><td>非抢占</td><td>兼顾长短作业，需算响应比</td></tr>
+        <tr><td>优先级</td><td>优先级高者先</td><td>均可</td><td>可区分轻重缓急，低优先级饥饿</td></tr>
+        <tr><td>时间片轮转 RR</td><td>轮流用固定时间片</td><td>抢占</td><td>响应快，片太小开销大、片太大退化为 FCFS</td></tr>
+        <tr><td>多级反馈队列</td><td>多级队列＋时间片递增</td><td>抢占</td><td>通用性最好，实现复杂</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li class="hot"><b>多级反馈队列与 HRRN</b>：多级反馈队列设多个就绪队列，<em>队列优先级递减、时间片递增</em>；新进程入第 1 级，用完时间片未完成则降级，<em>仅当高优先级队列为空才调度低优先级队列</em>，被抢占则回原队列。HRRN 响应比 <code>R＝(等待时间＋要求服务时间)/要求服务时间</code>，等待越久 R 越大，从而既照顾短作业又不使长作业饿死。饥饿的通用解法是<em>动态优先级老化</em>（等待越久优先级越高）。常见考法：给时间片与到达序列画甘特图求完成时刻，或比较"响应比谁先"。结论：SJF 平均周转最优但不可实现，多级反馈队列是"综合最优的近似实现"。<div class="ex"><p><b>例题</b>HRRN 的响应比怎么算？它的作用是什么？</p><p><b>解析</b>① 响应比 =（等待时间 + 要求服务时间）/ 要求服务时间；② 等待越久响应比越高，兼顾短作业又不饿死长作业。</p><p><b>易错点</b>公式写反，用服务时间除以等待时间。</p><p><b>拓展</b>多级反馈队列用「队列优先级 + 递增时间片」折中响应与吞吐。</p></div></li>
+      <li><b>多核调度</b>：除选进程还需分配到各 CPU，分<em>亲和性调度</em>（复用 cache）与<em>负载均衡</em>（迁移就绪进程）；线程数可超核数但不宜过多。</li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 215" role="img" aria-label="FCFS与SJF调度甘特图">
+        <text x="60" y="18" class="s">P1(0,3)</text>
+        <text x="150" y="18" class="s">P2(1,2)</text>
+        <text x="240" y="18" class="s">P3(2,1)</text>
+        <text x="8" y="67" class="t">FCFS</text>
+        <rect x="60" y="46" width="150" height="34" rx="5" class="boxw"/>
+        <text x="135" y="67" text-anchor="middle" class="t">P1</text>
+        <rect x="210" y="46" width="100" height="34" rx="5" class="boxw"/>
+        <text x="260" y="67" text-anchor="middle" class="t">P2</text>
+        <rect x="310" y="46" width="50" height="34" rx="5" class="boxw"/>
+        <text x="335" y="67" text-anchor="middle" class="t">P3</text>
+        <text x="210" y="42" text-anchor="middle" class="s">3</text>
+        <text x="310" y="42" text-anchor="middle" class="s">5</text>
+        <text x="356" y="42" text-anchor="middle" class="s">6</text>
+        <text x="60" y="96" class="s">周转 3,4,4 平均 3.67</text>
+        <text x="8" y="141" class="t">SJF</text>
+        <rect x="60" y="120" width="150" height="34" rx="5" class="boxa"/>
+        <text x="135" y="141" text-anchor="middle" class="w">P1</text>
+        <rect x="210" y="120" width="50" height="34" rx="5" class="boxa"/>
+        <text x="235" y="141" text-anchor="middle" class="w">P3</text>
+        <rect x="260" y="120" width="100" height="34" rx="5" class="boxa"/>
+        <text x="310" y="141" text-anchor="middle" class="w">P2</text>
+        <text x="210" y="116" text-anchor="middle" class="s">3</text>
+        <text x="260" y="116" text-anchor="middle" class="s">4</text>
+        <text x="356" y="116" text-anchor="middle" class="s">6</text>
+        <text x="60" y="170" class="s">周转 3,2,5 平均 3.33</text>
+        <line x1="60" y1="186" x2="360" y2="186" class="ln"/>
+        <line x1="60" y1="186" x2="60" y2="191" class="ln"/><line x1="110" y1="186" x2="110" y2="191" class="ln"/><line x1="160" y1="186" x2="160" y2="191" class="ln"/><line x1="210" y1="186" x2="210" y2="191" class="ln"/><line x1="260" y1="186" x2="260" y2="191" class="ln"/><line x1="310" y1="186" x2="310" y2="191" class="ln"/><line x1="360" y1="186" x2="360" y2="191" class="ln"/>
+        <text x="60" y="204" text-anchor="middle" class="s">0</text><text x="110" y="204" text-anchor="middle" class="s">1</text><text x="160" y="204" text-anchor="middle" class="s">2</text><text x="210" y="204" text-anchor="middle" class="s">3</text><text x="260" y="204" text-anchor="middle" class="s">4</text><text x="310" y="204" text-anchor="middle" class="s">5</text><text x="360" y="204" text-anchor="middle" class="s">6</text>
+      </svg>
+      <div class="cap">P1(0,3)、P2(1,2)、P3(2,1)：FCFS 完成时刻 3/5/6，平均周转 3.67；SJF 在 t=3 选最短的 P3，完成时刻 3/4/6，平均周转 <b>3.33 更优</b>，但需预知服务时间且长作业易饥饿</div>
+    </div>
+      
+    <div class="ex">
+      <p><b>例题</b>进程 A(到达 0, 运行 8)、B(1, 4)、C(2, 2) 采用 HRRN，求调度顺序与平均周转、平均带权周转时间。</p><p><b>解析</b>① t=0 仅 A 到达，A 运行 0–8。② t=8 时 B 等待 7、C 等待 6：RB＝(7+4)/4＝2.75，RC＝(6+2)/2＝4.00 → 选 C，C 运行 8–10 完成。③ 仅剩 B，B 等待 9，R＝(9+4)/4＝3.25，运行 10–14 完成。④ 周转：A＝8−0＝8，B＝14−1＝13，C＝10−2＝8，平均＝29/3≈<b>9.67</b>；带权：1、13/4＝3.25、8/2＝4，平均＝8.25/3＝<b>2.75</b>。</p><p><b>易错点</b>响应比的分子是"等待时间＋服务时间"（即响应时间），漏加服务时间会算出 RB＝1.75 而误选 B；HRRN 是非抢占的，A 一旦运行就必须跑完 8 个时间单位。</p>
+    </div>
+    <div class="ex">
+      <p><b>例题</b>进程 A(到达 0, 运行 4)、B(1, 3)、C(2, 1)，时间片 q＝2 的 RR，求各进程完成时刻与平均周转时间。</p><p><b>解析</b>① t=0 仅 A，A 跑 0–2，剩 2；此时就绪队列为 [B, C]，A 排到队尾 → [B, C, A]。② B 跑 2–4，剩 1，队尾 → [C, A, B]。③ C 跑 4–5 完成（只需 1），C 完成＝5，周转＝5−2＝3。④ A 跑 5–7 恰好用完剩余 2 完成，周转＝7。⑤ B 跑 7–8 完成，周转＝8−1＝7。平均周转＝(7+7+3)/3≈<b>5.67</b>，带权 7/4＝1.75、7/3≈2.33、3/1＝3，平均≈<b>2.36</b>。</p><p><b>易错点</b>t=2 时 B（到达 1）排在 C（到达 2）之前入队，A 用完时间片必须排到<em>队尾</em>而不是插到队头；C 只需 1 个时间单位，第 4 时刻就完成，不能按整片 2 计。</p>
+    </div>
+    <h3>2.7 上下文切换</h3>
+    <ul>
+      <li><b>上下文与开销</b>：含寄存器、PC、PSW、栈指针与地址空间；切换＝存旧上下文→选新→恢复，开销含 TLB 刷新与 cache 失效，<em>仅换模式开销小得多</em>。</li>
+    </ul>
+    <div class="warn"><b>易错</b>：阻塞是进程<em>主动</em>行为（自身调用阻塞原语），唤醒是<em>被动</em>行为；"就绪→阻塞"与"阻塞→运行"都不存在，状态图题先查这两条。</div>
+    <div class="warn"><b>易错</b>：中级调度是内存调度（对换），不是进程调度；高级调度面向作业、频率最低，低级调度频率最高。</div>
+    <div class="tip"><b>记忆</b>：进程管资源、线程管 CPU；用户级线程切换快但不能并行，内核级线程能并行但切换贵；SJF 最短但会饿死长作业，多级反馈队列"新人优先、老人升级"。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">3</span>同步与互斥<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>3.1 临界区与实现方法</h3>
+    <ul>
+      <li><b>临界资源、临界区与同步互斥</b>：临界资源一次仅允许一个进程使用，访问它的代码段为临界区，进入区加锁、退出区解锁。同步为直接制约、互斥为间接制约。</li>
+      <li><b>访问临界区四原则</b>：空闲让进、忙则等待、有限等待、让权等待（进不去就释放处理机、不空转），四者缺一不可。</li>
+      <li class="hot"><b>软件实现四法</b>：单标志法用 turn 指明谁可进，两进程必须严格交替，故违背空闲让进；双标志先检查法是先查对方标志再置自身标志，两者可能同时通过检查，故违背忙则等待；双标志后检查法是先置自身标志再查对方，可能互相谦让都进不去，违背空闲让进并导致饥饿；Peterson 法用 flag[] 表意愿、turn 表谦让，进入前主动把 turn 让给对方，满足前三原则但不满足让权等待（忙等）。<div class="ex"><p><b>例题</b>单标志法为什么违背「空闲让进」？</p><p><b>解析</b>① turn 强制两进程严格轮流；② P0 退出后 turn=1，即使 P1 不进，P0 也无法再次进入，违背空闲让进。</p><p><b>易错点</b>把单标志法的问题说成「违背忙则等待」，其实违背的是空闲让进。</p><p><b>拓展</b>Peterson 法三项都满足但仍有忙等；硬件用 TestAndSet 原子指令。</p></div></li>
+    </ul>
+    <table>
+      <thead><tr><th>方法</th><th>关键动作</th><th>违背的原则</th></tr></thead>
+      <tbody>
+        <tr><td>单标志法</td><td>turn 指定进入者</td><td>空闲让进</td></tr>
+        <tr><td>双标志先检查</td><td>先查后置</td><td>忙则等待</td></tr>
+        <tr><td>双标志后检查</td><td>先置后查</td><td>空闲让进（会饥饿）</td></tr>
+        <tr><td>Peterson</td><td>flag 加 turn 谦让</td><td>让权等待</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li><b>硬件实现</b>：中断屏蔽仅限单处理机且须内核态；TS 原子读旧值置 true、Swap 原子交换锁变量，可用于多处理机但都忙等，多核做成<b>自旋锁</b>。</li>
+    </ul>
+    <h3>3.2 信号量机制</h3>
+    <ul>
+      <li class="hot"><b>记录型信号量</b>：由整型 value 和一个等待队列组成。P(S)/wait(S) 先做 S.value--，若小于 0 则 block 自己并入队；V(S)/signal(S) 先做 S.value++，若小于等于 0 则 wakeup 一个等待者。因此 value 的初值即可用资源数，value 为负时其绝对值等于正在等待的进程数。整型信号量在 wait 中用 while(S≤0) 空转，不满足让权等待，已被记录型取代。<div class="ex"><p><b>例题</b>S.value 初值 1，先后执行 3 次 P、1 次 V，求最终 value 与阻塞进程数。</p><p><b>解析</b>① P：1→0→−1→−2，后两次 P 阻塞；② V：−2→−1，唤醒 1 个。最终 value=−1，仍阻塞 1 个。</p><p><b>易错点</b>认为 value 不能为负；负值的绝对值就是等待队列中的进程数。</p><p><b>拓展</b>整型信号量无等待队列会忙等，记录型才有队列。</p></div></li>
+      <li><b>PV 配对套路</b>：互斥 mutex 初值 1，临界区前后 P/V 成对且同进程；同步初值 0，前驱 V、后继 P；前驱图边尾 V、边头 P。</li>
+    </ul>
+    <h3>3.3 经典同步问题</h3>
+    <ul>
+      <li class="hot"><b>生产者-消费者</b>：设 mutex=1、empty=n、full=0。生产者 P(empty)→P(mutex)→放产品→V(mutex)→V(full)；消费者 P(full)→P(mutex)→取产品→V(mutex)→V(empty)。核心是同步 P 必须排在互斥 P 之前，否则生产者持锁等待空缓冲区、消费者等锁，形成死锁。V 操作不会阻塞，两个 V 的先后可交换，但习惯先 V(mutex) 尽早释放临界区。<div class="ex"><p><b>例题</b>缓冲区容量 5，2 个生产者 3 个消费者，写出信号量与初值。</p><p><b>解析</b>① empty=5、full=0、mutex=1；② 生产者 P(empty)→P(mutex)→放产品→V(mutex)→V(full)。</p><p><b>易错点</b>先 P(mutex) 后 P(empty)：缓冲区满时持锁等待，直接死锁。</p><p><b>拓展</b>多生产者/多消费者必须加 mutex；一对一可省。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 230" role="img" aria-label="生产者消费者PV流程图">
+        <rect x="8" y="16" width="70" height="34" rx="5" class="boxa"/>
+        <text x="43" y="37" text-anchor="middle" class="w">生产者</text>
+        <rect x="110" y="18" width="28" height="30" rx="3" class="boxw"/>
+        <rect x="142" y="18" width="28" height="30" rx="3" class="boxw"/>
+        <rect x="174" y="18" width="28" height="30" rx="3" class="boxw"/>
+        <rect x="206" y="18" width="28" height="30" rx="3" class="boxw"/>
+        <rect x="238" y="18" width="28" height="30" rx="3" class="boxw"/>
+        <text x="188" y="62" text-anchor="middle" class="s">缓冲区 n 格</text>
+        <rect x="322" y="16" width="70" height="34" rx="5" class="boxa"/>
+        <text x="357" y="37" text-anchor="middle" class="w">消费者</text>
+        <line x1="78" y1="33" x2="106" y2="33" class="lna" marker-end="url(#arwa)"/>
+        <text x="92" y="27" text-anchor="middle" class="s">put</text>
+        <line x1="266" y1="33" x2="318" y2="33" class="lna" marker-end="url(#arwa)"/>
+        <text x="292" y="27" text-anchor="middle" class="s">get</text>
+        <rect x="8" y="76" width="180" height="120" rx="5" class="box"/>
+        <text x="98" y="94" text-anchor="middle" class="t">生产者循环</text>
+        <text x="20" y="114" class="x">P(empty)</text>
+        <text x="20" y="132" class="x">P(mutex)</text>
+        <text x="20" y="150" class="x">放入缓冲区</text>
+        <text x="20" y="168" class="x">V(mutex)</text>
+        <text x="20" y="186" class="x">V(full)</text>
+        <rect x="212" y="76" width="180" height="120" rx="5" class="box"/>
+        <text x="302" y="94" text-anchor="middle" class="t">消费者循环</text>
+        <text x="224" y="114" class="x">P(full)</text>
+        <text x="224" y="132" class="x">P(mutex)</text>
+        <text x="224" y="150" class="x">取出产品</text>
+        <text x="224" y="168" class="x">V(mutex)</text>
+        <text x="224" y="186" class="x">V(empty)</text>
+        <text x="20" y="214" class="s">初值 empty=n</text>
+        <text x="150" y="214" class="s">full=0</text>
+        <text x="262" y="214" class="s">mutex=1</text>
+      </svg>
+      <div class="cap">生产者先 P(empty) 再 P(mutex)，消费者先 P(full) 再 P(mutex)；<b>两个 P 的顺序不能颠倒</b>，否则持有锁等空位会死锁，V 顺序可交换</div>
+    </div>
+      
+    >
+    <div class="key"><b>重点</b>：判断 PV 位置的口诀——先看谁"等资源"（同步 P 在前），再看谁"进临界区"（互斥 P 紧贴临界区）；value 为负时绝对值就是等待进程数。</div>
+    <ul>
+      <li><b>读者-写者</b>：rw=1、mutex=1 护 count，首末读者 P/V(rw)、写者 P(rw)；写优先 w=1、P(w)/V(w)。</li>
+      <li><b>哲学家进餐</b>：5 只筷子 chopstick[i]=1，先左后右循环等待死锁；限 4 人取筷（初值 4）、奇左偶右、AND 型一次申请两只。</li>
+    </ul>
+    >
+    <h3>3.4 管程</h3>
+    <ul>
+      <li><b>管程</b>：共享数据结构、操作过程、初始化语句，编译器保证互斥执行；wait 阻塞并释放管程，signal 无等待者则丢失不累计，异于 V。</li>
+    </ul>
+    <h3>3.5 死锁</h3>
+    <ul>
+      <li class="hot"><b>死锁四条件与预防</b>：互斥、不剥夺、请求并保持、循环等待，四者同时成立才可能死锁，破坏任一即可预防。破坏互斥用 SPOOLing 把独占设备虚拟成共享设备（多数资源无法改造）；破坏不剥夺是申请失败就释放已占资源（实现复杂、代价高）；破坏请求并保持是一次性申请全部资源（浪费且可能饥饿）；破坏循环等待是资源统一编号、按序申请，实现简单最常用。<div class="ex"><p><b>例题</b>5 个进程各需 3 个同类资源，至少多少资源一定不死锁？</p><p><b>解析</b>① 最坏各占 2 个共 10 个仍可能死锁；② 再多 1 个就能让某进程完成并释放；③ N=5×2+1=11。</p><p><b>易错点</b>公式写成 n(m−1)，少加 1，答成 10。</p><p><b>拓展</b>破坏循环等待用资源有序分配；银行家算法属「避免」不是「预防」。</p></div></li>
+      <li><b>资源分配图与状态关系</b>：无环必无死锁，有环单实例必死锁，多实例环路仅必要条件，化简（死锁定理）判定；安全必不死锁，不安全仅可能，饥饿≠死锁。</li>
+      <li class="hot"><b>银行家算法</b>：属于死锁避免，每次分配前先试算。核心公式 Need = Max − Allocation；试分配后令 Available 减去 Request、该进程 Allocation 加 Request、Need 减 Request，再找安全序列：Work 初值取 Available，凡 Need ≤ Work 的进程可完成并回收其 Allocation 累加到 Work，若所有进程都能完成则安全、可真正分配，否则回滚拒绝。<div class="ex"><p><b>例题</b>Available=(3,3,2)，进程 P 的 Need=(1,2,2)，能否立即分配？</p><p><b>解析</b>① 先试分配，Available 变 (2,1,0)；② 再做安全性检查，找不到 Need≤Available 的进程就要回滚。</p><p><b>易错点</b>只看单步 Available≥Need 就分配，漏掉安全性检查。</p><p><b>拓展</b>安全序列可能不唯一；不安全状态不等于已经死锁。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 228" role="img" aria-label="银行家算法安全性检查">
+        <text class="s" x="200" y="24" text-anchor="middle">Available = (3, 3, 2)，资源为 (A, B, C)，Work 初值即 Available</text>
+        <rect class="boxw" x="52" y="40" width="296" height="120" rx="5"/><rect class="box" x="52" y="40" width="296" height="20" rx="5"/>
+        <line class="ln" x1="52" y1="80" x2="348" y2="80"/><line class="ln" x1="52" y1="100" x2="348" y2="100"/>
+        <line class="ln" x1="52" y1="120" x2="348" y2="120"/><line class="ln" x1="52" y1="140" x2="348" y2="140"/>
+        <line class="ln" x1="100" y1="40" x2="100" y2="160"/><line class="ln" x1="180" y1="40" x2="180" y2="160"/>
+        <line class="ln" x1="260" y1="40" x2="260" y2="160"/>
+        <text class="s" x="76" y="54" text-anchor="middle">进程</text><text class="s" x="140" y="54" text-anchor="middle">Need</text>
+        <text class="s" x="220" y="54" text-anchor="middle">Work</text><text class="s" x="304" y="54" text-anchor="middle">Work+Alloc</text>
+        <text class="x" x="76" y="74" text-anchor="middle">P1</text><text class="x" x="140" y="74" text-anchor="middle">1 2 2</text>
+        <text class="x" x="220" y="74" text-anchor="middle">3 3 2</text><text class="x" x="304" y="74" text-anchor="middle">5 3 2</text>
+        <text class="x" x="76" y="94" text-anchor="middle">P3</text><text class="x" x="140" y="94" text-anchor="middle">0 1 1</text>
+        <text class="x" x="220" y="94" text-anchor="middle">5 3 2</text><text class="x" x="304" y="94" text-anchor="middle">7 4 3</text>
+        <text class="x" x="76" y="114" text-anchor="middle">P4</text><text class="x" x="140" y="114" text-anchor="middle">4 3 1</text>
+        <text class="x" x="220" y="114" text-anchor="middle">7 4 3</text><text class="x" x="304" y="114" text-anchor="middle">7 4 5</text>
+        <text class="x" x="76" y="134" text-anchor="middle">P2</text><text class="x" x="140" y="134" text-anchor="middle">6 0 0</text>
+        <text class="x" x="220" y="134" text-anchor="middle">7 4 5</text><text class="x" x="304" y="134" text-anchor="middle">10 4 7</text>
+        <text class="x" x="76" y="154" text-anchor="middle">P0</text><text class="x" x="140" y="154" text-anchor="middle">7 4 3</text>
+        <text class="x" x="220" y="154" text-anchor="middle">10 4 7</text><text class="x" x="304" y="154" text-anchor="middle">10 5 7</text>
+        <text class="t" x="200" y="184" text-anchor="middle">安全序列：P1 → P3 → P4 → P2 → P0</text>
+        <text class="s" x="200" y="206" text-anchor="middle">每行都满足 Need ≤ Work，可找到安全序列，故当前状态安全</text>
+      </svg>
+      <div class="cap">看两列关系：<b>Work 逐行下传</b>（上一行 Work+Alloc 成为下一行 Work），只要有一轮所有进程都 Need &gt; Work 就<b>不安全</b>。</div>
+    </div>
+      
+    >
+    <ul>
+      <li><b>检测与解除</b>：检测用资源分配图化简，可完全简化则无死锁；解除用剥夺、撤销、回退，选代价最小者防饿死；Windows、Linux 采鸵鸟策略。</li>
+    </ul>
+    <div class="warn"><b>易错</b>：实现互斥的 P 操作必须放在实现同步的 P 操作之后；Peterson、TS、Swap 三种方法都不满足让权等待，只有记录型信号量和管程满足。</div>
+    <div class="warn"><b>易错</b>：不安全状态不等于死锁（可能仍安全推进），死锁才一定不安全；有环不等于死锁（仅单实例资源时有环即死锁）。</div>
+    <div class="tip"><b>记忆</b>：破坏四条件任一 = 预防，银行家算法 = 避免，资源分配图化简 = 检测，剥夺/撤销/回退 = 解除；软件四法"单标志进不了、先检查拦不住、后检查都谦让、Peterson 忙等"。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">4</span>内存管理<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>4.1 装入、链接与地址空间</h3>
+    <ul>
+      <li><b>内存管理功能</b>：分配与回收、地址变换、存储保护、内存共享、虚拟扩充；逻辑地址由 MMU 转物理地址，界地址寄存器判越界。</li>
+      <li><b>装入与链接</b>：装入分绝对装入、可重定位装入（改址后不可移动）、动态运行时装入（重定位寄存器转换，可移动）；链接分静态、装入时、运行时动态。</li>
+    </ul>
+    <h3>4.2 连续分配与动态分区算法</h3>
+    <ul>
+      <li><b>连续分配的碎片</b>：单一连续分配、固定分区产生<em>内部碎片</em>；动态分区产生<em>外部碎片</em>，可用紧凑（拼接）消除，但需移动程序、开销大。</li>
+      <li class="hot"><b>动态分区四算法</b>：首次适应 FF 空闲区按<em>地址递增</em>排列、取第一个满足者，开销小、低地址易留小碎片，综合性能最好；最佳适应 BF 按<em>容量递增</em>排列，留下最小剩余区，但产生大量难以利用的外部碎片；最坏适应 WF 按容量递减、总切最大空闲区，小碎片少却破坏大块；邻近适应 NF 从上次结束处循环查找，分配均匀但破坏大块，通常不如 FF。做题只判断“选中哪个空闲区”，不必真的重排整张表。<div class="ex"><p><b>例题</b>空闲区依次 100K、500K、200K、300K，请求 200K，首次适应与最佳适应各选哪块？</p><p><b>解析</b>① FF 从头扫描取第一个够用的 500K；② BF 取最小的够用块 200K。</p><p><b>易错点</b>把 FF 当成「取最小块」；FF 是取地址最低的够用块。</p><p><b>拓展</b>最坏适应取最大块 500K，易把大块切碎。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>某系统空闲分区按地址递增依次为 10K、4K、20K、18K、7K、9K、12K、15K。现有一作业申请 12K，分别求首次适应、最佳适应、最坏适应的分配结果（选中哪个空闲区、剩余多少）。</p><p><b>解析</b>① 首次适应按地址找第一个 ≥12K：10K、4K 不足，第 3 个 20K 满足 → 分配后剩 8K。<br>② 最佳适应按容量递增重排：4、7、9、10、12、15、18、20，第一个 ≥12K 恰为第 7 个 12K → 剩余 0K（无剩余碎片）。<br>③ 最坏适应取最大空闲区 20K → 剩 8K。答案：FF 用 20K 区剩 8K，BF 用 12K 区恰好用尽，WF 用 20K 区剩 8K。</p><p><b>易错点</b>BF 本次剩余 0K 看似最优，但它按容量排序、每次切出的小碎片难以再利用，长期外部碎片最多；FF 的剩余区留在低地址也会逐步堆小碎片；WF 会破坏最大空闲区，使后续大作业无处安放。</p>
+    </div>
+    <h3>4.3 分页管理</h3>
+    <ul>
+      <li><b>页与页表</b>：页、页框等大且为 2 的幂，<code>页号 = 逻辑地址 / 页大小，页内偏移 = 逻辑地址 % 页大小</code>；页表存页框号、存在位、访问位。</li>
+      <li class="hot"><b>地址变换与有效访问时间</b>：拆逻辑地址 → 查页表得页框号 → <code>物理地址 = 页框号 × 页大小 + 页内偏移</code>；无快表需两次访存（页表 + 数据），有快表命中只需一次。设 TLB 访问 t₁、访存 t、命中率 h，则 <code>EAT = h(t₁+t) + (1−h)(t₁+2t)</code>。TLB 是页表的缓存（相联存储器），进程切换须刷新。常见考法：给逻辑地址与页表求物理地址，或给 t₁、t、h 求 EAT——<em>未命中时 TLB 的访问时间也要计入</em>。<div class="ex"><p><b>例题</b>一次访存 100 ns、快表访问 10 ns、命中率 90%，求有效访问时间。</p><p><b>解析</b>① 命中：10+100 = 110 ns；② 未命中：10+100+100 = 210 ns；③ EAT = 0.9×110 + 0.1×210 = 120 ns。</p><p><b>易错点</b>漏加快表访问时间；未命中时忘记要两次访存。</p><p><b>拓展</b>二级页表且无快表时需要 3 次访存。</p></div></li>
+      <li class="hot"><b>多级页表与规模计算</b>：把页表本身再分页，使页表不必连续存放、只装入用到的部分，n 级页表无快表需 n+1 次访存。三个常算量：页表项数 = 逻辑地址空间 / 页大小；项长由页框号位数取整到字节；页表占页框数 = 项数 × 项长 / 页大小。若每页可存 k 个项而共有 2^m 项，则需 2^m/k 个下级页表，这个数就是一级页表的项数。<div class="ex"><p><b>例题</b>32 位地址、4 KB 页、页表项 4 B，二级页表各级多少位？</p><p><b>解析</b>① 页内偏移 12 位；② 每页可放 4 KB/4 B = 1024 项 → 10 位；③ 余下 10 位为页目录号 → 10/10/12。</p><p><b>易错点</b>算成 12/12/8；每页项数应用页大小除以项长。</p><p><b>拓展</b>n 级页表且无快表时需 n+1 次访存。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 200" role="img" aria-label="二级页表地址变换">
+        <text x="200" y="16" text-anchor="middle" class="t">32 位虚拟地址的三段划分</text>
+        <rect x="24" y="28" width="104" height="26" class="boxa"/><text x="76" y="45" text-anchor="middle" class="w">页目录号 10</text>
+        <rect x="128" y="28" width="104" height="26" class="box"/><text x="180" y="45" text-anchor="middle" class="x">页表索引 10</text>
+        <rect x="232" y="28" width="120" height="26" class="box"/><text x="292" y="45" text-anchor="middle" class="x">页内偏移 12</text>
+        <line x1="76" y1="54" x2="76" y2="86" class="lna" marker-end="url(#arwa)"/>
+        <line x1="180" y1="54" x2="180" y2="122" class="lna" marker-end="url(#arwa)"/>
+        <rect x="30" y="88" width="92" height="26" class="box"/><text x="76" y="105" text-anchor="middle" class="x">页目录项</text>
+        <rect x="134" y="124" width="92" height="26" class="box"/><text x="180" y="141" text-anchor="middle" class="x">页表项</text>
+        <line x1="122" y1="101" x2="132" y2="132" class="ln"/>
+        <line x1="180" y1="150" x2="180" y2="170" class="lna" marker-end="url(#arwa)"/>
+        <rect x="232" y="150" width="120" height="26" class="boxa"/><text x="292" y="167" text-anchor="middle" class="w">物理页框号</text>
+        <line x1="226" y1="163" x2="232" y2="163" class="ln"/>
+        <text x="200" y="192" text-anchor="middle" class="s">页目录项存页表基址，页表项存页框号；偏移 12 位 → 页大小 4KB</text>
+      </svg>
+      <div class="cap">两级页表把页表本身也分页，<b>每级索引 10 位、页内偏移 12 位</b>；一次访存要 3 次访问主存（目录→页表→数据），TLB 命中后降到 1 次。</div>
+    </div>
+      
+    <div class="ex">
+      <p><b>例题</b>32 位逻辑地址、页大小 4KB、页表项 4B。某进程页表：页号 0→页框 5，1→8，2→3，3→9。(1) 求逻辑地址 8196 与 5000 的物理地址；(2) 单级页表共多少项、占多少页框；(3) 需几级页表、无快表访存几次；(4) 若 TLB 访问 20ns、访存 100ns、命中率 90%，求两级页表下的 EAT。</p><p><b>解析</b>① 页大小 4KB = 4096，偏移 12 位。8196 / 4096 = 2 余 4 → 页号 2、偏移 4，页框 3，物理地址 = 3×4096+4 = <b>12292</b>。<br>② 5000 / 4096 = 1 余 904 → 页框 8，物理地址 = 8×4096+904 = <b>33672</b>。<br>③ 页表项数 = 2³²/2¹² = 2²⁰ = 1M 项；页表大小 = 2²⁰×4B = 4MB，占 4MB/4KB = <b>1024 个页框</b>。<br>④ 每页可存 4096/4 = 1024 项，故需 2²⁰/2¹⁰ = 1024 个二级页表，一级页表 1024 项 = 4KB = 1 页 → <b>两级即可</b>（页号 20 位拆成 10+10）。无快表访存 <b>3 次</b>（一级页表、二级页表、数据）。<br>⑤ EAT = 0.9×(20+100) + 0.1×(20+100+100+100) = 108 + 32 = <b>140ns</b>。</p><p><b>易错点</b>页内偏移必须用“%页大小”而非低位随意截取；未命中时是 1 次 TLB + 2 次页表 + 1 次数据共 4 次访存（漏算一级页表或漏算 TLB 访问是最高频错误）；求“需几级”要比较一级页表项数与“每页可存项数”，不是简单按地址位数除以页内偏移位数。</p>
+    </div>
+    <div class="fig"><svg class="dg" viewBox="0 0 400 150" role="img" aria-label="分页地址转换与TLB命中对比"><text class="x" x="200" y="17" text-anchor="middle">逻辑地址 = 页号 + 页内偏移；页表把页号映射到页框号</text><rect class="boxa" x="18" y="38" width="92" height="30" rx="5"/><text class="w" x="64" y="58" text-anchor="middle">页号 p</text><rect class="box" x="110" y="38" width="92" height="30" rx="5"/><text class="t" x="156" y="58" text-anchor="middle">偏移 d</text><line class="lna" x1="110" y1="53" x2="238" y2="53" marker-end="url(#arwa)"/><rect class="boxw" x="246" y="38" width="80" height="30" rx="5"/><text class="t" x="286" y="58" text-anchor="middle">页表/TLB</text><line class="lna" x1="326" y1="53" x2="378" y2="53" marker-end="url(#arwa)"/><text class="x" x="200" y="91" text-anchor="middle">页框号 f + 偏移 d = 物理地址</text><text class="s" x="104" y="122" text-anchor="middle">TLB 命中：1 次访存</text><text class="s" x="296" y="122" text-anchor="middle">未命中：查页表 + 取数据，2 次访存</text></svg><div class="cap">页表只替换页号，页内偏移保持不变；TLB 是页表项缓存，未命中时不能漏算查页表的一次访存。</div></div>
+    <h3>4.4 分段与段页式</h3>
+    <ul>
+      <li><b>分段与段页式</b>：分段段长不等，地址 = 段号 + 段内偏移，查 <code>段内偏移 &lt; 段长</code>；段页式 = 段号 + 页号 + 页内偏移，三次访存。</li>
+    </ul>
+    <table>
+      <thead><tr><th>对比项</th><th>分页</th><th>分段</th></tr></thead>
+      <tbody>
+        <tr><td>划分依据</td><td>物理单位，等长</td><td>逻辑单位，不等长</td></tr>
+        <tr><td>地址空间</td><td>一维</td><td>二维</td></tr>
+        <tr><td>碎片</td><td>仅内部碎片</td><td>仅外部碎片</td></tr>
+        <tr><td>共享与保护</td><td>不便</td><td>方便</td></tr>
+        <tr><td>用户可见性</td><td>不可见</td><td>可见</td></tr>
+      </tbody>
+    </table>
+    <h3>4.5 虚拟内存与请求分页</h3>
+    <ul>
+      <li><b>虚拟内存</b>：基于局部性，只装入部分程序即可运行；特征为多次性（基础）、对换性、虚拟性（最重要目标）；容量由逻辑空间与外存决定，<em>不是两者之和</em>。</li>
+      <li><b>请求分页与缺页中断</b>：页表项增加存在位、访问位、修改位（脏位）；缺页中断属内中断中的故障，指令执行中可多次缺页，处理完<em>重新执行该指令</em>。</li>
+    </ul>
+    <h3>4.6 页面置换、抖动与热点</h3>
+    <ul>
+      <li class="hot"><b>OPT / FIFO / LRU</b>：OPT 淘汰未来最久不用的页，缺页最少但不可实现，用作评价基准；FIFO 淘汰最早进入的页，简单但可能出现 Belady 异常（页框增多而缺页反增）；LRU 淘汰最久未使用的页，接近 OPT，需栈或计数器等硬件支持。LRU、OPT 属栈式算法，满足子集性质故不会出现 Belady 异常。模拟要点：初始页框为空，故首次访问必缺页；置换次数 = 缺页次数 − 页框数。<div class="ex"><p><b>例题</b>引用串 7,0,1,2,0,3,0,4，3 个页框，FIFO 与 LRU 各缺页几次？</p><p><b>解析</b>① FIFO：7、0、1、2、3、0、4 共 7 次；② LRU：7、0、1、2、3、4 共 6 次。</p><p><b>易错点</b>LRU 命中时忘记把该页更新为「最近使用」，后续淘汰就选错。</p><p><b>拓展</b>FIFO 存在 Belady 异常，LRU 与 OPT 没有。</p></div></li>
+      <li><b>CLOCK 与改进 CLOCK</b>：访问位循环扫描，遇 0 淘汰、遇 1 置 0 后继续；改进版兼顾修改位，先淘汰 (0,0)，扫 4 轮。</li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 245" role="img" aria-label="FIFO与LRU页面置换轨迹对比">
+        <text x="6" y="32" class="s">引用串</text>
+        <rect x="64" y="16" width="36" height="24" rx="3" class="box"/><rect x="104" y="16" width="36" height="24" rx="3" class="box"/><rect x="144" y="16" width="36" height="24" rx="3" class="box"/><rect x="184" y="16" width="36" height="24" rx="3" class="box"/><rect x="224" y="16" width="36" height="24" rx="3" class="box"/><rect x="264" y="16" width="36" height="24" rx="3" class="box"/><rect x="304" y="16" width="36" height="24" rx="3" class="box"/><rect x="344" y="16" width="36" height="24" rx="3" class="box"/>
+        <text x="82" y="32" text-anchor="middle" class="t">7</text><text x="122" y="32" text-anchor="middle" class="t">0</text><text x="162" y="32" text-anchor="middle" class="t">1</text><text x="202" y="32" text-anchor="middle" class="t">2</text><text x="242" y="32" text-anchor="middle" class="t">0</text><text x="282" y="32" text-anchor="middle" class="t">3</text><text x="322" y="32" text-anchor="middle" class="t">0</text><text x="362" y="32" text-anchor="middle" class="t">4</text>
+        <text x="6" y="93" class="t">FIFO</text>
+        <rect x="64" y="48" width="36" height="24" rx="3" class="boxa"/><rect x="104" y="48" width="36" height="24" rx="3" class="boxw"/><rect x="144" y="48" width="36" height="24" rx="3" class="boxw"/><rect x="184" y="48" width="36" height="24" rx="3" class="boxa"/><rect x="224" y="48" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="48" width="36" height="24" rx="3" class="boxw"/><rect x="304" y="48" width="36" height="24" rx="3" class="boxw"/><rect x="344" y="48" width="36" height="24" rx="3" class="boxa"/>
+        <text x="82" y="64" text-anchor="middle" class="w">7</text><text x="122" y="64" text-anchor="middle" class="x">7</text><text x="162" y="64" text-anchor="middle" class="x">7</text><text x="202" y="64" text-anchor="middle" class="w">2</text><text x="242" y="64" text-anchor="middle" class="x">2</text><text x="282" y="64" text-anchor="middle" class="x">2</text><text x="322" y="64" text-anchor="middle" class="x">2</text><text x="362" y="64" text-anchor="middle" class="w">4</text>
+        <rect x="64" y="77" width="36" height="24" rx="3" class="boxw"/><rect x="104" y="77" width="36" height="24" rx="3" class="boxa"/><rect x="144" y="77" width="36" height="24" rx="3" class="boxw"/><rect x="184" y="77" width="36" height="24" rx="3" class="boxw"/><rect x="224" y="77" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="77" width="36" height="24" rx="3" class="boxa"/><rect x="304" y="77" width="36" height="24" rx="3" class="boxw"/><rect x="344" y="77" width="36" height="24" rx="3" class="boxw"/>
+        <text x="82" y="93" text-anchor="middle" class="s">-</text><text x="122" y="93" text-anchor="middle" class="w">0</text><text x="162" y="93" text-anchor="middle" class="x">0</text><text x="202" y="93" text-anchor="middle" class="x">0</text><text x="242" y="93" text-anchor="middle" class="x">0</text><text x="282" y="93" text-anchor="middle" class="w">3</text><text x="322" y="93" text-anchor="middle" class="x">3</text><text x="362" y="93" text-anchor="middle" class="x">3</text>
+        <rect x="64" y="106" width="36" height="24" rx="3" class="boxw"/><rect x="104" y="106" width="36" height="24" rx="3" class="boxw"/><rect x="144" y="106" width="36" height="24" rx="3" class="boxa"/><rect x="184" y="106" width="36" height="24" rx="3" class="boxw"/><rect x="224" y="106" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="106" width="36" height="24" rx="3" class="boxw"/><rect x="304" y="106" width="36" height="24" rx="3" class="boxa"/><rect x="344" y="106" width="36" height="24" rx="3" class="boxw"/>
+        <text x="82" y="122" text-anchor="middle" class="s">-</text><text x="122" y="122" text-anchor="middle" class="s">-</text><text x="162" y="122" text-anchor="middle" class="w">1</text><text x="202" y="122" text-anchor="middle" class="x">1</text><text x="242" y="122" text-anchor="middle" class="x">1</text><text x="282" y="122" text-anchor="middle" class="x">1</text><text x="322" y="122" text-anchor="middle" class="w">0</text><text x="362" y="122" text-anchor="middle" class="x">0</text>
+        <text x="6" y="183" class="t">LRU</text>
+        <rect x="64" y="138" width="36" height="24" rx="3" class="boxa"/><rect x="104" y="138" width="36" height="24" rx="3" class="boxw"/><rect x="144" y="138" width="36" height="24" rx="3" class="boxw"/><rect x="184" y="138" width="36" height="24" rx="3" class="boxa"/><rect x="224" y="138" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="138" width="36" height="24" rx="3" class="boxa"/><rect x="304" y="138" width="36" height="24" rx="3" class="boxw"/><rect x="344" y="138" width="36" height="24" rx="3" class="boxa"/>
+        <text x="82" y="154" text-anchor="middle" class="w">7</text><text x="122" y="154" text-anchor="middle" class="x">7</text><text x="162" y="154" text-anchor="middle" class="x">7</text><text x="202" y="154" text-anchor="middle" class="w">2</text><text x="242" y="154" text-anchor="middle" class="x">2</text><text x="282" y="154" text-anchor="middle" class="w">3</text><text x="322" y="154" text-anchor="middle" class="x">3</text><text x="362" y="154" text-anchor="middle" class="w">4</text>
+        <rect x="64" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="104" y="167" width="36" height="24" rx="3" class="boxa"/><rect x="144" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="184" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="224" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="304" y="167" width="36" height="24" rx="3" class="boxw"/><rect x="344" y="167" width="36" height="24" rx="3" class="boxw"/>
+        <text x="82" y="183" text-anchor="middle" class="s">-</text><text x="122" y="183" text-anchor="middle" class="w">0</text><text x="162" y="183" text-anchor="middle" class="x">0</text><text x="202" y="183" text-anchor="middle" class="x">0</text><text x="242" y="183" text-anchor="middle" class="x">0</text><text x="282" y="183" text-anchor="middle" class="x">0</text><text x="322" y="183" text-anchor="middle" class="x">0</text><text x="362" y="183" text-anchor="middle" class="x">0</text>
+        <rect x="64" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="104" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="144" y="196" width="36" height="24" rx="3" class="boxa"/><rect x="184" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="224" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="264" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="304" y="196" width="36" height="24" rx="3" class="boxw"/><rect x="344" y="196" width="36" height="24" rx="3" class="boxw"/>
+        <text x="82" y="212" text-anchor="middle" class="s">-</text><text x="122" y="212" text-anchor="middle" class="s">-</text><text x="162" y="212" text-anchor="middle" class="w">1</text><text x="202" y="212" text-anchor="middle" class="x">1</text><text x="242" y="212" text-anchor="middle" class="x">1</text><text x="282" y="212" text-anchor="middle" class="x">1</text><text x="322" y="212" text-anchor="middle" class="x">1</text><text x="362" y="212" text-anchor="middle" class="x">1</text>
+        <text x="64" y="236" class="x">FIFO 缺页 7 次</text>
+        <text x="232" y="236" class="x">LRU 缺页 6 次</text>
+      </svg>
+      <div class="cap">引用串 7 0 1 2 0 3 0 4、3 个页框：<b>FIFO 缺页 7 次、LRU 缺页 6 次</b>（实心格为缺页装入）；第 5、7 次访问 0 命中，FIFO 淘汰最早进入者，LRU 淘汰最久未用者</div>
+    </div>
+      
+    <div class="ex">
+      <p><b>例题</b>进程访问串 4,3,2,1,4,3,5,4,3,2,1,5，分配 3 个页框且初始为空。分别求 OPT、FIFO、LRU 的缺页次数与置换次数。</p><p><b>解析</b>① OPT：装入 4,3,2（3 次缺页）→ 访问 1 时，未来 4、3、2 分别在位置 5、6、10，淘汰最远的 2 → 得 4,3,1；4、3 命中 → 访问 5 时，未来 4→8、3→9、1→11，淘汰 1；4、3 命中 → 访问 2 时 4、3 不再出现，淘汰 4；访问 1 时 5 在位置 12，淘汰 2；末尾 5 命中。缺页 7 次，置换 7−3 = 4 次。<br>② FIFO：依次 4,3,2 缺页 → 1 换出 4 → 4 换出 3 → 3 换出 2 → 5 换出 1 → 4、3 命中 → 2 换出 4 → 1 换出 3 → 5 命中。缺页 9 次，置换 6 次。<br>③ LRU：按最近使用淘汰，序列推进为 [4]→[3,4]→[2,3,4]→换 4→[4,1,2]→换 3→[3,4,1]→换 2→[5,3,4]→[4,5,3]→[3,4,5]→换 5 得 [2,3,4]→换 4 得 [1,2,3]→换 3 得 [5,1,2]。缺页 10 次，置换 7 次。<br>答案：OPT 7/4，FIFO 9/6，LRU 10/7，OPT 最优。</p><p><b>易错点</b>本例 LRU（10 次）反而比 FIFO（9 次）差，说明 LRU 并非恒优于 FIFO，只有 OPT 一定最优；另两个高频错点：把“缺页次数”当“置换次数”（首次装填不置换），以及 FIFO 命中时不改变该页在队列中的位置（命中不刷新次序）。</p>
+    </div>
+    <ul>
+      <li class="hot"><b>抖动与工作集</b>：抖动（颠簸）是进程频繁缺页、大部分时间用于换入换出，根本原因是<em>分配给进程的页框数少于其工作集</em>；工作集是某时间间隔 Δ 内进程实际访问的页面集合，用于确定驻留集大小、预防抖动。缓解手段：采用局部置换、按工作集动态调整页框数、挂起部分进程以降低多道程度。驻留集过小则缺页频繁，过大则浪费内存、降低并发度；分配策略中可变分配局部置换折中且效果最好。<div class="ex"><p><b>例题</b>抖动（颠簸）的根本原因与解决办法是什么？</p><p><b>解析</b>① 根本原因：分配给进程的页框数少于其工作集；② 办法：增加页框、降低多道程序度、按工作集调度。</p><p><b>易错点</b>把抖动归因于「页面太大」或「缺页率高」这类表面现象。</p><p><b>拓展</b>工作集窗口 Δ 太小反映不出局部性，太大则失去意义。</p></div></li>
+      <li><b>写时复制与内存映射文件</b>：fork 后父子共享只读物理页，写入时才复制该页，省去复制开销；内存映射文件映射进虚拟地址空间，按缺页调入。</li>
+    </ul>
+    <div class="warn"><b>易错</b>：虚拟内存容量由逻辑地址空间与外存容量决定，<em>不是内存与外存容量之和</em>；Belady 异常只出现在 FIFO 等非栈式算法，LRU、OPT 不会；分页只有内部碎片，分段只有外部碎片。</div>
+    <div class="warn"><b>易错</b>：TLB 命中率题中，命中与未命中都要计入 TLB 访问时间；多级页表 n 级无快表访存 n+1 次（含取数据），别漏算页表级数。</div>
+    <div class="key"><b>重点</b>：分页地址变换三步走——先按页大小拆地址（除、取余），再查页表取页框号，最后“页框号×页大小+偏移”，所有地址类计算都套此模板。</div>
+    <div class="key"><b>重点</b>：置换算法一律列表模拟，行写访问串、列写页框内容并标出是否缺页，缺页次数与置换次数分别统计，避免口算出错。</div>
+    <div class="tip"><b>记忆</b>：多次性是基础、虚拟性是最重要目标；改进 CLOCK 优先淘汰“未访问且未修改”页；FF 看地址、BF 看容量、WF 反着看。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">5</span>文件管理<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>5.1 文件与逻辑结构</h3>
+    <ul>
+      <li><b>文件</b>：以磁盘等外存为载体、有名字的信息集合，是 OS 管理外存的基本单位；属性含名称、标识符、类型、位置、大小与保护信息。</li>
+      <li><b>逻辑结构</b>：无结构文件以字节为单位；顺序文件按记录排列、顺序存取快，定长记录可直接定位；索引文件建索引表可随机访问；索引顺序文件按组设索引项。</li>
+    </ul>
+    <h3>5.2 目录、FCB 与 inode</h3>
+    <ul>
+      <li class="hot"><b>FCB 与索引结点 inode</b>：FCB 是文件控制块，含文件名、物理位置、逻辑/物理结构、存取控制与使用信息，<em>目录项就是 FCB</em>，FCB 太大导致一个盘块放不下几个目录项、检索要多次 I/O。inode 的做法是把<em>除文件名外的全部信息移入索引结点</em>，目录项只留「文件名 + inode 号」，一个盘块可容纳更多目录项，查找路径时磁盘 I/O 次数大幅减少。因此 <b>inode 中不含文件名</b>，目录只是"名字 → inode 号"的映射；文件的物理信息与链接计数 count 都在 inode 中。打开文件时 inode 被调入内存，之后按 fd 直接访问 inode，不再重复解析路径。<div class="ex"><p><b>例题</b>现代文件系统的目录项里放什么？为什么这样设计？</p><p><b>解析</b>① 目录项只放「文件名 + inode 号」；② inode 集中存放，目录项变小，检索更快。</p><p><b>易错点</b>以为 inode 里保存文件名——inode 不含文件名。</p><p><b>拓展</b>inode 含属主、权限、大小、时间戳与数据块指针。</p></div></li>
+      <li><b>目录结构</b>：单级目录不许重名；两级目录解决重名；树形目录层次清晰、支持重名与分类保护，用绝对/相对路径定位；无环图目录靠共享计数器删除正确。</li>
+    </ul>
+    <div class="tip"><b>记忆</b>：UNIX 目录项 = 文件名 + inode 号，inode 里没有文件名；索引结点让目录变"瘦"，减少 I/O。</div>
+    <div class="fig"><svg class="dg" viewBox="0 0 400 132" role="img" aria-label="目录项与inode映射"><text class="x" x="200" y="17" text-anchor="middle">目录项只保存名字到 inode 号的映射，文件属性集中在 inode</text><rect class="box" x="22" y="36" width="120" height="38" rx="5"/><text class="t" x="82" y="52" text-anchor="middle">目录项</text><text class="s" x="82" y="66" text-anchor="middle">report.txt → 42</text><line class="lna" x1="142" y1="55" x2="250" y2="55" marker-end="url(#arwa)"/><rect class="boxa" x="254" y="30" width="122" height="50" rx="5"/><text class="w" x="315" y="48" text-anchor="middle">inode 42</text><text class="s" x="315" y="63" text-anchor="middle">权限·大小·时间·块指针</text><text class="s" x="200" y="108" text-anchor="middle">硬链接：多个目录项 → 同一 inode；链接计数为 0 才回收数据</text></svg><div class="cap">inode 不保存文件名；目录变“瘦”后，同一盘块能放更多目录项，路径检索所需 I/O 减少。</div></div>
+    <h3>5.3 共享与保护</h3>
+    <ul>
+      <li class="hot"><b>硬链接与软链接</b>：硬链接让多个目录项指向同一 inode，inode 中的 count 记录链接数，删除只使 count 减 1、为 0 才回收数据，<em>不能跨文件系统、一般不链接目录</em>。软链接（符号链接）新建一个存放路径名的 LINK 型文件，访问时按路径逐级查找，<em>可跨文件系统</em>，但原文件删除后成为悬空链接、多一次路径解析开销。判分点：删除原文件后硬链接仍可正常访问，软链接失效；链接计数在 inode 而非目录项中。<div class="ex"><p><b>例题</b>删除原文件后，硬链接与软链接分别会怎样？</p><p><b>解析</b>① 硬链接仍可访问（链接计数减 1，为 0 才真正释放数据）；② 软链接变成悬空链接。</p><p><b>易错点</b>说硬链接是「复制了一份文件」；它只是多了一个指向同一 inode 的目录项。</p><p><b>拓展</b>硬链接不能跨文件系统、通常不能指向目录。</p></div></li>
+      <li><b>写时复制与内存映射文件</b>：mmap 把文件映射到进程地址空间，读写内存即读写文件；COW 让进程先共享只读页，写时才复制该页，省内存又高效。</li>
+      <li><b>文件保护</b>：访问控制列表 ACL 精细但开销大，另有口令与加密；UNIX 用属主/同组/其他三类用户 × rwx 权限位实现。</li>
+    </ul>
+    <h3>5.4 文件系统实现</h3>
+    <ul>
+      <li><b>磁盘布局与超级块</b>：引导块、超级块、inode 区、数据区；<em>超级块记录类型、大小、空闲块/inode 数</em>；崩溃靠 fsck/日志文件系统修复。</li>
+      <li><b>打开文件表</b>：系统级表全局唯一，含打开计数与 inode 指针；进程级表由 fd 索引记偏移。open：查目录→验权限→建表项→返回 fd。</li>
+      <li><b>层次结构与挂载</b>：用户接口→目录系统→存取控制→逻辑文件系统→物理文件系统→设备管理；挂载接入挂载点，<em>同一文件系统不可重复挂载到多个挂载点</em>。</li>
+    </ul>
+    <h3>5.5 文件分配方式</h3>
+    <table>
+      <thead><tr><th>方式</th><th>做法</th><th>优点</th><th>缺点</th><th>访问方式</th></tr></thead>
+      <tbody>
+        <tr><td>连续分配</td><td>目录项记起始块与长度</td><td>速度快、支持随机</td><td>外部碎片、难增长</td><td>顺序＋随机</td></tr>
+        <tr><td>隐式链接</td><td>每块存下一块指针</td><td>无外部碎片、易增长</td><td>只能顺序、指针占空间</td><td>仅顺序</td></tr>
+        <tr><td>显式链接 FAT</td><td>指针集中成文件分配表</td><td>支持随机、表可缓存</td><td>FAT 常驻内存占空间</td><td>顺序＋随机</td></tr>
+        <tr><td>索引分配</td><td>每文件一个索引块存块号</td><td>支持随机、无外部碎片</td><td>索引块占空间</td><td>顺序＋随机</td></tr>
+        <tr><td>混合索引</td><td>直接＋多级间接地址项</td><td>小文件快、大文件可扩</td><td>计算复杂</td><td>顺序＋随机</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li class="hot"><b>FAT 与链接方式辨析</b>：FAT 属显式链接，表项数等于磁盘块数、内容为下一块号，<em>FAT 常驻内存</em>，查链在内存完成，所以支持随机访问；隐式链接的指针散在数据块里，必须逐块读盘，只能顺序访问。连续分配随机访问最快但产生外部碎片、文件难以增长；索引分配用索引块消除外部碎片并支持随机，代价是索引块占空间，文件很小时索引块开销相对过大。结论：小文件多→连续/混合索引，大文件随机访问→索引/FAT，只追加写→链接。<div class="ex"><p><b>例题</b>FAT 的表项数由什么决定？查块时是否访存？</p><p><b>解析</b>① 表项数 = 磁盘块数，每项存下一块块号；② FAT 常驻内存，查表不访存，只有取数据访存 1 次。</p><p><b>易错点</b>把 FAT 当成索引结点；FAT 属于显式链接分配。</p><p><b>拓展</b>磁盘很大时 FAT 占内存过多，于是改用索引分配（inode）。</p></div></li>
+    </ul>
+    <div class="warn"><b>易错</b>：隐式链接只能顺序访问；FAT 是显式链接、可随机访问；连续分配支持随机但有外部碎片。三者常被张冠李戴。</div>
+    <ul>
+      <li class="hot"><b>混合索引最大文件长度与访问次数</b>：inode 设 10 个直接地址项 + 1 个一级 + 1 个二级 + 1 个三级间接地址项；设块大小 B、地址项长 a，则每索引块可存 <code>B/a</code> 个地址。最大文件 = <code>(10 + B/a + (B/a)² + (B/a)³) × B</code>。访问某块所需读盘次数 = 间接级数 + 1（数据块），前提是 inode 已在内存；inode 不在内存再 +1。<div class="ex"><p><b>例题</b>inode 有 10 个直接项 + 1 个一级 + 1 个二级间接，块 4 KB、块号 4 B，最大文件多大？</p><p><b>解析</b>① 直接 10×4 KB = 40 KB；② 一级 1024×4 KB = 4 MB；③ 二级 1024²×4 KB = 4 GB；合计约 4 GB。</p><p><b>易错点</b>把块号 4 B 当成块大小；每块项数 = 4 KB/4 B = 1024。</p><p><b>拓展</b>再加一个三级间接可达 4 TB；访问二级间接中的块需 4 次访存。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>某文件系统 inode 有 10 个直接地址项、1 个一级间接、1 个二级间接、1 个三级间接地址项；盘块 4KB，地址项占 4B。（1）求单个文件最大长度；（2）inode 已在内存，读文件内偏移 5MB 处的一个盘块需读几次磁盘？</p><p><b>解析</b>① 每索引块可存地址项 = 4KB ÷ 4B = 1024 个。② 直接区 10×4KB = 40KB；一级区 1024×4KB = 4MB；二级区 1024²×4KB = 4GB；三级区 1024³×4KB = 4TB。③ 最大长度 = 4TB + 4GB + 4MB + 40KB ≈ 4.004TB（按 1TB = 2^40 B 计）。④ 定位 5MB：直接区＋一级区共 40KB + 4MB = 4136KB &lt; 5120KB，故落在<em>二级间接</em>区。⑤ 二级间接要先读二级索引块、再读一级索引块，最后读数据块 = 2 + 1 = <b>3 次</b>（inode 已在内存，不另计）。</p><p><b>易错点</b>漏算 10 个直接项只写 4TB；判定 5MB 时忘了先把 40KB 直接区加上（4MB 与 5MB 太接近，极易误判为一级间接而答 2 次）；inode 不在内存时答案应为 4 次。</p>
+    </div>
+    <div class="key"><b>重点</b>：混合索引题一律先算 B/a，再按"直接→一级→二级→三级"逐区减去覆盖范围定位；读盘次数只由间接级数决定，与块号大小无关。</div>
+    <h3>5.6 空闲空间管理</h3>
+    <ul>
+      <li class="hot"><b>成组链接法</b>：简单办法有空闲表（记各空闲区起始块号与块数，适合连续分配）与空闲链表（分配回收简单但逐个查找慢）。成组链接把空闲块分组，每组第一块（组首块）存放下一组各空闲块号与组数，<em>当前组的块号表与数量存在超级块（栈顶）中</em>。分配时从栈顶取块；若取到的正是组首块，则先把该块内保存的下一组块号表读入栈顶，再把该块分配出去。它既不像空闲表那样占大量内存，又比空闲链表快，是 UNIX 采用的方案。<div class="ex"><p><b>例题</b>成组链接法的超级块中存放什么？</p><p><b>解析</b>① 当前一组空闲块的块号与块数（最多 100 个）；② 最后一项指向下一组空闲块所在的盘块。</p><p><b>易错点</b>把它与空闲链表混为一谈；成组链接的目的是减少访存次数。</p><p><b>拓展</b>当前组分配空后，把指向的那一块内容读入超级块继续分配。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>采用成组链接法，每块最多存放 100 个空闲块号。当前超级块（栈顶）中记录 3 个空闲块号 201、202、203，其中 201 是组首块，块内存有下一组的 100 个空闲块号。现连续分配 4 个空闲块，写出过程及额外读盘次数。</p><p><b>解析</b>① 分配 203 → 栈顶剩 {201, 202}，不需额外 I/O。② 分配 202 → 栈顶剩 {201}。③ 栈顶只剩 201，而 201 是组首块：先读出 201 中保存的下一组 100 个块号装入栈顶（<b>额外读盘 1 次</b>），栈顶变为 100 项，再分配 201 → 栈顶剩 99 项。④ 再从栈顶取一块分配 → 剩 98 项。结论：4 次分配共额外读盘 <b>1 次</b>，栈顶始终保存"下一组的块号表"。</p><p><b>易错点</b>误以为组首块要保留不能分配（它本身也是空闲块）；换组时忘记"先读入栈顶、再分配该块"的顺序；把栈顶记录的内容说成"本组块号"而非"下一组块号表"。</p>
+    </div>
+    <ul>
+      <li class="hot"><b>位示图法</b>：每位对应一个盘块，0 空闲、1 占用，图小可常驻内存，便于找出连续空闲块。设字长 n、盘块号 b 从 0 开始：<code>字号 = b / n，位号 = b % n</code>；反推 <code>b = 字号 × n + 位号</code>。位示图本身也占盘块，大小为 盘块数 ÷ 8 字节。<div class="ex"><p><b>例题</b>字长 32 位、盘块 4096 个，位示图占多少字节？块号 100 在第几字第几位？</p><p><b>解析</b>① 4096/8 = 512 B；② 100/32 = 3 余 4 → 第 3 字第 4 位（从 0 起）。</p><p><b>易错点</b>字号位号从 0 还是从 1 起算没看清题干约定，差一位。</p><p><b>拓展</b>位示图小、可常驻内存，便于快速找出连续空闲块。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>盘块 1KB，磁盘容量 512MB，字长 32 位，位示图的字号、位号均从 0 开始。（1）位示图占多少盘块？（2）盘块号 100 对应的字号与位号？（3）若字号、位号改为从 1 开始，盘块号 100 又对应哪里？</p><p><b>解析</b>① 盘块数 = 512MB ÷ 1KB = 524288 块。② 位示图位数 = 524288 位 → 字数 = 524288 ÷ 32 = 16384 字 → 字节数 = 16384 × 4B = 64KB → 占 64 个盘块。③ 字号 = 100 ÷ 32 = 3，位号 = 100 % 32 = 4，即第 3 字第 4 位（0 起）。④ 若从 1 开始编号：字号 = 3 + 1 = 4，位号 = 4 + 1 = 5；反推式变为 b = (字号 − 1) × 32 + (位号 − 1)。</p><p><b>易错点</b>编号起点搞混（0 起与 1 起答案差 1）；把 64KB 直接当位数或忘记 ÷ 8 得字节；位示图占块数应向上取整（本题恰好整除）。</p>
+    </div>
+    <div class="warn"><b>易错</b>：位示图公式随"编号从 0 还是 1 开始"变化，题面未说明按 0 起算；成组链接的额外 I/O 只发生在取到组首块的那一次。</div>
+    <div class="key"><b>重点</b>：空闲空间四种方法——空闲表（连续分配）、空闲链表（简单慢）、位示图（找连续块、可内存驻留）、成组链接（UNIX，省空间又快），按"是否适合连续分配/是否常驻内存"区分。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">6</span>I/O 管理<span class="lv">★★</span><span class="cnt">13 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>6.1 设备分类与 I/O 控制方式</h3>
+    <ul>
+      <li><b>设备分类</b>：按信息交换单位分块设备（可寻址、成块、多用 DMA）与字符设备（不可寻址、字符流、多用中断）；按共享属性分独占、共享、虚拟设备。</li>
+      <li class="hot"><b>I/O 控制方式</b>：按 程序查询 → 中断驱动 → DMA → 通道 演进，CPU 干预越来越少、并行度越来越高。程序查询由 CPU 反复读状态寄存器，CPU 与 I/O 完全串行；中断驱动每传一个字（字节）中断一次，数据须经 CPU 寄存器中转，二者可并行但中断频繁；DMA 以数据块为单位，块首块尾各中断一次，数据在设备与内存间直传，传送期间 CPU 与 DMA 用周期挪用交替占用内存总线；通道执行通道程序，一次控制一组数据块，CPU 只做启动与善后。考法：给传送总量问中断次数与 CPU 干预次数、比较各方式并行程度。结论：CPU 干预频率由高到低为 查询 &gt; 中断 &gt; DMA &gt; 通道。<div class="ex"><p><b>例题</b>DMA 方式与中断驱动方式的区别是什么？</p><p><b>解析</b>① 中断驱动：每传一个字节就中断一次；② DMA：整块数据传完才中断一次，CPU 干预更少。</p><p><b>易错点</b>说 DMA 完全不需要 CPU——初始化与结束处理仍需 CPU。</p><p><b>拓展</b>通道方式更进一步，CPU 只需发一条 I/O 指令。</p></div></li>
+      <li><b>通道与端口编址</b>：通道分字节多路、数组选择（独占）、数组多路（折中）；统一编址共用内存地址空间，独立编址用 I/O 指令且属特权指令。</li>
+    </ul>
+    <table>
+      <thead><tr><th>方式</th><th>CPU 干预</th><th>数据单位</th><th>数据通路</th></tr></thead>
+      <tbody>
+        <tr><td>程序查询</td><td>全程轮询</td><td>字</td><td>设备→CPU→内存</td></tr>
+        <tr><td>中断驱动</td><td>每字一次</td><td>字</td><td>设备→CPU→内存</td></tr>
+        <tr><td>DMA</td><td>块首块尾各一次</td><td>数据块</td><td>设备↔内存（周期挪用）</td></tr>
+        <tr><td>通道</td><td>一组数据块一次</td><td>一组数据块</td><td>设备↔内存（通道程序）</td></tr>
+      </tbody>
+    </table>
+    <h3>6.2 I/O 软件层次</h3>
+    <ul>
+      <li><b>四层次</b>（自顶向下）：用户层 I/O 软件（库函数、SPOOLing）→ 设备独立性软件 → 设备驱动程序 → 中断处理程序 → 硬件。</li>
+      <li><b>设备独立性软件</b>：负责统一接口、缓冲管理、设备分配、差错处理、逻辑设备名到物理设备名的映射（LUT），故设备可更换、可共享、可重定向。</li>
+      <li><b>设备驱动程序</b>：与硬件直接相关，把抽象命令翻译成设备能识别的具体操作，一般由设备厂商提供，是唯一直接与设备硬件打交道的软件层。</li>
+    </ul>
+    <h3>6.3 缓冲区管理</h3>
+    <ul>
+      <li class="hot"><b>单缓冲与双缓冲</b>：设 T 为设备把一块数据输入缓冲区的时间、M 为缓冲区数据送到用户区的时间、C 为 CPU 处理该块的时间。单缓冲区每块平均时间 = <code>max(C, T) + M</code>；双缓冲区每块平均时间 = <code>max(C + M, T)</code>。判据：T &gt; C + M 时双缓冲的设备可连续输入、效率最高；T ≤ C + M 时双缓冲的每块时间等于单缓冲的 C + M，效率相同。考法：给 T、M、C 求处理 n 块的总时间及两者效率比。结论：双缓冲把 C 与 M 也并行起来，每块时间恒不超过单缓冲。<div class="ex"><p><b>例题</b>T=100、M=50、C=20（单位 μs），处理 1 块数据单缓冲与双缓冲各需多久？</p><p><b>解析</b>① 单缓冲每块 max(C,T)+M = 100+50 = 150 μs；② 双缓冲每块 max(T, M+C) = 100 μs。</p><p><b>易错点</b>把单缓冲公式写成 max(T,M)+C，顺序记错。</p><p><b>拓展</b>缓冲区越多越接近 max(T,C)，但受成本限制。</p></div></li>
+      <li><b>缓冲池</b>：系统公用缓冲区，按空缓冲、输入、输出队列组织，有收容输入、提取输入、收容输出、提取输出四种工作方式；队列操作互斥、个数用同步信号量。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>某文件占 10 个磁盘块，磁盘块与缓冲区等大。设备把一块数据读入缓冲区需 T = 100μs，缓冲区数据送到用户区需 M = 50μs，CPU 处理一块需 C = 50μs。求单缓冲、双缓冲下处理 10 块的平均总时间（稳态，按每块平均时间累加）。</p><p><b>解析</b>① 单缓冲：每块 = max(C, T) + M = max(50, 100) + 50 = 100 + 50 = 150μs，10 块 ≈ 10 × 150 = 1500μs。② 双缓冲：每块 = max(C + M, T) = max(50 + 50, 100) = 100μs，10 块 ≈ 10 × 100 = 1000μs。③ 本题 T = 100 = C + M，设备刚好不空转，双缓冲与 CPU 完全重叠，效率比 1500 : 1000 = 3 : 2。</p><p><b>易错点</b>单缓冲的 M 不在 max 之内（缓冲区数据未被取走时设备无法再写入，故 M 只能串行），勿写成 max(C, T + M)；双缓冲是 C 与 M 先并行再与 T 取 max，勿写成 max(C, T) + M。</p>
+    </div>
+    <h3>6.4 设备分配与 SPOOLing</h3>
+    <ul>
+      <li><b>分配数据结构</b>：SDT → DCT → COCT → CHCT；分配按设备→控制器→通道顺序检查，全空闲才分配，<em>按序申请、释放避免死锁</em>。</li>
+      <li class="hot"><b>SPOOLing（假脱机）</b>：用磁盘上的输入井、输出井模拟脱机 I/O，由输入进程、输出进程与井管理程序配合，把独占设备改造为共享设备。以共享打印机为例：进程申请打印时只把数据送入输出井、登记一张打印请求表，真正驱动打印机的是输出进程，进程既不等待也不独占设备。考法：判断 SPOOLing 是虚拟设备技术还是脱机技术（二者皆是）、是否必须用外围机（不必，用磁盘加进程模拟）、能否提高利用率（能，以空间换设备）。结论：SPOOLing 把独占设备虚拟为共享设备，输入井输出井本身是共享存储区，故可被多进程同时"使用"。<div class="ex"><p><b>例题</b>SPOOLing 由哪几部分组成？它解决什么问题？</p><p><b>解析</b>① 输入井、输出井 + 输入进程、输出进程 + 井管理程序；② 把独占设备虚拟成共享设备。</p><p><b>易错点</b>以为 SPOOLing 需要专用硬件，其实只用磁盘与内存。</p><p><b>拓展</b>提高设备利用率，但不提高 I/O 本身的速度。</p></div></li>
+    </ul>
+    <h3>6.5 磁盘调度与访问时间</h3>
+    <ul>
+      <li class="hot"><b>磁盘调度算法</b>：FCFS 按到达顺序服务，公平无饥饿但寻道长；SSTF 每次选离当前磁头最近的请求，平均寻道最短但远端请求可能饥饿；SCAN（电梯）沿一个方向服务到磁盘端点才折返，兼顾效率与公平；C-SCAN 单向服务、到端点后直接回到起点再单向扫描，各磁道等待更均匀；LOOK / C-LOOK 改为到最远请求处即折返，省去空走。考法：给当前磁道号、请求序列与初始方向，排序并累加相邻磁道号差的绝对值。结论：SSTF 不一定全局最优（题目要求比总距离时须逐题算），SCAN 与 LOOK 的差别仅在"到端点"还是"到最远请求"。<div class="ex"><p><b>例题</b>磁头在 53，请求 98,183,37,122,14,124,65,67，SSTF 的服务顺序与总移动距离？</p><p><b>解析</b>① 53→65(12)→67(2)→37(30)→14(23)→98(84)→122(24)→124(2)→183(59)；② 合计 236 个磁道。</p><p><b>易错点</b>把 SSTF 当成「总距离最短」——它是贪心，不一定全局最优。</p><p><b>拓展</b>SSTF 可能饥饿；SCAN 无饥饿但边缘磁道等待久，C-SCAN 更均匀。</p></div></li>
+      <li><b>磁盘访问时间</b>：<code>访问时间 = 寻道时间 + 旋转延迟 + 传输时间</code>；平均旋转延迟取半圈，传输时间 = 一圈时间 × 读写扇区数/每道扇区数。</li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 280" role="img" aria-label="FCFS与SCAN磁盘调度轨迹">
+        <text x="30" y="26" class="t">FCFS 移臂 640 磁道</text>
+        <path d="M 123.2 44 L 202.4 53 L 351.9 62 L 95.1 71 L 244.6 80 L 54.6 89 L 248.1 98 L 144.3 107 L 147.8 116" class="ln" marker-end="url(#arw)"/>
+        <circle cx="123.2" cy="44" r="2.5" class="dot"/>
+        <text x="123.2" y="40" text-anchor="middle" class="s">53</text>
+        <line x1="30" y1="128" x2="380" y2="128" class="ln"/>
+        <line x1="30" y1="128" x2="30" y2="133" class="ln"/><line x1="118" y1="128" x2="118" y2="133" class="ln"/><line x1="206" y1="128" x2="206" y2="133" class="ln"/><line x1="294" y1="128" x2="294" y2="133" class="ln"/><line x1="380" y1="128" x2="380" y2="133" class="ln"/>
+        <text x="30" y="146" text-anchor="middle" class="s">0</text><text x="118" y="146" text-anchor="middle" class="s">50</text><text x="206" y="146" text-anchor="middle" class="s">100</text><text x="294" y="146" text-anchor="middle" class="s">150</text><text x="380" y="146" text-anchor="middle" class="s">199</text>
+        <text x="30" y="168" class="t">SCAN 移臂 299 磁道</text>
+        <text x="196" y="168" class="s">先右至 183 再左返</text>
+        <path d="M 123.2 180 L 144.3 189 L 147.8 198 L 202.4 207 L 244.6 216 L 248.1 225 L 351.9 234 L 95.1 243 L 54.6 252" class="lna" marker-end="url(#arwa)"/>
+        <circle cx="123.2" cy="180" r="2.5" class="dot"/>
+        <text x="123.2" y="176" text-anchor="middle" class="s">53</text>
+        <line x1="30" y1="264" x2="380" y2="264" class="ln"/>
+        <line x1="30" y1="264" x2="30" y2="269" class="ln"/><line x1="118" y1="264" x2="118" y2="269" class="ln"/><line x1="206" y1="264" x2="206" y2="269" class="ln"/><line x1="294" y1="264" x2="294" y2="269" class="ln"/><line x1="380" y1="264" x2="380" y2="269" class="ln"/>
+        <text x="30" y="277" text-anchor="middle" class="s">0</text><text x="118" y="277" text-anchor="middle" class="s">50</text><text x="206" y="277" text-anchor="middle" class="s">100</text><text x="294" y="277" text-anchor="middle" class="s">150</text><text x="380" y="277" text-anchor="middle" class="s">199</text>
+      </svg>
+      <div class="cap">起点 53，请求 98 183 37 122 14 124 65 67：FCFS 按到达顺序来回跑，共 640 磁道；SCAN 先向大号扫到最远请求 183 再折返，只需 299 磁道——<b>纵轴向下是访问顺序，折线左右折返即方向</b></div>
+    </div>
+      
+    <div class="ex">
+      <p><b>例题</b>磁盘共 200 个磁道（0~199），磁头当前在 100 号磁道，请求序列为 55、58、39、18、90、160、150、38、184，磁头向磁道号增大方向移动。求 FCFS、SSTF、SCAN、C-SCAN 的总移动距离。</p><p><b>解析</b>① FCFS 顺序 100→55→58→39→18→90→160→150→38→184：45+3+19+21+72+70+10+112+146 = <b>498</b>。② SSTF：100→90→58→55→39→38→18→150→160→184：10+32+3+16+1+20+132+10+24 = <b>248</b>。③ SCAN 先向大走到端点 199 再折返：100→150→160→184→199→90→58→55→39→38→18，50+10+24+15+109+32+3+16+1+20 = <b>280</b>。④ C-SCAN 向大到 199 后不计返回、从 0 重新向大：50+10+24+15 = 99，(199→0 不计) 0→18→38→39→55→58→90 = 18+20+1+16+3+32 = 90，合计 <b>189</b>。（若为 LOOK 则 250，C-LOOK 则 156。）</p><p><b>易错点</b>SCAN 必须走到端点 199（多出 184→199→90 的 109），LOOK 只到最远请求 184，两者差 30；C-SCAN 的返回段不计入寻道距离，但必须从 0 重新排；SSTF 虽最短却会让 184 号请求久等。</p>
+    </div>
+    <div class="ex">
+      <p><b>例题</b>某磁盘转速 6000 r/min，每道 100 个扇区，每扇区 1KB，平均寻道时间 6ms。求平均旋转延迟、读一个扇区的时间、连续读完一个磁道的时间。</p><p><b>解析</b>① 6000 r/min = 100 r/s，转一圈 = 1/100 s = 10ms。② 平均旋转延迟 = 半圈 = 10/2 = 5ms。③ 传一个扇区 = 10ms / 100 = 0.1ms，故读一个扇区 ≈ 6 + 5 + 0.1 = 11.1ms。④ 整道 100 个扇区 = 6 + 5 + 100 × 0.1 = 21ms。</p><p><b>易错点</b>平均旋转延迟取半圈 5ms，不是一圈 10ms；整道读取时旋转延迟只算一次，不能按每扇区 5ms 累加，否则得 511ms。</p>
+    </div>
+    <h3>6.6 磁盘管理与提高 I/O 速度</h3>
+    <ul>
+      <li><b>磁盘管理与提速</b>：低级格式化划分扇区并写校验信息、逻辑格式化建立文件系统，坏块用备用扇区重映射；提速靠磁盘缓存、交替编号与错位命名、RAID。</li>
+    </ul>
+    <div class="warn"><b>易错</b>：CPU 干预频率由高到低是 程序查询、中断、DMA、通道；中断以字为单位，DMA 与通道以数据块为单位；DMA 传送时数据不经 CPU 寄存器，但仍需 CPU 在块首块尾干预。</div>
+    <div class="warn"><b>易错</b>：SCAN 走到端点、LOOK 到最远请求；SSTF 平均寻道最短但可能饥饿；调度算法只缩短寻道时间，不能改善旋转延迟与传输时间。</div>
+    <div class="key"><b>重点</b>：缓冲公式 <code>max(C,T)+M</code> 与 <code>max(C+M,T)</code> 必须会算并能判据 T 与 C+M 的大小；磁盘调度四算法要能排序并算总移动距离，注意初始方向。</div>
+    <div class="tip"><b>记忆</b>：控制方式"查询—中断—DMA—通道，干预递减、单位由字到组"；SPOOLing 用磁盘井模拟脱机 I/O，把独占设备虚拟成共享设备。</div>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
