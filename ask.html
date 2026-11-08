@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>考法速查</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="ask">
+  <div class="subhead"><h2>考法速查</h2><span class="score">考点怎么考</span><span class="meta" data-all="4 条">4 条</span></div>
+<details class="chap" open>
+  <summary><span class="num">1</span>数据结构<span class="lv">★★★</span><span class="cnt">16 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>复杂度与线性表</h3>
+    <ul>
+      <li><b>时间复杂度分析</b>〔选择〕：常问题干「下列程序段的时间复杂度是」，给一段 <code>while</code>／<code>for</code> 嵌套代码（如 <code>i=1; while(i&lt;=n) i=i*2;</code> 或双重循环内层上界随外层变化）；落点：数最内层语句执行次数，得到关于 <code>n</code> 的函数后取最高阶项、去系数；坑：把 <code>i=i*2</code> 误算成 <code>O(n)</code>（应为 <code>O(log₂n)</code>），以及内层上界为 <code>i</code> 时误算成 <code>O(n²)</code>（应为 <code>O(n²)</code> 但系数为 <code>1/2</code>，仍是 <code>O(n²)</code>，不要写 <code>n(n-1)/2</code> 当阶）。</li>
+      <li><b>顺序表与链表的选择</b>〔选择+大题〕：常问「在长度为 <code>n</code> 的顺序表中插入一个元素平均移动多少个元素」「删除一个元素平均移动多少个元素」「顺序表和链表各适合什么场景」；落点：插入平均移动 <code>n/2</code>、删除平均移动 <code>(n-1)/2</code>，插入位置有 <code>n+1</code> 个、删除位置有 <code>n</code> 个；坑：把插入的分母写成 <code>n</code>，或忽略"平均"与"最坏"（最坏均为 <code>n</code>）的区别。</li>
+      <li><b>循环队列</b>〔选择〕：常问「队头指针 <code>front</code>、队尾指针 <code>rear</code>、数组容量为 <code>m</code>，当前元素个数是多少」「判空与判满条件」；落点：元素个数 <code>(rear-front+m)%m</code>，为区分空满牺牲一个单元时队满 <code>(rear+1)%m==front</code>；坑：容量 <code>m</code> 与实际可存 <code>m-1</code> 个元素差一个单元，或把队尾指针指向队尾元素还是其后一位置搞混。</li>
+      <li><b>栈的应用</b>〔选择+大题〕：常问「给定入栈序列，判断哪个出栈序列合法」「中缀表达式转后缀表达式」「用栈求后缀表达式的值」；落点：合法出栈序列共 <code>Catalan(n)=C(2n,n)/(n+1)</code> 种，转后缀按运算符优先级与括号出栈，求值时遇运算符弹出两个操作数（先弹出的是右操作数）；坑：转后缀时同级运算符要先弹出栈内同级（左结合），以及减/除的操作数顺序颠倒。</li>
+    </ul>
+    <h3>树与二叉树</h3>
+    <ul>
+      <li><b>二叉树结点计数</b>〔选择〕：常问「某二叉树有 <code>n</code> 个度为 2 的结点，则叶子结点数是多少」「一棵完全二叉树有 <code>1000</code> 个结点，求叶子结点数」「高度是多少」；落点：<code>n0=n2+1</code>、完全二叉树叶子数 <code>⌈n/2⌉</code>（<code>n</code> 为偶数时 <code>n/2</code>）、高度 <code>⌊log₂n⌋+1</code>、顺序存储编号 <code>i</code> 的孩子为 <code>2i</code> 与 <code>2i+1</code>、双亲为 <code>⌊i/2⌋</code>；坑：把"度为 2"当成"度为 1"，或忘记 <code>n=n0+n1+n2</code> 与 <code>n0=n2+1</code> 联立时还需 <code>n1</code> 的奇偶约束。</li>
+      <li><b>遍历序列还原</b>〔选择+大题〕：常问「已知先序序列和中序序列，求后序序列」「已知中序和后序，求先序」「能否唯一确定一棵二叉树」；落点：先序（后序）定根、中序定左右子树，递归划分；坑：只有先序+后序不能唯一确定（无法区分单孩子的左右），必须含中序；层序+中序也可唯一确定。</li>
+      <li><b>线索二叉树</b>〔选择〕：常问「<code>n</code> 个结点的二叉树中有多少条线索」「某结点的前驱／后继是谁」「中序线索树中如何找后继」；落点：<code>n</code> 个结点共 <code>2n</code> 个指针域，空指针域 <code>n+1</code> 个即线索条数；中序后继：有右孩子则右子树最左下结点，否则沿 <code>rtag=1</code> 的右指针走；坑：先序线索树找前驱、后序线索树找后继仍需借助双亲，不能直接由线索得到。</li>
+      <li><b>哈夫曼树与编码</b>〔选择+大题〕：常问「求哈夫曼树的带权路径长度 WPL」「某字符的编码长度」「平均码长」「哈夫曼树是否唯一」；落点：<code>WPL=Σ wᵢlᵢ</code>，且 <code>WPL</code> 等于所有非叶（合并产生）结点权值之和，<code>n</code> 个叶子共 <code>2n-1</code> 个结点、无度为 1 的结点；坑：哈夫曼树形态不唯一但 <code>WPL</code> 唯一，编码前缀性必须验证，<code>n</code> 个叶子的哈夫曼树高度最多 <code>n-1</code>。</li>
+    </ul>
+    <h3>图</h3>
+    <ul>
+      <li><b>图的基本性质</b>〔选择〕：常问「<code>n</code> 个顶点的无向完全图有多少条边」「有向完全图有多少条弧」「所有顶点度数之和与边数的关系」「至少多少个顶点才能保证连通」；落点：无向完全图 <code>n(n-1)/2</code>、有向完全图 <code>n(n-1)</code>、<code>ΣTD=2E</code>、<code>ΣID=ΣOD=E</code>、保证连通至少 <code>C(n-1,2)+1</code> 条边；坑：把"边数"与"度数和"混淆，或忘记无向图 <code>ΣTD=2E</code> 中每条边贡献 2 度。</li>
+      <li><b>最小生成树</b>〔选择+大题〕：常问「用 Prim／Kruskal 求最小生成树，写出依次选中的边」「最小生成树的权值是多少」「最小生成树是否唯一」；落点：<code>n</code> 个顶点必选 <code>n-1</code> 条边、Prim <code>O(n²)</code> 适合稠密图、Kruskal <code>O(ElogE)</code> 适合稀疏图；坑：MST 形态可能不唯一但权值唯一，且当图中存在权值相同的边时才可能不唯一；负权边不影响 MST 正确性。</li>
+      <li><b>最短路径</b>〔选择+大题〕：常问「用 Dijkstra 求源点到各顶点最短路径，写出每轮 <code>dist</code> 数组」「用 Floyd 写出每轮矩阵」「求最短路径长度及路径」；落点：Dijkstra 每轮选未确定顶点中 <code>dist</code> 最小者加入集合 <code>S</code> 并松弛其邻边，Floyd 三重循环 <code>A[i][j]=min(A[i][j],A[i][k]+A[k][j])</code>；坑：Dijkstra 不能处理负权边，Floyd 可以；注意题目问的是"路径长度"还是"经过的顶点序列"。</li>
+      <li><b>拓扑排序与关键路径</b>〔大题〕：常问「给出一个拓扑序列」「是否存在拓扑序列，说明理由」「求各事件最早发生时间 <code>ve</code>、最迟发生时间 <code>vl</code>、活动最早开始 <code>e</code>、最迟开始 <code>l</code>」「求关键路径与工期」；落点：<code>ve</code> 取最大（顺推）、<code>vl</code> 取最小（逆推）、<code>e=ve(起点)</code>、<code>l=vl(终点)-dur</code>、<code>l-e=0</code> 的活动为关键活动；坑：关键路径可能有多条，加快关键活动可能改变关键路径，加快非关键活动不能缩短工期。</li>
+    </ul>
+    <h3>查找与排序</h3>
+    <ul>
+      <li><b>B 树与 B+ 树</b>〔选择+大题〕：常问「<code>m</code> 阶 B 树中每个结点关键字个数的取值范围」「插入某关键字后画出 B 树」「删除某关键字后画出 B 树」「为什么 B+ 树更适合做文件索引」；落点：<code>m</code> 阶 B 树根结点至少 1 个关键字、其余结点关键字数 <code>⌈m/2⌉-1 ~ m-1</code>、孩子数 <code>⌈m/2⌉ ~ m</code>，插入溢出时中间关键字上移分裂、删除不足时向兄弟借或与兄弟合并；坑：B 树关键字数与孩子数差 1（<code>k</code> 个关键字对应 <code>k+1</code> 个孩子），B+ 树 <code>n</code> 个关键字对应 <code>n</code> 棵子树且只有叶子存记录。</li>
+      <li><b>散列表</b>〔选择+大题〕：常问「给定关键字序列与散列函数 <code>H(key)=key mod p</code>，用线性探测／链地址法构造散列表，求查找成功与失败的平均查找长度」「装填因子是多少」；落点：<code>ASL成功</code> 按关键字个数取平均、<code>ASL失败</code> 按散列函数值域（表长或模数 <code>p</code>）取平均，链地址法失败 ASL 分母为 <code>p</code>；坑：失败 ASL 的分母不是关键字个数，开放地址法还要数探测到空单元的比较次数（含与空单元比较那一次）。</li>
+      <li><b>排序过程与稳定性</b>〔选择+大题〕：常问「对序列 <code>{...}</code> 进行一趟快速排序／希尔排序／堆排序后的结果是什么」「下列排序算法中哪个不稳定」「哪个排序的比较次数与初始序列无关」「哪种排序最坏时间复杂度为 <code>O(nlog₂n)</code>」；落点：稳定算法为直接插入、冒泡、归并、基数，不稳定为希尔、快排、简单选择、堆排；比较次数与初始序列无关的是简单选择排序与折半插入（元素移动次数无关）、堆排序建堆；坑：一趟快排结果是按枢轴划分而非有序，希尔排序一趟按增量分组插入，堆排序要先建堆再调整。</li>
+    </ul>
+    <h3>算法设计题</h3>
+    <ul>
+      <li><b>算法设计题</b>〔大题〕：常问「设计一个尽可能高效的算法，要求时间复杂度为 <code>O(n)</code>、空间复杂度为 <code>O(1)</code>，并说明算法思想」「若采用...存储结构，给出算法并分析复杂度」（常见落点：找主元素、找中位数、删除重复元素、链表就地逆置、判断链表是否有环、求两链表的公共结点）；落点：答题三件套——算法思想 2~3 行 + 关键代码（含边界处理）+ 时间/空间复杂度分析，<code>O(1)</code> 空间意味着只能用常数个辅助变量或原地交换；坑：忘记写复杂度分析直接丢分，或用 <code>O(n)</code> 辅助数组与题目 <code>O(1)</code> 要求冲突。</li>
+    </ul>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">2</span>计算机组成原理<span class="lv">★★★</span><span class="cnt">16 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>数据表示</h3>
+    <ul>
+      <li><b>补码与溢出</b>〔选择〕：常问「<code>[x]补</code> 与 <code>[y]补</code> 相加后结果是多少、是否溢出」「<code>n</code> 位补码能表示的整数范围」「判断溢出的条件」；落点：<code>n</code> 位补码范围 <code>-2^(n-1) ~ 2^(n-1)-1</code>，双符号位法（<code>00</code> 正常、<code>01</code> 正溢、<code>10</code> 负溢）、单符号位法看进位 <code>C_n ⊕ C_(n-1)</code>；坑：补码加法符号位直接参与运算、结果仍为补码，别把溢出当成"最高位进位"（有进位不一定溢出）。</li>
+      <li><b>IEEE 754</b>〔选择〕：常问「十进制数 <code>-12.5</code> 的单精度浮点数表示（十六进制）是什么」「某 32 位机器数按 IEEE 754 单精度解释，其真值是多少」；落点：<code>1</code> 位符号 + <code>8</code> 位阶码（偏置 <code>127</code>）+ <code>23</code> 位尾数，尾数隐含最高位 <code>1</code>，真值 <code>(-1)^S × 1.M × 2^(E-127)</code>；坑：阶码用移码（偏置 127）而尾数用原码，全 0／全 1 阶码是特殊值（0、非规格化数、无穷、NaN），规格化数隐含的 <code>1</code> 不写入尾数字段。</li>
+      <li><b>定点数与浮点数的表示范围</b>〔选择〕：常问「<code>n</code> 位定点小数／定点整数能表示的最大最小数」「浮点数能表示的最大正数、最小正数（规格化）」「规格化条件是什么」；落点：定点小数原码范围 <code>-(1-2^-(n-1)) ~ 1-2^-(n-1)</code>，浮点范围由阶码位数决定、精度由尾数位数决定，原码规格化要求尾数最高数值位为 <code>1</code>、补码规格化要求尾数符号位与最高数值位相反；坑：浮点数表示范围由阶码决定、精度由尾数决定，别把"精度"与"范围"答反。</li>
+      <li><b>校验码</b>〔选择+大题〕：常问「数据位 <code>k</code> 位时海明码需要多少位校验位、求某数据的海明码」「给生成多项式求 CRC 校验码，并判断接收端是否出错」「奇偶校验能检测／纠正几位错」；落点：海明码 <code>2^r ≥ k+r+1</code>，校验位放在 <code>1,2,4,8...</code> 位上、分组按二进制位编号覆盖；CRC 用模 2 除法（异或，不借位），被除数左移 <code>r</code> 位后除以生成多项式取余数；坑：CRC 余数位数恒为 <code>r</code>（生成多项式最高次），海明码"纠一位错"需 <code>2^r ≥ k+r+1</code>、只检错则 <code>2^r ≥ k+r</code>。</li>
+    </ul>
+    <h3>存储系统</h3>
+    <ul>
+      <li><b>存储芯片扩展</b>〔大题〕：常问「用 <code>16K×8</code> 位的芯片组成 <code>128K×16</code> 位的主存，需要多少片芯片、地址线和数据线各多少根、如何连接」「写出各芯片的地址范围与片选逻辑」；落点：芯片数 =（总容量/单片容量）=（字数比）×（位数比），数据线根数由字长决定、地址线根数由字数决定、需 <code>log₂(组数)</code> 根片选译码输入，地址范围按芯片编号连续划分；坑：区分"位扩展"（共用地址线、数据线并联）与"字扩展"（地址线高位译码产生片选），片选信号低电平有效与地址重叠区（若未全译码）。</li>
+      <li><b>Cache 映射与地址划分</b>〔选择+大题〕：常问「主存地址共 <code>n</code> 位、块大小 <code>x</code> 字节、Cache 共 <code>y</code> 行（<code>z</code> 路组相联），求标记、组号（行号）、块内地址各多少位」「直接映射／全相联／组相联的地址格式」；落点：块内地址 <code>log₂(块大小)</code>、直接映射行号 <code>log₂(行数)</code>、组相联组号 <code>log₂(组数)=log₂(行数/路数)</code>、标记位 = 主存地址位数 − 组号（行号）位 − 块内地址位；坑：标记位不含有效位与脏位（除非题目另说），全相联无组号位、标记最长；组相联中"路数"是每组行数而不是总行数。</li>
+      <li><b>Cache 性能</b>〔选择+大题〕：常问「求 Cache 命中率 <code>H</code>、平均访问时间 <code>T</code>」「写回法与写直达法下一次写操作的访存次数」「Cache 总容量如何计算」；落点：<code>H=N_c/(N_c+N_m)</code>、<code>T=H·t_c+(1-H)·t_m</code>（并行／串行访问公式不同）、写直达每次写都访存、写回只在换出时写回、Cache 容量 =（标记位 + 有效位 + 脏位 + 数据位）× 行数；坑：未命中时"先访问 Cache 再访问主存"与"同时访问"的 <code>T</code> 公式不同，写回法还要加脏位。</li>
+      <li><b>虚拟存储器</b>〔选择〕：常问「一次访存过程中 TLB、页表、Cache、主存被访问的顺序和次数」「TLB 命中／未命中时各访问几次主存」「页式虚拟存储器的地址如何转换」；落点：虚拟地址 → 虚页号 + 页内地址，先查 TLB（命中则直接得实页号）、未命中查页表（可能多次访存），再按实地址查 Cache，TLB 命中时仍可能 Cache 未命中；坑：TLB 未命中不等于缺页（页表命中则只需一次额外访存），页表项中的有效位／修改位／访问位作用不同。</li>
+    </ul>
+    <h3>指令与CPU</h3>
+    <ul>
+      <li><b>指令格式与扩展操作码</b>〔选择+大题〕：常问「指令字长 <code>16</code> 位、地址码 <code>4</code> 位，采用扩展操作码，最多可有多少条指令」「设计一个扩展操作码方案，使二地址指令 <code>m</code> 条、一地址指令 <code>n</code> 条、零地址指令 <code>p</code> 条」；落点：先算各字段位数，短操作码数量由长操作码剩余码点递归扣减，零地址指令数 =（剩余码点）×<code>2^地址码位数</code>；坑：短码不能是长码的前缀（如 <code>00</code> 已作二地址操作码，则 <code>0000</code> 不能再作一地址操作码），要留出扩展标志位。</li>
+      <li><b>寻址方式</b>〔选择+大题〕：常问「写出各条指令源操作数的寻址方式和有效地址 EA」「相对寻址的 EA 是多少」「基址／变址寻址的区别」；落点：立即数 EA 即操作数本身、直接寻址 <code>EA=A</code>、间接 <code>EA=(A)</code>、寄存器间接 <code>EA=(R)</code>、相对 <code>EA=(PC)+A</code>（<code>PC</code> 已指向下条指令）、基址 <code>EA=(BR)+A</code>、变址 <code>EA=(IX)+A</code>；坑：相对寻址要加指令长度（<code>PC</code> 已自增），变址可自动修改而基址不变，间接寻址需两次访存。</li>
+      <li><b>数据通路与微操作</b>〔大题〕：常问「写出取指周期的微操作序列」「写出 <code>ADD R1,(R2)</code> 指令执行阶段的微操作」「单总线结构下完成一条指令需要几个时钟周期」；落点：取指固定三步——<code>PC→MAR</code>、<code>M(MAR)→MDR</code>、<code>MDR→IR</code> 且 <code>(PC)+1→PC</code>，执行阶段按"取数 → 运算 → 存结果"逐步写，每个时钟周期总线只能传送一次；坑：忘记写 <code>PC</code> 自增，或一个时钟周期内写两条总线冲突的微操作。</li>
+      <li><b>流水线</b>〔选择+大题〕：常问「<code>k</code> 段流水线执行 <code>n</code> 条指令需要多少时间、吞吐率、加速比」「指出数据冒险／控制冒险／结构冒险并给出解决方法」「流水线时钟周期取多少」；落点：总时间 <code>(k+n-1)·Δt</code>、吞吐率 <code>TP=n/((k+n-1)Δt)</code>、加速比 <code>S=n·k·Δt/((k+n-1)Δt)</code>、时钟周期取最长一段 <code>Δt=max(Δtᵢ)</code>；坑：<code>Δt</code> 按最长段算（不是各段平均），数据冒险用转发／阻塞解决，控制冒险用分支预测／延迟槽。</li>
+    </ul>
+    <h3>总线与I/O</h3>
+    <ul>
+      <li><b>总线与性能指标</b>〔选择+大题〕：常问「求总线带宽」「传送 <code>n</code> 个字节需要多少时间」「突发传送方式下的有效带宽」「同步总线与异步总线的区别」；落点：带宽 = 总线宽度（字节）× 总线频率、一次突发传送含地址周期与数据周期，有效数据传输率要扣掉地址／等待周期，异步总线用握手（不互锁／半互锁／全互锁）；坑：位宽与字节数换算（<code>8</code> 位 = <code>1</code> 字节），总线频率是 <code>MHz</code> 时带宽单位是 <code>MB/s</code>，别忘除以 <code>8</code>。</li>
+      <li><b>磁盘</b>〔选择+大题〕：常问「求磁盘容量、平均存取时间、数据传输率」「读一个扇区需要多少时间」「磁盘地址格式」；落点：容量 = 记录面数 × 柱面数 × 扇区数 × 每扇区容量，平均存取时间 = 平均寻道时间 + 平均等待时间（<code>1/2</code> 转）+ 传输时间，传输率 = 每道容量 × 转速；坑：平均等待时间取半圈（<code>60/(2r)</code>），扇区按柱面—盘面—扇区顺序编号，磁盘地址含驱动器号、柱面（磁道）号、盘面号、扇区号。</li>
+      <li><b>中断与 DMA</b>〔选择+大题〕：常问「中断响应过程包括哪些步骤」「给出中断屏蔽字并排出中断处理顺序」「DMA 传送过程是怎样的、CPU 参与程度如何」；落点：中断响应由硬件完成（关中断、保存断点 <code>PC</code> 与 <code>PSW</code>、识别中断源、转中断服务程序），屏蔽字中 <code>1</code> 表示屏蔽、决定优先级，DMA 由 DMA 控制器直接控制总线成块传送、仅在预处理与后处理阶段需 CPU 参与；坑：中断隐指令不是指令、由硬件完成，中断屏蔽字"某位为 1"是屏蔽该中断而非开放，DMA 传送期间 CPU 仍可执行程序（周期挪用）。</li>
+      <li><b>程序查询/中断/DMA 三种方式的比较</b>〔选择〕：常问「下列场景应选择哪种 I/O 控制方式」「三种方式中 CPU 用于 I/O 的时间占比／效率最高的是哪种」「哪种方式数据传送不经过 CPU」；落点：程序查询方式 CPU 全程等待（效率最低）、中断方式每传一个字（块）就中断一次、DMA 方式以数据块为单位且数据不经过 CPU、通道方式进一步减轻 CPU 负担；坑：DMA 并非完全不占用 CPU（总线与内存仍由 CPU 与 DMA 争用），中断方式适合低速设备、DMA 适合高速块设备。</li>
+    </ul>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">3</span>操作系统<span class="lv">★★★</span><span class="cnt">15 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>进程与调度</h3>
+    <ul>
+      <li><b>进程状态转换</b>〔选择〕：常问「下列哪种状态转换不可能发生」「就绪→阻塞能否直接发生」；落点：三态/五态图中只存在就绪→运行、运行→就绪、运行→阻塞、阻塞→就绪（事件完成）、运行→终止；坑：阻塞→运行不可能，阻塞态必须先回就绪队列；挂起态进出要靠激活/挂起原语。</li>
+      <li><b>周转时间计算</b>〔大题〕：常问「按 FCFS/SJF/RR/优先级调度，求各进程周转时间与平均周转时间」「求平均带权周转时间」；落点：周转时间=<code>完成时间−到达时间</code>，带权周转=<code>周转时间/服务时间</code>，等待时间=周转−服务；坑：抢占式要标出被抢占时刻与剩余时间，RR 时间片用尽要重新排队，同到达时刻按题给顺序或编号小者优先。</li>
+      <li><b>调度算法特性</b>〔选择〕：常问「哪种调度算法可能导致饥饿」「哪种算法响应比最高」「实时调度中哪种可抢占」；落点：FCFS 利于长作业不利于短作业、SJF 平均周转最短但长作业饥饿、RR 对交互友好但时间片过大退化为 FCFS、高响应比 <code>R=(等待+服务)/服务</code> 兼顾长短；坑：优先级调度分静态/动态，动态优先级+老化才能避免饥饿；多级反馈队列「时间片递增、优先级递减」。</li>
+    </ul>
+    <h3>同步与死锁</h3>
+    <ul>
+      <li><b>PV 操作与信号量</b>〔大题〕：常问「用信号量实现生产者-消费者（读者-写者/哲学家进餐）的同步与互斥」「按前驱图写出各进程的 PV 操作」；落点：互斥信号量初值 <code>1</code>、同步信号量初值 <code>0</code> 或资源数，P 在临界区前、V 在临界区后，前驱图用「前驱进程 V、后继进程 P」的私有信号量；坑：读者写者要加 <code>count</code> 的互斥信号量防多个读者同时改计数，哲学家要限制最多 4 人取筷或奇偶顺序防死锁。</li>
+      <li><b>信号量取值范围</b>〔选择〕：常问「信号量 S 的最小值是多少」「S=−2 表示什么」；落点：S 值域为 <code>[初值−申请总数, 初值]</code>，S&lt;0 时 <code>|S|</code> 等于在该信号量上阻塞的进程数；坑：P、V 成对出现才不改变终值，问最小值要看并发最多同时申请几次而非进程总数。</li>
+      <li><b>死锁</b>〔选择+大题〕：常问「系统至少需要多少同类资源才不会死锁」「用银行家算法判断该状态是否安全并给出安全序列」「化简资源分配图，判断是否死锁」；落点：n 个进程各需 m 个同类资源，不发生死锁最少资源数 <code>n(m−1)+1</code>；银行家先算 <code>Need=Max−Allocation</code>，再找 <code>Need≤Available</code> 的进程回收资源；坑：安全状态≠不会死锁（只是存在安全序列），资源分配图能完全化简才无死锁，有环不一定死锁（每类资源多实例时）。</li>
+    </ul>
+    <h3>内存管理</h3>
+    <ul>
+      <li><b>页面置换</b>〔选择+大题〕：常问「采用 FIFO/LRU/OPT 算法，求缺页次数与缺页率」「访问过程中发生多少次页面置换」；落点：逐次扫描引用串维护页框，缺页率=<code>缺页次数/访问总次数</code>；坑：FIFO 会出现 Belady 异常（页框增多缺页反增），LRU 与 OPT 不会；缺页率分母是访问次数不是不同页数；初始页框为空时首次装入也算缺页。</li>
+      <li><b>有效访问时间 EAT</b>〔选择+大题〕：常问「已知 TLB 命中率与访存时间，求有效访问时间」「引入缺页处理后 EAT 为多少」；落点：<code>EAT=(1−p)·t_TLB命中+(p)·t_TLB未命中</code>，命中=<code>λ(t+ε)+(1−λ)(2t+ε)</code>（λ 为 TLB 命中率，t 访存、ε 查 TLB）；含缺页时 <code>EAT=(1−f)·常规EAT+f·缺页处理时间</code>；坑：未命中要算两级访存，缺页处理时间含磁盘 I/O 通常是毫秒级，必须与纳秒级分开单位。</li>
+      <li><b>地址变换</b>〔大题〕：常问「给定逻辑地址与页大小，求对应的物理地址」「两级页表下访问一个数据需几次访存」；落点：页号=<code>逻辑地址/页大小</code>、页内偏移=<code>逻辑地址%页大小</code>，物理地址=<code>页框号×页大小+偏移</code>；k 级页表需 <code>k+1</code> 次访存（加 TLB 命中可减）；坑：页大小是 2 的幂时用移位而非除法，多级页表要把逻辑地址按每级页表项数拆位。</li>
+      <li><b>分段与分页比较</b>〔选择〕：常问「分页/分段是否产生内部碎片」「段的长度是否可变」；落点：页是物理单位、大小固定、有内部碎片无外部碎片；段是逻辑单位、长度可变、有外部碎片无内部碎片；段页式先分段再分页，每段一张页表；坑：分段地址是二维的（段号+段内偏移），页表项数由逻辑地址空间决定而非实际使用量。</li>
+      <li><b>位示图</b>〔选择+大题〕：常问「块号为 x 的磁盘块对应位示图的字号和位号」「已知字号位号求物理块号」；落点：按行优先 <code>字号=块号/字长</code>、<code>位号=块号%字长</code>；坑：题给编号从 0 还是从 1 开始，从 1 开始要减 1 再换算；位示图大小=磁盘块数/8 字节。</li>
+    </ul>
+    <h3>文件与I/O</h3>
+    <ul>
+      <li><b>文件物理结构</b>〔选择+大题〕：常问「连续/链接/索引分配各有什么优缺点」「混合索引的最大文件长度是多少」；落点：连续支持随机访问但易外部碎片、链接无碎片但只能顺序访问、索引支持随机访问但索引块占空间；混合索引最大长度=<code>直接块数×块大小+一级间接项数×块大小+二级间接项数×块大小+…</code>；坑：索引表项指向的是磁盘块，先算每块能放多少地址（<code>块大小/地址长度</code>）再逐级相乘。</li>
+      <li><b>FAT 与 inode</b>〔选择〕：常问「FAT 表项为 n 位时最大磁盘容量是多少」「inode 中若干直接/间接地址能支持的最大文件大小」；落点：FAT 最大容量=<code>2^n×块大小</code>（n 位表项可表示 <code>2^n</code> 个块）；inode 按直接+一级+二级+三级间接求和；坑：FAT 表项数决定块数，与块大小相乘才是容量；FAT 本身占用磁盘空间且需常驻内存，故不适合大磁盘。</li>
+      <li><b>磁盘调度</b>〔大题〕：常问「按 FCFS/SSTF/SCAN/CSCAN 调度，求磁头移动总磁道数与访问顺序」；落点：按当前磁头位置找最近请求（SSTF）、单向扫到端点再折返（SCAN）、只单向循环（CSCAN）；坑：要看清磁头初始移动方向与磁盘最大柱面号，SCAN 到端点是否包含端点柱面、CSCAN 回程是否计入移动距离。</li>
+      <li><b>缓冲与 SPOOLing</b>〔选择〕：常问「单缓冲/双缓冲下处理一块数据的时间是多少」「SPOOLing 技术是否实现了设备共享」；落点：单缓冲每块耗时 <code>max(C,T)+M</code>、双缓冲 <code>max(C+M,T)</code>（C 计算、T 输入、M 传送）；SPOOLing 用输入井/输出井把独占设备虚拟为共享设备；坑：单缓冲是 <code>max(C,T)+M</code> 而非 C+T+M，双缓冲在 <code>C+M</code> 与 <code>T</code> 中取大；SPOOLing 并未真正让物理设备并行，只是逻辑上共享。</li>
+    </ul>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">4</span>计算机网络<span class="lv">★★★</span><span class="cnt">15 条</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>性能计算</h3>
+    <ul>
+      <li><b>时延与带宽计算</b>〔选择+大题〕：常问「求发送时延与传播时延」「求时延带宽积」「求端到端总时延」；落点：发送时延=<code>数据长度/发送速率</code>，传播时延=<code>链路长度/传播速率</code>，时延带宽积=<code>传播时延×带宽</code>（即链路中比特数），总时延=各段发送+传播+处理+排队；坑：发送时延用带宽算、传播时延用光速算，二者常被混用；经交换机/路由器转发时每跳都要重算发送时延。</li>
+      <li><b>奈氏与香农</b>〔选择〕：常问「带宽为 W、采用 N 种码元，求最大数据率」「信噪比为 S/N，求信道极限速率」；落点：奈氏 <code>C=2W·log2(N)</code>，香农 <code>C=W·log2(1+S/N)</code>，<code>dB=10·log10(S/N)</code>；坑：同时给码元数与信噪比时取两者较小值；香农公式与码元种类无关，奈氏公式与信噪比无关；带宽单位 Hz 与数据率 bit/s 不可混。</li>
+      <li><b>编码与调制</b>〔选择〕：常问「曼彻斯特编码的波特率与比特率是什么关系」「采用 4 相调制时波特率与比特率的关系」；落点：曼彻斯特与差分曼彻斯特波特率=<code>2×</code>比特率，4B/5B 有 20% 开销，QAM-16 每码元 <code>4</code> bit；坑：波特率是码元速率、比特率=<code>波特率×log2(码元种类)</code>；曼彻斯特编码自带同步但频带利用率仅 50%。</li>
+    </ul>
+    <h3>链路层</h3>
+    <ul>
+      <li><b>差错控制</b>〔大题〕：常问「用 CRC 求发送的帧（含校验码）」「海明码需多少位校验位、能纠正几位错」；落点：CRC 用生成多项式做模 2 除法，余数即 <code>FCS</code>，帧=数据左移 r 位再减余数；海明码校验位数满足 <code>2^k≥n+k+1</code>，纠 1 位错需码距 <code>≥3</code>；坑：模 2 除法不借位，余数位数必须等于生成多项式最高次幂；CRC 只能检错不能纠错。</li>
+      <li><b>滑动窗口与信道利用率</b>〔选择+大题〕：常问「求使信道利用率达 100% 的最小窗口大小」「n 位序号下 GBN/SR 的窗口上限」「求信道利用率」；落点：利用率=<code>窗口×帧发送时延/(帧发送时延+RTT)</code> 或 <code>W·T/(T+RTT)</code>；序号 n 位时 GBN 窗口 <code>≤2^n−1</code>、SR 窗口 <code>≤2^(n−1)</code>；坑：GBN 与 SR 上限不同，别混用；窗口≥<code>(T+RTT)/T</code> 才能连续发送填满链路。</li>
+      <li><b>CSMA/CD 与最小帧长</b>〔选择+大题〕：常问「求争用期（端到端往返时延）」「求最小帧长」「第 k 次冲突后从哪些数中随机取值」；落点：争用期=<code>2τ</code>，最小帧长=<code>2τ×数据率</code>，退避从 <code>{0,1,…,2^k−1}</code> 取 k 且 <code>k≤10</code>；坑：最小帧长对应 <code>64B</code>（10Mbps 以太网），争用期是往返时延不是单程；CSMA/CD 只用于半双工有线，全双工与无线（CSMA/CA）不用。</li>
+      <li><b>以太网帧与交换机</b>〔选择〕：常问「以太网 MAC 帧首部/最小帧长/前导码是多少」「交换机收到未知目的地址的帧如何处理」「划分后有几个冲突域和广播域」；落点：MAC 帧 <code>6+6+2+46~1500+4</code> 字节、最小 <code>64B</code>，交换机按源 MAC 自学习、目的未知则泛洪，每端口一个冲突域但整个交换机一个广播域；坑：前导码 8B 不计入帧长，VLAN 划分可切分广播域但交换机默认不切分；集线器所有端口同一冲突域。</li>
+    </ul>
+    <h3>网络层</h3>
+    <ul>
+      <li><b>IP 分片</b>〔选择+大题〕：常问「MTU 为 1500B 时 4000B 的 IP 数据报分成几片，各片长度与片偏移是多少」「MF 与 DF 标志如何变化」；落点：每片数据部分 <code>≤(MTU−20)</code> 且为 <code>8</code> 的倍数，片偏移=<code>该片首字节在原数据部分中的位置/8</code>，除最后一片外 <code>MF=1</code>；坑：片长必须是 8 的倍数，否则偏移无法表示；片偏移以 8 字节为单位，且偏移不含首部。</li>
+      <li><b>子网划分与聚合</b>〔选择+大题〕：常问「求该 IP 与掩码下的网络地址、广播地址与可用主机数」「把 4 个连续子网聚合成一条 CIDR 路由」；落点：网络地址=<code>IP AND 掩码</code>，广播地址=网络地址+主机位全 1，可用主机数=<code>2^h−2</code>；聚合时找共同前缀，掩码长度取公共前缀位数；坑：可用主机数要减 2（去掉网络与广播），/31 与 /32 特例除外；聚合后的地址块必须覆盖全部子网且不能再缩小。</li>
+      <li><b>路由算法与协议</b>〔选择+大题〕：常问「按 RIP 收到邻居的距离向量后更新路由表」「OSPF 与 BGP 分别属于什么算法、封装在哪一层」；落点：RIP 是距离向量，<code>d(x,y)=min{c(x,v)+d(v,y)}</code>，先加一跳再比较取小；OSPF 链路状态用 Dijkstra 算最短路，直接封装在 IP 中；BGP 是路径向量，封装在 TCP 上（端口 <code>179</code>）；坑：RIP 中 <code>16</code> 跳表示不可达，且「下一跳相同则必须更新、下一跳不同取较小」；RIP 报文用 UDP <code>520</code> 端口。</li>
+      <li><b>ARP/DHCP/DNS</b>〔选择〕：常问「ARP 请求报文是广播还是单播、封装在哪一层」「主机跨网段访问时 ARP 解析的是谁的 MAC」「DHCP 的四步报文名称」；落点：ARP 请求广播、响应单播，直接封装在链路层帧中（无 IP 首部）；跨网段解析的是默认网关的 MAC；DHCP 为 <code>DISCOVER→OFFER→REQUEST→ACK</code>，用 UDP <code>67/68</code>；DNS 用 UDP <code>53</code>；坑：ARP 报文没有 IP 首部，DNS 区域传送才用 TCP。</li>
+    </ul>
+    <h3>传输层与应用层</h3>
+    <ul>
+      <li><b>TCP 连接管理</b>〔选择+大题〕：常问「三次握手各报文的 seq/ack 如何变化」「四次挥手后主动关闭方进入什么状态、停留多久」「为什么需要 TIME_WAIT」；落点：SYN 消耗一个序号，<code>ack=对方seq+1</code>，第三次握手可携带数据；挥手 FIN 与 ACK 各占一序号，TIME_WAIT 停留 <code>2MSL</code>（通常 <code>2×2min</code>）；坑：SYN=1 的报文不能携带数据但占序号，半关闭状态下仍可单向传输数据。</li>
+      <li><b>TCP 拥塞控制</b>〔选择+大题〕：常问「初始 cwnd=1、ssthresh=16，第 n 轮后 cwnd 为多少」「超时后 ssthresh 与 cwnd 如何变化，共需几轮恢复」；落点：慢开始每 RTT 翻倍、到 ssthresh 转拥塞避免每 RTT 加 1；超时：<code>ssthresh=cwnd/2、cwnd=1</code>；收到 3 个重复 ACK：<code>ssthresh=cwnd/2、cwnd=ssthresh</code>（快重传快恢复）；坑：快恢复不回 cwnd=1；阈值取半是向下取整；「第 n 轮」按 RTT 计而非按报文段计。</li>
+      <li><b>TCP 与 UDP 比较</b>〔选择〕：常问「TCP 与 UDP 首部各多少字节」「哪些应用适合用 UDP」「UDP 是否有拥塞控制」；落点：TCP 首部 <code>20B</code>（可扩到 60B）、UDP 首部固定 <code>8B</code>；UDP 无连接、不可靠、无拥塞控制、面向报文，适合实时音视频与 DNS；TCP 面向字节流、可靠、全双工；坑：UDP 有伪首部参与校验但伪首部不传输；TCP 提供流量控制与拥塞控制，UDP 都不提供。</li>
+      <li><b>HTTP 与应用层协议</b>〔选择+大题〕：常问「非持久/持久/流水线方式下请求一个含 n 个引用对象的页面需多少 RTT」「状态码 301/404/502 分别表示什么」「FTP、SMTP、POP3 的端口是多少」；落点：非持久=<code>2(n+1)</code> RTT（含 TCP 建连），持久非流水线=<code>n+1</code>，持久流水线=<code>2</code>（一个 RTT 建连+一个 RTT 取全部对象）；端口：HTTP <code>80</code>、HTTPS <code>443</code>、FTP <code>21/20</code>、SMTP <code>25</code>、POP3 <code>110</code>；坑：RTT 计算别漏 TCP 三次握手的 1 个 RTT，状态码 <code>1xx/2xx/3xx/4xx/5xx</code> 分类含义要分清。</li>
+    </ul>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
