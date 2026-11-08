@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>数据结构</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="ds">
+  <div class="subhead"><h2>数据结构</h2><span class="score">45 分</span><span class="meta" data-all="8 章">8 章</span></div>
+<details class="chap" open>
+  <summary><span class="num">1</span>绪论<span class="lv">★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>1.1 基本概念与三要素</h3>
+    <ul>
+      <li><b>数据、数据元素、数据项、数据对象</b>：数据是能被计算机处理的符号集合；数据元素是基本单位，数据项是最小单位，数据对象是同类元素集合。</li>
+      <li><b>数据结构三要素</b>：逻辑结构、存储结构（物理结构）、数据的运算，三者共同刻画一个数据结构，缺一不可。</li>
+      <li class="hot"><b>逻辑结构</b>：指数据元素之间的逻辑关系，与计算机无关、与存储无关，由问题本身决定。分为集合（无关系）、线性（一对一）、树形（一对多）、图状（多对多）四类。同一逻辑结构可以有多种存储实现，二者不是一一对应。常见考法：判断某结构属于哪类逻辑结构，或判断"逻辑结构唯一决定存储结构"（错）。结论：逻辑结构分四类，是数据结构的"骨架"，独立于实现。<div class="ex"><p><b>例题</b>集合、线性、树形、图状四种逻辑结构的区别是什么？</p><p><b>解析</b>① 集合：元素间无关系；② 线性：一对一；③ 树形：一对多；④ 图状：多对多。</p><p><b>易错点</b>把逻辑结构与存储结构混为一谈（顺序、链式属于存储结构）。</p><p><b>拓展</b>同一逻辑结构可有多种存储实现，如线性表既可顺序也可链式。</p></div></li>
+      <li><b>存储结构</b>：逻辑结构在计算机中的表示，分顺序、链式、索引、散列四种。顺序存储用相对位置表示关系，链式存储用指针（地址）表示关系。</li>
+      <li><b>数据类型</b>：一个值的集合及定义在其上的一组操作的总称，如整型、字符型。</li>
+      <li><b>抽象数据类型 ADT</b>：一个数学模型及定义在其上的一组操作，只描述逻辑特性，与实现无关；分原子类型、固定聚合类型、可变聚合类型。</li>
+    </ul>
+    <table>
+      <thead>
+        <tr><th>对比项</th><th>顺序存储</th><th>链式存储</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>关系表示</td><td>逻辑相邻即物理相邻</td><td>指针显式指示后继</td></tr>
+        <tr><td>存取方式</td><td>随机存取 O(1)</td><td>只能顺序存取</td></tr>
+        <tr><td>存储密度</td><td>密度 = 1</td><td>密度 &lt; 1（含指针域）</td></tr>
+        <tr><td>插入删除</td><td>平均移动约 n/2 个元素</td><td>改指针即可，O(1)</td></tr>
+        <tr><td>空间要求</td><td>需连续空间，可能溢出</td><td>可用碎片空间</td></tr>
+      </tbody>
+    </table>
+    <div class="fig"><svg class="dg" viewBox="0 0 400 185" role="img" aria-label="数据结构三要素与四类逻辑结构">
+      <text class="x" x="200" y="18" text-anchor="middle">数据结构 = 逻辑结构 + 存储结构 + 运算</text>
+      <rect class="boxa" x="132" y="34" width="136" height="32" rx="6"/><text class="w" x="200" y="55" text-anchor="middle">数据结构 ADT</text><line class="ln" x1="200" y1="66" x2="200" y2="85"/>
+      <rect class="box" x="18" y="88" width="112" height="35" rx="5"/><text class="t" x="74" y="103" text-anchor="middle">逻辑结构</text><text class="s" x="74" y="117" text-anchor="middle">元素之间的关系</text><rect class="box" x="144" y="88" width="112" height="35" rx="5"/><text class="t" x="200" y="103" text-anchor="middle">存储结构</text><text class="s" x="200" y="117" text-anchor="middle">关系在机器中的表示</text><rect class="box" x="270" y="88" width="112" height="35" rx="5"/><text class="t" x="326" y="103" text-anchor="middle">数据运算</text><text class="s" x="326" y="117" text-anchor="middle">定义在结构上的操作</text>
+      <text class="s" x="200" y="146" text-anchor="middle">同一逻辑关系可有不同存储实现：线性表可顺序存储，也可链式存储</text><rect class="boxw" x="25" y="155" width="78" height="22" rx="4"/><text class="x" x="64" y="170" text-anchor="middle">集合</text><rect class="boxw" x="119" y="155" width="78" height="22" rx="4"/><text class="x" x="158" y="170" text-anchor="middle">线性</text><rect class="boxw" x="213" y="155" width="78" height="22" rx="4"/><text class="x" x="252" y="170" text-anchor="middle">树形</text><rect class="boxw" x="307" y="155" width="68" height="22" rx="4"/><text class="x" x="341" y="170" text-anchor="middle">图状</text>
+    </svg><div class="cap">三要素分别回答“关系是什么、如何表示、能做什么”；四类逻辑结构按关系从无到多对多排列。</div></div>
+    <h3>1.2 算法及其特性</h3>
+    <ul>
+      <li class="hot"><b>算法五特性</b>：有穷性、确定性、可行性、输入（0 个或多个）、输出（1 个或多个）。有穷性指算法在执行有穷步之后结束，且每一步都在有穷时间内完成；确定性指每条指令含义唯一、无二义，相同输入必得相同输出。注意程序可以不满足有穷性（如操作系统常驻循环），所以"程序 ≠ 算法"。常见考法：判断某说法违反哪条特性，如"算法必须有输入"（错）、"算法必须有输出"（对）、"算法可执行无限步"（违反有穷性）。结论：五特性缺一不可，输入可为 0，输出至少 1。<div class="ex"><p><b>例题</b>算法的五个特性是什么？输入和输出各有几个？</p><p><b>解析</b>① 有穷性、确定性、可行性、输入、输出；② 输入 0 个或多个，输出 1 个或多个。</p><p><b>易错点</b>认为输入必须至少 1 个；输出可以为 0 个。</p><p><b>拓展</b>好算法还要求正确性、可读性、健壮性与高效率。</p></div></li>
+      <li><b>好算法目标</b>：正确性、可读性、健壮性（对非法输入合理反应）、高效率与低存储量需求。</li>
+    </ul>
+    <h3>1.3 时间复杂度</h3>
+    <ul>
+      <li><b>时间复杂度与常见量级</b>：由基本语句频度 <code>T(n)</code> 取数量级 <code>O(f(n))</code>，只留最高阶项、忽略系数与低阶项；量级由小到大：<code>O(1) &lt; O(log₂n) &lt; O(n) &lt; O(nlog₂n) &lt; O(n²) &lt; O(n³) &lt; O(2ⁿ) &lt; O(n!)</code>。</li>
+      <li><b>运算规则</b>：顺序执行的两段代码相加取大者；嵌套（内层每轮跑满）相乘；对数底不影响量级。</li>
+      <li class="hot"><b>循环复杂度分析</b>：以基本语句执行次数（频度）求和得 T(n)，再取最高阶。单层循环 <code>i*=2</code>、<code>i/=2</code> 型执行约 <code>log₂n</code> 次，<code>i+=k</code> 型约 <code>n/k</code> 次。双层循环若内层上界依赖外层，总次数必须用 <code>Σ</code> 累加而不能简单写成 n×n。常见考法：给一段代码求 T(n) 或 O，常与等差、等比数列求和结合。结论：先看循环变量的变化规律，再求和、取最高阶。<div class="ex"><p><b>例题</b>for(i=1;i&lt;=n;i*=2) s++; 的时间复杂度是多少？</p><p><b>解析</b>① i 依次取 1,2,4,…，第 k 次为 2^(k−1)；② 由 2^(k−1) ≤ n 得 k ≈ log₂n；③ T(n)=O(log n)。</p><p><b>易错点</b>把 i*=2 看成 i++，误答 O(n)。</p><p><b>拓展</b>双重循环若内外独立则次数相乘，若内层依赖外层则用求和。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>求下列程序段中 <code>s++</code> 的执行次数与时间复杂度，n = 16：<code>int i = 1, s = 0; while (i &lt;= n) { for (j = 1; j &lt;= i; j++) s++; i = i * 2; }</code></p><p><b>解析</b>① 外层 <code>i</code> 依次取 1, 2, 4, 8, 16，共 <code>log₂n + 1 = 5</code> 轮。② 内层对每个 <code>i</code> 执行 <code>i</code> 次：1 + 2 + 4 + 8 + 16 = 31 次。③ 这是等比数列求和，<code>T(n) = 2n − 1</code>，取最高阶得 <code>O(n)</code>。</p><p><b>易错点</b>外层是 <code>i*=2</code>、内层跑满 i 次，误按"外层 log₂n 轮 × 内层 n 次"相乘得 <code>O(nlog₂n)</code>；实际内层次数是随 i 递增的等比级数，和为 2n−1，故为 <code>O(n)</code>。</p>
+    </div>
+    <h3>1.4 递归复杂度与空间复杂度</h3>
+    <ul>
+      <li class="hot"><b>递归复杂度</b>：设 <code>T(n)</code> 为规模 n 的求解时间，按"子问题个数 × 子问题规模 + 分解/合并代价"写递推式。<code>T(n)=T(n−1)+O(1)</code> 为 <code>O(n)</code>；<code>T(n)=T(n/2)+O(1)</code> 为 <code>O(log₂n)</code>；<code>T(n)=2T(n/2)+O(n)</code> 为 <code>O(nlog₂n)</code>。常用展开法：反复代入到 T(1)，把每层代价相加（多为等差或等比求和）。常见考法：给递归程序求复杂度，或由递推式选结果。结论：子问题规模减半必带 <code>log₂n</code> 因子，再乘每层代价。<div class="ex"><p><b>例题</b>T(n)=2T(n/2)+n 的解是多少？</p><p><b>解析</b>① 递归树每层代价均为 n；② 共 log₂n 层；③ T(n)=n·log₂n，即 O(n log n)。</p><p><b>易错点</b>把 T(n/2) 当成 T(n−1) 展开，结果变成 O(n²)。</p><p><b>拓展</b>对照记忆：T(n)=T(n−1)+n → O(n²)；T(n)=2T(n−1)+1 → O(2ⁿ)。</p></div></li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>已知 <code>T(1) = 1</code>，<code>T(n) = 2T(n/2) + n</code>（n 为 2 的幂）。求 T(8) 的具体值及时间复杂度。</p><p><b>解析</b>① 逐层展开：T(2) = 2×1 + 2 = 4；T(4) = 2×4 + 4 = 12；T(8) = 2×12 + 8 = 32。② 每层代价之和为 n + n + … + n，共 <code>log₂n + 1</code> 层，故 <code>T(n) = n(log₂n + 1) = nlog₂n + n</code>。③ 代入 n = 8：8×3 + 8 = 32，与逐层展开一致。④ 取最高阶得 <code>O(nlog₂n)</code>。</p><p><b>易错点</b>把 <code>2T(n/2)</code> 误当成"两次半规模问题并行、总代价还是 n"，从而答 <code>O(n)</code>；也常漏掉层数中的 +1 而把 T(8) 算成 24。</p>
+    </div>
+    <ul>
+      <li class="hot"><b>空间复杂度</b>：<code>S(n)</code> 只计算算法执行所需的辅助空间，不含输入数据本身占用的空间。辅助空间与 n 无关则为 <code>O(1)</code>，称原地工作（如冒泡、直接插入、堆排序）。递归算法的栈空间等于最大递归深度：线性递归为 <code>O(n)</code>，每层规模减半的递归为 <code>O(log₂n)</code>。常见考法：问某算法空间复杂度，注意"额外/辅助"二字。结论：递归深度即栈空间，输入数组不计入。<div class="ex"><p><b>例题</b>递归求 n! 的空间复杂度是多少？</p><p><b>解析</b>① 递归深度为 n，每层栈帧占常数空间；② S(n)=O(n)。</p><p><b>易错点</b>把输入数据本身占的空间算进去；S(n) 只计辅助空间。</p><p><b>拓展</b>尾递归在部分编译器下可优化为 O(1)。</p></div></li>
+      <li><b>最好、最坏、平均</b>：最坏是性能保证值；平均需假设各种输入等概率出现；最好通常无实际参考价值。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>下列递归函数求 n! 的算法，其时间复杂度与空间复杂度各是多少？<code>int f(int n) { if (n &lt;= 1) return 1; return n * f(n - 1); }</code></p><p><b>解析</b>① 递推式 <code>T(n) = T(n−1) + O(1)</code>，展开共 n 层，每层常数工作，故 <code>T(n) = O(n)</code>。② 递归深度为 n，每层占一个栈帧，栈空间 <code>S(n) = O(n)</code>。③ 注意函数没有申请数组，全部辅助空间来自递归栈。</p><p><b>易错点</b>看到"没有定义数组"就答空间复杂度 <code>O(1)</code>，忽略递归调用栈本身要占 O(n) 空间；只有当递归深度为常数时才是 <code>O(1)</code>。</p>
+    </div>
+    <div class="warn"><b>易错</b>：<code>O(1)</code> 不是"只执行 1 次"，而是"执行次数与 n 无关的常数"；<code>O</code> 只是上界，说"复杂度为 <code>O(n²)</code>"并不排除实际是 <code>O(n)</code>。</div>
+    <div class="warn"><b>易错</b>：两段并列的循环要相加取大者，只有真正嵌套才相乘；"程序"不要求有穷性，故程序不等价于算法。</div>
+    <div class="tip"><b>记忆</b>：复杂度口诀"取最高阶、去常数、对数不管底"；递归看"子问题个数 × 子问题规模"，规模减半必出 <code>log₂n</code>。</div>
+    <div class="key"><b>重点</b>：本章必考两处——逻辑结构与存储结构的对应关系（选择题）、循环/递归程序的复杂度分析（选择题必有一道，也常作为算法题的第一问）。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">2</span>线性表<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>2.1 定义与基本操作</h3>
+    <ul>
+      <li><b>线性表</b>：n 个<b>相同类型</b>数据元素的有限序列，除首元素无前驱、尾元素无后继外，每个元素有唯一前驱与后继。</li>
+      <li><b>基本操作</b>：InitList、GetElem（按位取）、LocateElem（按值查）、ListInsert、ListDelete；插入位序 <code>1≤i≤n+1</code>、删除 <code>1≤i≤n</code>。</li>
+    </ul>
+    <h3>2.2 顺序表</h3>
+    <ul>
+      <li><b>随机存取</b>：<code>LOC(aᵢ)=LOC(a₁)+(i-1)×L</code>，取第 i 个元素 <code>O(1)</code>，是顺序表唯一快于链表之处。</li>
+      <li class="hot"><b>插入删除的平均移动次数</b>：长为 n 的表在第 i 位插入需后移 <code>n-i+1</code> 个元素，等概率平均 <code>[n+(n-1)+…+0]/(n+1)=n/2</code>；删除第 i 个需前移 <code>n-i</code> 个，等概率平均 <code>(n-1)/2</code>。移动元素是顺序表插删的主要开销，故插删均 <code>O(n)</code>，而按位取 <code>O(1)</code>、按值查 <code>O(n)</code>。结论：插入平均移动 <code>n/2</code>、删除平均移动 <code>(n-1)/2</code>，选择题常直接问「平均移动多少次」。<div class="ex"><p><b>例题</b>长为 n 的顺序表等概率插入，平均要移动多少个元素？</p><p><b>解析</b>① 在第 i 位插入需后移 n−i+1 个；② 平均 = [Σ(n−i+1)]/(n+1) = n/2。</p><p><b>易错点</b>分母写成 n；插入位置共 n+1 个，应除以 n+1。</p><p><b>拓展</b>删除的平均移动次数是 (n−1)/2，比插入少一半。</p></div></li>
+      <li><b>动态分配</b>：用 <code>malloc/realloc</code> 申请与扩容，扩容时整表复制为 <code>O(n)</code>，仍是连续空间、仍支持随机存取。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>顺序表长 n=100，元素存于 <code>a[0..99]</code>。①等概率在第 i 个位置（<code>1≤i≤101</code>）插入一个元素，平均移动多少个？②等概率删除第 i 个元素（<code>1≤i≤100</code>），平均移动多少个？</p><p><b>解析</b>① 插入：i=1 时全部 100 个后移，i=101 时移动 0 个 → 总移动 <code>100+99+…+0=5050</code>，位置共 n+1=101 种，平均 <code>5050/101=50=n/2</code>。② 删除：i=1 时 99 个前移，i=100 时 0 个 → 总移动 <code>99+98+…+0=4950</code>，位置共 100 种，平均 <code>4950/100=49.5=(n-1)/2</code>。答案：50 次、49.5 次。</p><p><b>易错点</b>插入有 n+1 个合法位置、删除只有 n 个，分母不能都取 n；把插入平均写成 <code>(n+1)/2</code>、删除写成 <code>n/2</code> 都错，且删除平均是 49.5 而不是整数 50。</p>
+    </div>
+    <div class="tip"><b>记忆</b>：插删移动口诀「插入移 n-i+1、删除移 n-i；平均 n/2 与 (n-1)/2」，两式只差「插入多一个位置、多移一个」。</div>
+    <h3>2.3 单链表</h3>
+    <ul>
+      <li class="hot"><b>头插法与尾插法建表</b>：头插法每次插在头结点之后，读入序列与表中次序<b>相反</b>，可用于就地逆置；尾插法必须维护尾指针 r，否则每插一个都要遍历到表尾，退化为 <code>O(n²)</code>。头结点的作用是让空表与非空表、首结点与其它结点的插删操作统一，减少分支判断。结论：建表、逆置用头插，保序用尾插。<div class="ex"><p><b>例题</b>读入 1,2,3,4 用头插法建表，表中次序如何？</p><p><b>解析</b>① 每次都插在头结点之后；② 结果为 4,3,2,1，与读入顺序相反。</p><p><b>易错点</b>以为头插法能保持原顺序，那是尾插法的效果。</p><p><b>拓展</b>头插法可用来实现链表的就地逆置。</p></div></li>
+      <li><b>查找</b>：按位查 GetElem <code>O(n)</code>、按值查 <code>O(n)</code>，均从头遍历；链表<b>不支持折半查找</b>（无法随机定位中点）。</li>
+      <li class="hot"><b>插入与删除</b>：已知前驱 p 时，插入 <code>s</code>、删除其后继均为 <code>O(1)</code>（只改指针）；若只给结点 p，则后插容易、前插可「先插到 p 之后，再交换两结点的数据」。语句顺序必须写 <code>s-&gt;next=p-&gt;next; p-&gt;next=s;</code>，颠倒会丢失后继链。结论：单链表「删给定结点 p 本身」不能 <code>O(1)</code> 完成（删尾结点时无后继可借），必须先找前驱。<div class="ex"><p><b>例题</b>已知指针 p 指向某结点，怎样在 O(1) 时间内删除它？</p><p><b>解析</b>① 把 p-&gt;next 的数据复制到 p；② 再删除 p-&gt;next（p-&gt;next = p-&gt;next-&gt;next）。</p><p><b>易错点</b>写 p = p-&gt;next，这只是移动指针，结点并未删除。</p><p><b>拓展</b>尾结点不能用此法（无后继），只能从头找前驱。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 200" role="img" aria-label="单链表插入删除指针变化">
+        <text x="200" y="20" text-anchor="middle" class="t">插入 s 到 p 之后</text>
+        <rect x="20" y="36" width="54" height="28" rx="5" class="box"/><line x1="54" y1="36" x2="54" y2="64" class="ln"/><text x="37" y="54" text-anchor="middle" class="t">p</text>
+        <rect x="150" y="36" width="54" height="28" rx="5" class="box"/><line x1="184" y1="36" x2="184" y2="64" class="ln"/><text x="167" y="54" text-anchor="middle" class="t">s</text>
+        <rect x="300" y="36" width="54" height="28" rx="5" class="box"/><line x1="334" y1="36" x2="334" y2="64" class="ln"/><text x="317" y="54" text-anchor="middle" class="t">q</text>
+        <line x1="74" y1="50" x2="146" y2="50" class="lna" marker-end="url(#arwa)"/><text x="110" y="44" text-anchor="middle" class="s">②</text>
+        <line x1="204" y1="50" x2="296" y2="50" class="lna" marker-end="url(#arwa)"/><text x="250" y="44" text-anchor="middle" class="s">①</text>
+        <text x="200" y="88" text-anchor="middle" class="s">①先 ②后</text>
+        <text x="200" y="118" text-anchor="middle" class="t">删除 p 的后继 q</text>
+        <rect x="20" y="132" width="54" height="28" rx="5" class="box"/><line x1="54" y1="132" x2="54" y2="160" class="ln"/><text x="37" y="150" text-anchor="middle" class="t">p</text>
+        <rect x="150" y="132" width="54" height="28" rx="5" class="boxa"/><text x="177" y="150" text-anchor="middle" class="w">q</text>
+        <rect x="300" y="132" width="54" height="28" rx="5" class="box"/><line x1="334" y1="132" x2="334" y2="160" class="ln"/><text x="317" y="150" text-anchor="middle" class="t">r</text>
+        <line x1="74" y1="146" x2="146" y2="146" class="dash" marker-end="url(#arw)"/><text x="177" y="178" text-anchor="middle" class="s">free(q)</text>
+        <path d="M47 162 V188 H327 V164" class="lna" marker-end="url(#arwa)"/><text x="56" y="182" class="s">②</text>
+      </svg>
+      <div class="cap">插入顺序：① s-&gt;next=p-&gt;next ② p-&gt;next=s，<b>反了就断链</b>；删除 p-&gt;next=q-&gt;next 后 free(q)，虚线为原指针</div>
+    </div>
+      
+    <h3>2.4 双链表、循环链表与静态链表</h3>
+    <ul>
+      <li class="hot"><b>双链表</b>：结点含 <code>prior</code>、<code>next</code>，已知结点 p 时插删 <code>O(1)</code>；改指针的顺序<b>不能颠倒</b>——必须先接好新结点的两个指针、再断开 p 的旧链。因有 <code>prior</code>，删除尾结点也是 <code>O(1)</code>，这是双链表相对单链表的关键优势。结论：双链表用「空间换灵活」，常考四条语句的先后顺序。<div class="ex"><p><b>例题</b>在双链表结点 p 之后插入 s，指针操作顺序是什么？</p><p><b>解析</b>① s-&gt;next = p-&gt;next；② 若后继存在则 p-&gt;next-&gt;prior = s；③ s-&gt;prior = p；④ p-&gt;next = s。</p><p><b>易错点</b>先改 p-&gt;next 再取 p-&gt;next-&gt;prior，原后继丢失导致断链。</p><p><b>拓展</b>删除 p：p-&gt;prior-&gt;next = p-&gt;next；p-&gt;next-&gt;prior = p-&gt;prior。</p></div></li>
+      <li><b>循环链表</b>：单/双循环链表判空 <code>head-&gt;next==head</code>（双链表另加 <code>head-&gt;prior==head</code>），尾指针 r 时表头 <code>r-&gt;next</code>，表头表尾操作 <code>O(1)</code>、删尾 <code>O(1)</code>。</li>
+      <li><b>静态链表</b>：用数组加游标模拟指针，<code>next</code> 存下标、<code>-1</code>（或 <code>0</code>）表结束，适合无指针语言；插删只改游标、不移动元素。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>双链表 <code>head⇄A⇄B⇄C</code>（带头结点，p 指向 A），在 A 之后插入新结点 X。写出正确语句顺序，并说明先执行 <code>p-&gt;next=s</code> 会怎样。</p><p><b>解析</b>① <code>s-&gt;prior=p</code>；② <code>s-&gt;next=p-&gt;next</code>（先存住 B 的地址）；③ <code>p-&gt;next-&gt;prior=s</code>（让 B 回指 X）；④ <code>p-&gt;next=s</code>（最后才断 p 的旧链）。①与②可互换，③必须在②之后（要用 p-&gt;next 找 B），④必须最后。</p><p><b>易错点</b>若先执行 <code>p-&gt;next=s</code>，则 ③ 变成 <code>s-&gt;prior=s</code>、B 的地址彻底丢失，链断裂；若 p 恰是尾结点（p-&gt;next==NULL），③ 会空指针，须先判 <code>p-&gt;next!=NULL</code>。</p>
+    </div>
+    <h3>2.5 顺序表与链表对比及算法套路</h3>
+    <table>
+      <thead><tr><th>对比项</th><th>顺序表</th><th>链表</th></tr></thead>
+      <tbody>
+        <tr><td>存取方式</td><td>随机存取 <code>O(1)</code></td><td>顺序存取 <code>O(n)</code></td></tr>
+        <tr><td>插删开销</td><td><code>O(n)</code>，需移动元素</td><td><code>O(1)</code>，只改指针</td></tr>
+        <tr><td>存储密度</td><td>1，无指针开销</td><td>&lt;1，每结点多耗指针</td></tr>
+        <tr><td>空间要求</td><td>需连续空间，可能浪费</td><td>可碎片利用，容量灵活</td></tr>
+        <tr><td>适用场景</td><td>表长稳定、多查找</td><td>频繁插删、长度多变</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li class="hot"><b>就地逆置</b>：三指针 <code>pre=NULL, cur=head-&gt;next</code>，循环中先存 <code>nxt=cur-&gt;next</code>，再 <code>cur-&gt;next=pre</code>、<code>pre=cur</code>、<code>cur=nxt</code>；也可用头插法重建。时间 <code>O(n)</code>、辅助空间 <code>O(1)</code>，是链表大题的标准套路。结论：凡「不许申请新结点」的改造题，优先想三指针与头插。<div class="ex"><p><b>例题</b>用三指针法逆置单链表，循环体怎么写？</p><p><b>解析</b>① 初始 pre=NULL、cur=head-&gt;next；② 循环：nxt=cur-&gt;next; cur-&gt;next=pre; pre=cur; cur=nxt。</p><p><b>易错点</b>先执行 cur-&gt;next=pre 再取 nxt，后继指针已被覆盖，链表断裂。</p><p><b>拓展</b>也可用头插法逆置，同样 O(n) 时间、O(1) 空间。</p></div></li>
+      <li class="hot"><b>快慢指针（找中点、判环）</b>：两指针同起点，fast 每次 2 步、slow 每次 1 步。fast 到尾时 slow 即中点（偶数个结点时 slow 落在<b>后半段第一个</b>）；有环则两指针必在环内相遇。判环入口：相遇后让一指针回到头结点、两指针同速前进，再次相遇处即环入口。时间 <code>O(n)</code>、空间 <code>O(1)</code>，是近年高频考点。<div class="ex"><p><b>例题</b>如何用快慢指针判断链表有环并找出环的入口？</p><p><b>解析</b>① fast 走 2 步、slow 走 1 步，若相遇则有环；② 相遇后把其中一个指针放回头结点，两指针同速前进，再次相遇处即入口。</p><p><b>易错点</b>只判相遇不求入口；或忘记判 fast 与 fast-&gt;next 为空导致空指针。</p><p><b>拓展</b>快慢指针还可求中点：fast 到尾时 slow 恰在中点。</p></div></li>
+      <li><b>合并与定位</b>：两有序表合并用双指针取小者尾插、余段整接，<code>O(m+n)</code>；删倒数第 k 个先让快指针走 k 步；公共后缀先走长度差。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>带头结点的单链表 <code>head→1→2→3→4→5→6→7→8</code>，用快慢指针求中间结点；若把 8 改为指向 4（成环），说明如何找环入口。</p><p><b>解析</b>① slow、fast 均从首元结点 1 出发，每轮 slow 走 1 步、fast 走 2 步：第 1 轮 slow=2、fast=3；第 2 轮 slow=3、fast=5；第 3 轮 slow=4、fast=7；第 4 轮 fast 走 7→8→NULL 结束，此时 slow=5。② 故 8 个结点时 slow 停在<b>第 5 个</b>结点，即后半段首结点（n=7 时 slow=4 才是正中，因 <code>⌊(n+1)/2⌋=4</code>）。③ 成环后两指针必相遇；令一指针回头结点、两指针均每次走 1 步，再次相遇的结点即环入口（本例入口为 4）。</p><p><b>易错点</b>偶数个结点时 slow 不是正中而是后半段第一个，取「前半段末结点」需让 fast 初始先走一步；循环条件必须写成 <code>fast!=NULL &amp;&amp; fast-&gt;next!=NULL</code>，只判 fast 会空指针；头结点不计入表长，也不参与「第几个结点」的计数。</p>
+    </div>
+    <div class="key"><b>重点</b>：顺序表移动次数公式（<code>n-i+1</code> / <code>n-i</code>，平均 <code>n/2</code> / <code>(n-1)/2</code>）与链表指针操作顺序（单链表后插两条、双链表四条），是本章唯一必出分的两类。</div>
+    <div class="key"><b>重点</b>：链表大题套路四件套——就地逆置（三指针/头插）、快慢指针找中点与判环、两有序表合并、倒数第 k 个与公共后缀，均为 <code>O(n)</code> 时间、<code>O(1)</code> 空间。</div>
+    <div class="warn"><b>易错</b>：位序从 1 开始、数组下标从 0 开始，循环边界与移动个数都差 1；头结点不计入表长，判空看 <code>head-&gt;next==NULL</code>（循环链表看 <code>head-&gt;next==head</code>）。</div>
+    <div class="warn"><b>易错</b>：删除结点后要 <code>free</code> 释放；单链表删「给定结点」必须先找前驱，不能直接改指针冒充 <code>O(1)</code>；链表不能折半查找，凡说「链表可用二分」一律错。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">3</span>栈、队列和数组<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>3.1 栈及其实现</h3>
+    <ul>
+      <li class="hot"><b>栈</b>：只允许在栈顶插入和删除的线性表，后进先出（LIFO），栈底固定、栈顶浮动。<b>出栈序列数</b>：n 个不同元素依次入栈、可随时出栈，合法出栈序列共 <code>C(2n,n)/(n+1)</code> 种，n=3 为 5 种、n=4 为 14 种。<b>判合法</b>：用栈模拟，如输入 1,2,3,4 时 3,1,4,2 非法——3 出栈后栈顶是 2，1 不可能先出；n=3 时 6 种排列中 312 非法。<b>结论</b>：合法序列数只与元素个数 n 有关，与元素取值无关，看到「n 个元素出栈序列有多少种」直接代卡塔兰数。<div class="ex"><p><b>例题</b>n 个元素依次入栈，可能的出栈序列有多少种？n=3 时列举。</p><p><b>解析</b>① 数目为卡特兰数 C(2n,n)/(n+1)；② n=3 时为 5 种：123、132、213、231、321。</p><p><b>易错点</b>以为任意排列都能得到，312 就不是合法出栈序列。</p><p><b>拓展</b>判合法性：按序列模拟入栈，需要时弹栈，能走完即合法。</p></div></li>
+      <li><b>顺序栈</b>：<code>top</code> 指向栈顶元素时栈空 <code>top==-1</code>、栈满 <code>top==MaxSize-1</code>；<code>top</code> 指向后一位置则整体差 1（空 0、满 MaxSize）。</li>
+      <li><b>共享栈</b>：两栈共用一数组、栈底分设两端，<code>top1+1==top2</code> 即满；<b>链栈</b>以表头为栈顶，插删 <code>O(1)</code>，无栈满。</li>
+    </ul>
+    <h3>3.2 栈的应用</h3>
+    <ul>
+      <li><b>括号匹配</b>：遇左括号入栈，遇右括号则弹栈比较，栈空即不匹配；扫描结束栈空才合法，栈容量只需等于最大嵌套深度。</li>
+      <li class="hot"><b>中缀转后缀</b>：操作数直接输出；运算符入栈前与栈顶比较，<em>优先级高于栈顶才入栈，否则弹栈输出直到栈顶优先级更低</em>。<b>括号规则</b>：左括号入栈（栈内优先级最低、栈外最高），遇右括号弹出并输出到左括号为止，左括号只弹出不输出。<b>同级处理</b>：同级运算符按左结合，先弹出栈顶再入栈。<b>收尾</b>：扫描完后把栈中剩余运算符依次弹出。<b>结论</b>：后缀表达式无括号、无优先级，运算次序唯一，是计算机求值的标准形式。<div class="ex"><p><b>例题</b>A+B*C−D/E 的后缀表达式是什么？</p><p><b>解析</b>① 先算乘除：B*C → BC*，D/E → DE/；② 再按加减顺序拼接；③ 结果 ABC*+DE/−。</p><p><b>易错点</b>同级运算符忘了左结合，或括号内的优先级处理错。</p><p><b>拓展</b>后缀求值也用栈：遇操作数入栈，遇运算符弹出两个数运算后入栈。</p></div></li>
+      <li><b>后缀求值</b>：遇操作数入栈；遇运算符弹出两个，<em>先弹出者为右操作数</em>，计算后结果回栈，最终栈顶即表达式的值，时间 <code>O(n)</code>。</li>
+      <li><b>递归与进制转换</b>：系统栈保存返回地址与局部变量，递归深度即栈深；十进制转其它进制用除基取余，余数入栈后逆序输出即得结果。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>中缀表达式 <code>A+B*(C-D)-E/F</code>，其中 A=6、B=4、C=3、D=1、E=8、F=2。① 求其后缀表达式；② 用栈求该后缀表达式的值。</p><p><b>解析</b>① 转后缀：A→输出 A；<code>+</code> 栈空入栈；B→输出；<code>*</code> 高于栈顶 <code>+</code>，入栈；<code>(</code> 入栈；C→输出；<code>-</code> 高于栈内 <code>(</code>，入栈；D→输出；<code>)</code> 弹出输出 <code>-</code> 并弹掉 <code>(</code>；再遇 <code>-</code>：栈顶 <code>*</code> 优先，弹出输出 <code>*</code>，栈顶 <code>+</code> 与 <code>-</code> 同级，弹出输出 <code>+</code>，栈空后 <code>-</code> 入栈；E→输出；<code>/</code> 高于栈顶 <code>-</code>，入栈；F→输出；结束弹出 <code>/</code>、<code>-</code>。得后缀 <code>A B C D - * + E F / -</code>。② 求值：压 A(6)［6］→ B(4)［6,4］→ C(3)［6,4,3］→ D(1)［6,4,3,1］→ <code>-</code>：3-1=2［6,4,2］→ <code>*</code>：4*2=8［6,8］→ <code>+</code>：6+8=14［14］→ E(8)［14,8］→ F(2)［14,8,2］→ <code>/</code>：8/2=4［14,4］→ <code>-</code>：14-4=10［10］。答案：后缀为 <code>A B C D - * + E F / -</code>，值为 <b>10</b>（校验 6+4×(3-1)-8/2=10）。</p><p><b>易错点</b>遇第二个 <code>-</code> 时栈顶 <code>+</code> 与其同级必须弹出（左结合）；后缀求值时先弹出的是右操作数，必须算 3-1 而不是 1-3；左括号只弹出不输出。</p>
+    </div>
+    <div class="fig"><svg class="dg" viewBox="0 0 400 150" role="img" aria-label="中缀表达式转后缀表达式栈流程"><text class="x" x="200" y="17" text-anchor="middle">中缀转后缀：操作数直接输出，运算符借助栈暂存</text><rect class="box" x="20" y="35" width="92" height="28" rx="5"/><text class="t" x="66" y="54" text-anchor="middle">扫描 A+B*C</text><line class="lna" x1="112" y1="49" x2="160" y2="49" marker-end="url(#arwa)"/><rect class="boxa" x="168" y="35" width="80" height="28" rx="5"/><text class="w" x="208" y="54" text-anchor="middle">输出 ABC</text><line class="lna" x1="248" y1="49" x2="296" y2="49" marker-end="url(#arwa)"/><rect class="boxw" x="304" y="35" width="76" height="28" rx="5"/><text class="t" x="342" y="54" text-anchor="middle">栈：* +</text><text class="s" x="200" y="88" text-anchor="middle">遇低优先级运算符：先弹出栈顶，再入栈</text><rect class="box" x="54" y="103" width="120" height="26" rx="5"/><text class="t" x="114" y="121" text-anchor="middle">结束：弹出栈</text><line class="lna" x1="174" y1="116" x2="226" y2="116" marker-end="url(#arwa)"/><rect class="boxa" x="234" y="103" width="112" height="26" rx="5"/><text class="w" x="290" y="121" text-anchor="middle">ABC*+</text></svg><div class="cap">后缀表达式不含括号，运算次序由序列本身确定；同级运算符按左结合，扫描结束必须清空运算符栈。</div></div>
+    <h3>3.3 队列</h3>
+    <ul>
+      <li><b>队列</b>：只允许队尾插入、队头删除的线性表，先进先出（FIFO）；典型应用为层次遍历、缓冲区、CPU 进程调度。</li>
+      <li class="hot"><b>循环队列</b>：顺序队列表头表尾相连，避免「假溢出」。<b>牺牲一个单元法</b>：空 <code>front==rear</code>，满 <code>(rear+1)%MaxSize==front</code>，元素个数 <code>(rear-front+MaxSize)%MaxSize</code>，最多存 <code>MaxSize-1</code> 个。<b>rear 含义要确认</b>：若 <code>rear</code> 指向队尾元素本身，则入队先移指针后写入，个数公式变为 <code>(rear-front+1+MaxSize)%MaxSize</code>。<b>考法</b>：给 MaxSize、front、rear 求元素个数、还可入队几个、判断是否队满，或问出队若干次后指针值。<b>结论</b>：判空判满口诀「空则同、满则差一」，不牺牲单元时必须借助 <code>size</code> 计数或 <code>tag</code> 标记区分。<div class="ex"><p><b>例题</b>容量 M=10、front=6、rear=3，队列中有几个元素？</p><p><b>解析</b>① 元素个数 = (rear−front+M) % M；② = (3−6+10) % 10 = 7 个。</p><p><b>易错点</b>直接算 rear−front 得负数；牺牲一个单元法最多只能存 M−1 个。</p><p><b>拓展</b>判满：(rear+1)%M == front；判空：front == rear。</p></div></li>
+      <li><b>链队列</b>：带头结点，队头在 <code>front-&gt;next</code>、<code>rear</code> 指队尾结点；出队后若变空须令 <code>rear==front</code>。</li>
+      <li class="hot"><b>双端队列</b>：两端都可插入和删除；<em>输入受限</em>指只允许一端插入（删除可两端），<em>输出受限</em>指只允许一端删除（插入可两端）。<b>判合法性</b>：任何时刻可在已插入元素中任选允许的一端取出，逐位模拟尝试即可。<b>例</b>：输出受限（只允许在一端删除）时输入 1,2,3,4，<code>4,1,2,3</code> 合法（1 前插、2 和 3 后插、4 前插，删除端次序恰为 4,1,2,3）；<code>4,2,3,1</code> 非法（要 4 先出，其余元素只能是「前端插入者逆序 + 后端插入者正序」，拼不出 2,3,1）。<b>结论</b>：双端队列能产生的序列比栈多、比全排列少，做题先写清「哪端可删、哪端可插」。<div class="ex"><p><b>例题</b>输入受限与输出受限分别指什么？</p><p><b>解析</b>① 输入受限：只允许一端插入，两端都可删除；② 输出受限：只允许一端删除，两端都可插入。</p><p><b>易错点</b>把两者的受限端记反，判断出栈序列时结论就错。</p><p><b>拓展</b>栈是只允许一端插删的双端队列特例。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 180" role="img" aria-label="循环队列">
+        <text x="200" y="16" text-anchor="middle" class="t">front=2、rear=6 的循环队列</text>
+        <rect x="20" y="40" width="44" height="34" class="box"/><text x="42" y="62" text-anchor="middle" class="x">0</text>
+        <rect x="64" y="40" width="44" height="34" class="box"/><text x="86" y="62" text-anchor="middle" class="x">1</text>
+        <rect x="108" y="40" width="44" height="34" class="boxa"/><text x="130" y="62" text-anchor="middle" class="w">2</text>
+        <rect x="152" y="40" width="44" height="34" class="boxa"/><text x="174" y="62" text-anchor="middle" class="w">3</text>
+        <rect x="196" y="40" width="44" height="34" class="boxa"/><text x="218" y="62" text-anchor="middle" class="w">4</text>
+        <rect x="240" y="40" width="44" height="34" class="boxa"/><text x="262" y="62" text-anchor="middle" class="w">5</text>
+        <rect x="284" y="40" width="44" height="34" class="box"/><text x="306" y="62" text-anchor="middle" class="x">6</text>
+        <rect x="328" y="40" width="44" height="34" class="box"/><text x="350" y="62" text-anchor="middle" class="x">7</text>
+        <line x1="130" y1="86" x2="130" y2="100" class="lna" marker-end="url(#arwa)"/><text x="130" y="116" text-anchor="middle" class="s">front</text>
+        <line x1="306" y1="86" x2="306" y2="100" class="lna" marker-end="url(#arwa)"/><text x="306" y="116" text-anchor="middle" class="s">rear</text>
+        <text x="200" y="142" text-anchor="middle" class="x">元素个数 = (rear − front + MaxSize) % MaxSize = 4</text>
+        <text x="200" y="164" text-anchor="middle" class="s">牺牲一个单元判满：front == (rear+1)%MaxSize</text>
+      </svg>
+      <div class="cap">循环队列用<b>取模</b>把线性数组首尾接起来；判满有两种套路——牺牲一个单元（front==(rear+1)%m）或另设计数器，<b>元素个数恒为 (rear−front+m)%m</b>。</div>
+    </div>
+      
+    <div class="ex">
+      <p><b>例题</b>循环队列存于 <code>A[0..9]</code>（MaxSize=10），采用牺牲一个单元法，<code>front</code> 指向队头元素、<code>rear</code> 指向队尾元素的后一位置。当前 <code>front=5</code>、<code>rear=2</code>。① 求队列中元素个数；② 还能入队几个元素；③ 再连续入队 2 个元素后是否队满？④ 在 ③ 的基础上再出队 3 个元素，求 front 与元素个数。</p><p><b>解析</b>① 个数 =(rear-front+MaxSize)%MaxSize =(2-5+10)%10 = 7，校验：空位 =(front-rear-1+MaxSize)%MaxSize =(5-2-1)=2，7+2=9=MaxSize-1，正确。② 还能入队 <code>9-7=2</code> 个。③ 入队 2 个后 <code>rear=(2+2)%10=4</code>，个数 =(4-5+10)%10=9=MaxSize-1，此时 <code>(rear+1)%10=5==front</code>，<b>已队满</b>，第 10 个单元永远空着。④ 出队 3 个：<code>front=(5+3)%10=8</code>，个数 =(4-8+10)%10=6。答案：①7 ②2 ③队满 ④front=8、个数 6。</p><p><b>易错点</b>模运算的模数是 MaxSize=10 而不是 9；个数公式是 rear 减 front（算错符号会得 -3）；队满时元素个数是 9 而非 10；③ 之后入队会覆盖未读元素。</p>
+    </div>
+    <h3>3.4 特殊矩阵与稀疏矩阵</h3>
+    <ul>
+      <li class="hot"><b>对称矩阵压缩</b>：n 阶对称矩阵满足 <code>a[i][j]=a[j][i]</code>，只需存下三角（含对角线）共 <code>n(n+1)/2</code> 个元素，空间节省近一半。<b>下标公式</b>（按行优先、i、j 从 1 起、一维数组下标从 0 起）：i≥j 时 <code>k=i(i-1)/2+j-1</code>；i&lt;j 时先交换 i、j 再套用同一公式。<b>考法</b>：给 (i,j) 求 k、给 k 反求 (i,j)、问压缩后占用多少单元或与按行优先整存差多少。<b>结论</b>：公式的「前 i-1 行共 <code>i(i-1)/2</code> 个 + 本行第 j 个」必须理解，才能应对列优先、下标从 1 起等变形。<div class="ex"><p><b>例题</b>10 阶对称矩阵按下三角压缩存储需多少单元？a[6][8] 存到哪？</p><p><b>解析</b>① 单元数 n(n+1)/2 = 55；② a[6][8] = a[8][6]；③ 下标 = 8×7/2+6 = 34（从 0 起）。</p><p><b>易错点</b>上三角元素忘记先转成下三角；下标从 0 还是 1 起算没看清题意。</p><p><b>拓展</b>三角矩阵还要额外存 1 个常数 c。</p></div></li>
+      <li><b>三角/三对角矩阵</b>：三角容量 <code>n(n+1)/2+1</code>；三对角 <code>|i-j|≤1</code> 处 <code>3n-2</code> 个，<code>k=2i+j-3</code>=<code>3(i-1)-1</code>+<code>j-i+2</code>。</li>
+      <li><b>稀疏矩阵</b>：非零元远少于总元素，三元组 <code>(行,列,值)</code> 按行优先存储；<b>快速转置</b>统计列位置一遍落位，<code>O(nnz+t)</code> 优于 <code>O(nnz·t)</code>。</li>
+    </ul>
+    <div class="ex">
+      <p><b>例题</b>10 阶对称矩阵 A 的元素 <code>a[i][j]</code>（1≤i,j≤10）按行优先顺序存入一维数组 <code>B[0..]</code>，只存下三角（含对角线）。① B 至少需要多少个单元？② 求 <code>a[6][4]</code>、<code>a[4][6]</code> 在 B 中的下标。</p><p><b>解析</b>① 下三角元素个数 =n(n+1)/2 =10×11/2 =55，故 B 需 55 个单元（下标 0~54）。② <code>a[6][4]</code>：i=6≥j=4，前 5 行共 1+2+3+4+5=15 个，本行第 4 个，k =15+(4-1)=18，即 <code>B[18]</code>（公式 6×5/2+4-1=18）。<code>a[4][6]</code>：i&lt;j 属上三角，由对称性 <code>a[4][6]=a[6][4]</code>，下标同为 18。答案：①55 个 ②均为 <code>B[18]</code>。</p><p><b>易错点</b>公式 <code>i(i-1)/2+j-1</code> 中最后的「-1」漏写会得到 19（位序与下标混用）；上三角元素忘记用对称性交换 i、j 而直接代入公式会得错误值 4×3/2+6-1=11；若改成列优先存下三角，<code>a[6][4]</code> 的前 3 列为 10+9+8=27 个、本列第 6-4+1=3 个，下标变为 27+2=29。</p>
+    </div>
+    <table>
+      <thead><tr><th>方案</th><th>队空条件</th><th>队满条件</th><th>可用空间</th></tr></thead>
+      <tbody>
+        <tr><td>牺牲一个单元</td><td>front==rear</td><td>(rear+1)%MaxSize==front</td><td>MaxSize-1</td></tr>
+        <tr><td>size 计数</td><td>size==0</td><td>size==MaxSize</td><td>MaxSize</td></tr>
+        <tr><td>tag 标记</td><td>front==rear 且 tag==0</td><td>front==rear 且 tag==1</td><td>MaxSize</td></tr>
+      </tbody>
+    </table>
+    <div class="key"><b>重点</b>：本章四类必考计算——合法出栈序列（卡塔兰数）、中缀转后缀与后缀求值、循环队列判空判满与元素个数、压缩矩阵下标换算，必须全部能手算并写全中间量。</div>
+    <div class="key"><b>重点</b>：压缩存储题的通用三步：① 确认下标起点（0 起还是 1 起）与行/列优先；② 数清前面整行（整块）的元素总数；③ 加块内偏移，最后统一换成 0 起下标。</div>
+    <div class="warn"><b>易错</b>：中缀转后缀时左括号「栈内优先级最低、栈外最高」，同级运算符按左结合先弹出；后缀求值先出栈的是右操作数，减法除法极易算反。</div>
+    <div class="warn"><b>易错</b>：循环队列牺牲单元法最多只存 MaxSize-1 个，不能写 MaxSize；共享栈是「栈顶指针相遇即满」，不是相等。</div>
+    <div class="tip"><b>记忆</b>：循环队列「空则同、满则差一」；对称矩阵「前 i-1 行共 i(i-1)/2 个，再加本行第 j 个，最后减 1」；三对角「3n-2 个，k=2i+j-3」。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">4</span>串<span class="lv">★★</span><span class="cnt">13 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>4.1 概念与存储结构</h3>
+    <ul>
+      <li><b>串</b>：零个或多个字符组成的有限序列，属线性表；<em>空串长度 0，空格串长度等于空格个数</em>，二者不同。</li>
+      <li><b>子串与位置</b>：主串中任意<b>连续</b>字符构成的序列为子串，其位置用首字符在主串中的位序（从 1 起）表示。</li>
+      <li><b>子串个数</b>：长度为 n 的串共有 <code>n(n+1)/2+1</code> 个子串（含空串），如 "abc" 共 7 个。</li>
+      <li><b>存储结构</b>：定长顺序存储（0 号单元存长度或末尾加 <code>'\0'</code>，超长截断）、堆分配存储（<code>malloc</code> 动态申请）、块链存储（密度低）。</li>
+      <li><b>基本操作</b>：赋值、复制、判空、比较（字典序，长度相同逐字符比）、串联接、求子串、定位 <code>Index(S,T,pos)</code>，定位即模式匹配。</li>
+    </ul>
+    <h3>4.2 朴素模式匹配（BF）</h3>
+    <ul>
+      <li><b>算法过程</b>：主串指针 i、模式串指针 j 均从 1 起逐位比较；失配时 <code>i=i-j+2</code>、<code>j=1</code>，整趟重比。</li>
+      <li><b>最坏比较次数</b>：共 <code>n-m+1</code> 趟、每趟最多 m 次，即 <code>(n-m+1)m</code>，时间复杂度 <code>O(nm)</code>；最好 <code>n</code> 次。</li>
+    </ul>
+    <div class="fig"><svg class="dg" viewBox="0 0 400 142" role="img" aria-label="BF与KMP失配移动对比"><text class="x" x="200" y="17" text-anchor="middle">失配后如何移动：BF 回退主串，KMP 只移动模式串</text><text class="t" x="18" y="50">BF</text><rect class="box" x="70" y="34" width="120" height="26" rx="4"/><text class="t" x="130" y="52" text-anchor="middle">主串 i 回退</text><line class="lna" x1="190" y1="47" x2="242" y2="47" marker-end="url(#arwa)"/><rect class="boxw" x="250" y="34" width="126" height="26" rx="4"/><text class="t" x="313" y="52" text-anchor="middle">从下一位重比</text><text class="t" x="18" y="100">KMP</text><rect class="boxa" x="70" y="84" width="120" height="26" rx="4"/><text class="w" x="130" y="102" text-anchor="middle">i 不回退</text><line class="lna" x1="190" y1="97" x2="242" y2="97" marker-end="url(#arwa)"/><rect class="box" x="250" y="84" width="126" height="26" rx="4"/><text class="t" x="313" y="102" text-anchor="middle">j=next[j] 右滑</text><text class="s" x="200" y="130" text-anchor="middle">BF 最坏 O(nm)，KMP 预处理后匹配 O(n+m)</text></svg><div class="cap">KMP 利用模式串已匹配前缀的相等前后缀，避免重复比较；主串指针始终向右。</div></div>
+    <h3>4.3 KMP 算法</h3>
+    <ul>
+      <li class="hot"><b>KMP 思想</b>：朴素算法的浪费在于失配后主串指针回退、已匹配的前缀信息被丢弃；KMP 用模式串<b>自身的最长相等前后缀</b>信息决定回退位置，使<em>主串指针 i 永不回退</em>，只让模式串右滑。做法是预处理出 next 数组，失配时令 <code>j=next[j]</code>，i 不动。因此 KMP 的比较次数只与 n、m 有关，与主串内容基本无关。<div class="ex"><p><b>例题</b>朴素匹配与 KMP 的核心区别是什么？</p><p><b>解析</b>① 朴素：失配后主串指针回退到 i−j+2；② KMP：主串指针不回退，模式串按 next 右滑继续比。</p><p><b>易错点</b>说 KMP 主串指针也要回退——那正是 KMP 要消除的浪费。</p><p><b>拓展</b>KMP 利用模式串自身的前后缀信息，避免重复比较已匹配部分。</p></div></li>
+      <li class="hot"><b>next[j] 定义</b>：<code>next[j]</code> = 模式串前 <code>j-1</code> 个字符中<b>最长相等前后缀</b>（真前缀=真后缀）的长度 +1，规定 <code>next[1]=0</code>；它表示失配于第 j 位时，模式串应从哪一位继续与主串当前字符比较。手算三步：取前 j-1 个字符 → 找最长相等前后缀长度 L → <code>next[j]=L+1</code>。另有 <code>next[j]=k</code> 说明 <code>p[1..k-1]=p[j-k+1..j-1]</code>。<div class="ex"><p><b>例题</b>模式串 ababaa 的 next 数组（下标从 1 起）是什么？</p><p><b>解析</b>① next[1]=0；② next[2..6] = 0,1,1,2,3,4。</p><p><b>易错点</b>把 next 定义成「最长相等前后缀长度」，与题给的下标口径不一致。</p><p><b>拓展</b>不同教材 next 从 0 或从 1 开始，做题先确认下标起点。</p></div></li>
+      <li><b>失配移动规则</b>：失配于 j 位右移 <code>j-next[j]</code>、j 回 <code>next[j]</code>，i 不动；<code>next[j]=0</code> 则 i 后移 1、j 置 1，起始位 <code>i-m+1</code>。</li>
+      <li class="hot"><b>nextval[j] 求法</b>：next 仍有冗余——若回退到的字符与失配字符相同，则必然再次失配。<code>nextval</code> 规定：<code>nextval[1]=0</code>；若 <code>p[j]==p[next[j]]</code>，则 <code>nextval[j]=nextval[next[j]]</code>（一路继承，跳过必然失配的比较）；否则 <code>nextval[j]=next[j]</code>。注意递推时取的是 <b>nextval[next[j]]</b> 而非 next[next[j]]。考试中模式串字符重复越多，nextval 与 next 差别越大。<div class="ex"><p><b>例题</b>为什么需要 nextval？举一个例子。</p><p><b>解析</b>① 若回退到的字符与失配字符相同，回退后必然再次失配；② 如 aaaab，next 回退仍遇 a，nextval 直接跳到更前的位置。</p><p><b>易错点</b>以为 nextval 与 next 完全等价，只是写法不同。</p><p><b>拓展</b>nextval 省掉无效比较，实际运行更快。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 190" role="img" aria-label="KMP next 数组">
+        <text x="200" y="16" text-anchor="middle" class="t">模式串 ababaa 的 next 值</text>
+        <text x="14" y="46" class="s">j</text><text x="14" y="76" class="s">字符</text><text x="8" y="106" class="s">next</text>
+        <rect x="44" y="30" width="48" height="22" class="boxw"/><text x="68" y="45" text-anchor="middle" class="x">1</text>
+        <rect x="92" y="30" width="48" height="22" class="boxw"/><text x="116" y="45" text-anchor="middle" class="x">2</text>
+        <rect x="140" y="30" width="48" height="22" class="boxw"/><text x="164" y="45" text-anchor="middle" class="x">3</text>
+        <rect x="188" y="30" width="48" height="22" class="boxw"/><text x="212" y="45" text-anchor="middle" class="x">4</text>
+        <rect x="236" y="30" width="48" height="22" class="boxw"/><text x="260" y="45" text-anchor="middle" class="x">5</text>
+        <rect x="284" y="30" width="48" height="22" class="boxw"/><text x="308" y="45" text-anchor="middle" class="x">6</text>
+        <rect x="44" y="60" width="48" height="22" class="box"/><text x="68" y="75" text-anchor="middle" class="x">a</text>
+        <rect x="92" y="60" width="48" height="22" class="box"/><text x="116" y="75" text-anchor="middle" class="x">b</text>
+        <rect x="140" y="60" width="48" height="22" class="box"/><text x="164" y="75" text-anchor="middle" class="x">a</text>
+        <rect x="188" y="60" width="48" height="22" class="box"/><text x="212" y="75" text-anchor="middle" class="x">b</text>
+        <rect x="236" y="60" width="48" height="22" class="box"/><text x="260" y="75" text-anchor="middle" class="x">a</text>
+        <rect x="284" y="60" width="48" height="22" class="box"/><text x="308" y="75" text-anchor="middle" class="x">a</text>
+        <rect x="44" y="90" width="48" height="22" class="boxa"/><text x="68" y="105" text-anchor="middle" class="w">0</text>
+        <rect x="92" y="90" width="48" height="22" class="boxa"/><text x="116" y="105" text-anchor="middle" class="w">1</text>
+        <rect x="140" y="90" width="48" height="22" class="boxa"/><text x="164" y="105" text-anchor="middle" class="w">1</text>
+        <rect x="188" y="90" width="48" height="22" class="boxa"/><text x="212" y="105" text-anchor="middle" class="w">2</text>
+        <rect x="236" y="90" width="48" height="22" class="boxa"/><text x="260" y="105" text-anchor="middle" class="w">3</text>
+        <rect x="284" y="90" width="48" height="22" class="boxa"/><text x="308" y="105" text-anchor="middle" class="w">4</text>
+        <text x="200" y="136" text-anchor="middle" class="s">失配时主串指针 i 不动，模式串滑到 j = next[j]</text>
+        <text x="200" y="158" text-anchor="middle" class="s">next[j] = 前 j−1 个字符的最长相等前后缀长度 + 1</text>
+        <text x="200" y="178" text-anchor="middle" class="s">求 next 与匹配都是 O(n+m)，比 BF 的 O(nm) 快</text>
+      </svg>
+      <div class="cap">next[j] 的含义是<b>失配后模式串该跳到哪一位</b>，主串指针不回退；手算口诀：看前 j−1 位的最长相等前后缀长度再加 1。</div>
+    </div>
+      
+    <div class="ex">
+      <p><b>例题</b>模式串 <code>p = "ababaa"</code>（位序 1~6），求 next 与 nextval 数组。</p><p><b>解析</b>① next[1]=0；j=2 前 1 位 "a" 无真前后缀，L=0 → 1；j=3 前 2 位 "ab" 无 → 1；j=4 前 3 位 "aba"，最长相等前后缀 "a" L=1 → 2；j=5 前 4 位 "abab"，"ab" L=2 → 3；j=6 前 5 位 "ababa"，"aba" L=3 → 4。得 <code>next = 0 1 1 2 3 4</code>。 ② nextval[1]=0；j=2: p2='b'≠p[1]='a' → 1；j=3: p3='a'=p[next[3]]=p1='a' → nextval[3]=nextval[1]=0；j=4: p4='b'=p[next[4]]=p2='b' → nextval[4]=nextval[2]=1；j=5: p5='a'=p[next[5]]=p3='a' → nextval[5]=nextval[3]=0；j=6: p6='a'≠p[next[6]]=p4='b' → nextval[6]=next[6]=4。得 <code>nextval = 0 1 0 1 0 4</code>。 ③ 失配于 j=5 时模式串右移 j-nextval[j]=5-0=5 位，j=6 失配时右移 6-4=2 位。</p><p><b>易错点</b>一是 j=6 忘了「长度 +1」，把 next[6] 写成 3；二是 j=4 用 nextval[next[4]]=nextval[2]=1，误写成 next[next[4]]=next[2]=1 后继续混用 next 与 nextval 两套值。</p>
+    </div>
+    <ul>
+      <li class="hot"><b>KMP 复杂度</b>：求 next 数组 <code>O(m)</code>，匹配过程 <code>O(n)</code>（i 只增不减、j 的回退总量不超过其增长量，均摊分析），总时间 <code>O(n+m)</code>，空间 <code>O(m)</code>。这是 KMP 优于朴素 <code>O(nm)</code> 的关键结论，选择题常直接考复杂度与「i 是否回退」。<div class="ex"><p><b>例题</b>KMP 的时间复杂度是多少？为什么能达到 O(n+m)？</p><p><b>解析</b>① 求 next 数组 O(m)，匹配 O(n)；② 主串指针 i 只增不减，j 的回退总量不超过 i 的增量。</p><p><b>易错点</b>答成 O(n·m)，那是朴素匹配的复杂度。</p><p><b>拓展</b>空间复杂度 O(m)，用于存放 next 数组。</p></div></li>
+      <li class="hot"><b>next 数组的近年应用</b>：串的<b>最小循环节</b>长度 <code>= n - next[n]</code>，且当 <code>n % (n-next[n]) == 0</code> 时该串由长度 <code>n-next[n]</code> 的循环节重复 <code>n/(n-next[n])</code> 次构成（否则需在末尾补字符才成周期串）。此类题 2020 年后频繁出现，实质仍是 next 手算。<div class="ex"><p><b>例题</b>串 s 长度为 n，怎样求最小循环节长度和循环次数？</p><p><b>解析</b>① 最小循环节长度 = n − next[n]；② 若 n % (n−next[n]) == 0，循环次数 = n/(n−next[n])。</p><p><b>易错点</b>忘记先判断能否整除，直接给出循环次数。</p><p><b>拓展</b>这是 408 近年新增考法，常与字符串匹配综合出题。</p></div></li>
+    </ul>
+    <table>
+      <thead><tr><th>算法</th><th>主串指针 i</th><th>失配时模式串</th><th>最坏比较次数</th><th>时间复杂度</th></tr></thead>
+      <tbody>
+        <tr><td>朴素 BF</td><td>回退到 <code>i-j+2</code></td><td>j 回到 1</td><td><code>(n-m+1)m</code></td><td><code>O(nm)</code></td></tr>
+        <tr><td>KMP</td><td>从不回退</td><td>j 回到 <code>next[j]</code></td><td><code>O(n)</code>（加求 next 的 O(m)）</td><td><code>O(n+m)</code></td></tr>
+      </tbody>
+    </table>
+    <div class="ex">
+      <p><b>例题</b>主串 <code>S = "aaaaaaaaab"</code>（n=10，仅第 10 位为 b），模式串 <code>T = "aaab"</code>（m=4）。分别求朴素匹配与 KMP（用 nextval）成功时的字符比较次数。</p><p><b>解析</b>① 朴素：每趟前 3 位必匹配、第 4 位必失配，共 <code>n-m+1=7</code> 趟，每趟 4 次比较，总 <code>7×4=28</code> 次（正好达到最坏值 <code>(n-m+1)m</code>）。 ② T 的 next = 0 1 2 3（前 3 位都是 a，前后缀逐位相等），nextval = 0 0 0 3（p2=p1、p3=p2 故一路继承 0；p4='b'≠p[3]='a' 故取 next[4]=3）。 ③ KMP：i=1,2,3 依次匹配成功（3 次）；i=4 时 T4='b' 与 S4='a' 失配 → j=nextval[4]=3、i 不回退。此后 i=4~9 每个字符都是「先与 T4 比失败 1 次、再与 T3 比成功 1 次」共 2 次，计 <code>6×2=12</code> 次（含 i=4 的失配）；i=10 时 S10='b'=T4 成功 1 次，j=5>m 结束。 ④ 总比较次数 <code>3+12+1=16</code> 次，远少于朴素的 28 次。</p><p><b>易错点</b>数次数时把 i=4 的首次失配既算进「3 次成功之后」又重复算进「6 个字符各 2 次」里，多出 1 次；另外误以为 nextval[4]=0（其实第 4 位与回退位字符不同，应取 next[4]=3），从而算错 j 的回退路径。</p>
+    </div>
+    <div class="key"><b>重点</b>：本章几乎只考两件事——<b>手算 next / nextval</b>（给定位序从 1 起，next[1]=0）与<b>两种算法的最坏比较次数、时间复杂度对比</b>；nextval 是 next 的优化版，答案要写全两组数。</div>
+    <div class="warn"><b>易错</b>：<code>next[1]=0</code> 是「位序从 1 起」的教材约定；若题目数组下标从 0 起（存 p[0..m-1]），则 <code>next[0]=-1</code>、整体左移一位，数值全部不同。答题前必须先看清数组下标起点，否则整题作废。</div>
+    <div class="tip"><b>记忆</b>：next 手算「取前 j-1 位、找最长相等前后缀、长度加 1」；nextval「字符相同抄前缀的 nextval，不同就照抄 next」；失配移动「右移 j-next[j] 位，主串指针不动」。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">5</span>树与二叉树<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>5.1 基本性质与存储</h3>
+    <ul>
+      <li><b>树的术语</b>：结点的度是孩子个数，树的度为各结点度的最大值；层次从根为第 1 层起算，高度（深度）即最大层次，路径是自上而下的结点序列。</li>
+      <li><b>结点数与度的关系</b>：总结点数 = 所有结点度数之和 + 1 = 边数 + 1；任意<b>非空二叉树</b>恒有 <code>n₀ = n₂ + 1</code>，与 <code>n₁</code> 无关。</li>
+      <li class="hot"><b>二叉树五大性质</b>：第 i 层最多 <code>2^(i-1)</code> 个结点；高度 h 的二叉树最多 <code>2^h-1</code> 个结点、最少 h 个；n 个结点的高度最小为 <code>⌈log₂(n+1)⌉</code>；任何非空二叉树恒有 <code>n₀=n₂+1</code>。常见考法：给出 <code>n₀</code>、<code>n₁</code>、<code>n₂</code> 中的两个求第三个，或给出总结点数与度分布列方程求各度结点数。结论：把「结点数 = 边数 + 1 = 度数之和 + 1」与 <code>n₀=n₂+1</code> 联立，任何性质题都可解，不必死记公式。<div class="ex"><p><b>例题</b>一棵二叉树有 20 个叶结点、30 个度为 1 的结点，求总结点数。</p><p><b>解析</b>① 由 n₀=n₂+1 得 n₂=20−1=19；② n=n₀+n₁+n₂=20+30+19=69。</p><p><b>易错点</b>把「度为 1 的结点」硬套进 n₀=n₂+1，其实该式与 n₁ 无关。</p><p><b>拓展</b>改问边数 = n−1 = 68；或给 n 与 n₁ 反求 n₀。</p></div></li>
+      <li class="hot"><b>完全二叉树性质</b>：n 个结点时高度 <code>h = ⌊log₂n⌋ + 1</code>；按层序从 1 编号，结点 i 的左孩子为 <code>2i</code>、右孩子为 <code>2i+1</code>、双亲为 <code>⌊i/2⌋</code>，<code>i &gt; ⌊n/2⌋</code> 的结点均为叶子，叶子数 <code>= n - ⌊n/2⌋</code>。度为 1 的结点至多 1 个：n 为偶数时 <code>n₁=1</code>，n 为奇数时 <code>n₁=0</code>。考法：给 n 求 <code>n₀</code>、<code>n₁</code>、<code>n₂</code> 与高度，或反向由 <code>n₀</code> 求 n、求某结点的双亲或孩子编号。结论：先由 n 的奇偶定出 <code>n₁</code>，再用 <code>n₀+n₁+n₂=n</code> 与 <code>n₀=n₂+1</code> 联立，一步到位。<div class="ex"><p><b>例题</b>1000 个结点的完全二叉树，求叶子数、n₁ 与高度。</p><p><b>解析</b>① n 为偶数故 n₁=1；② 由 n₀=n₂+1 与 n₀+n₁+n₂=n 得 n₀=500；③ h=⌊log₂1000⌋+1=10。</p><p><b>易错点</b>n 为偶数时 n₁=1 不是 0；高度别死记 ⌈log₂n⌉。</p><p><b>拓展</b>用编号法可秒求结点 i 所在层数 = ⌊log₂i⌋+1。</p></div></li>
+      <li><b>存储结构</b>：顺序存储只适合完全二叉树；二叉链表 n 个结点有 <code>2n</code> 个指针域、<code>n+1</code> 个空链域（线索化来源），三叉链表多 <code>parent</code> 域。</li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 295" role="img" aria-label="完全二叉树与数组的对应">
+        <text x="110" y="24" text-anchor="middle" class="s">左孩子=2i</text><text x="290" y="24" text-anchor="middle" class="s">右孩子=2i+1</text>
+        <line x1="100" y1="40" x2="60" y2="95" class="ln"/><line x1="100" y1="40" x2="150" y2="95" class="ln"/>
+        <line x1="60" y1="95" x2="30" y2="150" class="ln"/><line x1="60" y1="95" x2="85" y2="150" class="ln"/>
+        <line x1="150" y1="95" x2="125" y2="150" class="ln"/><line x1="150" y1="95" x2="180" y2="150" class="ln"/>
+        <circle cx="100" cy="40" r="17" class="boxa"/><text x="100" y="44" text-anchor="middle" class="w">62</text>
+        <circle cx="60" cy="95" r="17" class="box"/><text x="60" y="99" text-anchor="middle" class="t">41</text>
+        <circle cx="150" cy="95" r="17" class="box"/><text x="150" y="99" text-anchor="middle" class="t">30</text>
+        <circle cx="30" cy="150" r="17" class="boxw"/><text x="30" y="154" text-anchor="middle" class="t">28</text>
+        <circle cx="85" cy="150" r="17" class="boxw"/><text x="85" y="154" text-anchor="middle" class="t">16</text>
+        <circle cx="125" cy="150" r="17" class="boxw"/><text x="125" y="154" text-anchor="middle" class="t">22</text>
+        <circle cx="180" cy="150" r="17" class="boxw"/><text x="180" y="154" text-anchor="middle" class="t">13</text>
+        <line x1="100" y1="57" x2="80" y2="235" class="dash"/><line x1="60" y1="112" x2="120" y2="235" class="dash"/>
+        <line x1="150" y1="112" x2="160" y2="235" class="dash"/><line x1="30" y1="167" x2="200" y2="235" class="dash"/>
+        <line x1="85" y1="167" x2="240" y2="235" class="dash"/><line x1="125" y1="167" x2="280" y2="235" class="dash"/>
+        <line x1="180" y1="167" x2="320" y2="235" class="dash"/>
+        <rect x="60" y="235" width="40" height="34" rx="5" class="box"/><text x="80" y="256" text-anchor="middle" class="t">62</text>
+        <rect x="100" y="235" width="40" height="34" rx="5" class="box"/><text x="120" y="256" text-anchor="middle" class="t">41</text>
+        <rect x="140" y="235" width="40" height="34" rx="5" class="box"/><text x="160" y="256" text-anchor="middle" class="t">30</text>
+        <rect x="180" y="235" width="40" height="34" rx="5" class="box"/><text x="200" y="256" text-anchor="middle" class="t">28</text>
+        <rect x="220" y="235" width="40" height="34" rx="5" class="box"/><text x="240" y="256" text-anchor="middle" class="t">16</text>
+        <rect x="260" y="235" width="40" height="34" rx="5" class="box"/><text x="280" y="256" text-anchor="middle" class="t">22</text>
+        <rect x="300" y="235" width="40" height="34" rx="5" class="box"/><text x="320" y="256" text-anchor="middle" class="t">13</text>
+        <text x="80" y="285" text-anchor="middle" class="s">1</text><text x="120" y="285" text-anchor="middle" class="s">2</text><text x="160" y="285" text-anchor="middle" class="s">3</text><text x="200" y="285" text-anchor="middle" class="s">4</text>
+        <text x="240" y="285" text-anchor="middle" class="s">5</text><text x="280" y="285" text-anchor="middle" class="s">6</text><text x="320" y="285" text-anchor="middle" class="s">7</text>
+      </svg>
+      <div class="cap">结点 i 的左孩子 2i、右孩子 2i+1、父结点 ⌊i/2⌋，<b>数组下标 1 起存才有此公式</b>；结点 4、5 的下标正好是 2i=4、2i+1=5</div>
+    </div>
+      
+    <h3>5.2 遍历、还原与线索二叉树</h3>
+    <ul>
+      <li><b>四种遍历</b>：先序「根左右」、中序「左根右」、后序「左右根」、层次「逐层从左到右」；前三者用栈（递归），层次用队列，中序由根分左右两段。</li>
+      <li class="hot"><b>由遍历序列还原二叉树</b>：先序 + 中序、后序 + 中序、层序 + 中序都能唯一确定一棵二叉树，而<em>先序 + 后序不能唯一确定</em>（无法区分单孩子是左还是右）。方法固定：先序首元素（或后序末元素、层序首元素）即根 → 在中序中找到该根，其左为左子树、右为右子树 → 按中序左右段的结点个数切分另一序列 → 对两段递归重复。常见考法：给两序列求第三序列、画出树形、求某结点的双亲/孩子或树的高度。结论：中序序列不可缺，它负责「分左右」，先序或后序只负责「定根」。<div class="ex"><p><b>例题</b>先序 ABDECF、中序 DBEAFC，求后序序列。</p><p><b>解析</b>① A 为根，中序左段 DBE、右段 FC；② 左子树先序 BDE → 根 B，左 D 右 E；③ 右子树先序 CF → 根 C，左 F。后序 D E B F C A。</p><p><b>易错点</b>以为先序 + 后序也能唯一确定——单孩子时无法区分左右。</p><p><b>拓展</b>层序 + 中序同样可还原，层序首元素定根。</p></div></li>
+      <li><b>非递归遍历</b>：先序入栈前访问，中序压栈到底再弹出访问，后序需记录上一个访问结点（或双栈、逆序法）；时间 <code>O(n)</code>，空间 <code>O(h)</code>。</li>
+      <li class="hot"><b>线索二叉树</b>：用 <code>n+1</code> 个空链域存放遍历次序下的前驱与后继，<code>ltag=1</code> 时 <code>lchild</code> 指向前驱、<code>rtag=1</code> 时 <code>rchild</code> 指向后继，按遍历次序分为先序、中序、后序线索树。中序线索树求后继：若 <code>rtag=0</code>（有右孩子）则取右子树中最左下的结点，否则 <code>rtag=1</code> 由线索直接给出；求前驱对称，取左子树最右下的结点。考法：画线索、判断某结点的线索指针指向谁、写出线索树的中序遍历序列。结论：<em>先序线索找前驱、后序线索找后继</em>仍需遍历或借助父指针，故这类题常用三叉链表；中序线索最常用，可不用栈完成中序遍历。<div class="ex"><p><b>例题</b>n=100 的二叉树线索化后，可用的空指针域有多少个？</p><p><b>解析</b>① 指针域共 2n=200；② 非空指针数 = 边数 = n−1 = 99；③ 空域 = 200−99 = 101 = n+1。</p><p><b>易错点</b>把 ltag=1 当成「有左孩子」，实际 1 表示指向遍历前驱。</p><p><b>拓展</b>中序线索树找后继：rtag=0 走右子树最左结点，rtag=1 直接取 rchild。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 205" role="img" aria-label="二叉树三种遍历">
+        <line x1="95" y1="45" x2="50" y2="110" class="ln"/><line x1="95" y1="45" x2="140" y2="110" class="ln"/>
+        <line x1="50" y1="110" x2="25" y2="175" class="ln"/><line x1="50" y1="110" x2="80" y2="175" class="ln"/>
+        <line x1="140" y1="110" x2="115" y2="175" class="ln"/><line x1="140" y1="110" x2="170" y2="175" class="ln"/>
+        <circle cx="95" cy="45" r="17" class="boxa"/><text x="95" y="43" text-anchor="middle" class="w">A</text><text x="95" y="56" text-anchor="middle" class="w">1</text>
+        <circle cx="50" cy="110" r="17" class="box"/><text x="50" y="108" text-anchor="middle" class="t">B</text><text x="50" y="121" text-anchor="middle" class="s">2</text>
+        <circle cx="140" cy="110" r="17" class="box"/><text x="140" y="108" text-anchor="middle" class="t">C</text><text x="140" y="121" text-anchor="middle" class="s">5</text>
+        <circle cx="25" cy="175" r="17" class="boxw"/><text x="25" y="173" text-anchor="middle" class="t">D</text><text x="25" y="186" text-anchor="middle" class="s">3</text>
+        <circle cx="80" cy="175" r="17" class="boxw"/><text x="80" y="173" text-anchor="middle" class="t">E</text><text x="80" y="186" text-anchor="middle" class="s">4</text>
+        <circle cx="115" cy="175" r="17" class="boxw"/><text x="115" y="173" text-anchor="middle" class="t">F</text><text x="115" y="186" text-anchor="middle" class="s">6</text>
+        <circle cx="170" cy="175" r="17" class="boxw"/><text x="170" y="173" text-anchor="middle" class="t">G</text><text x="170" y="186" text-anchor="middle" class="s">7</text>
+        <text x="205" y="42" class="t">先序</text><text x="248" y="42" class="x">A B D E C F G</text>
+        <text x="205" y="72" class="t">中序</text><text x="248" y="72" class="x">D B E A F C G</text>
+        <text x="205" y="102" class="t">后序</text><text x="248" y="102" class="x">D E B F G C A</text>
+        <text x="205" y="132" class="t">层次</text><text x="248" y="132" class="x">A B C D E F G</text>
+        <text x="205" y="165" class="s">圈内小字=先序序号</text>
+      </svg>
+      <div class="cap">先序"根左右"、中序"左根右"、后序"左右根"；<b>中序序列 + 先序/后序/层次任一即可唯一还原树</b></div>
+    </div>
+      
+    <h3>5.3 树、森林与并查集</h3>
+    <ul>
+      <li><b>树与森林转二叉树</b>：口诀「左孩子右兄弟」——兄弟加线、只留与长子的连线、以根为轴旋转；森林各树根视为兄弟，遍历对应见下表。</li>
+      <li><b>并查集</b>：双亲数组实现，<code>Find</code> 沿 parent 上溯找根，<code>Union</code> 把一个根挂到另一根下；按秩合并 + 路径压缩后近似 <code>O(α(n))</code>。</li>
+    </ul>
+    <table>
+      <thead><tr><th>树 / 森林的遍历</th><th>对应二叉树的遍历</th><th>访问次序</th></tr></thead>
+      <tbody>
+        <tr><td>树的先根遍历</td><td>先序遍历</td><td>先访问根，再依次先根遍历各棵子树</td></tr>
+        <tr><td>树的后根遍历</td><td>中序遍历</td><td>先依次后根遍历各棵子树，最后访问根</td></tr>
+        <tr><td>森林的先序遍历</td><td>先序遍历</td><td>依次先根遍历森林中的每一棵树</td></tr>
+        <tr><td>森林的中序遍历</td><td>中序遍历</td><td>依次后根遍历森林中的每一棵树</td></tr>
+      </tbody>
+    </table>
+    <h3>5.4 哈夫曼树与查找树</h3>
+    <ul>
+      <li class="hot"><b>哈夫曼树与哈夫曼编码</b>：每次从集合中取权值最小的两棵树合并成一棵新树（新权为二者之和），重复 n-1 次即得 WPL 最小的二叉树；哈夫曼树<em>没有度为 1 的结点</em>，n 个叶子共 <code>2n-1</code> 个结点。WPL = 每个叶子的权值 × 其路径长度之和，也等于所有合并产生的新结点权值之和，两种算法结果必然相同。约定左分支为 0、右分支为 1，从根到叶的路径即该字符编码；因字符只出现在叶子上，故必为<em>前缀码</em>，编码总长恰等于 WPL。考法：构造哈夫曼树、算 WPL、写各字符编码、比较定长编码与哈夫曼编码的位数、判断一组编码是否为前缀码。结论：同一权值集合的哈夫曼树形态与编码可不唯一（等权时左右可互换），但 WPL 唯一。<div class="ex"><p><b>例题</b>权值集合 {2,3,5,7}，构造哈夫曼树并求 WPL。</p><p><b>解析</b>① 合并 2+3=5；② 剩 {5,5,7}，合并 5+5=10；③ 剩 {7,10}，合并 17；WPL=5+10+17=32。</p><p><b>易错点</b>WPL 是带权路径长度之和，不是权值直接相加；合并后的新权必须放回集合。</p><p><b>拓展</b>n 个叶子的哈夫曼树共 2n−1 个结点，且没有度为 1 的结点。</p></div></li>
+      <li><b>二叉排序树</b>：左子树 &lt; 根 &lt; 右子树，<b>中序遍历必得递增序列</b>；查找插入平均 <code>O(log₂n)</code>，单支树 <code>O(n)</code>；删除分三种情形。</li>
+      <li class="hot"><b>平衡二叉树（AVL）与旋转</b>：任一结点的平衡因子（左子树高减右子树高）绝对值不超过 1，故树高为 <code>O(log₂n)</code>。插入后自底向上找到<b>第一个</b>失衡结点，只调整以它为根的最小不平衡子树即可：LL 型做一次右单旋、RR 型做一次左单旋、LR 型先左旋再右旋、RL 型先右旋再左旋。判断类型看失衡结点到新插入结点路径上前两步的方向，两步同向为 LL/RR，异向为 LR/RL。考法：给插入序列求最终树形、求旋转后某结点的左右孩子、求高度 h 的 AVL 最少结点数（<code>N(h)=N(h-1)+N(h-2)+1</code>）。结论：一次插入最多调整一次（祖先随之自动恢复平衡），而删除可能需要沿路径多次调整。<div class="ex"><p><b>例题</b>依次插入 1,2,3,4,5 建成 AVL 树，求最终树高与根。</p><p><b>解析</b>① 插 3 时 RR 失衡，左旋得根 2；② 插 4 后失衡，左旋得根 3；③ 插 5 再左旋得根 4，树高 3。</p><p><b>易错点</b>只盯插入点的父结点；应从插入点自底向上找「第一个」失衡结点。</p><p><b>拓展</b>高度 h 的 AVL 最少结点数 N(h)=N(h−1)+N(h−2)+1。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 245" role="img" aria-label="哈夫曼树构造">
+        <line x1="104" y1="35" x2="61" y2="95" class="ln"/><line x1="104" y1="35" x2="148" y2="95" class="ln"/>
+        <line x1="61" y1="95" x2="40" y2="155" class="ln"/><line x1="61" y1="95" x2="82" y2="155" class="ln"/>
+        <line x1="148" y1="95" x2="127" y2="155" class="ln"/><line x1="148" y1="95" x2="170" y2="155" class="ln"/>
+        <line x1="40" y1="155" x2="22" y2="215" class="ln"/><line x1="40" y1="155" x2="58" y2="215" class="ln"/>
+        <line x1="127" y1="155" x2="108" y2="215" class="ln"/><line x1="127" y1="155" x2="146" y2="215" class="ln"/>
+        <circle cx="104" cy="35" r="15" class="boxa"/><text x="104" y="39" text-anchor="middle" class="w">71</text>
+        <circle cx="61" cy="95" r="15" class="box"/><text x="61" y="99" text-anchor="middle" class="t">27</text>
+        <circle cx="148" cy="95" r="15" class="box"/><text x="148" y="99" text-anchor="middle" class="t">44</text>
+        <circle cx="40" cy="155" r="15" class="box"/><text x="40" y="159" text-anchor="middle" class="t">12</text>
+        <circle cx="82" cy="155" r="15" class="boxw"/><text x="82" y="159" text-anchor="middle" class="t">15</text>
+        <circle cx="127" cy="155" r="15" class="box"/><text x="127" y="159" text-anchor="middle" class="t">19</text>
+        <circle cx="170" cy="155" r="15" class="boxw"/><text x="170" y="159" text-anchor="middle" class="t">25</text>
+        <circle cx="22" cy="215" r="15" class="boxw"/><text x="22" y="219" text-anchor="middle" class="t">5</text>
+        <circle cx="58" cy="215" r="15" class="boxw"/><text x="58" y="219" text-anchor="middle" class="t">7</text>
+        <circle cx="108" cy="215" r="15" class="boxw"/><text x="108" y="219" text-anchor="middle" class="t">8</text>
+        <circle cx="146" cy="215" r="15" class="boxw"/><text x="146" y="219" text-anchor="middle" class="t">11</text>
+        <text x="195" y="45" class="t">WPL=173</text>
+        <text x="195" y="80" class="x">5:000 7:001</text>
+        <text x="195" y="105" class="x">8:100 11:101</text>
+        <text x="195" y="130" class="x">15:01 25:11</text>
+        <text x="195" y="162" class="s">左 0 右 1</text>
+        <text x="195" y="186" class="s">叶子=权值</text>
+        <text x="195" y="210" class="s">每次取最小两个</text>
+      </svg>
+      <div class="cap">每次合并最小两权：5+7=12、8+11=19、12+15=27、19+25=44、27+44=71；<b>WPL=(5+7+8+11)×3+(15+25)×2=173</b>，编码无前缀</div>
+    </div>
+      
+    >
+    >
+    >
+    <div class="warn"><b>易错</b>：<code>n₀=n₂+1</code> 与「结点数 = 度数之和 + 1」只对二叉树恒成立，若题目是度为 m 的树要用 <code>n₀=1+Σ(i-1)nᵢ</code>；「高度 h 的二叉树最多 <code>2^h-1</code> 个结点」也只在度为 2 时成立，m 叉树应为 <code>(m^h-1)/(m-1)</code>，切勿混用。</div>
+    <div class="warn"><b>易错</b>：先序 + 后序<em>不能</em>唯一确定二叉树（单孩子分支无法定左右），缺中序序列的还原题一律答「不唯一」；AVL 插入后只调整自底向上遇到的<em>第一个</em>失衡结点所在的最小不平衡子树，不要继续往上逐个旋转。</div>
+    <div class="tip"><b>记忆</b>：还原口诀「先序定根、中序分家」；树转二叉树「左孩子右兄弟」；哈夫曼「小者先并、左 0 右 1、WPL 只算叶」；AVL 四种旋转「LL 右旋、RR 左旋、LR 先左后右、RL 先右后左」。</div>
+    <div class="key"><b>重点</b>：本章必拿分三件套——<b>完全二叉树性质联立方程</b>、<b>由先序/后序 + 中序还原并写出第三序列</b>、<b>哈夫曼树构造与 WPL / 编码</b>，几乎每年至少考其一，且全是纯手算，务必练到不出错。</div>
+    <div class="key"><b>重点</b>：线索二叉树与 AVL 旋转以选择题为主，考「概念 + 画图」：记牢 <code>ltag/rtag</code> 含义与中序线索求前驱、后继的两条规则，以及四种旋转的判定方式和旋转后的树形。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">6</span>图<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>6.1 基本概念</h3>
+    <ul>
+      <li><b>完全图与度边关系</b>：无向完全图 <code>n(n-1)/2</code> 边、有向 <code>n(n-1)</code> 弧；<code>Σdeg(v)=2e</code>，<code>Σ入度=Σ出度=e</code>，奇度顶点为偶数个。</li>
+      <li><b>连通性与生成树</b>：任意两顶点间有路径即连通，极大连通子图为连通分量；n 个顶点的连通图，生成树恰有 <code>n-1</code> 条边，少于 <code>n-1</code> 条必不连通。</li>
+    </ul>
+    <h3>6.2 存储结构</h3>
+    <ul>
+      <li><b>邻接矩阵</b>：<code>n×n</code> 数组，空间 <code>O(n²)</code>，判两顶点是否相邻 <code>O(1)</code>；无向图矩阵对称、第 i 行非零个数即顶点 i 的度，适合稠密图。</li>
+      <li><b>邻接表</b>：顶点表加边链表，空间 <code>O(n+e)</code>；找邻接点快、判两点相邻需扫该点链表；有向图求出度快、求入度需扫全表（逆邻接表相反）。</li>
+      <li><b>十字链表与邻接多重表</b>：有向图用十字链表可同时高效求入度与出度，无向图用邻接多重表每条边只存一个结点、便于删边。</li>
+    </ul>
+    <table>
+      <thead><tr><th>对比项</th><th>邻接矩阵</th><th>邻接表</th></tr></thead>
+      <tbody>
+        <tr><td>空间</td><td>O(n²)，与边数无关</td><td>O(n+e)</td></tr>
+        <tr><td>判边/找邻接点</td><td>判边 O(1)，找邻接点 O(n)</td><td>判边 O(deg)，找邻接点 O(deg)</td></tr>
+        <tr><td>求度</td><td>数一行（列）即可</td><td>出度易，入度要扫全表</td></tr>
+        <tr><td>适用</td><td>稠密图、需频繁判边</td><td>稀疏图、需遍历邻接点</td></tr>
+      </tbody>
+    </table>
+    <h3>6.3 图的遍历</h3>
+    <ul>
+      <li class="hot"><b>BFS 与 DFS</b>：BFS 借助队列按层向外扩展，DFS 用递归或栈一条路走到底再回退。时间复杂度相同：邻接表 <code>O(n+e)</code>，邻接矩阵 <code>O(n²)</code>（每访问一个顶点都要扫整行找邻接点），空间均为 <code>O(n)</code>。BFS 能求无权图单源最短路（按层数即边数），DFS 常用于判环、求连通分量与拓扑排序。二者序列都不唯一，由存储结构（邻接点次序）和起始顶点决定。<div class="ex"><p><b>例题</b>6 个顶点 7 条边的无向图用邻接矩阵存储，从 v1 出发 BFS，求时间复杂度和访问特点。</p><p><b>解析</b>① 邻接矩阵每访问一个顶点要扫一整行，时间 O(n²)；② 队列按层扩展，同层顶点按编号先后入队。</p><p><b>易错点</b>把邻接矩阵与邻接表的复杂度记反：邻接表才是 O(n+e)。</p><p><b>拓展</b>BFS 可求无权图的单源最短路径（边数最少的那条）。</p></div></li>
+      <li><b>遍历与连通性</b>：非连通图调用遍历次数等于连通分量数；BFS 生成树高度最小，DFS 生成树可能是一条链；一次遍历访问全部顶点即连通。</li>
+    </ul>
+    <h3>6.4 最小生成树</h3>
+    <ul>
+      <li class="hot"><b>Prim 算法（稠密图）</b>：从任一顶点出发，每轮把「到已选顶点集合距离最小的顶点」连同那条边并入，直到取满 <code>n-1</code> 条边。实现上维护 <code>lowcost[]</code> 数组，每轮选最小 <code>O(n)</code>、更新 <code>O(n)</code>，共 <code>n-1</code> 轮，总时间 <code>O(n²)</code>，只与顶点数有关，故适合稠密图。MST 的边权之和唯一，但存在等权边时选边次序可不同，树形可能不唯一。<div class="ex"><p><b>例题</b>4 顶点图：v1v2=1、v1v3=3、v2v3=2、v2v4=4、v3v4=5，从 v1 起求 MST 权值。</p><p><b>解析</b>① 选 v1v2=1；② 集合 {v1,v2} 的最小出边 v2v3=2；③ 再选 v2v4=4；合计 1+2+4=7。</p><p><b>易错点</b>每轮只在「一端已选、一端未选」的边里取最小，不是取全局最小边。</p><p><b>拓展</b>Prim 适合稠密图（O(n²)），Kruskal 适合稀疏图（O(e log e)）。</p></div></li>
+      <li class="hot"><b>Kruskal 算法（稀疏图）</b>：把全部边按权递增排序，依次取边，只有当两端点不属于同一集合（并查集 <code>Find(u)≠Find(v)</code>）时才加入并合并，凑满 <code>n-1</code> 条边为止。时间 <code>O(e·log e)</code>（排序主导），与顶点数关系小，适合稀疏图。若图不连通，算法结束时得到的是生成森林而非生成树。<div class="ex"><p><b>例题</b>同一张图用 Kruskal 求 MST，写出选边顺序。</p><p><b>解析</b>① 边按权排序 1,2,3,4,5；② 依次取 1、2；③ 取 3 时 v1v3 与已选边成环，跳过；④ 取 4，合计 7。</p><p><b>易错点</b>不用并查集判环，结果会选出一棵带环的「树」。</p><p><b>拓展</b>存在相同权值时 MST 不唯一，但总权值唯一。</p></div></li>
+      <li><b>并查集</b>：双亲数组实现，<code>Find</code> 找根、<code>Union</code> 合并；按秩合并 + 路径压缩后单次近似 <code>O(α(n))</code>，是 Kruskal 判环工具。</li>
+    </ul>
+    >
+    <h3>6.5 最短路径</h3>
+    <ul>
+      <li class="hot"><b>Dijkstra（单源最短路）</b>：设 S 为已确定最短路的顶点集，每轮从 V-S 中选 <code>dist</code> 最小的顶点 u 加入 S，再用 u 松弛其出边 <code>dist[v]=min(dist[v], dist[u]+w)</code>。邻接矩阵实现 <code>O(n²)</code>（选最小 <code>O(n)</code> + 松弛 <code>O(n)</code>，共 <code>n-1</code> 轮）。要求边权全部非负：存在负权边时，已入 S 的顶点仍可能被更短路径改写，算法失效。顶点进入 S 的次序就是其最短路长度的递增次序。<div class="ex"><p><b>例题</b>v1 起求到各点最短路：v1v2=10、v1v5=5、v2v5=2、v5v4=2、v4v3=6、v2v3=3。</p><p><b>解析</b>① 先定 v5=5；② 经 v5 更新 v2=7、v4=7；③ 经 v2 更新 v3=10，经 v4 更新 v3=13，取 10。</p><p><b>易错点</b>每轮忘了「从 V−S 中选 dist 最小的顶点」，顺序一乱结果全错。</p><p><b>拓展</b>边权有负值时 Dijkstra 失效，应改用 Floyd 或 Bellman-Ford。</p></div></li>
+      <li><b>Floyd（多源最短路）</b>：<code>A[i][j]=min(A[i][j],A[i][k]+A[k][j])</code>，<code>O(n³)</code>、<code>O(n²)</code>，允许负权、禁负权回路，初值 0/∞。</li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 286" role="img" aria-label="Dijkstra 算法逐轮求解">
+        <line class="ln" x1="50" y1="55" x2="150" y2="30"/><line class="ln" x1="150" y1="30" x2="250" y2="55"/>
+        <line class="ln" x1="50" y1="55" x2="100" y2="120"/><line class="ln" x1="150" y1="30" x2="100" y2="120"/>
+        <line class="ln" x1="250" y1="55" x2="200" y2="120"/><line class="ln" x1="100" y1="120" x2="200" y2="120"/>
+        <circle class="boxw" cx="50" cy="55" r="14"/><circle class="boxw" cx="150" cy="30" r="14"/>
+        <circle class="boxw" cx="250" cy="55" r="14"/><circle class="boxw" cx="200" cy="120" r="14"/>
+        <circle class="boxw" cx="100" cy="120" r="14"/>
+        <text class="t" x="50" y="59" text-anchor="middle">v1</text><text class="t" x="150" y="34" text-anchor="middle">v2</text>
+        <text class="t" x="250" y="59" text-anchor="middle">v3</text><text class="t" x="200" y="124" text-anchor="middle">v4</text>
+        <text class="t" x="100" y="124" text-anchor="middle">v5</text>
+        <text class="s" x="100" y="36" text-anchor="middle">10</text><text class="s" x="200" y="36" text-anchor="middle">1</text>
+        <text class="s" x="62" y="84" text-anchor="middle">5</text><text class="s" x="138" y="72" text-anchor="middle">2</text>
+        <text class="s" x="236" y="88" text-anchor="middle">4</text><text class="s" x="150" y="113" text-anchor="middle">6</text>
+        <rect class="boxw" x="50" y="150" width="300" height="108" rx="5"/><rect class="box" x="50" y="150" width="300" height="18" rx="5"/>
+        <line class="ln" x1="50" y1="186" x2="350" y2="186"/><line class="ln" x1="50" y1="204" x2="350" y2="204"/>
+        <line class="ln" x1="50" y1="222" x2="350" y2="222"/><line class="ln" x1="50" y1="240" x2="350" y2="240"/>
+        <line class="ln" x1="118" y1="150" x2="118" y2="258"/><line class="ln" x1="176" y1="150" x2="176" y2="258"/>
+        <line class="ln" x1="234" y1="150" x2="234" y2="258"/><line class="ln" x1="292" y1="150" x2="292" y2="258"/>
+        <text class="s" x="84" y="163" text-anchor="middle">选出</text><text class="s" x="147" y="163" text-anchor="middle">v2</text>
+        <text class="s" x="205" y="163" text-anchor="middle">v3</text><text class="s" x="263" y="163" text-anchor="middle">v4</text>
+        <text class="s" x="321" y="163" text-anchor="middle">v5</text>
+        <text class="x" x="84" y="182" text-anchor="middle">v1 (0)</text><text class="x" x="147" y="182" text-anchor="middle">10</text>
+        <text class="x" x="205" y="182" text-anchor="middle">∞</text><text class="x" x="263" y="182" text-anchor="middle">∞</text>
+        <text class="x" x="321" y="182" text-anchor="middle">5</text>
+        <text class="x" x="84" y="200" text-anchor="middle">v5 (5)</text><text class="t" x="147" y="200" text-anchor="middle">7</text>
+        <text class="x" x="205" y="200" text-anchor="middle">∞</text><text class="t" x="263" y="200" text-anchor="middle">11</text>
+        <text class="x" x="321" y="200" text-anchor="middle">5</text>
+        <text class="x" x="84" y="218" text-anchor="middle">v2 (7)</text><text class="x" x="147" y="218" text-anchor="middle">7</text>
+        <text class="t" x="205" y="218" text-anchor="middle">8</text><text class="x" x="263" y="218" text-anchor="middle">11</text>
+        <text class="x" x="321" y="218" text-anchor="middle">5</text>
+        <text class="x" x="84" y="236" text-anchor="middle">v3 (8)</text><text class="x" x="147" y="236" text-anchor="middle">7</text>
+        <text class="x" x="205" y="236" text-anchor="middle">8</text><text class="x" x="263" y="236" text-anchor="middle">11</text>
+        <text class="x" x="321" y="236" text-anchor="middle">5</text>
+        <text class="x" x="84" y="254" text-anchor="middle">v4 (11)</text><text class="x" x="147" y="254" text-anchor="middle">7</text>
+        <text class="x" x="205" y="254" text-anchor="middle">8</text><text class="x" x="263" y="254" text-anchor="middle">11</text>
+        <text class="x" x="321" y="254" text-anchor="middle">5</text>
+        <text class="s" x="200" y="276" text-anchor="middle">最短路径：v1→v5→v2→v3 = 8，v1→v5→v4 = 11，v1→v5→v2 = 7</text>
+      </svg>
+      <div class="cap">每轮只做两件事：在<b>未确定顶点里挑 dist 最小</b>的并入 S（表中加粗值），再用它<b>松弛</b>邻居；选中顺序即最短路径的生成顺序。</div>
+    </div>
+      
+    >
+    <h3>6.6 拓扑排序与关键路径</h3>
+    <ul>
+      <li class="hot"><b>拓扑排序</b>：在 AOV 网中反复「输出一个入度为 0 的顶点，并删除它的全部出边（邻接点入度减 1）」，可用栈或队列暂存入度为 0 的顶点，邻接表实现 <code>O(n+e)</code>。结果一般不唯一：同一时刻有多个入度为 0 的顶点时，不同出栈次序得到不同合法序列。若最终输出的顶点数小于 n，说明剩余顶点入度均不为 0，即存在有向环，该 AOV 网不是 DAG，工程不可行。<div class="ex"><p><b>例题</b>一个 AOV 网求拓扑序列，并判断序列是否唯一。</p><p><b>解析</b>① 反复输出入度 0 的顶点并删除其出边；② 若中途找不到入度 0 的点，说明有环；③ 每步只有唯一入度 0 顶点时序列才唯一。</p><p><b>易错点</b>默认「拓扑序列唯一」，其实只有全序（每步唯一候选）时才唯一。</p><p><b>拓展</b>也可用 DFS 求逆后序得到拓扑序列，时间 O(n+e)。</p></div></li>
+      <li class="hot"><b>关键路径（AOE 网）</b>：事件最早发生时间正推取最大 <code>ve(v)=max{ve(u)+w(u,v)}</code>，最迟发生时间逆推取最小 <code>vl(u)=min{vl(v)-w(u,v)}</code>，汇点 <code>ve=vl=</code> 工期。活动最早开始 <code>e=ve(弧尾)</code>，最迟开始 <code>l=vl(弧头)-w</code>，<code>l-e=0</code> 者为关键活动。关键路径是从源点到汇点的最长路径，长度即工期，可能不止一条。加快某个关键活动可能缩短工期，但一旦它不再是关键活动，工期就由别的路径决定，需重新计算。<div class="ex"><p><b>例题</b>AOE 网求工期与关键活动。</p><p><b>解析</b>① ve 正推取 max；② vl 逆推取 min；③ 满足 e(i)=l(i) 的活动即关键活动。</p><p><b>易错点</b>把 ve 取 max、vl 取 min 记反；关键路径可能不止一条。</p><p><b>拓展</b>缩短非关键活动不改变工期；缩短关键活动可能产生新的关键路径。</p></div></li>
+    </ul>
+    >
+    <div class="key"><b>重点</b>：图的应用四问对应四种算法——最小生成树（Prim 稠密 / Kruskal 稀疏）、单源最短路（Dijkstra，非负权）、多源最短路（Floyd）、有向无环图（拓扑排序 + 关键路径），考试常以「给图算过程」形式出现，必须能写全中间量。</div>
+    <div class="tip"><b>记忆</b>：选算法口诀「稠密 Prim、稀疏 Kruskal；单源 Dijkstra、多源 Floyd；无权最短路用 BFS」；关键路径口诀「ve 正推取大、vl 逆推取小，e 看尾、l 看头减权」。</div>
+    <div class="warn"><b>易错</b>：Prim 与 Dijkstra 形式极像，但 Prim 的 lowcost 是「到已选集合的最短边权」、Dijkstra 的 dist 是「从源点出发的累计路径长」，且 Dijkstra 一旦入 S 不再修改。</div>
+    <div class="warn"><b>易错</b>：最小生成树的权值之和唯一但树形可能不唯一；BFS/DFS 序列、拓扑序列也不唯一，题目未指定存储结构或邻接点次序时，按顶点编号升序作答并说明前提。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">7</span>查找<span class="lv">★★★</span><span class="cnt">14 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>7.1 基本概念与顺序查找</h3>
+    <ul>
+      <li><b>ASL</b>：平均查找长度 <code>ASL=Σpᵢcᵢ</code>，等概率 <code>pᵢ=1/n</code>；<em>成功/失败 ASL 分开算</em>，分母为 n 与失败区间数。</li>
+      <li><b>顺序查找</b>：逐个比较，无有序性要求；成功 <code>ASL=(n+1)/2</code>，失败无序表 n、有序表 <code>n/2</code>（精确 <code>n/2+n/(n+1)</code>），<code>O(n)</code>。</li>
+    </ul>
+    <h3>7.2 折半查找</h3>
+    <ul>
+      <li class="hot"><b>折半查找（二分）</b>：只适用于<em>顺序存储且关键字有序</em>的表——链表无法随机定位中点，不能折半。每比较一次区间减半，比较次数不超过 <code>⌈log₂(n+1)⌉</code>，时间 <code>O(log₂n)</code>、空间 <code>O(1)</code>。把每次 mid 的取法画成树即<b>判定树</b>：它是<b>平衡二叉树</b>而<em>不是</em>完全二叉树，n 个结点时树高 <code>⌈log₂(n+1)⌉</code>、外部（失败）结点恰 <code>n+1</code> 个。计算套路固定：成功 <code>ASL=Σ(层号×该层结点数)/n</code>；失败 <code>ASL=Σ(失败结点所在层号)/(n+1)</code>，层号即该次失败的比较次数。<div class="ex"><p><b>例题</b>有序表 A[1..11]=(7,14,18,21,23,29,31,35,38,42,46)，查找 30，比较几次后失败？</p><p><b>解析</b>① low=1,high=11，mid=6 得 29&lt;30，去右半；② low=7,high=11，mid=9 得 38&gt;30，去左半；③ low=7,high=8，mid=7 得 31&gt;30，high=6&lt;low，失败。共 3 次。</p><p><b>易错点</b>把最后判定 low&gt;high 也算一次比较，次数多算 1。</p><p><b>拓展</b>判定树是一棵平衡二叉树，失败时最多比较 ⌈log₂(n+1)⌉ 次。</p></div></li>
+      <li><b>判定树性质</b>：左右子树结点数差 ≤1 故平衡，中序得有序序列，同层尽量满时 ASL 最小；n 相同则折半 ASL 唯一，随 mid 取整略异。</li>
+    </ul>
+    >
+    <h3>7.3 分块查找</h3>
+    <ul>
+      <li><b>分块查找</b>：<em>块间有序、块内无序</em>；<code>ASL=Lᵢ+L_b</code>，<code>ASL=(b+1)/2+(s+1)/2</code>，<code>s=√n</code> 最优 <code>ASL≈√n+1</code>。</li>
+    </ul>
+    <h3>7.4 树形查找：BST、AVL、B 树、B+ 树</h3>
+    <ul>
+      <li><b>二叉排序树（BST）</b>：左小右大、中序递增；查找 ASL 取决于树形，最好 <code>O(log₂n)</code>、最坏退化成单支链 <code>O(n)</code>，故需平衡化。</li>
+      <li class="hot"><b>平衡二叉树（AVL）</b>：任一结点左右子树高度差（平衡因子）绝对值 ≤1，查找、插入、删除均 <code>O(log₂n)</code>。插入后失衡只可能是最小失衡子树根处，按插入位置分 <b>LL/RR/LR/RL</b> 四种：LL、RR 单旋一次，LR、RL 双旋（先对子树旋、再对根旋），旋转后该子树高度复原，故<b>插入最多调整一次</b>。高度 h 的 AVL 最少结点数满足 <code>n_h=n_{h-1}+n_{h-2}+1</code>，<code>n_0=0,n_1=1,n_2=2</code>，故 <code>n_3=4,n_4=7,n_5=12,n_6=20</code>；反之含 n 个结点的 AVL 高度不超过 <code>1.44log₂(n+2)</code>。常考：给插入序列画出最终树、判平衡因子、求「高度 h 至少几个结点」。<div class="ex"><p><b>例题</b>依次插入 3,2,1,4,5 建 AVL，求最终根与高度。</p><p><b>解析</b>① 插 1 时 RR 失衡 → 左旋，根变 2；② 插 4 后仍平衡；③ 插 5 时结点 3 失衡 −2 → 左旋，根变 2，结构 2(1,4(3,5))，高度 3。</p><p><b>易错点</b>盯插入点的父结点找失衡；应找「最小不平衡子树的根」。</p><p><b>拓展</b>AVL 删除可能沿路径多次旋转，插入最多一次。</p></div></li>
+      <li><b>m 阶 B 树</b>：最多 m 子树、<code>m-1</code> 关键字；非根关键字 <code>⌈m/2⌉-1~m-1</code>，叶同层；树高 <code>log_⌈m/2⌉((n+1)/2)+1</code>。</li>
+      <li class="hot"><b>B 树插入分裂</b>：插入总发生在叶结点；若插入后关键字数超 <code>m-1</code>，取<b>中间关键字</b>（⌈m/2⌉ 位置）上移到父结点，其余左右两半各成一个结点，被上移的关键字在父结点中仍按序插入。若父结点也超限则继续分裂，可能连锁到根；根分裂时中间关键字升为新根，<b>树高 +1</b>——这是 B 树唯一长高的方式。删除时关键字数不足 <code>⌈m/2⌉-1</code> 才调整：先向兄弟<b>借</b>（经父结点周转），兄弟也刚好够则与兄弟<b>合并</b>，可能连锁合并使树高减 1。<div class="ex"><p><b>例题</b>5 阶 B 树依次插入 1~8，说明分裂过程。</p><p><b>解析</b>① m=5 时每个结点最多 4 个关键字；② 结点满 4 个再插第 5 个 → 取 ⌈m/2⌉=3 位关键字上移；③ 插入 5 时 3 上移，分成 1,2 与 4,5；插到 8 时 6 再上移。</p><p><b>易错点</b>以为要先分裂再插入；实际是先插入使关键字达 m 个再分裂。</p><p><b>拓展</b>根分裂时树高加 1；非根结点关键字数在 ⌈m/2⌉−1 ~ m−1 之间。</p></div></li>
+      <li><b>B+ 树</b>：叶结点存记录，非叶仅索引、关键字为子树<b>最大（或最小）关键字副本</b>；n 关键字分支有 <b>n 棵</b>子树；叶链接成有序链表，支持范围查询。</li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 250" role="img" aria-label="3 阶 B 树插入 1 到 7 的分裂过程">
+        <text class="s" x="12" y="22">① 插入 1、2</text><text class="s" x="207" y="22">② 插入 3：结点分裂</text>
+        <rect class="boxw" x="68" y="34" width="64" height="24" rx="5"/><line class="ln" x1="100" y1="34" x2="100" y2="58"/>
+        <text class="x" x="84" y="50" text-anchor="middle">1</text><text class="x" x="116" y="50" text-anchor="middle">2</text>
+        <rect class="boxw" x="282" y="34" width="30" height="22" rx="5"/><text class="x" x="297" y="49" text-anchor="middle">2</text>
+        <rect class="boxw" x="236" y="76" width="28" height="22" rx="5"/><text class="x" x="250" y="91" text-anchor="middle">1</text>
+        <rect class="boxw" x="330" y="76" width="28" height="22" rx="5"/><text class="x" x="344" y="91" text-anchor="middle">3</text>
+        <line class="ln" x1="288" y1="56" x2="258" y2="76"/><line class="ln" x1="306" y1="56" x2="336" y2="76"/>
+        <text class="s" x="12" y="124">③ 插 4、5：根变 [2,4]</text><text class="s" x="207" y="124">④ 插 6、7：根分裂</text>
+        <rect class="boxw" x="68" y="134" width="64" height="24" rx="5"/><line class="ln" x1="100" y1="134" x2="100" y2="158"/>
+        <text class="x" x="84" y="150" text-anchor="middle">2</text><text class="x" x="116" y="150" text-anchor="middle">4</text>
+        <rect class="boxw" x="36" y="170" width="28" height="22" rx="5"/><text class="x" x="50" y="185" text-anchor="middle">1</text>
+        <rect class="boxw" x="86" y="170" width="28" height="22" rx="5"/><text class="x" x="100" y="185" text-anchor="middle">3</text>
+        <rect class="boxw" x="136" y="170" width="28" height="22" rx="5"/><text class="x" x="150" y="185" text-anchor="middle">5</text>
+        <line class="ln" x1="80" y1="158" x2="58" y2="170"/><line class="ln" x1="100" y1="158" x2="100" y2="170"/>
+        <line class="ln" x1="120" y1="158" x2="142" y2="170"/>
+        <rect class="boxw" x="282" y="134" width="30" height="22" rx="5"/><text class="x" x="297" y="149" text-anchor="middle">4</text>
+        <rect class="boxw" x="236" y="170" width="28" height="22" rx="5"/><text class="x" x="250" y="185" text-anchor="middle">2</text>
+        <rect class="boxw" x="330" y="170" width="28" height="22" rx="5"/><text class="x" x="344" y="185" text-anchor="middle">6</text>
+        <line class="ln" x1="288" y1="156" x2="258" y2="170"/><line class="ln" x1="306" y1="156" x2="336" y2="170"/>
+        <rect class="boxw" x="208" y="206" width="28" height="22" rx="5"/><text class="x" x="222" y="221" text-anchor="middle">1</text>
+        <rect class="boxw" x="264" y="206" width="28" height="22" rx="5"/><text class="x" x="278" y="221" text-anchor="middle">3</text>
+        <rect class="boxw" x="302" y="206" width="28" height="22" rx="5"/><text class="x" x="316" y="221" text-anchor="middle">5</text>
+        <rect class="boxw" x="358" y="206" width="28" height="22" rx="5"/><text class="x" x="372" y="221" text-anchor="middle">7</text>
+        <line class="ln" x1="244" y1="192" x2="226" y2="206"/><line class="ln" x1="256" y1="192" x2="274" y2="206"/>
+        <line class="ln" x1="338" y1="192" x2="320" y2="206"/><line class="ln" x1="350" y1="192" x2="368" y2="206"/>
+        <text class="s" x="200" y="242" text-anchor="middle">3 阶 B 树每结点最多 2 个关键字，满则中位数上移分裂，根分裂树高 +1</text>
+      </svg>
+      <div class="cap">看图记三步：<b>插入找叶</b> → 叶满 <b>取中位数上移分裂</b> → 根也满则根再分裂、<b>树高 +1</b>；1~7 插完根为 [4]，共 3 层。</div>
+    </div>
+      
+    <table>
+      <thead><tr><th>对比项</th><th>B 树</th><th>B+ 树</th></tr></thead>
+      <tbody>
+        <tr><td>关键字分布</td><td>各层结点都存关键字，不重复</td><td>全部关键字只在叶结点，非叶仅存副本</td></tr>
+        <tr><td>n 个关键字的分支</td><td>n+1 棵子树</td><td>n 棵子树</td></tr>
+        <tr><td>查找路径</td><td>可能在非叶结点命中即成功</td><td>必须走到叶结点才成功</td></tr>
+        <tr><td>典型应用</td><td>文件系统索引</td><td>数据库索引、范围查询</td></tr>
+      </tbody>
+    </table>
+    >
+    <h3>7.5 散列表</h3>
+    <ul>
+      <li><b>散列函数与装填因子</b>：除留余数法 <code>H(key)=key%p</code>（p 取不大于表长 m 的最大质数）；<code>α=n/m</code>，<b>ASL 只取决于 α、与表长无关</b>。</li>
+      <li class="hot"><b>冲突处理（开放定址：线性探测）</b>：冲突时按 <code>Hᵢ=(H(key)+i)%m</code> 依次向后找空位（i=1,2,…，到表尾回绕），查找时遇空单元才算失败。优点是不额外开空间、可用公式估算 ASL；缺点是会产生<b>堆积（聚集）</b>——不同散列地址的记录连成一片，使后续冲突概率增大、ASL 升高，故有平方探测、双散列、再散列等改进。删除时<b>不能直接置空</b>，必须打「删除标记（墓碑）」，否则会截断探测链，使后面的同义词被误判为不存在。常考：按给定序列建表 → 逐个数比较次数求成功 ASL → 再对散列函数每个取值求失败 ASL（分母是值域大小）。<div class="ex"><p><b>例题</b>H(key)=key mod 7，依次插入 7,8,30,11,18,9,14，求线性探测的 ASL。</p><p><b>解析</b>① 7→0、8→1、30→2、11→4 各 1 次；② 18 冲突占 5（2 次）、9 冲突占 3（2 次）；③ 14 冲突占 6（4 次）。合计 12，ASL=12/7≈1.71。</p><p><b>易错点</b>ASL 的分母用表长 m；应为元素个数 n。探测次数含第一次。</p><p><b>拓展</b>拉链法 ASL≈1+α/2；开放定址删除要打标记，不能直接清空。</p></div></li>
+      <li><b>拉链法（链地址法）</b>：同义词链成单链表，无堆积、删除方便，适合冲突多且 <code>α&gt;1</code>；失败 ASL 按链长统计；开放定址要求 <code>α&lt;1</code>。</li>
+    </ul>
+    >
+    <h3>7.6 并查集</h3>
+    <ul>
+      <li class="hot"><b>并查集（Union-Find）</b>：用双亲数组 <code>parent[]</code> 表示森林，根满足 <code>parent[r]=r</code>（或 -1），同一集合即同一棵树。Find 沿双亲指针上溯至根，Union 把一棵树的根挂到另一棵的根下。朴素实现可能退化成单链，使 Find 达 <code>O(n)</code>；两种优化：<b>按秩/按大小合并</b>（小树挂大树，树高不超 <code>⌈log₂n⌉+1</code>）与<b>路径压缩</b>（Find 时把路径上所有结点直接挂到根，形成两层「菊花」树）。两者合用后 Find/Union 的均摊时间近 <code>O(1)</code>（<code>O(α(n))</code>）。常考：给 parent 数组画集合树、写出一次 Find 后数组的变化、统计连通分量数（根个数）、Kruskal 判环。<div class="ex"><p><b>例题</b>n=6 依次执行 Union(1,2)、Union(3,4)、Union(2,3)，求集合数与 Find(4) 的结果。</p><p><b>解析</b>① 前两次各成一棵树；② Union(2,3) 把两棵合并成 {1,2,3,4}；③ Find(4) 沿 parent 找到根 1；集合数 6−3=3。</p><p><b>易错点</b>只读 parent[4] 就当根，忘记沿链一直找到根。</p><p><b>拓展</b>按秩合并 + 路径压缩后单次操作近似 O(α(n))。</p></div></li>
+    </ul>
+    <div class="warn"><b>易错</b>折半判定树是「平衡二叉树」不是「完全二叉树」；失败结点数为 <code>n+1</code>，失败 ASL 的分母是 n+1 而非 n。</div>
+    <div class="warn"><b>易错</b>散列表 ASL 必须按题目指定的探测方式逐个数比较次数；开放定址删除要打删除标记；B 树只有「根分裂」才使树高 +1，删除只有「根只剩一个关键字且子女合并」才使树高 −1。</div>
+    <div class="tip"><b>记忆</b>B 树关键字范围记「<code>⌈m/2⌉-1 ~ m-1</code>」，子树数「关键字数 +1」；B+ 树「叶子全、链相连、必到底」；AVL 四种旋转「同号单旋、异号双旋」。</div>
+    <div class="key"><b>重点</b>：折半判定树 ASL、散列表成功/失败 ASL 是全章两大必考计算题，务必按层号与探测次数逐项列清再求和；B 树插入分裂、AVL 调整是必考画图题。</div>
+  </div>
+</details>
+<details class="chap">
+  <summary><span class="num">8</span>排序<span class="lv">★★★</span><span class="cnt">13 考点</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>8.1 基本概念</h3>
+    <ul>
+      <li><b>稳定性</b>：关键字相同的记录排序后相对次序不变则稳定。稳定：插入、冒泡、归并、基数；不稳定：希尔、快排、简单选择、堆排序。</li>
+      <li><b>分类</b>：内部排序（数据全在内存）与外部排序（数据需借外存）；按思想分插入、交换、选择、归并、基数五类。</li>
+    </ul>
+
+    <h3>8.2 插入类排序</h3>
+    <ul>
+      <li class="hot"><b>直接插入</b>：把待排元素插入前面已有序区，从后往前边比较边后移。最好情况（原已有序）比较 <code>n-1</code> 次、移动 0 次，时间 <code>O(n)</code>；平均与最坏时间 <code>O(n²)</code>，空间 <code>O(1)</code>，<em>稳定</em>。常见考法：给序列求某趟后的中间状态、求比较/移动次数。结论：n 很小时（n&lt;20 左右）它是最实用的方法，故快排小区间常改用它。<div class="ex"><p><b>例题</b>对 (49,38,65,97,76,13,27) 做直接插入排序，写出第 3 趟后的结果。</p><p><b>解析</b>① 38 插入 → 38,49；② 65 → 38,49,65；③ 97 → 38,49,65,97。</p><p><b>易错点</b>把「趟」当成「比较次数」；一趟只把第 i 个元素插入前面有序区。</p><p><b>拓展</b>已有序时只比较不移动，最好 O(n)；稳定排序。</p></div></li>
+      <li><b>折半插入</b>：先用折半查找定插入位置再统一后移。比较次数降为 <code>O(nlog₂n)</code>，但<em>移动次数仍是 O(n²)</em>，时间 <code>O(n²)</code>，稳定。</li>
+      <li><b>希尔排序</b>：按增量 d 分组插入，d 递减至 1。<em>不稳定</em>，约 <code>O(n^1.3)</code>，空间 <code>O(1)</code>；增量须以 1 收尾，只能顺序存储。</li>
+    </ul>
+
+    <h3>8.3 交换类排序</h3>
+    <ul>
+      <li><b>冒泡排序</b>：相邻逆序即交换，每趟送极值到一端。加标志后最好 <code>O(n)</code>，最坏比较 <code>n(n-1)/2</code> 次、<code>O(n²)</code>，空间 <code>O(1)</code>，稳定。</li>
+      <li class="hot"><b>快速排序一趟划分</b>：取枢轴 pivot，双指针 low/high 交替「挖坑填数」——high 向左找小于 pivot 者填入 low 坑，low 向右找大于 pivot 者填入 high 坑，最后把 pivot 放进相遇位置。一趟划分后 <em>pivot 已到最终位置且此后不再移动</em>，左侧全小于、右侧全大于（等于者可在任一侧）。每趟至少确定一个元素位置，这是快排与堆排的共有性质；n 个元素共需 <code>n-1</code> 趟递归。平均 <code>O(nlog₂n)</code>，<em>最坏 O(n²)</em>（原序列基本有序或逆序、枢轴总取到极值），空间为递归栈 <code>O(log₂n)</code>、最坏 <code>O(n)</code>，不稳定。<div class="ex"><p><b>例题</b>对 (46,79,56,38,40,84) 以 46 为枢轴做一趟划分。</p><p><b>解析</b>① high 从右找到 40 填到低位；② low 从左找到 79 填到高位；③ 交替直到 low=high，枢轴落位。结果 (40,38,46,56,79,84)。</p><p><b>易错点</b>用「交换」代替「挖坑填数」，中间过程与最终落位都错。</p><p><b>拓展</b>平均 O(n log n)、最坏 O(n²)（已有序且取首元素为轴）、不稳定。</p></div></li>
+    </ul>
+      <div class="fig">
+      <svg class="dg" viewBox="0 0 400 240" role="img" aria-label="快速排序一趟划分">
+        <text x="60" y="32" text-anchor="middle" class="t">枢轴=49</text>
+        <rect x="40" y="42" width="40" height="34" rx="5" class="boxa"/><text x="60" y="63" text-anchor="middle" class="w">49</text>
+        <rect x="80" y="42" width="40" height="34" rx="5" class="box"/><text x="100" y="63" text-anchor="middle" class="t">38</text>
+        <rect x="120" y="42" width="40" height="34" rx="5" class="box"/><text x="140" y="63" text-anchor="middle" class="t">65</text>
+        <rect x="160" y="42" width="40" height="34" rx="5" class="box"/><text x="180" y="63" text-anchor="middle" class="t">97</text>
+        <rect x="200" y="42" width="40" height="34" rx="5" class="box"/><text x="220" y="63" text-anchor="middle" class="t">76</text>
+        <rect x="240" y="42" width="40" height="34" rx="5" class="box"/><text x="260" y="63" text-anchor="middle" class="t">13</text>
+        <rect x="280" y="42" width="40" height="34" rx="5" class="box"/><text x="300" y="63" text-anchor="middle" class="t">27</text>
+        <rect x="320" y="42" width="40" height="34" rx="5" class="box"/><text x="340" y="63" text-anchor="middle" class="t">49</text>
+        <text x="60" y="92" text-anchor="middle" class="s">0</text><text x="100" y="92" text-anchor="middle" class="s">1</text><text x="140" y="92" text-anchor="middle" class="s">2</text><text x="180" y="92" text-anchor="middle" class="s">3</text>
+        <text x="220" y="92" text-anchor="middle" class="s">4</text><text x="260" y="92" text-anchor="middle" class="s">5</text><text x="300" y="92" text-anchor="middle" class="s">6</text><text x="340" y="92" text-anchor="middle" class="s">7</text>
+        <line x1="60" y1="124" x2="60" y2="98" class="lna" marker-end="url(#arwa)"/><text x="60" y="138" text-anchor="middle" class="t">low</text>
+        <line x1="340" y1="124" x2="340" y2="98" class="lna" marker-end="url(#arwa)"/><text x="340" y="138" text-anchor="middle" class="t">high</text>
+        <text x="200" y="160" text-anchor="middle" class="t">一趟划分后</text>
+        <rect x="40" y="170" width="40" height="34" rx="5" class="boxw"/><text x="60" y="191" text-anchor="middle" class="t">27</text>
+        <rect x="80" y="170" width="40" height="34" rx="5" class="boxw"/><text x="100" y="191" text-anchor="middle" class="t">38</text>
+        <rect x="120" y="170" width="40" height="34" rx="5" class="boxw"/><text x="140" y="191" text-anchor="middle" class="t">13</text>
+        <rect x="160" y="170" width="40" height="34" rx="5" class="boxa"/><text x="180" y="191" text-anchor="middle" class="w">49</text>
+        <rect x="200" y="170" width="40" height="34" rx="5" class="box"/><text x="220" y="191" text-anchor="middle" class="t">76</text>
+        <rect x="240" y="170" width="40" height="34" rx="5" class="box"/><text x="260" y="191" text-anchor="middle" class="t">97</text>
+        <rect x="280" y="170" width="40" height="34" rx="5" class="box"/><text x="300" y="191" text-anchor="middle" class="t">65</text>
+        <rect x="320" y="170" width="40" height="34" rx="5" class="box"/><text x="340" y="191" text-anchor="middle" class="t">49</text>
+        <text x="200" y="224" text-anchor="middle" class="s">枢轴落位 i=3</text>
+      </svg>
+      <div class="cap">挖坑法：high 找小于枢轴者填 low 坑，low 找大于枢轴者填 high 坑，最后枢轴入位，落位后左边全小于它、右边全大于它；<b>一趟只确定枢轴最终位置</b>，不产生有序子序列</div>
+    </div>
+      
+    >
+
+    <h3>8.4 选择类排序</h3>
+    <ul>
+      <li><b>简单选择</b>：每趟选最小者与首元素交换。比较恒为 <code>n(n-1)/2</code>、与初态无关，<code>O(n²)</code>，空间 <code>O(1)</code>，<em>不稳定</em>。</li>
+      <li class="hot"><b>堆排序</b>：堆是完全二叉树且每个结点不小于（大根堆）或不大于（小根堆）其孩子，用数组顺序存储，i 的孩子为 2i、2i+1，父为 ⌊i/2⌋。<em>建堆</em>：从 <code>⌊n/2⌋</code> 号结点起倒序逐个「向下调整」（与较大孩子比较交换并继续下沉），总代价 <code>O(n)</code>。<em>排序</em>：堆顶与末尾交换、堆长度减 1、再对新堆顶向下调整，共 n-1 次，总时间 <code>O(nlog₂n)</code>，空间 <code>O(1)</code>，<em>不稳定</em>。常见考法：给序列建堆、求建堆后数组、删除堆顶后调整、判是否为大/小根堆。结论：适合从大量数据中取前 k 个最值（n 大 k 小时优于快排）。<div class="ex"><p><b>例题</b>对 (46,79,56,38,40,84) 建大根堆。</p><p><b>解析</b>① 从 ⌊n/2⌋=3 号结点开始下沉：56 与 84 交换；② 79 已最大；③ 46 与 84 交换后再与 79 比较。结果 (84,79,56,38,40,46)。</p><p><b>易错点</b>从根开始调整；建堆必须从最后一个非叶结点 ⌊n/2⌋ 往前逐个下沉。</p><p><b>拓展</b>建堆 O(n)、整体 O(n log n)、空间 O(1)、不稳定；Top-K 常用堆。</p></div></li>
+    </ul>
+    >
+
+    <h3>8.5 归并与基数排序</h3>
+    <ul>
+      <li><b>归并排序</b>：相邻有序段两两归并，需 <code>⌈log₂n⌉</code> 趟，恒 <code>O(nlog₂n)</code>，空间 <code>O(n)</code>，<em>稳定</em>。</li>
+      <li><b>基数排序</b>：不比较关键字，按位 LSD「分配—收集」d 趟，<code>O(d(n+r))</code>，空间 <code>O(r)</code>，稳定。</li>
+    </ul>
+    <table>
+      <thead><tr><th>算法</th><th>平均时间</th><th>最坏时间</th><th>空间</th><th>稳定性</th></tr></thead>
+      <tbody>
+        <tr><td>直接插入</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>稳定</td></tr>
+        <tr><td>折半插入</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>稳定</td></tr>
+        <tr><td>希尔</td><td>O(n^1.3)</td><td>O(n²)</td><td>O(1)</td><td>不稳定</td></tr>
+        <tr><td>冒泡</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>稳定</td></tr>
+        <tr><td>快速</td><td>O(nlog₂n)</td><td>O(n²)</td><td>O(log₂n)</td><td>不稳定</td></tr>
+        <tr><td>简单选择</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>不稳定</td></tr>
+        <tr><td>堆排序</td><td>O(nlog₂n)</td><td>O(nlog₂n)</td><td>O(1)</td><td>不稳定</td></tr>
+        <tr><td>归并</td><td>O(nlog₂n)</td><td>O(nlog₂n)</td><td>O(n)</td><td>稳定</td></tr>
+        <tr><td>基数</td><td>O(d(n+r))</td><td>O(d(n+r))</td><td>O(r)</td><td>稳定</td></tr>
+      </tbody>
+    </table>
+
+    <h3>8.6 外部排序</h3>
+    <ul>
+      <li class="hot"><b>多路归并</b>：m 个初始归并段做 k 路归并，趟数 <code>s=⌈log_k m⌉</code>，总读写次数约 <code>2(s+1)×数据总块数</code>。增大 k 或减少 m 都能显著减少磁盘 I/O（I/O 是外排的瓶颈）；k 增大后内部比较次数上升，用败者树可把每次选最小者的比较降到 <code>⌈log₂k⌉</code>，而用置换-选择可生成平均长度约 2 倍内存容量的初始段以减少 m。常见考法：给记录数与内存块数算初始段数 m、算归并趟数与 I/O 次数。<div class="ex"><p><b>例题</b>100 个初始归并段做 4 路归并，需几趟？总读写多少段次？</p><p><b>解析</b>① 趟数 s=⌈log₄100⌉=4（4⁴=256≥100）；② 每趟读写各一遍，共 2×100×4=800 段次。</p><p><b>易错点</b>把趟数写成 ⌈m/k⌉；正确是 ⌈log_k m⌉。</p><p><b>拓展</b>败者树只降低内部比较次数，不减少归并趟数。</p></div></li>
+      <li><b>最佳归并树</b>：以各段长度为权构造 <em>k 叉哈夫曼树</em>，WPL 即总读写块数；段数不足时补虚段 <code>(k-1)-(m-1)%(k-1)</code> 个。</li>
+    </ul>
+    >
+    <div class="key"><b>重点</b>：比较类排序下界 <code>Ω(nlog₂n)</code>；堆排序是唯一「平均 O(nlog₂n) + 最坏 O(nlog₂n) + 空间 O(1)」的算法；归并排序是唯一「O(nlog₂n) 且稳定但需 O(n) 空间」的算法。</div>
+    <div class="tip"><b>记忆</b>：稳定性「插冒归基稳，希快选堆不稳」；时间 <code>O(nlog₂n)</code> 中只有快排会退化到 <code>O(n²)</code>；建堆 <code>O(n)</code>、排序 <code>O(nlog₂n)</code>。</div>
+    <div class="warn"><b>易错</b>：快排最坏出现在「基本有序/逆序」而非随机序列；一趟划分或一趟堆调整后只确定 1 个元素位置，不能据此判断整个序列已排好；基数排序空间是 <code>O(r)</code> 而非 <code>O(n+r)</code>，且必须稳定才能保证 LSD 正确。</div>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
