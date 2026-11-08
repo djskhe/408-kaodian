@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6df6">
+<title>易混辨析</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+
+<svg id="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+  <marker id="arwa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z"/></marker>
+</defs></svg>
+<div id="bar"></div>
+
+<header class="top">
+  <div class="hrow">
+    <button class="iconbtn" id="backBtn" hidden aria-label="返回">‹</button>
+    <h1 id="pageTitle">408 考点精讲</h1>
+    <button class="iconbtn" id="menuBtn" aria-label="更多">⋯</button>
+  </div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="搜考点 / 公式 / 题目…" autocomplete="off" enterkeyhint="search">
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  
+<section class="page on" id="confuse">
+  <div class="subhead"><h2>易混辨析</h2><span class="score">易混对照</span><span class="meta" data-all="4 科">4 科</span></div>
+<details class="chap" open>
+  <summary><span class="num">1</span>数据结构<span class="lv">★★★</span><span class="cnt">12 组</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>存储与结构</h3>
+    <ul>
+      <li><b>逻辑结构 vs 存储结构</b>：逻辑结构是元素之间关系的抽象描述（集合、线性、树、图），存储结构是这种关系在机器中的具体表示（顺序、链式、索引、散列），同一逻辑结构可有多种存储结构。<em>口诀：逻辑管关系，存储管实现。</em></li>
+      <li><b>顺序表 vs 链表</b>：顺序表靠连续空间支持 <code>O(1)</code> 随机存取，插删平均移动 <code>O(n)</code>；链表靠指针定位，插删只改指针 <code>O(1)</code>，但按位查找必须从头 <code>O(n)</code>，且每结点多耗指针空间。<em>口诀：顺序表查得快插删慢，链表插删快查得慢。</em></li>
+      <li><b>头指针 vs 头结点</b>：头指针是必有的、指向链表第一个结点的指针，是链表的"名字"；头结点是为统一操作而附加的哑结点，数据域不用，其指针域指向首元结点，可有可无。<em>口诀：头指针必须有，头结点可没有。</em></li>
+      <li><b>栈 vs 队列</b>：栈只允许在栈顶一端插入和删除，后进先出（LIFO）；队列在队尾插入、队头删除，先进先出（FIFO），二者都是操作受限的线性表。<em>口诀：栈后进先出，队列先进先出。</em></li>
+      <li><b>循环队列判空 vs 判满</b>：若只用 <code>front==rear</code> 判空，队满时也出现该条件而无法区分，故牺牲一个单元：空为 <code>front==rear</code>，满为 <code>front==(rear+1)%MaxSize</code>，元素个数 <code>(rear-front+MaxSize)%MaxSize</code>。<em>口诀：空是相等，满是差一。</em></li>
+    </ul>
+    <h3>树与图</h3>
+    <ul>
+      <li><b>完全二叉树 vs 满二叉树</b>：满二叉树每层都满、结点数 <code>2^h-1</code>；完全二叉树只要求前 <code>h-1</code> 层满、最后一层结点靠左连续，结点数可为 <code>2^(h-1)</code> 到 <code>2^h-1</code>，故满二叉树必是完全二叉树，反之不然。<em>口诀：满必完全，完全不必满。</em></li>
+      <li><b>二叉排序树 vs 平衡二叉树 vs 堆</b>：BST 只要求中序有序（左&lt;根&lt;右），查找平均 <code>O(log n)</code> 但可能退化成链、最坏 <code>O(n)</code>；AVL 额外要求左右子树高度差不超过 1，查找稳定 <code>O(log n)</code>；堆只要求父与子的大小关系，不保证有序，只能快速取堆顶最值。<em>口诀：BST 管次序，AVL 管平衡，堆只管顶。</em></li>
+      <li><b>B 树 vs B+ 树</b>：B 树每个结点都存关键字和记录指针，查找可能在非叶结点结束；B+ 树只有叶结点存记录、非叶结点纯作索引，且叶子用指针串成有序链表，支持顺序查找与范围查询，同样数据下树更矮、磁盘 I/O 更少。<em>口诀：B 树处处可停，B+ 树只到叶底。</em></li>
+      <li><b>Prim vs Kruskal</b>：Prim 从一个顶点出发，每次并入离当前树最近的顶点，复杂度 <code>O(V²)</code>，适合稠密图；Kruskal 按权从小到大选边并用并查集判环，复杂度 <code>O(E log E)</code>，适合稀疏图。<em>口诀：点稠密用 Prim，边稀疏用 Kruskal。</em></li>
+      <li><b>Dijkstra vs Floyd</b>：Dijkstra 求单源到各点最短路径，贪心地每次确定一个顶点，<code>O(V²)</code>，不允许负权边；Floyd 求任意两点间最短路径，三重循环动态规划 <code>O(V³)</code>，允许负权但不能有负权回路。<em>口诀：单源 Dijkstra，多源 Floyd。</em></li>
+    </ul>
+    <h3>查找与排序</h3>
+    <ul>
+      <li><b>朴素匹配 vs KMP</b>：朴素匹配失配后模式串回到首位、主串指针回退，最坏 <code>O(nm)</code>；KMP 用 <code>next</code> 数组记录模式串自身的重复信息，失配时主串指针不回退、模式串跳到 <code>next[j]</code>，<code>O(n+m)</code>。<em>口诀：朴素全回退，KMP 主串不回头。</em></li>
+      <li><b>稳定排序 vs 不稳定排序</b>：稳定指关键字相同的记录排序后相对次序不变；插入、冒泡、归并、基数排序稳定，希尔、快速、简单选择、堆排序不稳定。<em>口诀：插冒归基稳，希快选堆不稳。</em></li>
+    </ul>
+    <div class="tip"><b>记忆提示</b>：树与图部分先分清"关系约束"和"算法目标"——BST/AVL/堆都是对树形结构加约束，Prim/Kruskal 求最小生成树，Dijkstra/Floyd 求最短路径，考场上先认目标再选算法。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">2</span>计算机组成原理<span class="lv">★★★</span><span class="cnt">10 组</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>数据表示</h3>
+    <ul>
+      <li><b>原码 vs 补码 vs 移码</b>：原码最高位为符号位、其余为绝对值，0 有两种表示；补码正数同原码、负数按位取反加 1，0 唯一，可把减法化为加法；移码是补码的符号位取反（真值加偏移量），只用于表示浮点数阶码，便于按无符号数直接比较大小。<em>口诀：原码直观，补码运算，移码比大小。</em></li>
+      <li><b>机器字长 vs 存储字长 vs 指令字长</b>：机器字长是 CPU 一次能并行处理的二进制位数，决定运算器与通用寄存器宽度；存储字长是一个存储单元存放的位数，通常等于机器字长；指令字长是一条指令的位数，可为机器字长的整数倍。<em>口诀：机器管运算，存储管单元，指令管一条。</em></li>
+      <li><b>中断 vs 异常</b>：中断由 CPU 外部事件（I/O 完成、时钟、键盘）引起，与当前指令无关，保存的断点是下一条指令地址；异常由执行当前指令引起（缺页、溢出、除零、非法操作码），断点是当前指令，处理后可重新执行该指令。<em>口诀：外部为中断，内部为异常。</em></li>
+    </ul>
+    <h3>存储层次</h3>
+    <ul>
+      <li><b>SRAM vs DRAM</b>：SRAM 用双稳态触发器存储，不需刷新、速度快、集成度低成本高，用作 Cache；DRAM 用电容存储，需定期刷新、速度慢、集成度高成本低，用作主存。<em>口诀：SRAM 靠触发器，DRAM 靠电容要刷新。</em></li>
+      <li><b>Cache 写回 vs 写直达</b>：写直达每次写 Cache 的同时写主存，一致性好但访存频繁，常配不按写分配；写回只写 Cache 并置脏位，该行被替换时才写回主存，速度快但存在主存不一致，通常按写分配。<em>口诀：直达每次都写主存，写回脏了才回写。</em></li>
+      <li><b>直接映射 vs 全相联 vs 组相联</b>：直接映射的主存块只能装入唯一 Cache 行，硬件最简单、冲突率最高；全相联可装入任意行，冲突最低但需与所有标记比较、成本最高；组相联先按组号定组、组内全相联，是二者折中。<em>口诀：直接唯一，全相联任意，组相联组内任意。</em></li>
+      <li><b>Cache vs 虚拟存储器</b>：Cache 解决 CPU 与主存的速度差，由硬件自动管理、对程序员透明，按块交换、未命中代价小；虚拟存储器解决主存容量不足，由硬件加操作系统（页表、缺页中断）管理，按页交换，未命中要访问磁盘、代价极大。<em>口诀：Cache 提速靠硬件，虚存扩容靠 OS。</em></li>
+    </ul>
+    <h3>CPU 与体系</h3>
+    <ul>
+      <li><b>程序查询 vs 中断 vs DMA</b>：程序查询由 CPU 反复读状态位、全程忙等，CPU 与外设串行工作；中断方式在外设就绪时打断 CPU，以字（字节）为单位传送，仍需 CPU 逐次干预；DMA 由 DMA 控制器直接在主存与外设间成块传送，仅在开始和结束时打断 CPU。<em>口诀：查询死等，中断打断，DMA 成块不打扰。</em></li>
+      <li><b>流水线结构冒险 vs 数据冒险 vs 控制冒险</b>：结构冒险是争用同一硬件资源（如取指与取数同访存），用指令与数据 Cache 分离解决；数据冒险是后一条指令用到前一条尚未写回的结果，用转发（旁路）与插入气泡解决；控制冒险是转移指令改变 PC 使预取失效，用分支预测与延迟转移解决。<em>口诀：结构抢资源，数据等结果，控制猜错路。</em></li>
+      <li><b>RISC vs CISC</b>：RISC 指令少而规整、定长、寻址方式少、只有 Load/Store 访存、通用寄存器多、多用硬布线控制、易流水；CISC 指令多而复杂、变长、寻址方式多、可直接访存、多用微程序控制。<em>口诀：RISC 精简定长多寄存器，CISC 复杂变长靠微程序。</em></li>
+    </ul>
+    <div class="warn"><b>易错提醒</b>：写回法"脏位"与"替换时才写回"是同一件事的两面，写直达法没有脏位；Cache 与虚存的对比一定要写清"谁管理、按什么单位交换、未命中代价"三点。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">3</span>操作系统<span class="lv">★★★</span><span class="cnt">9 组</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>进程与调度</h3>
+    <ul>
+      <li><b>进程 vs 线程</b>：进程是资源分配的基本单位，拥有独立地址空间与 PCB；线程是 CPU 调度的基本单位，同进程内线程共享地址空间与打开的文件等资源，只独占栈和寄存器现场，切换开销远小于进程。<em>口诀：进程分资源，线程跑 CPU。</em></li>
+      <li><b>就绪 vs 运行 vs 阻塞</b>：就绪是万事俱备只缺 CPU，运行是正占用 CPU，阻塞是在等 I/O 或事件、给了 CPU 也跑不了；运行到阻塞是进程主动请求，阻塞到就绪是被动等事件完成，就绪到运行靠调度。<em>口诀：就绪等 CPU，阻塞等事件。</em></li>
+      <li><b>中断 vs 系统调用</b>：中断由外部事件或异常引起，是硬件机制，进入内核是被动的；系统调用是用户程序主动请求内核服务（如 read、fork），通过陷入指令自愿进入内核态，本质是一种软件引发的中断（内中断）。<em>口诀：中断是被动来，系统调用是主动求。</em></li>
+    </ul>
+    <h3>同步与死锁</h3>
+    <ul>
+      <li><b>同步 vs 互斥</b>：同步是多个进程为完成同一任务按约定次序协调推进，是直接制约、有先后关系；互斥是争用临界资源时同一时刻只允许一个进程进入临界区，是间接制约、彼此无先后要求。<em>口诀：同步讲次序，互斥讲独占。</em></li>
+      <li><b>信号量 P vs V</b>：P（wait）先做 <code>S=S-1</code>，若 <code>S&lt;0</code> 则阻塞自己，表示申请资源；V（signal）先做 <code>S=S+1</code>，若 <code>S&lt;=0</code> 则唤醒一个等待进程，表示释放资源；<code>S</code> 的值等于可用资源数减等待进程数。<em>口诀：P 减要资源，V 加放资源。</em></li>
+      <li><b>死锁 vs 饥饿</b>：死锁是多个进程互相持有并等待对方资源、形成循环等待，无外力介入永远无法推进；饥饿是某进程长期得不到 CPU 或资源（低优先级、短作业优先），但系统整体仍在推进，条件改变后仍可能被满足。<em>口诀：死锁是循环等，饥饿是排队等。</em></li>
+    </ul>
+    <h3>内存与文件</h3>
+    <ul>
+      <li><b>分页 vs 分段</b>：分页按固定大小划分物理内存，页长由硬件决定、地址空间一维，只为提高内存利用率、消除外部碎片；分段按程序的逻辑单位划分，段长可变、地址空间二维（段号＋段内偏移），便于共享、保护与动态增长。<em>口诀：分页为管理，分段为逻辑。</em></li>
+      <li><b>内部碎片 vs 外部碎片</b>：内部碎片是已分配给作业的分区（或页框）内没用完的空间，出现在固定分区和分页中；外部碎片是分区之间太小而无法分配的空闲区，出现在动态分区和分段中，可用紧凑（拼接）解决。<em>口诀：内碎在分区里，外碎在分区外。</em></li>
+      <li><b>页面置换 LRU vs FIFO</b>：FIFO 淘汰最先进入内存的页面，实现简单，但会出现 Belady 异常（帧数增加反而缺页更多）；LRU 淘汰最久未被访问的页面，符合局部性原理、不会出现 Belady 异常，但需硬件或栈支持、开销大。<em>口诀：FIFO 看谁先来，LRU 看谁最闲。</em></li>
+    </ul>
+    <div class="tip"><b>记忆提示</b>：同步与互斥的实现都用 P/V，但同步的信号量初值常为 0（"等通知"），互斥的信号量初值为 1（"一把锁"），初值不同是两者最直接的区分标志。</div>
+  </div>
+</details>
+<details class="chap" open>
+  <summary><span class="num">4</span>计算机网络<span class="lv">★★★</span><span class="cnt">9 组</span><span class="arw">▼</span></summary>
+  <div class="body">
+    <h3>体系与物理层</h3>
+    <ul>
+      <li><b>电路交换 vs 分组交换</b>：电路交换先建立专用通路、通信期间独占线路，时延小但线路利用率低；分组交换把报文切成带首部的分组、以存储转发方式共享线路，无需建立连接、利用率高，但有时延与首部开销。<em>口诀：电路独占要先连，分组共享靠转发。</em></li>
+      <li><b>流量控制 vs 拥塞控制</b>：流量控制是发送方与接收方之间点对点的速度匹配，防止接收方缓冲溢出（滑动窗口、rwnd）；拥塞控制是全局性的，防止过多分组注入网络使路由器队列溢出（慢开始、拥塞避免、快重传、快恢复，cwnd）。<em>口诀：流量控对方，拥塞控全局。</em></li>
+    </ul>
+    <h3>链路层</h3>
+    <ul>
+      <li><b>CSMA/CD vs CSMA/CA</b>：CSMA/CD 用于有线以太网，边发边听、检测到冲突立即停止并随机退避，冲突可"检测"；CSMA/CA 用于无线局域网，因无法边发边听（隐藏站、信号衰减）改为发送前预约（RTS/CTS）、收到 ACK 才算成功，冲突只能"避免"。<em>口诀：有线可检测，无线只能避免。</em></li>
+      <li><b>停止等待 vs GBN vs SR</b>：停止等待每发一帧就等确认，信道利用率最低；GBN 用累积确认、超时重传所有未确认帧、接收窗口为 1；SR 逐帧单独确认、只重传出错的那一帧、接收窗口大于 1，需缓存并排序。<em>口诀：停等一帧一停，GBN 退回去重发，SR 只补发丢的那帧。</em></li>
+      <li><b>集线器 vs 交换机 vs 路由器</b>：集线器工作在物理层、是多端口转发器，所有端口同属一个冲突域和广播域；交换机工作在链路层、按 MAC 地址转发，每端口一个冲突域但整台设备是一个广播域；路由器工作在网络层、按 IP 转发，能隔离广播域并连接异构网络。<em>口诀：集线器不隔离，交换机隔冲突，路由器隔广播。</em></li>
+      <li><b>冲突域 vs 广播域</b>：冲突域是可能互相冲突的结点集合（同一时刻只能一个发），由交换机或路由器端口划分；广播域是能收到同一广播帧的结点集合，只有路由器（或 VLAN）能划分。<em>口诀：冲突域看交换机，广播域看路由器。</em></li>
+    </ul>
+    <h3>网络层与传输层</h3>
+    <ul>
+      <li><b>RIP vs OSPF vs BGP</b>：RIP 是内部网关协议、距离向量算法（以跳数为度量、最大 15 跳）、封装在 UDP 520 中、收敛慢；OSPF 是内部网关协议、链路状态算法（Dijkstra）、直接封装在 IP 上、收敛快、支持划分区域；BGP 是外部网关协议、用于自治系统之间、路径向量算法、基于 TCP 179。<em>口诀：RIP 数跳数，OSPF 算链路，BGP 通天下。</em></li>
+      <li><b>ARP vs DHCP vs DNS</b>：ARP 由 IP 地址求 MAC 地址，同局域网内广播请求、单播应答；DHCP 为主机动态分配 IP 地址等配置，基于 UDP 67/68，可跨网段用中继代理；DNS 把域名解析为 IP 地址，基于 UDP 53，采用递归查询与迭代查询。<em>口诀：ARP 求 MAC，DHCP 给 IP，DNS 换域名。</em></li>
+      <li><b>TCP vs UDP</b>：TCP 面向连接、可靠（确认、重传、排序、流量与拥塞控制）、面向字节流、一对一、首部 20 字节，适合文件传输与 Web；UDP 无连接、不可靠、保留报文边界、支持多播广播、首部仅 8 字节、时延低，适合音视频与 DNS。<em>口诀：TCP 可靠有连接，UDP 简单跑得快。</em></li>
+    </ul>
+    <div class="key"><b>一句话定位</b>：做题时先判断该机制工作在"点对点"还是"全局"，是"物理层设备"还是"链路层/网络层设备"，绝大多数易混对都能由此拆开。</div>
+  </div>
+</details>
+</section>
+
+
+</main>
+
+<nav class="tabbar" id="tabbar">
+  <button data-v="home" class="on"><i>⌂</i>首页</button>
+  <button data-v="learn"><i>▤</i>学</button>
+  <button data-v="drill"><i>✎</i>练</button>
+  <button data-v="ref"><i>⌕</i>查</button>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="mask"></div>
+  <div class="panel">
+    <div class="m"><span>只看高频考点</span><button class="segbtn" id="hotBtn">关</button></div>
+    <div class="m"><span>只看未掌握</span><button class="segbtn" id="unBtn">关</button></div>
+    <div class="m" id="expRow"><span>展开 / 收起本页</span><span class="v" id="expV">展开</span></div>
+    <div class="m"><span>字号</span>
+      <div class="seg" id="fsBox"><button data-fs="0.92">小</button><button data-fs="1" class="on">中</button><button data-fs="1.1">大</button></div>
+    </div>
+    <div class="sep"></div>
+    <div class="m" id="examRow"><span>模拟套卷</span><span class="v">25 套</span></div>
+    <div class="m" id="wrongRow"><span>错题本</span><span class="v" id="wrongV">0 题</span></div>
+    <div class="sep"></div>
+    <div class="m" id="guideRow"><span>使用说明</span><span class="v">再看一遍</span></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetbar">
+    <span class="ttl" id="sheetTtl">模拟套卷</span>
+    <span class="tm" id="sheetTm">60:00</span>
+    <button class="sbtn" id="sheetSub">交卷</button>
+    <button class="sbtn" id="sheetClose">关闭</button>
+  </div>
+  <div class="sheetbody"><div class="wrapx" id="sheetBody"></div></div>
+</div>
+
+<button id="examBtn" hidden></button>
+<button id="resetBtn" hidden></button>
+<button id="wrongBtn" hidden></button>
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
